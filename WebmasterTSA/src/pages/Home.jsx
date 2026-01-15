@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const highlights = [
@@ -29,12 +30,13 @@ export default function Home() {
         <div style={styles.headerInner}>
           <div style={styles.logo}>Triangle Resource Hub</div>
           <nav style={styles.nav}>
-            <a href="#" style={styles.navLink}>Home</a>
-            <a href="#" style={styles.navLink}>Resource Hub</a>
-            <a href="#" style={styles.navLink}>Programs</a>
-            <a href="#" style={styles.navLink}>Scholarships</a>
-            <a href="#" style={styles.navLink}>FIND ECS</a>
-            <a href="#" style={styles.navLink}>Work Logs</a>
+            <nav style={styles.nav}>
+              <NavLink to="/" style={styles.navLink}>Home</NavLink>
+              <NavLink to="/resource-hub" style={styles.navLink}>Resource Hub</NavLink><NavLink to="/programs" style={styles.navLink}>Programs</NavLink>
+              <NavLink to="/scholarships" style={styles.navLink}>Scholarships</NavLink>
+              <NavLink to="/find-ecs" style={styles.navLink}>FIND ECS</NavLink>
+              <NavLink to="/work-logs" style={styles.navLink}>Work Logs</NavLink>
+            </nav>
           </nav>
         </div>
       </header>
@@ -140,11 +142,8 @@ const styles = {
   nav: {
     display: "flex",
     gap: "25px",
-    nav: {
     paddingRight: "20px", 
     boxSizing: "border-box",
-},
-
   },
   navLink: {
     color: "white",

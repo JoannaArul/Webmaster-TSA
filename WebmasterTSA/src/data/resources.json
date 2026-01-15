@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Bull City, NC Schools & Libraries Achieving More (SLAM)",
+    "category": "Support Services",
+    "city": "Durham",
+    "interest": "Education",
+    "description": "Through a partnership between Durham Public Schools (DPS) and Durham County Library, DPS students, teachers, and staff can access Durham County Library print and online resources.",
+    "link": "https://durhamcountylibrary.org/library-cards/bull-city-nc-slam/",
+    "openToAllImmigrationStatuses": true,
+    "featured": true
+  },
+  {
+    "name": "HandsOn Triangle",
+    "category": "Volunteering Opportunities",
+    "city": "All Triangle",
+    "interest": "Service",
+    "description": "HandsOn Triangle is the largest database of volunteer opportunities in the Triangle. Volunteers can search by interest, date, need, or organization.",
+    "link": "https://www.handsontriangle.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": true
+  },
+  {
+    "name": "Student Action Board",
+    "category": "Volunteering",
+    "city": "All Triangle",
+    "interest": "Service",
+    "description": "Participants evaluate community needs, organize service-learning projects, and build leadership skills through hands-on community work.",
+    "link": "https://thevolunteercenter.org/student-action-board/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Habitat for Humanity of Durham",
+    "category": "Volunteering",
+    "city": "Durham",
+    "interest": "Service",
+    "description": "Volunteer on construction and site projects like painting, landscaping, framing, and cleanup to support affordable homeownership in Durham.",
+    "link": "https://durhamhabitat.volunteerhub.com/vv2/lp/individualorientation",
+    "openToAllImmigrationStatuses": true,
+    "featured": true
+  },
+  {
+    "name": "Teen Board Sponsored Habitat for Humanity of Durham",
+    "category": "Volunteering",
+    "city": "All Triangle",
+    "interest": "Service",
+    "description": "Teen Board (ages 14–18) provides leadership, mentorship, youth builds, engagement projects, and advocacy opportunities in the community.",
+    "link": "https://www.durhamhabitat.org/teen-board",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "SEEDs Volunteering",
+    "category": "Volunteering",
+    "city": "Durham",
+    "interest": "Environment",
+    "description": "Looking to fulfill community service hours at SEEDS? Fill out the volunteer form to get started.",
+    "link": "https://www.seedsnc.org/volunteering",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Church World Service (CWS) Durham",
+    "category": "Volunteering",
+    "city": "Durham",
+    "interest": "Immigration & Refugee Support",
+    "description": "CWS Durham welcomes refugees, immigrants, and asylum-seekers through direct services, advocacy, leadership development, and community-building.",
+    "link": "https://cwsdurham.org/volunteer/",
+    "openToAllImmigrationStatuses": true,
+    "featured": true
+  },
+  {
+    "name": "Communities Acting for Refugee Empowerment (CARE)",
+    "category": "Volunteering",
+    "city": "Durham",
+    "interest": "Immigration & Refugee Support",
+    "description": "CARE connects refugee individuals and families with community groups that provide social and financial support toward education and employment goals.",
+    "link": "https://cwsdurham.org/care/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Model UN Week",
+    "category": "Community Events",
+    "city": "All Triangle",
+    "interest": "Law & Government",
+    "description": "Students learn how Model UN can be a vehicle for learning about the world, civic engagement, and personal growth.",
+    "link": "https://thevolunteercenter.org/model-un-week/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Women Build Sponsored Habitat for Humanity",
+    "category": "Community Events",
+    "city": "Durham",
+    "interest": "Service",
+    "description": "Women Build empowers women to build, fundraise, and advocate for affordable housing while gaining hands-on construction experience.",
+    "link": "https://forms.office.com/Pages/ResponsePage.aspx?id=q6-r5XSOYEuSNMRMv15SBFH-Ig_DIJJFjrQNo7UbeQZUN1kyVzAzTTdLU0dJUDdPUFJCQVNKMDcxNi4u",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Invasive Plant Removal at Wrightwood Park",
+    "category": "Community Events",
+    "city": "Durham",
+    "interest": "Environment",
+    "description": "Remove harmful invasive plants from Wrightwood Park as part of a community environmental restoration effort.",
+    "link": "https://www.keepdurhambeautiful.org/events/2026/wrightwood-park-feb",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "IMPACT CAMP",
+    "category": "Programs",
+    "city": "All Triangle",
+    "interest": "Service",
+    "description": "IMPACT Camps provide high school youth with an affordable, local, week-long community service/urban mission experience during the summer.",
+    "link": "https://thevolunteercenter.org/impact/",
+    "openToAllImmigrationStatuses": true,
+    "featured": true
+  },
+  {
+    "name": "YMCA Triangle",
+    "category": "Programs",
+    "city": "All Triangle",
+    "interest": "Health & Fitness",
+    "description": "The Y is a trusted place for connection, wellbeing, and growth with programs for youth development, health, and community engagement.",
+    "link": "https://www.ymcatriangle.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Mayor’s Award",
+    "category": "Awards",
+    "city": "All Triangle",
+    "interest": "Volunteering",
+    "description": "Recognizes students throughout the Greater Triangle who volunteer 60+ hours during summer break. Application opens in March and closes in October.",
+    "link": "https://thevolunteercenter.org/a-mayors-award/",
+    "openToAllImmigrationStatuses": true,
+    "featured": true
+  },
+  {
+    "name": "Commissioners’ Award",
+    "category": "Awards",
+    "city": "All Triangle",
+    "interest": "Volunteering",
+    "description": "Recognizes students throughout the Greater Triangle who volunteer 60+ hours during summer break. Application opens in March and closes in October.",
+    "link": "https://thevolunteercenter.org/commissioners-award/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Governor's and Key Volunteer Service Awards",
+    "category": "Awards",
+    "city": "Durham",
+    "interest": "Volunteering",
+    "description": "County winners are submitted to the Governor’s office for statewide recognition; top volunteers may receive the Medallion Award.",
+    "link": "https://thevolunteercenter.org/governors-key-volunteer-awards-of-the-year/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  }
+]
