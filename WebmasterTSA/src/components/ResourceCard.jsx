@@ -1,27 +1,40 @@
 import { motion } from "framer-motion";
 
+function normalizeCity(city) {
+  if (!city) return "";
+  if (city === "All Triangle") return "Research Triangle";
+  return city;
+}
+
 export default function ResourceCard({ resource }) {
+  const city = normalizeCity(resource.city);
+
   return (
-    <motion.article
-      whileHover={{ scale: 1.02 }}
-      style={styles.card}
-    >
+    <motion.article whileHover={{ scale: 1.02 }} style={styles.card}>
       <div style={styles.topRow}>
         <h3 style={styles.name}>{resource.name}</h3>
         {resource.featured && <span style={styles.badge}>Featured</span>}
       </div>
 
       <div style={styles.meta}>
-        <span><b>Category:</b> {resource.category}</span>
-        <span><b>City:</b> {resource.city}</span>
-        <span><b>Interest:</b> {resource.interest}</span>
+        <span>
+          <b>Category:</b> {resource.category}
+        </span>
+        <span>
+          <b>City:</b> {city}
+        </span>
+        <span>
+          <b>Interest:</b> {resource.interest}
+        </span>
       </div>
 
       <p style={styles.desc}>{resource.description}</p>
 
       <div style={styles.bottomRow}>
         {resource.openToAllImmigrationStatuses && (
-          <span style={styles.openBadge}>Open regardless of immigration status</span>
+          <span style={styles.openBadge}>
+            Open regardless of immigration status
+          </span>
         )}
         <a style={styles.link} href={resource.link} target="_blank" rel="noreferrer">
           Visit Resource →
@@ -47,11 +60,15 @@ const styles = {
     justifyContent: "space-between",
     gap: "12px",
   },
+
+  // IMPORTANT: force dark text so titles are visible
   name: {
     margin: 0,
     fontSize: "1.05rem",
     lineHeight: 1.25,
+    color: "#111827",
   },
+
   badge: {
     backgroundColor: "#2563eb",
     color: "white",

@@ -3,8 +3,18 @@ import resourcesData from "../data/resources.json";
 import FilterBar from "../components/FilterBar.jsx";
 import ResourceCard from "../components/ResourceCard.jsx";
 
+const CITY_OPTIONS = ["Durham", "Raleigh", "Chapel Hill", "Research Triangle"];
+
+function normalizeCity(city) {
+  // Your JSON uses "All Triangle" — map it to the new wording
+  if (!city) return "";
+  if (city === "All Triangle") return "Research Triangle";
+  return city;
+}
+
 export default function ResourceHub() {
-  const [filters, setFilters] = useState({
+  // Draft filters (user changes these)
+  const [draftFilters, setDraftFilters] = useState({
     search: "",
     category: "All",
     city: "All",
@@ -12,59 +22,111 @@ export default function ResourceHub() {
     onlyOpenToAllImmigrationStatuses: false,
   });
 
-  const categories = useMemo(
-    () => Array.from(new Set(resourcesData.map((r) => r.category))).sort(),
-    []
-  );
+  // Applied filters (these actually filter results)
+  const [appliedFilters, setAppliedFilters] = useState(draftFilters);
 
-  const cities = useMemo(
-    () => Array.from(new Set(resourcesData.map((r) => r.city))).sort(),
-    []
-  );
+  const applySearch = () => setAppliedFilters(draftFilters);
 
-  const interests = useMemo(
-    () => Array.from(new Set(resourcesData.map((r) => r.interest))).sort(),
-    []
-  );
+  const categories = useMemo(() => {
+    // Keep what you have, just normalized + sorted
+    const raw = resourcesData.map((r) => r.category).filter(Boolean);
+    return Array.from(new Set(raw)).sort();
+  }, []);
+
+  const cities = useMemo(() => CITY_OPTIONS, []);
+
+  const interests = useMemo(() => {
+    const raw = resourcesData.map((r) => r.interest).filter(Boolean);
+    return Array.from(new Set(raw)).sort();
+  }, []);
 
   const filtered = useMemo(() => {
-    const q = filters.search.trim().toLowerCase();
+    const q = appliedFilters.search.trim().toLowerCase();
 
     return resourcesData.filter((r) => {
-      const matchesSearch =
-        !q ||
-        r.name.toLowerCase().includes(q) ||
-        r.description.toLowerCase().includes(q);
+      const cityNorm = normalizeCity(r.city);
 
-      const matchesCategory = filters.category === "All" || r.category === filters.category;
-      const matchesCity = filters.city === "All" || r.city === filters.city;
-      const matchesInterest = filters.interest === "All" || r.interest === filters.interest;
+      // Improved search: name + description + category + city + interest
+      const haystack = [
+        r.name,
+        r.description,
+        r.category,
+        cityNorm,
+        r.interest,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      const matchesSearch = !q || haystack.includes(q);
+
+      const matchesCategory =
+        appliedFilters.category === "All" || r.category === appliedFilters.category;
+
+      const matchesCity =
+        appliedFilters.city === "All" ||
+        cityNorm === appliedFilters.city ||
+        // If user selects Research Triangle, include entries labeled Durham/Raleigh/Chapel Hill too
+        (appliedFilters.city === "Research Triangle" &&
+          ["Durham", "Raleigh", "Chapel Hill", "Research Triangle"].includes(cityNorm));
+
+      const matchesInterest =
+        appliedFilters.interest === "All" || r.interest === appliedFilters.interest;
 
       const matchesImmigration =
-        !filters.onlyOpenToAllImmigrationStatuses || r.openToAllImmigrationStatuses === true;
+        !appliedFilters.onlyOpenToAllImmigrationStatuses ||
+        r.openToAllImmigrationStatuses === true;
 
-      return matchesSearch && matchesCategory && matchesCity && matchesInterest && matchesImmigration;
+      return (
+        matchesSearch &&
+        matchesCategory &&
+        matchesCity &&
+        matchesInterest &&
+        matchesImmigration
+      );
     });
-  }, [filters]);
+  }, [appliedFilters]);
 
   return (
     <div style={styles.page}>
       <div style={styles.container}>
-        <h1 style={styles.title}>Resource Hub</h1>
-        <p style={styles.subtitle}>
-          Use filters to find volunteering, programs, support services, and more across the Triangle.
-        </p>
+        {/* Top bar / intro (adds the “explain the page” area you asked for) */}
+        <div style={styles.infoBar}>
+          <div>
+            <h1 style={styles.title}>Resource Hub</h1>
+            <p style={styles.subtitle}>
+              Search and filter community resources across the Triangle — programs,
+              scholarships, volunteering, nonprofits, and support services.
+            </p>
+          </div>
 
+          <div style={styles.infoStats}>
+            <div style={styles.statBox}>
+              <div style={styles.statNumber}>{filtered.length}</div>
+              <div style={styles.statLabel}>Results</div>
+            </div>
+            <div style={styles.tipBox}>
+              Tip: Use “Open regardless of immigration status” to see resources
+              accessible to all residents.
+            </div>
+          </div>
+        </div>
+
+        {/* Filters */}
         <FilterBar
           categories={categories}
           cities={cities}
           interests={interests}
-          filters={filters}
-          setFilters={setFilters}
+          filters={draftFilters}
+          setFilters={setDraftFilters}
+          onSearch={applySearch}
         />
 
+        {/* Results */}
         <div style={styles.resultsRow}>
-          <span style={styles.count}>{filtered.length} results</span>
+          <span style={styles.count}>
+            Showing {filtered.length} resource{filtered.length === 1 ? "" : "s"}
+          </span>
         </div>
 
         <div style={styles.grid}>
@@ -89,15 +151,66 @@ const styles = {
     padding: "0 20px",
     boxSizing: "border-box",
   },
+
+  infoBar: {
+    backgroundColor: "white",
+    borderRadius: "14px",
+    padding: "18px",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.06)",
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "16px",
+    flexWrap: "wrap",
+    marginBottom: "14px",
+  },
+
   title: {
     margin: 0,
     fontSize: "2.2rem",
+    color: "#111827",
   },
   subtitle: {
     marginTop: "8px",
+    marginBottom: 0,
     color: "#374151",
-    marginBottom: "18px",
+    maxWidth: "720px",
   },
+
+  infoStats: {
+    display: "flex",
+    gap: "12px",
+    alignItems: "stretch",
+    flexWrap: "wrap",
+    justifyContent: "flex-end",
+  },
+  statBox: {
+    minWidth: "110px",
+    border: "1px solid #E5E7EB",
+    borderRadius: "12px",
+    padding: "10px 12px",
+    textAlign: "center",
+  },
+  statNumber: {
+    fontSize: "1.5rem",
+    fontWeight: "800",
+    color: "#111827",
+    lineHeight: 1.1,
+  },
+  statLabel: {
+    fontSize: "0.9rem",
+    color: "#374151",
+  },
+  tipBox: {
+    border: "1px solid #E5E7EB",
+    borderRadius: "12px",
+    padding: "10px 12px",
+    color: "#374151",
+    maxWidth: "340px",
+    fontSize: "0.92rem",
+    display: "flex",
+    alignItems: "center",
+  },
+
   resultsRow: {
     marginTop: "14px",
     marginBottom: "14px",
@@ -109,6 +222,7 @@ const styles = {
     color: "#111827",
     fontWeight: "bold",
   },
+
   grid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const highlights = [
@@ -23,24 +23,10 @@ const highlights = [
 ];
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <div style={{ ...styles.page, maxWidth: "100vw" }}>
-      {/* Header / Navbar */}
-      <header style={styles.header}>
-        <div style={styles.headerInner}>
-          <div style={styles.logo}>Triangle Resource Hub</div>
-          <nav style={styles.nav}>
-            <nav style={styles.nav}>
-              <NavLink to="/" style={styles.navLink}>Home</NavLink>
-              <NavLink to="/resource-hub" style={styles.navLink}>Resource Hub</NavLink><NavLink to="/programs" style={styles.navLink}>Programs</NavLink>
-              <NavLink to="/scholarships" style={styles.navLink}>Scholarships</NavLink>
-              <NavLink to="/find-ecs" style={styles.navLink}>FIND ECS</NavLink>
-              <NavLink to="/work-logs" style={styles.navLink}>Work Logs</NavLink>
-            </nav>
-          </nav>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
@@ -53,12 +39,23 @@ export default function Home() {
             Connecting the Research Triangle to Local Resources
           </h1>
           <p style={styles.heroSubtitle}>
-            A hub for residents to find volunteering opportunities, community organizations,
-            support services, programs, and scholarships
+            A hub for residents to find volunteering opportunities, community
+            organizations, support services, programs, and scholarships
           </p>
+
           <div style={styles.heroButtons}>
-            <button style={styles.primaryButton}>Explore Resources</button>
-            <button style={styles.secondaryButton}>Request/Add Resource</button>
+            <button
+              style={styles.primaryButton}
+              onClick={() => navigate("/resource-hub")}
+            >
+              Explore Resources
+            </button>
+            <button
+              style={styles.secondaryButton}
+              onClick={() => navigate("/add-resource")}
+            >
+              Request/Add Resource
+            </button>
           </div>
         </div>
       </motion.section>
@@ -83,7 +80,9 @@ export default function Home() {
                 <h3>{item.name}</h3>
                 <p style={styles.cardCategory}>{item.category}</p>
                 <p>{item.description}</p>
-                <a href={item.link} style={styles.cardLink}>Learn More</a>
+                <a href={item.link} style={styles.cardLink}>
+                  Learn More
+                </a>
               </motion.div>
             ))}
           </div>
@@ -94,12 +93,13 @@ export default function Home() {
       <section style={styles.callout}>
         <div style={styles.container}>
           <p style={styles.calloutText}>
-            We recognize that many residents face barriers due to immigration status.
-            This hub highlights resources that are accessible to all residents,
-            regardless of citizenship or permanent residency.
+            We recognize that many residents face barriers due to immigration
+            status. This hub highlights resources that are accessible to all
+            residents, regardless of citizenship or permanent residency.
           </p>
           <p style={styles.calloutSubtext}>
-            Use the filter to view only resources open regardless of citizenship/residency/immigration status.
+            Use the filter to view only resources open regardless of
+            citizenship/residency/immigration status.
           </p>
         </div>
       </section>
@@ -115,40 +115,6 @@ const styles = {
     backgroundColor: "#f9fafb",
     width: "100%",
     overflowX: "hidden",
-  },
-  header: {
-    width: "100%",
-    backgroundColor: "#2563eb",
-    color: "white",
-    position: "sticky",
-    top: 0,
-    zIndex: 100,
-    display: "flex",
-    justifyContent: "center",
-  },
-  headerInner: {
-    maxWidth: "1400px",
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "20px",
-    boxSizing: "border-box",
-  },
-  logo: {
-    fontWeight: "bold",
-    fontSize: "1.5rem",
-  },
-  nav: {
-    display: "flex",
-    gap: "25px",
-    paddingRight: "20px", 
-    boxSizing: "border-box",
-  },
-  navLink: {
-    color: "white",
-    textDecoration: "none",
-    fontWeight: 500,
   },
   hero: {
     width: "100%",
