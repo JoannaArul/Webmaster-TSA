@@ -53,5 +53,93 @@
     "link": "https://www.waketech.edu/career-and-college-promise",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+  {
+    "name": "Future Teachers of NC",
+    "category": "Academic Program",
+    "cities": ["Durham", "Chapel Hill", "Raleigh"],
+    "grades": ["11", "12"],
+    "interest": "Education",
+    "description": "The Future Teachers of North Carolina (FTNC) program is designed to inspire high school juniors and seniors to explore a career in teaching by offering an engaging and rigorous experience that introduces them to the training, responsibilities, and real-world aspects of becoming an educator.",
+    "link": "https://myapps.northcarolina.edu/p12division/future-teachers-for-students/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "The Engineering Place",
+    "category": "Academic Program",
+    "cities": ["Durham", "Chapel Hill", "Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Engineering",
+    "description": "The Engineering Place aims to motivate future problem solvers, innovators, and engineers by offering strong engineering education programs for K–12 students. By delivering interactive, hands-on learning opportunities for students and meaningful professional development for educators, the organization works to make engineering engaging and accessible to learners of all backgrounds.",
+    "link": "https://engr.ncsu.edu/theengineeringplace/programs/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Health and Environment Scholars @Duke",
+    "category": "Academic Program",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Environmental Science",
+    "description": "Duke University’s Nicholas School of the Environment and School of Medicine partner with Durham Public Schools to offer a year-long Health and Environmental Scholars Program for talented, underserved high school students. The program includes weekly in-person sessions with guest speakers, along with weekend field trips and hands-on lab experiences.",
+    "link": "https://sites.duke.edu/hesp/our-program/#",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Raleigh Little Theatre - Teens on State/Teens Backstage",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "The Teens on Stage / Teens Backstage program strengthens students’ theatre skills by linking classes with hands-on production work and real-world themes. Open to students with varied experience levels, the program also builds communication, collaboration, and problem-solving skills that extend beyond the arts.",
+    "link": "https://raleighlittletheatre.org/education/teens-on-stage-teens-backstage/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC YMCA Youth & Government",
+    "category": "Academic Program",
+    "cities": ["Durham", "Chapel Hill", "Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Law & Government",
+    "description": "Youth and Government is a national civic program that helps high school students develop leadership skills by engaging directly with the policymaking process. Through local school or YMCA delegations, students gain hands-on experience in government and learn how to create positive change in their communities.",
+    "link": "https://www.ymcatriangle.org/programs/teen-programs/ymca-youth-government",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Raleigh Youth Council",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "The Raleigh Youth Council gives high school students a voice in local issues while building leadership skills through civic engagement, service, and special youth conferences.",
+    "link": "https://raleighnc.gov/parks-and-recreation/services/teen-programs",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Raleigh Teen Connect (RTC)",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "Raleigh Teen Connect (RTC) is a free program that connects teens to City of Raleigh resources, programs, facilities, and community services.",
+    "link": "https://ncraleighweb.myvscloud.com/webtrac/web/search.html?Action=Start&SubAction=&_csrf_token=cl0O0514711E1C271W3C453Z5T555D6H1I5K645E5W065Z40554V1K6M4L4L561E6Y4F6N5D6W5V4V5X6A1A714C6L4C06704J58530G574R464F045P4V646F6M5R606K&keyword=teen&type=&category=&age=&secondarycode=&keywordoption=Match+One&subtype=&display=detail&module=PM&multiselectlist_value=&pmwebsearch_buttonsearch=yes",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC-MSEN Pre-College Program",
+    "category": "Academic Program",
+    "cities": ["Durham", "Chapel Hill", "Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "The NC State NC-MSEN Pre-College Program is a STEM enrichment initiative for students in grades 6–12 that prepares participants for college pathways in science, technology, engineering, and mathematics through academic and enrichment experiences.",
+    "link": "https://precollege.ncsu.edu/nc-msen-pre-college-program/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

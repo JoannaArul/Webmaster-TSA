@@ -86,5 +86,137 @@
     "link": "https://summer.unc.edu/dual-enrollment/",
     "openToAllImmigrationStatuses": false,
     "featured": false
+  },
+  {
+    "name": "NC State College of Engineering Summer Research Experience",
+    "category":"Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["10", "11"],
+    "interest": "Engineering",
+    "description": "The Electrical and Computing Engineering Department at North Carolina State University is hosting a Young Scholars program for high school students from June 22 to July 20, 2026. Students will work with teachers and researchers to create and test lessons connected to current engineering research, including applied artificial intelligence.",
+    "link": "https://engr.ncsu.edu/theengineeringplace/students/#high-school",
+    "openToAllImmigrationStatuses": false,
+    "featured": false
+  },
+  {
+    "name": "Project SEED",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["10", "11", "12"],
+    "interest": "Chemistry",
+    "description": "This program supports high school students from diverse backgrounds by offering hands-on STEM learning and chemistry research opportunities. It provides summer research placements and virtual camps that focus on college readiness, lab skills, and exposure to chemistry careers.",
+    "link": "https://www.acs.org/education/students/highschool/seed/apply.html",
+    "openToAllImmigrationStatuses": false,
+    "featured": false
+  },
+  {
+    "name": "Leadership Institute for Future Teachers (LIFT)",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["11"],
+    "interest": "Education",
+    "description": "The Leadership Institute for Future Teachers (LIFT) is a six-day invitational program for rising North Carolina high school seniors interested in education, offering hands-on school experiences and exposure to education careers.",
+    "link": "https://precollege.ncsu.edu/leadership-institute-for-future-teachers-lift/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "UNC School of the Arts Summer Intensives",
+    "category": "Summer Programs",
+    "cities": ["Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "The University of North Carolina School of the Arts offers immersive summer programs for middle and high school students across disciplines such as animation, dance, drama, film, music, and visual arts. Programs include hands-on training, performances, and instruction from professional artists, with additional online academic options and community camps available.",
+    "link": "https://www.uncsa.edu/summer/?utm_source=teenlife",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "North Carolina Governor’s School",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["11"],
+    "interest": "STEM/Enrichment",
+    "description": "A prestigious, tuition-free residential summer program recognizing academic excellence in humanities, social sciences, and STEM.",
+    "link": "https://www.dpi.nc.gov/students-families/enhanced-opportunities/governors-school-north-carolina",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Durham YouthWorks",
+    "category": "Summer Programs",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "Durham YouthWorks is a hybrid program that helps young adults build essential skills and explore career opportunities with local employers while earning stipends for participation.",
+    "link": "https://www.durhamnc.gov/598/Durham-YouthWorks-Program",
+    "openToAllImmigrationStatuses": false,
+    "featured": false
+  },
+  {
+    "name": "Carolina Sports Journalism Camp",
+    "category": "Summer Programs",
+    "cities": ["Chapel Hill"],
+    "grades": ["10", "11"],
+    "interest": "English Literature Writing",
+    "description": "The Carolina Sports Journalism Camp at UNC-Chapel Hill is a program for rising high school juniors and seniors interested in sports and media, offering hands-on training in sports writing, broadcasting, photography, and newsroom practice.",
+    "link": "https://hussman.unc.edu/k-12-outreach/csjc-2",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Chuck Stone Program",
+    "category": "Summer Programs",
+    "cities": ["Chapel Hill"],
+    "grades": ["11"],
+    "interest": "English Literature Writing",
+    "description": "The 2026 Chuck Stone Program is a four-day, in-person journalism workshop for rising high school seniors, offering hands-on reporting, newsroom practice, and mentorship while producing a collaborative multimedia publication.",
+    "link": "https://chuckstone.web.unc.edu/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC State Design Camp",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Chapel Hill", "Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Engineering",
+    "description": "Design Camp is a pre-college summer program by NC State’s Design Lab that introduces middle and high school students to design thinking and its real-world impact through hands-on, creative experiences.",
+    "link": "https://design.ncsu.edu/designcamp/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Horticultural Science Summer Institute",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Chapel Hill", "Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Environmental Science",
+    "description": "The Horticultural Science Summer Institute at NC State is a hands-on, residential program where high school students explore plant science, sustainable agriculture, and horticulture careers through workshops, field visits, and campus life experiences.",
+    "link": "https://precollege.ncsu.edu/horticultural-science-summer-institute/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC State Study Skills",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Chapel Hill", "Raleigh"],
+    "grades": ["9", "10"],
+    "interest": "Psychology",
+    "description": "The NC State Psychoeducational Clinic offers in-person and online programs that help students improve organization, study skills, and academic habits.",
+    "link": "https://psychology.chass.ncsu.edu/psyed/services/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC State Teen Writers Workshop",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Chapel Hill", "Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "English Literature Writing",
+    "description": "The Teen Writers Workshop is a two-week summer program that supports creative writing development and connects students with a community of young writers.",
+    "link": "https://english.chass.ncsu.edu/research-and-engagement/young-writers/teen-writers-workshop/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

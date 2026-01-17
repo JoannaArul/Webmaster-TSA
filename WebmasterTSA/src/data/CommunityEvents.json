@@ -15,7 +15,7 @@
     "category": "Community Events",
     "cities": ["Durham"],
     "grades": ["9", "10", "11", "12"],
-    "interest": "Service",
+    "interest": "Public Service",
     "description": "A hands-on build and fundraising initiative that supports affordable housing while creating a supportive space for women volunteers and advocates.",
     "link": "https://forms.office.com/Pages/ResponsePage.aspx?id=q6-r5XSOYEuSNMRMv15SBFH-Ig_DIJJFjrQNo7UbeQZUN1kyVzAzTTdLU0dJUDdPUFJCQVNKMDcxNi4u",
     "openToAllImmigrationStatuses": true,
@@ -40,6 +40,94 @@
     "interest": "STEM/Enrichment",
     "description": "An informal evening event for teens featuring conversations with STEM professionals, hands-on activities, and a relaxed environment designed to spark curiosity and exploration.",
     "link": "https://www.lifeandscience.org/explore/teen-science-cafe/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Future Teacher Conference at UNCW",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Education",
+    "description": "The Future Teacher Conference invites high school, community college, and homeschool students to UNCW for a day exploring life as a Watson student. Participants attend interactive sessions led by faculty and staff, along with a student panel focused on education careers.",
+    "link": "https://uncw.edu/academics/colleges/wce/academic-programs/departments-offices/aps/recruitment-enrollment/future-teacher",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Engineering Open House at NC State",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Engineering",
+    "description": "The annual College of Engineering Open House at NC State offers prospective students and families an opportunity to explore engineering programs and learn more about the college.",
+    "link": "https://engr.ncsu.edu/openhouse/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Jambalaya Soul Slam",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "English Literature Writing",
+    "description": "A spoken word and poetry event celebrating creative writing, performance, and storytelling.",
+    "link": "https://www.bullcitypoetryslam.com/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+   "name": "Jambalaya Soul Slam Academy Writing & Performance Workshop",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "English Literature Writing",
+    "description": "The Jambalaya Soul Academy provides poetry workshops that offer writing strategies, prompts, and opportunities to develop and share poems with other writers.",
+    "link": "https://www.bullcitypoetryslam.com/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false 
+  },
+  {
+    "name": "Morehead Observatory Guest Night",
+    "category": "Community Events",
+    "cities": ["Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Physics",
+    "description": "The Department of Physics and Astronomy hosts a weekly public astronomy program at the Morehead Observatory, featuring a short presentation, observatory tour, and telescope viewing when weather permits.",
+    "link": "https://physics.unc.edu/seminars/morehead/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "JA Inspire Career Expo",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Business",
+    "description": "Junior Achievement of Eastern NC offers early career-focused programs to help students explore future pathways before high school. JA Inspire extends learning beyond the classroom by connecting students to career opportunities and planning for high school, college, and beyond.",
+    "link": "https://encarolina.ja.org/events/ja-inspire-career-expo-presented-by-delta-air-lines",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "JA Stock Market Challenge",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Business",
+    "description": "Teams of 3–4 students use $500,000 in mock stock to trade fictitious companies during a fast-paced, 60-day simulated market. The objective is to earn the highest return, with top teams qualifying for the Junior Achievement national competition.",
+    "link": "https://encarolina.ja.org/events/ja-stock-market-challenge",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "UNC Science Expo",
+    "category": "Community Events",
+    "cities": ["Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "The UNC Science Expo, hosted by Morehead Planetarium and Science Center, is a large annual science festival featuring hands-on activities, demonstrations, and exhibits led by UNC-Chapel Hill students, faculty, and community partners.",
+    "link": "https://moreheadplanetarium.org/program/expo/",
     "openToAllImmigrationStatuses": true,
     "featured": false
   }

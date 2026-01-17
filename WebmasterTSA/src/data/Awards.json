@@ -4,7 +4,7 @@
     "category": "Awards",
     "cities": ["Durham", "Raleigh", "Chapel Hill"],
     "grades": ["9", "10", "11", "12"],
-    "interest": "Volunteering",
+    "interest": "Public Service",
     "description": "A recognition program for students who complete 60+ volunteer hours over summer break; application typically opens in spring and closes in fall.",
     "link": "https://thevolunteercenter.org/a-mayors-award/",
     "openToAllImmigrationStatuses": true,
@@ -15,7 +15,7 @@
     "category": "Awards",
     "cities": ["Durham", "Raleigh", "Chapel Hill"],
     "grades": ["9", "10", "11", "12"],
-    "interest": "Volunteering",
+    "interest": "Public Service",
     "description": "An award recognizing high volunteer commitment during summer break; students submit hours during the application window for consideration.",
     "link": "https://thevolunteercenter.org/commissioners-award/",
     "openToAllImmigrationStatuses": true,
@@ -26,10 +26,100 @@
     "category": "Awards",
     "cities": ["Durham"],
     "grades": ["9", "10", "11", "12"],
-    "interest": "Volunteering",
+    "interest": "Public Service",
     "description": "A volunteer recognition program where county selections may advance for statewide recognition; top volunteers may receive additional honors.",
     "link": "https://thevolunteercenter.org/governors-key-volunteer-awards-of-the-year/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+  {
+    "name": "NC Science Olympiad",
+    "category": "Awards",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Biology",
+    "description": "A statewide STEM competition where students compete in biology-related events such as anatomy, ecology, and genetics at regional and state tournaments.",
+    "link": "https://ncscienceolympiad.ncsu.edu/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC Ready, Set, App!",
+    "category": "Awards",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Computer Science",
+    "description": "A North Carolina app development competition where students design and submit original mobile apps to solve real-world problems.",
+    "link": "https://ncbce.org/ready-set-app/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC Technology Student Association (TSA)",
+    "category": "Awards",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Engineering",
+    "description": "A competitive organization offering engineering, design, and technology events at regional and state conferences across North Carolina.",
+    "link": "https://www.nctsa.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC Envirothon",
+    "category": "Awards",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Environmental Science",
+    "description": "A hands-on environmental science competition focused on ecology, soil science, forestry, and current environmental issues.",
+    "link": "https://www.ncenvirothon.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC Math Contest",
+    "category": "Awards",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Mathematics",
+    "description": "A statewide mathematics competition sponsored by NC organizations that challenges students with advanced problem-solving questions.",
+    "link": "https://sites.google.com/site/statemathcontest/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Scholastic Writing Awards – NC Region",
+    "category": "Awards",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "English Literature Writing",
+    "description": "The North Carolina regional branch of the Scholastic Awards, recognizing student achievement in creative and critical writing.",
+    "link": "https://www.artandwriting.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "DPAC Rising Star Award",
+    "category": "Awards",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "A statewide awards program celebrating excellence in high school musical theatre performance and production.",
+    "link": "https://www.dpacnc.com/community/dpac-rising-star-awards",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC DECA Competitive Events",
+    "category": "Awards",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Business",
+    "description": "State-level business, marketing, and entrepreneurship competitions through North Carolina DECA.",
+    "link": "https://www.ncdeca.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]
+
+
