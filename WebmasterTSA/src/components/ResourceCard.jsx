@@ -12,9 +12,9 @@ export default function ResourceCard({ resource }) {
       </div>
 
       <div style={styles.meta}>
-        <span><b>Category:</b> {resource.category || "—"}</span>
+        <span><b>Type:</b> {resource.category || "—"}</span>
         <span><b>Cities:</b> {cities.length ? cities.join(", ") : "—"}</span>
-        <span><b>Interest:</b> {resource.interest || "—"}</span>
+        <span><b>Area of Interest:</b> {resource.interest || "—"}</span>
         <span><b>Grades:</b> {grades.length ? grades.join(", ") : "—"}</span>
       </div>
 

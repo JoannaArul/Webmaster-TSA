@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 
-// ✅ import each file with a unique name
 import academicPrograms from "../data/AcademicProgram.json";
 import awards from "../data/Awards.json";
 import communityEvents from "../data/CommunityEvents.json";
@@ -13,7 +12,39 @@ import volunteering from "../data/Volunteering.json";
 import FilterBar from "../components/FilterBar.jsx";
 import ResourceCard from "../components/ResourceCard.jsx";
 
+// ✅ EXACT lists from your rubric
+const TYPE_OPTIONS = [
+  "Academic Program",
+  "Awards",
+  "Community Events",
+  "Non-profits",
+  "Scholarships",
+  "Summer Programs",
+  "Support Services",
+  "Volunteering",
+];
+
 const CITY_OPTIONS = ["Durham", "Raleigh", "Chapel Hill"];
+
+const INTEREST_OPTIONS = [
+  "Biology",
+  "Computer Science",
+  "Education",
+  "Engineering",
+  "Environmental Science",
+  "Mathematics",
+  "Chemistry",
+  "English Literature Writing",
+  "Arts Performance",
+  "Law & Government",
+  "Physics",
+  "Political Science",
+  "Business",
+  "Psychology",
+  "STEM/Enrichment",
+  "Public Service",
+];
+
 const GRADE_OPTIONS = ["9", "10", "11", "12"];
 
 // ✅ merge everything into one list
@@ -31,7 +62,7 @@ const resourcesData = [
 export default function ResourceHub() {
   const [draftFilters, setDraftFilters] = useState({
     search: "",
-    categories: [],
+    categories: [], // Type
     cities: [],
     interests: [],
     grades: [],
@@ -41,18 +72,10 @@ export default function ResourceHub() {
   const [appliedFilters, setAppliedFilters] = useState(draftFilters);
   const applySearch = () => setAppliedFilters(draftFilters);
 
-  const categories = useMemo(() => {
-    const raw = resourcesData.map((r) => r.category).filter(Boolean);
-    return Array.from(new Set(raw)).sort();
-  }, []);
-
+  // ✅ Use your fixed options, NOT auto-generated from JSON
+  const categories = useMemo(() => TYPE_OPTIONS, []);
   const cities = useMemo(() => CITY_OPTIONS, []);
-
-  const interests = useMemo(() => {
-    const raw = resourcesData.map((r) => r.interest).filter(Boolean);
-    return Array.from(new Set(raw)).sort();
-  }, []);
-
+  const interests = useMemo(() => INTEREST_OPTIONS, []);
   const grades = useMemo(() => GRADE_OPTIONS, []);
 
   const filtered = useMemo(() => {
@@ -62,11 +85,12 @@ export default function ResourceHub() {
       const resourceCities = Array.isArray(r.cities) ? r.cities : [];
       const resourceGrades = Array.isArray(r.grades) ? r.grades : [];
 
+      // search across useful fields
       const haystack = [
         r.name,
         r.description,
-        r.category,
-        r.interest,
+        r.category,     // Type stored in JSON as "category"
+        r.interest,     // Area of Interest stored as "interest"
         resourceCities.join(" "),
         resourceGrades.join(" "),
       ]
@@ -76,22 +100,27 @@ export default function ResourceHub() {
 
       const matchesSearch = !q || haystack.includes(q);
 
+      // Type
       const matchesCategory =
         appliedFilters.categories.length === 0 ||
         appliedFilters.categories.includes(r.category);
 
+      // City
       const matchesCity =
         appliedFilters.cities.length === 0 ||
         resourceCities.some((c) => appliedFilters.cities.includes(c));
 
+      // Area of Interest
       const matchesInterest =
         appliedFilters.interests.length === 0 ||
         appliedFilters.interests.includes(r.interest);
 
+      // Grades
       const matchesGrades =
         appliedFilters.grades.length === 0 ||
         resourceGrades.some((g) => appliedFilters.grades.includes(g));
 
+      // Eligibility
       const matchesImmigration =
         !appliedFilters.onlyOpenToAllImmigrationStatuses ||
         r.openToAllImmigrationStatuses === true;
@@ -115,14 +144,14 @@ export default function ResourceHub() {
   return (
     <div style={styles.page}>
       <div style={styles.container}>
-        {/* Banner stays (inspo vibe) */}
+        {/* Banner stays */}
         <section style={banner.wrap}>
           <div style={banner.left}>
             <div style={banner.kicker}>Triangle Community Resource Hub</div>
             <h1 style={banner.title}>Search local resources in one place.</h1>
             <p style={banner.sub}>
-              Filter by type, city, interest, grade level, and eligibility to find programs,
-              scholarships, volunteering, nonprofits, and support services.
+              Filter by type, city, area of interest, grade level, and eligibility to find
+              programs, scholarships, volunteering, nonprofits, and support services.
             </p>
 
             <div style={banner.statsRow}>
@@ -186,7 +215,7 @@ export default function ResourceHub() {
 
         <div style={styles.grid}>
           {filtered.map((r) => (
-            <ResourceCard key={r.name} resource={r} />
+            <ResourceCard key={`${r.name}-${r.link}`} resource={r} />
           ))}
         </div>
       </div>
@@ -194,7 +223,7 @@ export default function ResourceHub() {
   );
 }
 
-// (keep your styles exactly as you already had them)
+// styles unchanged
 const styles = {
   page: {
     minHeight: "100vh",
