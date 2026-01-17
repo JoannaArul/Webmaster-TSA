@@ -1,0 +1,57 @@
+[
+  {
+    "name": "NCSSM Online",
+    "category": "Academic Program",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "A collection of virtual learning opportunities from NCSSM, including full courses and enrichment experiences like math circles and inquiry-based academic exploration offered during the school year.",
+    "link": "https://www.ncssm.edu/online",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NCSSM Connect",
+    "category": "Academic Program",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "Real-time, instructor-led NCSSM courses delivered through partner high schools, often provided at no cost to enrolled students.",
+    "link": "https://www.ncssm.edu/ncssm-connect",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Chapel Hill Math Circle",
+    "category": "Academic Program",
+    "cities": ["Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Mathematics",
+    "description": "A collaborative math enrichment program where students tackle advanced concepts and challenging problems in a group setting, typically meeting twice each month.",
+    "link": "https://chapelhillmathcircle.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Durham Tech Dual Enrollment",
+    "category": "Academic Program",
+    "cities": ["Durham"],
+    "grades": ["11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "College-level coursework options that allow qualified high school students to earn college credit while completing their high school education, with eligibility requirements depending on the pathway.",
+    "link": "https://www.durhamtech.edu/dual-enrollment",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Wake Tech Dual Enrollment",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "A tuition-free program that enables eligible high school students to earn college credits or workforce credentials, often counting toward both high school graduation and future college goals.",
+    "link": "https://www.waketech.edu/career-and-college-promise",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  }
+]

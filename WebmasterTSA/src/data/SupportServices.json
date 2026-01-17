@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Bull City, NC Schools & Libraries Achieving More (SLAM)",
+    "category": "Support Services",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Education",
+    "description": "A partnership between Durham Public Schools and the Durham County Library that gives DPS students and staff access to library cards and digital/print resources.",
+    "link": "https://durhamcountylibrary.org/library-cards/bull-city-nc-slam/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  }
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "name": "HandsOn Triangle",
+    "category": "Volunteering Opportunities",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Service",
+    "description": "A large Triangle-area volunteer opportunity database where you can browse roles by date, interest, organization, and community need.",
+    "link": "https://www.handsontriangle.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Student Action Board",
+    "category": "Volunteering",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Service",
+    "description": "A leadership-focused service program where students identify local needs, plan service projects, and build teamwork and community impact skills.",
+    "link": "https://thevolunteercenter.org/student-action-board/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Habitat for Humanity of Durham",
+    "category": "Volunteering",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Service",
+    "description": "Volunteer opportunities supporting affordable housing projects in Durham, including build days, site support, and community-based events.",
+    "link": "https://durhamhabitat.volunteerhub.com/vv2/lp/individualorientation",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Teen Board Sponsored Habitat for Humanity of Durham",
+    "category": "Volunteering",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Service",
+    "description": "A teen leadership group (roughly ages 14–18) that supports youth builds, mentoring, advocacy, and community engagement projects.",
+    "link": "https://www.durhamhabitat.org/teen-board",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "SEEDs Volunteering",
+    "category": "Volunteering",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Environment",
+    "description": "Volunteer with SEEDs by submitting the volunteer form to help with community garden and environmental projects.",
+    "link": "https://www.seedsnc.org/volunteering",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Church World Service (CWS) Durham",
+    "category": "Volunteering",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Immigration & Refugee Support",
+    "description": "Volunteer with refugee and immigrant support efforts through direct services, advocacy, and community connection programs in Durham.",
+    "link": "https://cwsdurham.org/volunteer/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Communities Acting for Refugee Empowerment (CARE)",
+    "category": "Volunteering",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Immigration & Refugee Support",
+    "description": "A community support program that pairs refugee individuals and families with local groups that help with education, goals, and long-term stability.",
+    "link": "https://cwsdurham.org/care/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  }
+]

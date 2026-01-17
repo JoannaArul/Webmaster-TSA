@@ -2,97 +2,134 @@ export default function FilterBar({
   categories,
   cities,
   interests,
+  grades,
   filters,
   setFilters,
   onSearch,
 }) {
-  const update = (key, value) =>
-    setFilters((prev) => ({ ...prev, [key]: value }));
+  const setSearch = (value) =>
+    setFilters((prev) => ({ ...prev, search: value }));
+
+  const toggleInArray = (key, value) => {
+    setFilters((prev) => {
+      const arr = prev[key];
+      const exists = arr.includes(value);
+      return { ...prev, [key]: exists ? arr.filter((x) => x !== value) : [...arr, value] };
+    });
+  };
+
+  const clearAll = () => {
+    setFilters({
+      search: "",
+      categories: [],
+      cities: [],
+      interests: [],
+      grades: [],
+      onlyOpenToAllImmigrationStatuses: false,
+    });
+    onSearch?.();
+  };
 
   const handleKeyDown = (e) => {
-    // Press Enter inside the search box to apply filters
     if (e.key === "Enter") onSearch?.();
   };
 
   return (
     <div style={styles.wrap}>
-      <input
-        style={styles.input}
-        value={filters.search}
-        onChange={(e) => update("search", e.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder="Search by keyword (name, description, category, city, interest)..."
-      />
-
-      <select
-        style={styles.select}
-        value={filters.category}
-        onChange={(e) => update("category", e.target.value)}
-      >
-        <option value="All">All Types</option>
-        {categories.map((c) => (
-          <option key={c} value={c}>
-            {c}
-          </option>
-        ))}
-      </select>
-
-      <select
-        style={styles.select}
-        value={filters.city}
-        onChange={(e) => update("city", e.target.value)}
-      >
-        <option value="All">All Cities</option>
-        {cities.map((c) => (
-          <option key={c} value={c}>
-            {c}
-          </option>
-        ))}
-      </select>
-
-      <select
-        style={styles.select}
-        value={filters.interest}
-        onChange={(e) => update("interest", e.target.value)}
-      >
-        <option value="All">All Interests</option>
-        {interests.map((i) => (
-          <option key={i} value={i}>
-            {i}
-          </option>
-        ))}
-      </select>
-
-      <label style={styles.checkboxRow}>
+      <div style={styles.topRow}>
         <input
-          type="checkbox"
-          checked={filters.onlyOpenToAllImmigrationStatuses}
-          onChange={(e) =>
-            update("onlyOpenToAllImmigrationStatuses", e.target.checked)
-          }
+          style={styles.input}
+          value={filters.search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Search (name, description, category, city, interest)..."
         />
-        <span>Only show resources open regardless of immigration status</span>
-      </label>
 
-      <div style={styles.buttonRow}>
-        <button style={styles.searchBtn} onClick={onSearch}>
-          Search
-        </button>
+        <button style={styles.searchBtn} onClick={onSearch}>Search</button>
+        <button style={styles.resetBtn} onClick={clearAll}>Reset</button>
+      </div>
 
-        <button
-          style={styles.resetBtn}
-          onClick={() =>
-            setFilters({
-              search: "",
-              category: "All",
-              city: "All",
-              interest: "All",
-              onlyOpenToAllImmigrationStatuses: false,
-            })
-          }
-        >
-          Reset
-        </button>
+      <div style={styles.grid}>
+        <div style={styles.group}>
+          <div style={styles.groupTitle}>Type</div>
+          <div style={styles.checkList}>
+            {categories.map((c) => (
+              <label key={c} style={styles.checkRow}>
+                <input
+                  type="checkbox"
+                  checked={filters.categories.includes(c)}
+                  onChange={() => toggleInArray("categories", c)}
+                />
+                <span style={styles.checkLabel}>{c}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div style={styles.group}>
+          <div style={styles.groupTitle}>City</div>
+          <div style={styles.checkList}>
+            {cities.map((c) => (
+              <label key={c} style={styles.checkRow}>
+                <input
+                  type="checkbox"
+                  checked={filters.cities.includes(c)}
+                  onChange={() => toggleInArray("cities", c)}
+                />
+                <span style={styles.checkLabel}>{c}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div style={styles.group}>
+          <div style={styles.groupTitle}>Area of Interest</div>
+          <div style={styles.checkList}>
+            {interests.map((i) => (
+              <label key={i} style={styles.checkRow}>
+                <input
+                  type="checkbox"
+                  checked={filters.interests.includes(i)}
+                  onChange={() => toggleInArray("interests", i)}
+                />
+                <span style={styles.checkLabel}>{i}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div style={styles.group}>
+          <div style={styles.groupTitle}>Grades</div>
+          <div style={styles.checkList}>
+            {grades.map((g) => (
+              <label key={g} style={styles.checkRow}>
+                <input
+                  type="checkbox"
+                  checked={filters.grades.includes(g)}
+                  onChange={() => toggleInArray("grades", g)}
+                />
+                <span style={styles.checkLabel}>Grade {g}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div style={styles.group}>
+          <div style={styles.groupTitle}>Eligibility</div>
+          <label style={styles.checkRow}>
+            <input
+              type="checkbox"
+              checked={filters.onlyOpenToAllImmigrationStatuses}
+              onChange={(e) =>
+                setFilters((prev) => ({
+                  ...prev,
+                  onlyOpenToAllImmigrationStatuses: e.target.checked,
+                }))
+              }
+            />
+            <span style={styles.checkLabel}>Open regardless of immigration status</span>
+          </label>
+        </div>
       </div>
     </div>
   );
@@ -105,10 +142,14 @@ const styles = {
     borderRadius: "14px",
     boxShadow: "0 10px 25px rgba(0,0,0,0.06)",
     display: "grid",
-    gap: "10px",
+    gap: "12px",
   },
-
-  // IMPORTANT: set text color so options aren’t “invisible”
+  topRow: {
+    display: "grid",
+    gridTemplateColumns: "1fr auto auto",
+    gap: "10px",
+    alignItems: "center",
+  },
   input: {
     width: "100%",
     padding: "12px 12px",
@@ -118,31 +159,6 @@ const styles = {
     color: "#111827",
     backgroundColor: "white",
   },
-  select: {
-    width: "100%",
-    padding: "12px 12px",
-    borderRadius: "10px",
-    border: "1px solid #D1D5DB",
-    outline: "none",
-    backgroundColor: "white",
-    color: "#111827",
-  },
-
-  checkboxRow: {
-    display: "flex",
-    gap: "10px",
-    alignItems: "center",
-    fontSize: "0.95rem",
-    color: "#111827",
-  },
-
-  buttonRow: {
-    display: "flex",
-    gap: "10px",
-    flexWrap: "wrap",
-    justifyContent: "flex-start",
-    marginTop: "4px",
-  },
   searchBtn: {
     padding: "10px 14px",
     borderRadius: "10px",
@@ -151,6 +167,7 @@ const styles = {
     color: "white",
     cursor: "pointer",
     fontWeight: "bold",
+    whiteSpace: "nowrap",
   },
   resetBtn: {
     padding: "10px 14px",
@@ -160,5 +177,37 @@ const styles = {
     cursor: "pointer",
     fontWeight: "bold",
     color: "#111827",
+    whiteSpace: "nowrap",
   },
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gap: "14px",
+  },
+  group: {
+    border: "1px solid #E5E7EB",
+    borderRadius: "12px",
+    padding: "12px",
+    backgroundColor: "#ffffff",
+  },
+  groupTitle: {
+    fontWeight: 900,
+    color: "#111827",
+    marginBottom: "8px",
+  },
+  checkList: {
+    display: "grid",
+    gap: "8px",
+    maxHeight: "210px",
+    overflow: "auto",
+    paddingRight: "6px",
+  },
+  checkRow: {
+    display: "flex",
+    gap: "10px",
+    alignItems: "center",
+    color: "#111827",
+    fontSize: "0.95rem",
+  },
+  checkLabel: { color: "#111827" },
 };

@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Model UN Week",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Law & Government",
+    "description": "An event introducing how Model UN builds global awareness, civic engagement, and communication skills through simulation-based learning.",
+    "link": "https://thevolunteercenter.org/model-un-week/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Women Build Sponsored Habitat for Humanity",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Service",
+    "description": "A hands-on build and fundraising initiative that supports affordable housing while creating a supportive space for women volunteers and advocates.",
+    "link": "https://forms.office.com/Pages/ResponsePage.aspx?id=q6-r5XSOYEuSNMRMv15SBFH-Ig_DIJJFjrQNo7UbeQZUN1kyVzAzTTdLU0dJUDdPUFJCQVNKMDcxNi4u",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Invasive Plant Removal at Wrightwood Park",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Environment",
+    "description": "A local environmental restoration event focused on removing invasive species and helping improve habitat health at Wrightwood Park.",
+    "link": "https://www.keepdurhambeautiful.org/events/2026/wrightwood-park-feb",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Teen Science Cafe",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "An informal evening event for teens featuring conversations with STEM professionals, hands-on activities, and a relaxed environment designed to spark curiosity and exploration.",
+    "link": "https://www.lifeandscience.org/explore/teen-science-cafe/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  }
+]

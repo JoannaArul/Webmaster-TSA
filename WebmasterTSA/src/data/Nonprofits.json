@@ -1,0 +1,13 @@
+[
+  {
+    "name": "",
+    "category": "",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "",
+    "description": "",
+    "link": "",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  }
+]

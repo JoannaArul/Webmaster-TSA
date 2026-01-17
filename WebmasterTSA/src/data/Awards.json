@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Mayor’s Award",
+    "category": "Awards",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Volunteering",
+    "description": "A recognition program for students who complete 60+ volunteer hours over summer break; application typically opens in spring and closes in fall.",
+    "link": "https://thevolunteercenter.org/a-mayors-award/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Commissioners’ Award",
+    "category": "Awards",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Volunteering",
+    "description": "An award recognizing high volunteer commitment during summer break; students submit hours during the application window for consideration.",
+    "link": "https://thevolunteercenter.org/commissioners-award/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Governor's and Key Volunteer Service Awards",
+    "category": "Awards",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Volunteering",
+    "description": "A volunteer recognition program where county selections may advance for statewide recognition; top volunteers may receive additional honors.",
+    "link": "https://thevolunteercenter.org/governors-key-volunteer-awards-of-the-year/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  }
+]

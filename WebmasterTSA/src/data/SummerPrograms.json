@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Duke Pre-College Programs",
+    "category": "Summer Programs",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "A variety of Duke-hosted summer programs that help students strengthen academic skills through interactive learning, teamwork, and exposure to new fields of study.",
+    "link": "https://provost.duke.edu/pre-college-programs/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NCSSM Summer Accelerator",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11"],
+    "interest": "STEM/Enrichment",
+    "description": "An intensive summer learning experience offering challenging STEM-focused courses taught by experts, where students collaborate with peers and engage in real-world applications.",
+    "link": "https://www.ncssm.edu/summer/summer-accelerator",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NCSSM Summer Ventures",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["10", "11"],
+    "interest": "STEM/Enrichment",
+    "description": "A fully funded summer program for academically strong North Carolina students that emphasizes hands-on research, university-level learning, and exploration of STEM career paths.",
+    "link": "https://www.ncssm.edu/summer/summer-ventures",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NCSSM INSPIRE",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["10", "11"],
+    "interest": "STEM/Enrichment",
+    "description": "A research-focused summer program that introduces students from diverse backgrounds to STEM fields while building leadership skills and experience solving complex, real-world challenges.",
+    "link": "https://www.ncssm.edu/summer/inspire-program",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "EXPLORE@UNC",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11"],
+    "interest": "STEM/Enrichment",
+    "description": "A one-week residential program that allows high school students to experience college life, sample academic subjects, and reflect on potential majors and career interests.",
+    "link": "https://summer.unc.edu/exploreunc/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC State Engineering Residential Camps",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["10", "11"],
+    "interest": "Engineering",
+    "description": "A residential summer experience where students live on campus at NC State while exploring a specific engineering discipline through hands-on projects and college-style learning.",
+    "link": "https://engr.ncsu.edu/theengineeringplace/summerprograms/hs-residential/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC State Engineering Day Camps",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9"],
+    "interest": "Engineering",
+    "description": "Week-long, non-residential engineering camps that introduce younger high school students to how engineers approach problem-solving across multiple disciplines.",
+    "link": "https://engr.ncsu.edu/theengineeringplace/summerprograms/high-school/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "UNC Chapel Hill Dual Enrollment",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["11"],
+    "interest": "STEM/Enrichment",
+    "description": "Eligible honor roll high school juniors may apply to take UNC summer courses as visiting students through the university’s Summer School program.",
+    "link": "https://summer.unc.edu/dual-enrollment/",
+    "openToAllImmigrationStatuses": false,
+    "featured": false
+  }
+]

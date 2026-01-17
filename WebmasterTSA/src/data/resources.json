@@ -2,29 +2,32 @@
   {
     "name": "Bull City, NC Schools & Libraries Achieving More (SLAM)",
     "category": "Support Services",
-    "city": "Durham",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Education",
-    "description": "Through a partnership between Durham Public Schools (DPS) and Durham County Library, DPS students, teachers, and staff can access Durham County Library print and online resources.",
+    "description": "A partnership between Durham Public Schools and the Durham County Library that gives DPS students and staff access to library cards and digital/print resources.",
     "link": "https://durhamcountylibrary.org/library-cards/bull-city-nc-slam/",
     "openToAllImmigrationStatuses": true,
-    "featured": true
+    "featured": false
   },
   {
     "name": "HandsOn Triangle",
     "category": "Volunteering Opportunities",
-    "city": "All Triangle",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Service",
-    "description": "HandsOn Triangle is the largest database of volunteer opportunities in the Triangle. Volunteers can search by interest, date, need, or organization.",
+    "description": "A large Triangle-area volunteer opportunity database where you can browse roles by date, interest, organization, and community need.",
     "link": "https://www.handsontriangle.org/",
     "openToAllImmigrationStatuses": true,
-    "featured": true
+    "featured": false
   },
   {
     "name": "Student Action Board",
     "category": "Volunteering",
-    "city": "All Triangle",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Service",
-    "description": "Participants evaluate community needs, organize service-learning projects, and build leadership skills through hands-on community work.",
+    "description": "A leadership-focused service program where students identify local needs, plan service projects, and build teamwork and community impact skills.",
     "link": "https://thevolunteercenter.org/student-action-board/",
     "openToAllImmigrationStatuses": true,
     "featured": false
@@ -32,19 +35,21 @@
   {
     "name": "Habitat for Humanity of Durham",
     "category": "Volunteering",
-    "city": "Durham",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Service",
-    "description": "Volunteer on construction and site projects like painting, landscaping, framing, and cleanup to support affordable homeownership in Durham.",
+    "description": "Volunteer opportunities supporting affordable housing projects in Durham, including build days, site support, and community-based events.",
     "link": "https://durhamhabitat.volunteerhub.com/vv2/lp/individualorientation",
     "openToAllImmigrationStatuses": true,
-    "featured": true
+    "featured": false
   },
   {
     "name": "Teen Board Sponsored Habitat for Humanity of Durham",
     "category": "Volunteering",
-    "city": "All Triangle",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Service",
-    "description": "Teen Board (ages 14–18) provides leadership, mentorship, youth builds, engagement projects, and advocacy opportunities in the community.",
+    "description": "A teen leadership group (roughly ages 14–18) that supports youth builds, mentoring, advocacy, and community engagement projects.",
     "link": "https://www.durhamhabitat.org/teen-board",
     "openToAllImmigrationStatuses": true,
     "featured": false
@@ -52,9 +57,10 @@
   {
     "name": "SEEDs Volunteering",
     "category": "Volunteering",
-    "city": "Durham",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Environment",
-    "description": "Looking to fulfill community service hours at SEEDS? Fill out the volunteer form to get started.",
+    "description": "Volunteer with SEEDs by submitting the volunteer form to help with community garden and environmental projects.",
     "link": "https://www.seedsnc.org/volunteering",
     "openToAllImmigrationStatuses": true,
     "featured": false
@@ -62,19 +68,21 @@
   {
     "name": "Church World Service (CWS) Durham",
     "category": "Volunteering",
-    "city": "Durham",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Immigration & Refugee Support",
-    "description": "CWS Durham welcomes refugees, immigrants, and asylum-seekers through direct services, advocacy, leadership development, and community-building.",
+    "description": "Volunteer with refugee and immigrant support efforts through direct services, advocacy, and community connection programs in Durham.",
     "link": "https://cwsdurham.org/volunteer/",
     "openToAllImmigrationStatuses": true,
-    "featured": true
+    "featured": false
   },
   {
     "name": "Communities Acting for Refugee Empowerment (CARE)",
     "category": "Volunteering",
-    "city": "Durham",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Immigration & Refugee Support",
-    "description": "CARE connects refugee individuals and families with community groups that provide social and financial support toward education and employment goals.",
+    "description": "A community support program that pairs refugee individuals and families with local groups that help with education, goals, and long-term stability.",
     "link": "https://cwsdurham.org/care/",
     "openToAllImmigrationStatuses": true,
     "featured": false
@@ -82,9 +90,10 @@
   {
     "name": "Model UN Week",
     "category": "Community Events",
-    "city": "All Triangle",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Law & Government",
-    "description": "Students learn how Model UN can be a vehicle for learning about the world, civic engagement, and personal growth.",
+    "description": "An event introducing how Model UN builds global awareness, civic engagement, and communication skills through simulation-based learning.",
     "link": "https://thevolunteercenter.org/model-un-week/",
     "openToAllImmigrationStatuses": true,
     "featured": false
@@ -92,9 +101,10 @@
   {
     "name": "Women Build Sponsored Habitat for Humanity",
     "category": "Community Events",
-    "city": "Durham",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Service",
-    "description": "Women Build empowers women to build, fundraise, and advocate for affordable housing while gaining hands-on construction experience.",
+    "description": "A hands-on build and fundraising initiative that supports affordable housing while creating a supportive space for women volunteers and advocates.",
     "link": "https://forms.office.com/Pages/ResponsePage.aspx?id=q6-r5XSOYEuSNMRMv15SBFH-Ig_DIJJFjrQNo7UbeQZUN1kyVzAzTTdLU0dJUDdPUFJCQVNKMDcxNi4u",
     "openToAllImmigrationStatuses": true,
     "featured": false
@@ -102,9 +112,10 @@
   {
     "name": "Invasive Plant Removal at Wrightwood Park",
     "category": "Community Events",
-    "city": "Durham",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Environment",
-    "description": "Remove harmful invasive plants from Wrightwood Park as part of a community environmental restoration effort.",
+    "description": "A local environmental restoration event focused on removing invasive species and helping improve habitat health at Wrightwood Park.",
     "link": "https://www.keepdurhambeautiful.org/events/2026/wrightwood-park-feb",
     "openToAllImmigrationStatuses": true,
     "featured": false
@@ -112,39 +123,43 @@
   {
     "name": "IMPACT CAMP",
     "category": "Programs",
-    "city": "All Triangle",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Service",
-    "description": "IMPACT Camps provide high school youth with an affordable, local, week-long community service/urban mission experience during the summer.",
+    "description": "A week-long local summer service experience designed for high school students, combining community work with reflection and teamwork.",
     "link": "https://thevolunteercenter.org/impact/",
     "openToAllImmigrationStatuses": true,
-    "featured": true
+    "featured": false
   },
   {
     "name": "YMCA Triangle",
     "category": "Programs",
-    "city": "All Triangle",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Health & Fitness",
-    "description": "The Y is a trusted place for connection, wellbeing, and growth with programs for youth development, health, and community engagement.",
+    "description": "A community organization offering youth development, wellness, and family programs across the Triangle, including classes and activities.",
     "link": "https://www.ymcatriangle.org/",
-    "openToAllImmigrationStatuses": true,
+    "openToAllImmigrationStatuses": false,
     "featured": false
   },
   {
     "name": "Mayor’s Award",
     "category": "Awards",
-    "city": "All Triangle",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Volunteering",
-    "description": "Recognizes students throughout the Greater Triangle who volunteer 60+ hours during summer break. Application opens in March and closes in October.",
+    "description": "A recognition program for students who complete 60+ volunteer hours over summer break; application typically opens in spring and closes in fall.",
     "link": "https://thevolunteercenter.org/a-mayors-award/",
     "openToAllImmigrationStatuses": true,
-    "featured": true
+    "featured": false
   },
   {
     "name": "Commissioners’ Award",
     "category": "Awards",
-    "city": "All Triangle",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Volunteering",
-    "description": "Recognizes students throughout the Greater Triangle who volunteer 60+ hours during summer break. Application opens in March and closes in October.",
+    "description": "An award recognizing high volunteer commitment during summer break; students submit hours during the application window for consideration.",
     "link": "https://thevolunteercenter.org/commissioners-award/",
     "openToAllImmigrationStatuses": true,
     "featured": false
@@ -152,11 +167,166 @@
   {
     "name": "Governor's and Key Volunteer Service Awards",
     "category": "Awards",
-    "city": "Durham",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
     "interest": "Volunteering",
-    "description": "County winners are submitted to the Governor’s office for statewide recognition; top volunteers may receive the Medallion Award.",
+    "description": "A volunteer recognition program where county selections may advance for statewide recognition; top volunteers may receive additional honors.",
     "link": "https://thevolunteercenter.org/governors-key-volunteer-awards-of-the-year/",
     "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NCSSM Online",
+    "category": "Academic Program",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "A collection of virtual learning opportunities from NCSSM, including full courses and enrichment experiences like math circles and inquiry-based academic exploration offered during the school year.",
+    "link": "https://www.ncssm.edu/online",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Duke Pre-College Programs",
+    "category": "Summer Programs",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "A variety of Duke-hosted summer programs that help students strengthen academic skills through interactive learning, teamwork, and exposure to new fields of study.",
+    "link": "https://provost.duke.edu/pre-college-programs/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NCSSM Connect",
+    "category": "Academic Program",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "Real-time, instructor-led NCSSM courses delivered through partner high schools, often provided at no cost to enrolled students.",
+    "link": "https://www.ncssm.edu/ncssm-connect",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Chapel Hill Math Circle",
+    "category": "Academic Program",
+    "cities": ["Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Mathematics",
+    "description": "A collaborative math enrichment program where students tackle advanced concepts and challenging problems in a group setting, typically meeting twice each month.",
+    "link": "https://chapelhillmathcircle.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Durham Tech Dual Enrollment",
+    "category": "Academic Program",
+    "cities": ["Durham"],
+    "grades": ["11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "College-level coursework options that allow qualified high school students to earn college credit while completing their high school education, with eligibility requirements depending on the pathway.",
+    "link": "https://www.durhamtech.edu/dual-enrollment",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Wake Tech Dual Enrollment",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "A tuition-free program that enables eligible high school students to earn college credits or workforce credentials, often counting toward both high school graduation and future college goals.",
+    "link": "https://www.waketech.edu/career-and-college-promise",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Teen Science Cafe",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "An informal evening event for teens featuring conversations with STEM professionals, hands-on activities, and a relaxed environment designed to spark curiosity and exploration.",
+    "link": "https://www.lifeandscience.org/explore/teen-science-cafe/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NCSSM Summer Accelerator",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11"],
+    "interest": "STEM/Enrichment",
+    "description": "An intensive summer learning experience offering challenging STEM-focused courses taught by experts, where students collaborate with peers and engage in real-world applications.",
+    "link": "https://www.ncssm.edu/summer/summer-accelerator",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NCSSM Summer Ventures",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["10", "11"],
+    "interest": "STEM/Enrichment",
+    "description": "A fully funded summer program for academically strong North Carolina students that emphasizes hands-on research, university-level learning, and exploration of STEM career paths.",
+    "link": "https://www.ncssm.edu/summer/summer-ventures",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NCSSM INSPIRE",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["10", "11"],
+    "interest": "STEM/Enrichment",
+    "description": "A research-focused summer program that introduces students from diverse backgrounds to STEM fields while building leadership skills and experience solving complex, real-world challenges.",
+    "link": "https://www.ncssm.edu/summer/inspire-program",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "EXPLORE@UNC",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11"],
+    "interest": "STEM/Enrichment",
+    "description": "A one-week residential program that allows high school students to experience college life, sample academic subjects, and reflect on potential majors and career interests.",
+    "link": "https://summer.unc.edu/exploreunc/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC State Engineering Residential Camps",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["10", "11"],
+    "interest": "Engineering",
+    "description": "A residential summer experience where students live on campus at NC State while exploring a specific engineering discipline through hands-on projects and college-style learning.",
+    "link": "https://engr.ncsu.edu/theengineeringplace/summerprograms/hs-residential/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NC State Engineering Day Camps",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9"],
+    "interest": "Engineering",
+    "description": "Week-long, non-residential engineering camps that introduce younger high school students to how engineers approach problem-solving across multiple disciplines.",
+    "link": "https://engr.ncsu.edu/theengineeringplace/summerprograms/high-school/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "UNC Chapel Hill Dual Enrollment",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["11"],
+    "interest": "STEM/Enrichment",
+    "description": "Eligible honor roll high school juniors may apply to take UNC summer courses as visiting students through the university’s Summer School program.",
+    "link": "https://summer.unc.edu/dual-enrollment/",
+    "openToAllImmigrationStatuses": false,
     "featured": false
   }
 ]
