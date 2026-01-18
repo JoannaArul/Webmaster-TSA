@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
 
 import academicPrograms from "../data/AcademicProgram.json";
 import awards from "../data/Awards.json";
@@ -89,8 +90,8 @@ export default function ResourceHub() {
       const haystack = [
         r.name,
         r.description,
-        r.category,     // Type stored in JSON as "category"
-        r.interest,     // Area of Interest stored as "interest"
+        r.category, // Type stored in JSON as "category"
+        r.interest, // Area of Interest stored as "interest"
         resourceCities.join(" "),
         resourceGrades.join(" "),
       ]
@@ -142,7 +143,12 @@ export default function ResourceHub() {
   );
 
   return (
-    <div style={styles.page}>
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      style={styles.page}
+    >
       <div style={styles.container}>
         {/* Banner stays */}
         <section style={banner.wrap}>
@@ -219,7 +225,7 @@ export default function ResourceHub() {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
