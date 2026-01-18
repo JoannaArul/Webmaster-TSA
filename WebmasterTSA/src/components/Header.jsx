@@ -1,26 +1,68 @@
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
+import nexusLogo from "../assets/nexus-logo.png";
+
+const COLORS = {
+  carolinaBlue: "#4B9CD3",
+  gray: "#494A48",
+  beige: "#F5FCEF",
+  text: "#111111",
+};
+
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const linkStyle = ({ isActive }) => ({
-    color: "white",
+    fontFamily: "var(--font-body)",
+    color: scrolled ? COLORS.beige : COLORS.text,
     textDecoration: "none",
     fontWeight: 600,
-    opacity: isActive ? 1 : 0.9,
-    borderBottom: isActive ? "2px solid white" : "2px solid transparent",
+    opacity: isActive ? 1 : 0.92,
+    borderBottom: isActive
+      ? `2px solid ${scrolled ? COLORS.beige : COLORS.text}`
+      : "2px solid transparent",
     paddingBottom: "4px",
+    transition: "color 1000ms ease, border-color 1000ms ease, opacity 1000ms ease",
   });
 
   return (
-    <header style={styles.header}>
+    <header
+      style={{
+        ...styles.header,
+        backgroundColor: scrolled ? COLORS.gray : COLORS.carolinaBlue,
+      }}
+    >
       <div style={styles.inner}>
-        <div style={styles.logo}>Triangle Resource Hub</div>
+        {/* Logo */}
+        <NavLink to="/" style={styles.logoLink} aria-label="Go to Home">
+          <div style={styles.logoFrame}>
+            <img
+              src={nexusLogo}
+              alt="Nexus"
+              style={{
+                ...styles.logoImg,
+                ...(scrolled ? styles.logoImgScrolled : {}),
+              }}
+            />
+          </div>
+        </NavLink>
 
         <nav style={styles.nav}>
+          
           <NavLink to="/" style={linkStyle}>Home</NavLink>
+          <NavLink to="/mission" style={linkStyle}>Mission</NavLink>
           <NavLink to="/resource-hub" style={linkStyle}>Resource Hub</NavLink>
           <NavLink to="/add-resource" style={linkStyle}>Add Resource</NavLink>
           <NavLink to="/find-ecs" style={linkStyle}>Find Your Path</NavLink>
-          <NavLink to="/work-logs" style={linkStyle}>Work Logs</NavLink>
+          <NavLink to="/work-logs" style={linkStyle}>Documentation</NavLink>
         </nav>
       </div>
     </header>
@@ -30,42 +72,60 @@ export default function Header() {
 const styles = {
   header: {
     width: "100%",
-    backgroundColor: "#2563eb",
-    color: "white",
-
-    // ✅ always stays at the very top
     position: "fixed",
     top: 0,
     left: 0,
-
-    // ✅ ensures it sits above all page content
     zIndex: 9999,
-
     display: "flex",
     justifyContent: "center",
-
-    // ✅ makes it look like it “hovers” over content
-    boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+    height: "var(--header-h)",
+    transition: "background-color 1100ms ease",
+    boxShadow: "0 10px 24px rgba(0,0,0,0.14)",
   },
+
   inner: {
     maxWidth: "1400px",
     width: "100%",
+    height: "var(--header-h)",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "18px 20px",
+    padding: "0 24px",
     boxSizing: "border-box",
     gap: "16px",
-    flexWrap: "wrap",
   },
-  logo: {
-    fontWeight: 800,
-    fontSize: "1.25rem",
-    letterSpacing: "0.2px",
+
+  logoLink: {
+    display: "flex",
+    alignItems: "center",
+    textDecoration: "none",
   },
+
+  logoFrame: {
+    height: "var(--header-h)",
+    display: "flex",
+    alignItems: "center",
+    overflow: "hidden",
+    marginLeft: "-20px",   
+    paddingRight: "12px",
+  },
+
+  logoImg: {
+    height: "190px",
+    width: "auto",
+    objectFit: "contain",
+    transform: "translateY(2px)",
+    transition: "filter 1100ms ease, transform 250ms ease",
+  },
+
+  logoImgScrolled: {
+    filter: "brightness(0) invert(1)",
+  },
+
   nav: {
     display: "flex",
     gap: "18px",
+    alignItems: "center",
     flexWrap: "wrap",
   },
 };

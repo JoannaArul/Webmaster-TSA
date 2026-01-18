@@ -150,7 +150,6 @@ export default function ResourceHub() {
       style={styles.page}
     >
       <div style={styles.container}>
-        {/* Banner stays */}
         <section style={banner.wrap}>
           <div style={banner.left}>
             <div style={banner.kicker}>Triangle Community Resource Hub</div>
