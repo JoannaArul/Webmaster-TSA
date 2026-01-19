@@ -1,5 +1,49 @@
 [
   {
+    "name": "Code the Dream",
+    "category": "Non-profits",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Computer Science",
+    "description": "Code the Dream expands access to tech careers for individuals from underrepresented communities through free coding education and paid apprenticeships. By combining training with real-world experience, the program builds skills, creates opportunity, and delivers technology that benefits communities.",
+    "link": "https://codethedream.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Student U",
+    "category": "Non-profits",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "Student U is a Durham-based nonprofit working to create a more equitable education system by supporting students facing systemic barriers. Through long-term academic and college-access support, Student U helps students reach their full potential.",
+    "link": "https://studentudurham.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Youth LEAD NC",
+    "category": "Non-profits",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Youth LEAD NC is a nonprofit that empowers individuals with disabilities ages 30 and under through peer support and leadership development, preparing them to succeed in education, employment, independent living, and community leadership.",
+    "link": "https://www.youthleadnc.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "North Carolina Civics Coalition (NC3)",
+    "category": "Non-profits",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Law & Government",
+    "description": "The North Carolina Civics Coalition (NC3) is a nonpartisan organization dedicated to strengthening and advancing K–12 civic education across North Carolina.",
+    "link": "https://www.nccivics.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
     "name": "",
     "category": "",
     "cities": ["Durham", "Raleigh", "Chapel Hill"],

@@ -141,5 +141,16 @@
     "link": "https://precollege.ncsu.edu/nc-msen-pre-college-program/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "NCDOT High School Internship Program",
+    "category": "Academic Program",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["11", "12"],
+    "interest": "Engineering",
+    "description": "The NCDOT High School Internship Program offers students a paid, part-time internship with the North Carolina Department of Transportation, allowing them to gain hands-on experience over one or more semesters throughout the year.",
+    "link": "https://www.ncdot.gov/initiatives-policies/students-youth/internship-programs/Pages/high-school-internship-program.aspx",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

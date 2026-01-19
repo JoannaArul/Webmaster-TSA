@@ -130,5 +130,16 @@
     "link": "https://moreheadplanetarium.org/program/expo/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+  {
+    "name": "Durham Arts Council - The Art of the Party",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "The Art of the Party is a lively celebration of Durham’s creative spirit, bringing together music, food, culture, and community while supporting the arts through an immersive event and live auction.",
+    "link": "https://durhamarts.org/art-of-the-party-gala/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

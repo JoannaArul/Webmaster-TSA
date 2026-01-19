@@ -75,5 +75,38 @@
     "link": "https://cwsdurham.org/care/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+  {
+    "name": "Environmental Educations of North Carolina",
+    "category": "Volunteering",
+    "cities": ["Durham", "Chapel Hill", "Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Environmental Science",
+    "description": "The Environmental Educators of North Carolina (EENC) offers volunteer opportunities through committees, action projects, and special events. Volunteering allows educators to support the statewide community, share their voice, and connect with fellow professionals.",
+    "link": "https://www.eenc.org/volunteer",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Durham Arts Summer Arts Teen Volunteer Program",
+    "category": "Volunteering",
+    "cities": ["Durham"],
+    "grades": ["10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "Summer Arts Camps offer rising 10th–12th grade students the chance to volunteer alongside instructors, support staff, and create art with younger campers. The program provides hands-on experience, builds resumes, and can count toward school or organization volunteer requirements.",
+    "link": "https://durhamarts.org/dac-art-camps/#teen",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Hub Farm Volunteer Opportunities",
+    "category": "Volunteering Opportunities",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Hub Farm offers a variety of volunteer opportunities, from working with animals and the land to supporting fundraising efforts. Individuals, families, and groups are welcome to get involved and make a hands-on impact.",
+    "link": "https://www.thehubfarm.org/volunteer-questionnaire/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

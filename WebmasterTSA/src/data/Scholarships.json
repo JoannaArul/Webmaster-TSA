@@ -1,5 +1,71 @@
 [
   {
+    "name": "North Carolina Teaching Fellows",
+    "category": "Scholarships",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["12"],
+    "interest": "Education",
+    "description": "The Teaching Fellows Program offers financial support, mentorship, and hands-on classroom experience to prepare future educators for leadership in North Carolina schools. Fellows study at top NC universities, receive forgivable loans, and join a statewide network with continued support beyond graduation.",
+    "link": "https://myapps.northcarolina.edu/ncteachingfellows/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "NCCF Universal Scholarships",
+    "category": "Scholarships",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["12"],
+    "interest": "STEM/Enrichment",
+    "description": "The NCCF Universal Scholarships Application outlines required materials, eligibility details, and key deadlines. It includes information on transcripts, recommendations, financial aid, intended majors, and the application timeline for NCCF-managed scholarships.",
+    "link": "https://www.nccommunityfoundation.org/scholarships/how-to-apply",
+    "openToAllImmigrationStatuses": false,
+    "featured": false
+  },
+  {
+    "name": "Roothbert Fund Scholarship",
+    "category": "Scholarships",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["12"],
+    "interest": "STEM/Enrichment",
+    "description": "The Roothbert Fund provides scholarships to students in the U.S. who demonstrate financial need and live by strong spiritual values. Preference is given to students ho reside in or attend school in select states, including North Carolina.",
+    "link": "https://www.roothbertfund.org/scholarships",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Triangle Scholarship Fund",
+    "category": "Scholarships",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["12"],
+    "interest": "STEM/Enrichment",
+    "description": "The Triangle Community Foundation scholarship supports one high school senior and one adult learner who demonstrate exceptional commitment to improving their community through service, work experience, and future goals.",
+    "link": "https://trianglecf.org/award/triangle-scholarship-fund/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Aubrey Lee Brooks Scholarships",
+    "category": "Scholarships",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["12"],
+    "interest": "STEM/Enrichment",
+    "description": "Established in 1955, the Aubrey Lee Brooks Scholarships support graduating high school seniors from a 14-county area of North Carolina. Awards provide up to $12,000 per year, are renewable with continued eligibility, and include a one-time $2,500 computer stipend.",
+    "link": "https://www.cfnc.org/pay-for-college/apply-for-financial-aid/aubrey-lee-brooks-scholarship/",
+    "openToAllImmigrationStatuses": false,
+    "featured": false
+  },
+  {
+    "name": "Ruff Ryders of Raleigh Scholarship Giveaway",
+    "category": "Scholarships",
+    "cities": ["Raleigh"],
+    "grades": ["12"],
+    "interest": "Public Service",
+    "description": "The Ruff Ryders of Raleigh Scholarship supports graduating high school seniors in Wake County who demonstrate a strong commitment to community service, providing financial assistance to help further their education.",
+    "link": "https://www.scholarships.com/scholarships/ruff-ryders-of-raleigh-scholarship-giveaway",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
     "name": "",
     "category": "",
     "cities": ["Durham", "Raleigh", "Chapel Hill"],

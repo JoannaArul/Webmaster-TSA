@@ -218,5 +218,159 @@
     "link": "https://english.chass.ncsu.edu/research-and-engagement/young-writers/teen-writers-workshop/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+  {
+    "name": "NC GlaxoSmithKline Foundation Program in Biotech",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["10", "11"],
+    "interest": "Biology",
+    "description": "The North Carolina GlaxoSmithKline Scholars Program supports biology majors at UNC Asheville who demonstrate academic excellence and financial need, with a focus on undergraduate research in fields such as cell biology, biochemistry, and molecular biology.",
+    "link": "https://www.nccu.edu/research/brite/outreach/nc-glaxosmithkline-foundation-summer-immersion-experience-biotech",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Durham Public Schools Scholars-At-Work Program",
+    "category": "Summer Programs",
+    "cities": ["Durham"],
+    "grades": ["10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "The DPS Scholars-At-Work Program offers Durham Public Schools students in grades 10–12 a short-term workplace immersion experience, providing hands-on exposure to local companies and career paths.",
+    "link": "https://www.dpsnc.net/o/dps/page/scholars-at-work-program",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Durham Aquatic School Lifeguard Instructor",
+    "category": "Summer Programs",
+    "cities": ["Durham"],
+    "grades": ["11", "12"],
+    "interest": "Public Service",
+    "description": "DAS provides free lifeguard certification training for individuals ages 16 and older, preparing participants for aquatics careers and recruitment for lifeguard positions at DPR indoor and outdoor pools.",
+    "link": "https://www.dprplaymore.org/256/Lifeguard-Training",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Durham Aquatic School Water Safety Instructor",
+    "category": "Summer Programs",
+    "cities": ["Durham"],
+    "grades": ["10", "11", "12"],
+    "interest": "Public Service",
+    "description": "This course certifies participants ages 15 and older to teach American Red Cross water safety and Learn-to-Swim programs. Certification requires passing a swim skills pre-test and completing the Red Cross online coursework.",
+    "link": "https://www.dprplaymore.org/256/Lifeguard-Training",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Launching Emerging Employees Progarm (LEEP)",
+    "category": "Summer Programs",
+    "cities": ["Durham"],
+    "grades": ["10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "The LEEP program supports youth through paid entry-level jobs and career development, combining hands-on work with weekly soft-skills training across multiple Durham County Government departments.",
+    "link": "https://dconc.gov/Human-Resources/Internship-Programs",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "MaryAnn Black Summer Internship",
+    "category": "Summer Programs",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Biology",
+    "description": "The MaryAnn Black Summer Internship Program offers students hands-on exposure to over 70 healthcare careers through hospital visits, interactive sessions, and skill-building workshops. Hosted by Duke Health with Durham YouthWorks, the program includes mentorship from Duke professionals and introduces career pathways across medicine and nursing.",
+    "link": "https://community.duke.edu/our-focus-areas/health-nutrition-and-food-security/maryann-black-summer-internship/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Duke University Neuroscience Experience (DUNE)",
+    "category": "Summer Programs",
+    "cities": ["Durham"],
+    "grades": ["10", "11"],
+    "interest": "Biology",
+    "description": "DUNE provides local high school students with full-time, paid summer research opportunities in neuroscience labs at Duke University, offering hands-on experience, professional development, and mentorship, with no prior research experience required.",
+    "link": "https://dibs.duke.edu/education/dune/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "NC State College of Natural Resources High School Summer Research Program",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Environmental Science",
+    "description": "This program at NC State introduces high school students to forestry and natural resources through mentorship, career exploration, and research exposure, including seminars and participation in NC State’s Research and Creativity Symposium.",
+    "link": "https://cnr.ncsu.edu/fer/extension-and-outreach/high-school-research/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Duke's STAR Program",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["12"],
+    "interest": "Biology",
+    "description": "The STAR Program is a six-week, full-time summer experience at Duke that immerses students in academic and clinical research. Participants work with faculty mentors to conduct research, develop a paper, attend research-focused lectures and workshops, and present their findings, with optional physician shadowing for eligible students.",
+    "link": "https://dcri.org/education/dukes-star-program",
+    "openToAllImmigrationStatuses": false,
+    "featured": false
+  },
+    {
+    "name": "UNC’s Nutrition Research Virtual Internship Program",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Biology",
+    "description": "This four-week virtual program engages students from rising 9th grade through rising college freshman in lectures, mentoring, and scientific skill-building with NRI researchers. Participants create and present scientific posters on a chosen nutrition topic, gaining experience in communicating research findings.",
+    "link": "https://uncnri.org/virtual-internship-program/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "North Carolina Agricultural and Technical State University’s Research Apprenticeship Program",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["10", "11"],
+    "interest": "Environmental Science",
+    "description": "This two-week residential summer program at North Carolina A&T immerses rising juniors and seniors in food, agricultural, and environmental sciences through hands-on research with faculty mentors. Students live on campus, explore Greensboro’s cultural landmarks, receive a stipend upon completion, and pay only a small application fee.",
+    "link": "https://www.ncat.edu/caes/agricultural-research/rap-program.php",
+    "openToAllImmigrationStatuses": false,
+    "featured": false
+  },
+    {
+    "name": "Youth Conservation Crews",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh"],
+    "grades": ["10", "11", "12"],
+    "interest": "Environmental Science",
+    "description": "Youth Conservation Crews offer teens ages 15–18 paid summer opportunities to work on hands-on conservation projects across the state. Crews run for 3–6 weeks during June–August, with small teams led by trained crew leaders.",
+    "link": "https://corpsnc.org/youth",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Duke Research in Engineering Program (DukeREP)",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["10", "11"],
+    "interest": "Engineering",
+    "description": "DukeREP is a seven-week, in-person research program that places students in Duke Biomedical Engineering labs for hands-on research with faculty and graduate mentors. The program includes seminars, workshops, and networking opportunities, with a focus on expanding STEM access for students from underrepresented and economically disadvantaged backgrounds.",
+    "link": "https://sites.duke.edu/dukerep/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Durham Sports Commission Internship Program",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["12"],
+    "interest": "Business",
+    "description": "The Durham Sports Commission offers internship opportunities for students interested in gaining hands-on experience in the sports industry through business tactics.",
+    "link": "https://www.durhamncsports.com/get-involved/internship-program/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

@@ -119,6 +119,17 @@
     "link": "https://www.ncdeca.org/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+  {
+    "name": "NC Writers' Network Thomas Wolfe Fiction Prize",
+    "category": "Awards",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "English Literature Writing",
+    "description": "The Thomas Wolfe Fiction Prize, sponsored by the North Carolina Writers’ Network, awards $1,000 and publication in The Thomas Wolfe Review to honor outstanding fiction inspired by North Carolina novelist Thomas Wolfe.",
+    "link": "https://www.ncwriters.org/programs/competitions/thomas-wolfe-fiction-prize/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]
 
