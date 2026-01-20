@@ -152,5 +152,49 @@
     "link": "https://www.ncdot.gov/initiatives-policies/students-youth/internship-programs/Pages/high-school-internship-program.aspx",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "Durham Sports Commission: HS Internship",
+    "category": "Academic Program",
+    "cities": ["Durham"],
+    "grades": ["12"],
+    "interest": "Sports & Entertainment",
+    "description": "This internship with the Durham Sports Commission gives students hands-on experience planning and running major sporting events, including tournaments and youth leagues. Interns work with staff on marketing, logistics, and community outreach while learning about sponsorships, scheduling, and on-site operations, gaining valuable experience in sports and business administration.",
+    "link": "https://www.durhamncsports.com/get-involved/internship-program/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Red Hat HS Internship",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["11", "12"],
+    "interest": "Computer Science",
+    "description": "Red Hat’s two-week tech internship offers students hands-on experience working on real projects in areas such as software development, IT infrastructure, and tech marketing under the mentorship of Red Hat engineers. Participants may code, contribute to open-source projects, and attend campus tours and career-focused seminars to explore life at a technology company.",
+    "link": "https://drive.google.com/file/d/13rk9kId2XyDmxMsgaD6fux5Y6c8G1kKN/view",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "",
+    "category": "",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "",
+    "description": "",
+    "link": "",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "",
+    "category": "",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "",
+    "description": "",
+    "link": "",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

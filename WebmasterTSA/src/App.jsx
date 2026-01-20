@@ -5,7 +5,7 @@ import ScrollToTop from "./components/ScrollToTop.jsx";
 
 import Home from "./pages/Home.jsx";
 import ResourceHub from "./pages/ResourceHub.jsx";
-import AddResource from "./pages/AddResource.jsx";
+import BuildTheHub from "./pages/BuildTheHub.jsx";
 import FindYou from "./pages/FindYou.jsx";
 import Documentation from "./pages/Documentation.jsx";
 import Mission from "./pages/Mission.jsx";
@@ -19,7 +19,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/resource-hub" element={<ResourceHub />} />
-        <Route path="/add-resource" element={<AddResource />} />
+        <Route path="/build-the-hub" element={<BuildTheHub />} />
         <Route path="/mission" element={<Mission />} />
         <Route path="/find-ecs" element={<FindYou />} />
         <Route path="/documentation" element={<Documentation />} />

@@ -13,7 +13,7 @@ export default function Footer() {
           <h3 style={styles.footerTitle}>Connecting the Triangle to resources.</h3>
           <p style={styles.footerText}>
             Nexus helps residents find programs, scholarships, volunteering, and support
-            services—fast, inclusive, and easy to navigate.
+            services: fast, inclusive, and easy to navigate.
           </p>
         </div>
 
@@ -23,7 +23,7 @@ export default function Footer() {
           <a style={styles.link} href="/">Home</a>
           <a style={styles.link} href="/mission">Mission</a>
           <a style={styles.link} href="/resource-hub">Resource Hub</a>
-          <a style={styles.link} href="/add-resource">Add Resource</a>
+          <a style={styles.link} href="/build-the-hub">Build The Hub</a>
           <a style={styles.link} href="/find-ecs">Find Your Path</a>
           <a style={styles.link} href="/work-logs">Documentation</a>
         </div>
@@ -197,25 +197,26 @@ const styles = {
     backgroundColor: COLORS.carolinaBlue,
     color: COLORS.text,
     paddingTop: "46px",
+    overflowX: "hidden",
   },
 
   inner: {
     maxWidth: "1200px",
     margin: "0 auto",
-    padding: "0 10px 34px 0px",
+    padding: "0 20px 34px 20px", 
     display: "grid",
-    gridTemplateColumns: "1.55fr 0.75fr 0.9fr",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", 
     gap: "26px",
     boxSizing: "border-box",
     alignItems: "start",
   },
 
-  /* LEFT */
   colLeft: {
     display: "flex",
     flexDirection: "column",
     paddingLeft: "0px",
-    marginLeft: "-6px", 
+    marginLeft: "0px", 
+    minWidth: 0,
   },
 
   footerTitle: {
@@ -232,8 +233,7 @@ const styles = {
     maxWidth: "60ch",
   },
 
-  /* MIDDLE */
-  col: { display: "flex", flexDirection: "column", gap: "10px" },
+  col: { display: "flex", flexDirection: "column", gap: "10px", minWidth: 0 },
   colHeader: {
     fontFamily: "var(--font-heading)",
     fontWeight: 900,
@@ -249,16 +249,16 @@ const styles = {
     opacity: 0.9,
   },
 
-  /* RIGHT */
   colRight: {
     display: "flex",
     flexDirection: "column",
     gap: "12px",
-    paddingLeft: "6px", 
-    justifySelf: "end", 
+    paddingLeft: "0px", 
+    justifySelf: "start", 
+    minWidth: 0,
   },
 
-  iconRow: { display: "flex", gap: "12px", alignItems: "center" },
+  iconRow: { display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" },
   iconLink: {
     color: COLORS.text,
     width: "40px",
@@ -286,6 +286,7 @@ const styles = {
     alignItems: "center",
     gap: "10px",
     padding: "6px 0",
+    flexWrap: "wrap",
   },
   contactIcon: {
     display: "grid",
@@ -296,7 +297,6 @@ const styles = {
     backgroundColor: "rgba(73,74,72,0.10)",
   },
 
-  /* Bottom */
   bottomBar: {
     borderTop: "1px solid rgba(0,0,0,0.15)",
     padding: "14px 0",
@@ -305,10 +305,11 @@ const styles = {
   bottomInner: {
     maxWidth: "1200px",
     margin: "0 auto",
-    padding: "0 10px", 
+    padding: "0 20px",
     display: "flex",
     justifyContent: "space-between",
     gap: "16px",
+    flexWrap: "wrap", 
     fontFamily: "var(--font-body)",
     fontWeight: 600,
     boxSizing: "border-box",

@@ -66,6 +66,72 @@
     "featured": false
   },
   {
+    "name": "Achievement Scholarship for Refugees and Immigrants of Wake County",
+    "category": "Scholarships",
+    "cities": ["Raleigh"],
+    "grades": ["12"],
+    "interest": "General Scholarships",
+    "description": "The Achievement Scholarship for Refugees and Immigrants in Wake County was created to support refugee and immigrant high school graduates pursuing postsecondary education in North Carolina. The scholarship provides financial assistance to full-time students attending accredited 2-year or 4-year colleges or technical institutions, helping them work toward meaningful careers and community involvement.",
+    "link": "https://trianglecf.org/award/achievement-scholarship-for-refugees-and-immigrants-of-wake-county/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "James M. Schooler, Sr Scholarship",
+    "category": "Scholarships",
+    "cities": ["Durham", "Chapel Hill"],
+    "grades": ["12"],
+    "interest": "General Scholarships",
+    "description": "The James M. Schooler, Sr. Scholarship was established by the Beta Theta Lambda Chapter of Alpha Phi Alpha Fraternity to support and encourage African American male students in their academic achievement. The scholarship is available to African American males residing in Durham County, North Carolina, who plan to pursue a four-year college degree.",
+    "link": "https://trianglecf.org/award/alpha-phi-alpha-african-american-male-scholarship/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "Carol Ann Beerstecher Nursing Scholarship",
+    "category": "Scholarships",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["12"],
+    "interest": "Biology",
+    "description": "The Carol Ann Beerstecher Nursing Scholarship Fund honors Carol Beerstecher’s dedication to the nursing profession by supporting students who share her passion for nursing. The scholarship provides financial assistance to individuals who may lack the resources to pursue a nursing career.",
+    "link": "https://trianglecf.org/award/carol-ann-beerstecher-nursing-scholarship/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "",
+    "category": "",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "",
+    "description": "",
+    "link": "",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "",
+    "category": "",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "",
+    "description": "",
+    "link": "",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
+    "name": "",
+    "category": "",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "",
+    "description": "",
+    "link": "",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+  {
     "name": "",
     "category": "",
     "cities": ["Durham", "Raleigh", "Chapel Hill"],

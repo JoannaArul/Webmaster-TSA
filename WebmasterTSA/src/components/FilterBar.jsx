@@ -14,7 +14,10 @@ export default function FilterBar({
     setFilters((prev) => {
       const arr = prev[key];
       const exists = arr.includes(value);
-      return { ...prev, [key]: exists ? arr.filter((x) => x !== value) : [...arr, value] };
+      return {
+        ...prev,
+        [key]: exists ? arr.filter((x) => x !== value) : [...arr, value],
+      };
     });
   };
 
@@ -45,8 +48,12 @@ export default function FilterBar({
           placeholder="Search (name, description, category, city, interest)..."
         />
 
-        <button style={styles.searchBtn} onClick={onSearch}>Search</button>
-        <button style={styles.resetBtn} onClick={clearAll}>Reset</button>
+        <button style={styles.searchBtn} onClick={onSearch}>
+          Search
+        </button>
+        <button style={styles.resetBtn} onClick={clearAll}>
+          Reset
+        </button>
       </div>
 
       <div style={styles.grid}>
@@ -127,7 +134,9 @@ export default function FilterBar({
                 }))
               }
             />
-            <span style={styles.checkLabel}>Open regardless of immigration status</span>
+            <span style={styles.checkLabel}>
+              Open regardless of immigration status
+            </span>
           </label>
         </div>
       </div>
@@ -138,19 +147,24 @@ export default function FilterBar({
 const styles = {
   wrap: {
     backgroundColor: "white",
-    padding: "16px",
+    padding: "clamp(12px, 2vw, 16px)",
     borderRadius: "14px",
     boxShadow: "0 10px 25px rgba(0,0,0,0.06)",
     display: "grid",
     gap: "12px",
+    overflowX: "hidden", 
   },
+
   topRow: {
-    display: "grid",
-    gridTemplateColumns: "1fr auto auto",
+    display: "flex",
+    flexWrap: "wrap",
     gap: "10px",
     alignItems: "center",
   },
+
   input: {
+    flex: "1 1 320px",
+    minWidth: "min(520px, 100%)",
     width: "100%",
     padding: "12px 12px",
     borderRadius: "10px",
@@ -158,8 +172,11 @@ const styles = {
     outline: "none",
     color: "#111827",
     backgroundColor: "white",
+    boxSizing: "border-box",
   },
+
   searchBtn: {
+    flex: "0 0 auto",
     padding: "10px 14px",
     borderRadius: "10px",
     border: "1px solid transparent",
@@ -170,6 +187,7 @@ const styles = {
     whiteSpace: "nowrap",
   },
   resetBtn: {
+    flex: "0 0 auto",
     padding: "10px 14px",
     borderRadius: "10px",
     border: "1px solid #D1D5DB",
@@ -179,35 +197,47 @@ const styles = {
     color: "#111827",
     whiteSpace: "nowrap",
   },
+
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
     gap: "14px",
   },
+
   group: {
     border: "1px solid #E5E7EB",
     borderRadius: "12px",
     padding: "12px",
     backgroundColor: "#ffffff",
+    minWidth: 0, // prevents overflow in grid children
   },
+
   groupTitle: {
     fontWeight: 900,
     color: "#111827",
     marginBottom: "8px",
   },
+
   checkList: {
     display: "grid",
     gap: "8px",
-    maxHeight: "210px",
+    maxHeight: "min(210px, 32vh)",
     overflow: "auto",
     paddingRight: "6px",
   },
+
   checkRow: {
     display: "flex",
     gap: "10px",
-    alignItems: "center",
+    alignItems: "flex-start",
     color: "#111827",
     fontSize: "0.95rem",
   },
-  checkLabel: { color: "#111827" },
+
+  checkLabel: {
+    color: "#111827",
+    lineHeight: 1.25,
+    overflowWrap: "anywhere",
+    wordBreak: "break-word",
+  },
 };

@@ -13,7 +13,28 @@ import volunteering from "../data/Volunteering.json";
 import FilterBar from "../components/FilterBar.jsx";
 import ResourceCard from "../components/ResourceCard.jsx";
 
-// ✅ EXACT lists from your rubric
+// ✅ Category images (adjust path if your assets folder is different)
+import AcademicProgramImg from "../assets/AcademicProgram.jpg";
+import AwardsImg from "../assets/Awards.jpg";
+import CommunityEventsImg from "../assets/CommunityEvents.jpg";
+import NonprofitsImg from "../assets/Non-profits.jpg";
+import ScholarshipsImg from "../assets/Scholarships.jpg";
+import SummerProgramsImg from "../assets/SummerPrograms.jpg";
+import SupportServicesImg from "../assets/SupportServices.jpg";
+import VolunteeringImg from "../assets/Volunteering.jpg"; // if missing, swap to another
+
+// ✅ NEW: hero background image
+import ResourceHubBg from "../assets/ResourceHubBackground.jpg";
+
+const COLORS = {
+  carolinaBlue: "#4B9CD3",
+  headerGray: "#494A48",
+  beige: "#F5FCEF", // background of curved areas / page
+  cardBg: "#FAFFF6", // inside filter boxes
+  text: "#000000",
+  border: "#DCE7D1",
+};
+
 const TYPE_OPTIONS = [
   "Academic Program",
   "Awards",
@@ -44,11 +65,12 @@ const INTEREST_OPTIONS = [
   "Psychology",
   "STEM/Enrichment",
   "Public Service",
+  "Sports & Entertainment",
+  "General Scholarships"
 ];
 
 const GRADE_OPTIONS = ["9", "10", "11", "12"];
 
-// ✅ merge everything into one list
 const resourcesData = [
   ...academicPrograms,
   ...awards,
@@ -60,10 +82,21 @@ const resourcesData = [
   ...volunteering,
 ];
 
+const CATEGORY_CARDS = [
+  { name: "Academic Program", img: AcademicProgramImg },
+  { name: "Awards", img: AwardsImg },
+  { name: "Community Events", img: CommunityEventsImg },
+  { name: "Non-profits", img: NonprofitsImg },
+  { name: "Scholarships", img: ScholarshipsImg },
+  { name: "Summer Programs", img: SummerProgramsImg },
+  { name: "Support Services", img: SupportServicesImg },
+  { name: "Volunteering", img: VolunteeringImg },
+];
+
 export default function ResourceHub() {
   const [draftFilters, setDraftFilters] = useState({
     search: "",
-    categories: [], // Type
+    categories: [],
     cities: [],
     interests: [],
     grades: [],
@@ -73,7 +106,6 @@ export default function ResourceHub() {
   const [appliedFilters, setAppliedFilters] = useState(draftFilters);
   const applySearch = () => setAppliedFilters(draftFilters);
 
-  // ✅ Use your fixed options, NOT auto-generated from JSON
   const categories = useMemo(() => TYPE_OPTIONS, []);
   const cities = useMemo(() => CITY_OPTIONS, []);
   const interests = useMemo(() => INTEREST_OPTIONS, []);
@@ -86,12 +118,11 @@ export default function ResourceHub() {
       const resourceCities = Array.isArray(r.cities) ? r.cities : [];
       const resourceGrades = Array.isArray(r.grades) ? r.grades : [];
 
-      // search across useful fields
       const haystack = [
         r.name,
         r.description,
-        r.category, // Type stored in JSON as "category"
-        r.interest, // Area of Interest stored as "interest"
+        r.category,
+        r.interest,
         resourceCities.join(" "),
         resourceGrades.join(" "),
       ]
@@ -101,27 +132,22 @@ export default function ResourceHub() {
 
       const matchesSearch = !q || haystack.includes(q);
 
-      // Type
       const matchesCategory =
         appliedFilters.categories.length === 0 ||
         appliedFilters.categories.includes(r.category);
 
-      // City
       const matchesCity =
         appliedFilters.cities.length === 0 ||
         resourceCities.some((c) => appliedFilters.cities.includes(c));
 
-      // Area of Interest
       const matchesInterest =
         appliedFilters.interests.length === 0 ||
         appliedFilters.interests.includes(r.interest);
 
-      // Grades
       const matchesGrades =
         appliedFilters.grades.length === 0 ||
         resourceGrades.some((g) => appliedFilters.grades.includes(g));
 
-      // Eligibility
       const matchesImmigration =
         !appliedFilters.onlyOpenToAllImmigrationStatuses ||
         r.openToAllImmigrationStatuses === true;
@@ -142,6 +168,11 @@ export default function ResourceHub() {
     []
   );
 
+  const marqueeCards = useMemo(
+    () => [...CATEGORY_CARDS, ...CATEGORY_CARDS],
+    []
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -149,68 +180,159 @@ export default function ResourceHub() {
       transition={{ duration: 0.8 }}
       style={styles.page}
     >
+      <style>{`
+        @keyframes nexusMarquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .nexus-marquee {
+          overflow: hidden;
+          width: 100%;
+        }
+        .nexus-track {
+          display: flex;
+          width: max-content;
+          animation: nexusMarquee 44s linear infinite;
+        }
+        .nexus-marquee:hover .nexus-track {
+          animation-play-state: paused;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .nexus-track { animation: none; }
+        }
+
+        /* ✅ Responsive resource grid */
+        @media (max-width: 980px) {
+          .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+        }
+        @media (max-width: 620px) {
+          .resource-grid { grid-template-columns: 1fr !important; }
+        }
+
+        /* ✅ Make FilterBar "inner boxes" lighter background (#FAFFF6) */
+        .filterbar, .filter-bar, .filters, .filterWrap, .filter-wrap,
+        .filterCard, .filter-card, .filterSection, .filter-section,
+        .filterGroup, .filter-group {
+          background: ${COLORS.cardBg} !important;
+        }
+        .filterbar *, .filter-bar *, .filters * {
+          box-sizing: border-box;
+        }
+        input, select, textarea {
+          background: ${COLORS.cardBg} !important;
+        }
+
+        /* ✅ Make SEARCH button Carolina blue (covers common button patterns) */
+        .filters button,
+        .filter-bar button,
+        .filterbar button,
+        .filterWrap button,
+        .filter-wrap button,
+        button.search,
+        button.searchBtn,
+        .search-btn {
+          background: ${COLORS.carolinaBlue} !important;
+          border-color: ${COLORS.carolinaBlue} !important;
+          color: ${COLORS.beige} !important;
+        }
+
+        /* ✅ Keep "Visit Resource" as a link (not a button) */
+        a.visit,
+        a.visitResource,
+        .visit-resource,
+        .resource-card a,
+        .resourceCard a,
+        .ResourceCard a {
+          color: ${COLORS.carolinaBlue} !important;
+          background: transparent !important;
+          border: none !important;
+        }
+      `}</style>
+
+      {/* ✅ FULL-WIDTH HERO with IMAGE + BLACK OVERLAY */}
+      <section style={hero.fullBleed}>
+        <div style={hero.bgImage} />
+        <div style={hero.overlay} />
+
+        <div style={hero.inner}>
+          <h1 style={hero.title}>
+            <span style={{ color: COLORS.carolinaBlue }}>
+              Research Triangle Community Resource Hub
+            </span>
+          </h1>
+
+          {/* ✅ only this text changed to white */}
+          <p style={hero.subWhite}>
+            Search local resources in one place with Nexus. Filter by type, city,
+            area of interest, grade level, and eligibility to find programs,
+            scholarships, volunteering, nonprofits, and support services.
+          </p>
+
+          <div style={hero.statRow}>
+            <div style={hero.statCardBlue}>
+              <div style={hero.statNumBlue}>{resourcesData.length}</div>
+              <div style={hero.statLabelBlue}>Resources listed</div>
+            </div>
+
+            <div style={hero.statCardBlue}>
+              <div style={hero.statNumBlue}>{featuredCount}</div>
+              <div style={hero.statLabelBlue}>Featured picks</div>
+            </div>
+
+            <div style={hero.statCardBlue}>
+              <div style={hero.statNumBlue}>{filtered.length}</div>
+              <div style={hero.statLabelBlue}>Showing now</div>
+            </div>
+          </div>
+        </div>
+
+        {/* ✅ Moving category row */}
+        <div style={hero.bottomArea}>
+          <div className="nexus-marquee">
+            <div className="nexus-track" style={carousel.track}>
+              {marqueeCards.map((c, idx) => (
+                <button
+                  key={`${c.name}-${idx}`}
+                  type="button"
+                  onClick={() => {
+                    setDraftFilters((prev) => {
+                      const already = prev.categories.includes(c.name);
+                      const nextCats = already
+                        ? prev.categories
+                        : [...prev.categories, c.name];
+                      return { ...prev, categories: nextCats };
+                    });
+                  }}
+                  style={carousel.card}
+                  aria-label={`Filter by ${c.name}`}
+                >
+                  <div style={carousel.avatar}>
+                    <img src={c.img} alt={c.name} style={carousel.avatarImg} />
+                    <div style={carousel.avatarOverlay} />
+                  </div>
+                  <div style={carousel.label}>{c.name}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div style={carousel.helperText}></div>
+        </div>
+      </section>
+
+      {/* keep the rest the same */}
       <div style={styles.container}>
-        <section style={banner.wrap}>
-          <div style={banner.left}>
-            <div style={banner.kicker}>Triangle Community Resource Hub</div>
-            <h1 style={banner.title}>Search local resources in one place.</h1>
-            <p style={banner.sub}>
-              Filter by type, city, area of interest, grade level, and eligibility to find
-              programs, scholarships, volunteering, nonprofits, and support services.
-            </p>
-
-            <div style={banner.statsRow}>
-              <div style={banner.statCard}>
-                <div style={banner.statNum}>{resourcesData.length}</div>
-                <div style={banner.statLabel}>Resources listed</div>
-              </div>
-              <div style={banner.statCard}>
-                <div style={banner.statNum}>{featuredCount}</div>
-                <div style={banner.statLabel}>Featured picks</div>
-              </div>
-              <div style={banner.statCard}>
-                <div style={banner.statNum}>{filtered.length}</div>
-                <div style={banner.statLabel}>Showing now</div>
-              </div>
-            </div>
-
-            <div style={banner.tip}>
-              Tip: Toggle <b>Open regardless of immigration status</b> to highlight resources
-              accessible to all residents.
-            </div>
-          </div>
-
-          <div style={banner.right}>
-            <div style={banner.illus}>
-              <div style={banner.tileRow}>
-                <div style={banner.tile} />
-                <div style={banner.tile} />
-              </div>
-              <div style={banner.bigBlock} />
-              <div style={banner.smallRow}>
-                <div style={banner.small} />
-                <div style={banner.smallTall} />
-                <div style={banner.small} />
-              </div>
-            </div>
-
-            <div style={banner.miniPills}>
-              <div style={banner.pill}>Multi-select filters</div>
-              <div style={banner.pill}>Grades (9–12)</div>
-              <div style={banner.pill}>Keyword search</div>
-            </div>
-          </div>
-        </section>
-
-        <FilterBar
-          categories={categories}
-          cities={cities}
-          interests={interests}
-          grades={grades}
-          filters={draftFilters}
-          setFilters={setDraftFilters}
-          onSearch={applySearch}
-        />
+        <div style={styles.filtersWrap}>
+          <FilterBar
+            categories={categories}
+            cities={cities}
+            interests={interests}
+            grades={grades}
+            filters={draftFilters}
+            setFilters={setDraftFilters}
+            onSearch={applySearch}
+          />
+        </div>
 
         <div style={styles.resultsRow}>
           <span style={styles.count}>
@@ -218,7 +340,7 @@ export default function ResourceHub() {
           </span>
         </div>
 
-        <div style={styles.grid}>
+        <div className="resource-grid" style={styles.grid}>
           {filtered.map((r) => (
             <ResourceCard key={`${r.name}-${r.link}`} resource={r} />
           ))}
@@ -228,12 +350,12 @@ export default function ResourceHub() {
   );
 }
 
-// styles unchanged
 const styles = {
   page: {
     minHeight: "100vh",
-    backgroundColor: "#f9fafb",
-    padding: "30px 0",
+    backgroundColor: COLORS.beige,
+    padding: "0 0 30px",
+    overflowX: "hidden",
   },
   container: {
     maxWidth: "1200px",
@@ -241,109 +363,177 @@ const styles = {
     padding: "0 20px",
     boxSizing: "border-box",
   },
+  filtersWrap: {
+    backgroundColor: COLORS.cardBg,
+    border: `1px solid ${COLORS.border}`,
+    borderRadius: "1px",
+    padding: "14px",
+    boxShadow: "0 12px 26px rgba(0,0,0,0.08)",
+    marginTop: "18px",
+  },
   resultsRow: {
     marginTop: "14px",
     marginBottom: "14px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    flexWrap: "wrap",
+    gap: "10px",
   },
   count: {
-    color: "#111827",
-    fontWeight: "bold",
+    color: COLORS.text,
+    fontWeight: 900,
   },
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
     gap: "18px",
   },
 };
 
-const banner = {
-  wrap: {
-    backgroundColor: "#F6F7FB",
-    borderRadius: "18px",
-    padding: "22px",
-    border: "1px solid #E5E7EB",
-    boxShadow: "0 10px 25px rgba(0,0,0,0.06)",
-    display: "grid",
-    gridTemplateColumns: "1.2fr 0.8fr",
-    gap: "18px",
-    alignItems: "center",
-    marginBottom: "14px",
+const hero = {
+  fullBleed: {
+    width: "100%",
+    position: "relative",
+    paddingTop: "clamp(46px, 6vw, 78px)",
+    paddingBottom: "clamp(18px, 3vw, 26px)",
+    borderBottom: `1px solid ${COLORS.border}`,
+    overflow: "hidden",
   },
-  left: { display: "flex", flexDirection: "column", gap: "10px" },
-  kicker: {
-    display: "inline-flex",
-    alignSelf: "flex-start",
-    padding: "6px 10px",
-    borderRadius: "999px",
-    backgroundColor: "white",
-    border: "1px solid #E5E7EB",
-    color: "#2563eb",
-    fontWeight: 800,
-    fontSize: "0.85rem",
+  // ✅ background image layer
+  bgImage: {
+    position: "absolute",
+    inset: 0,
+    backgroundImage: `url(${ResourceHubBg})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    transform: "scale(1.02)",
+    zIndex: 0,
+  },
+  // ✅ black overlay
+  overlay: {
+    position: "absolute",
+    inset: 0,
+    backgroundColor: "rgba(0,0,0,0.55)",
+    zIndex: 1,
+  },
+  inner: {
+    maxWidth: "1200px",
+    margin: "0 auto",
+    padding: "0 20px",
+    boxSizing: "border-box",
+    position: "relative",
+    zIndex: 2,
   },
   title: {
     margin: 0,
-    fontSize: "2.2rem",
-    lineHeight: 1.1,
-    color: "#111827",
-    letterSpacing: "-0.01em",
+    fontSize: "clamp(2.35rem, 5vw, 4rem)",
+    lineHeight: 1.03,
+    letterSpacing: "-0.02em",
+    fontWeight: 900,
+    fontFamily: '"Merriweather", serif',
   },
-  sub: { margin: 0, color: "#374151", lineHeight: 1.6, maxWidth: "70ch" },
-  statsRow: { display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "6px" },
-  statCard: {
-    backgroundColor: "white",
-    border: "1px solid #E5E7EB",
-    borderRadius: "14px",
-    padding: "10px 12px",
-    minWidth: "140px",
+  // ✅ only subtext is white now
+  subWhite: {
+    marginTop: "18px",
+    marginBottom: "22px",
+    maxWidth: "70ch",
+    color: "#FFFFFF",
+    fontSize: "clamp(1.02rem, 1.35vw, 1.18rem)",
+    lineHeight: 1.7,
+    fontWeight: 600,
   },
-  statNum: { fontSize: "1.35rem", fontWeight: 900, color: "#111827", lineHeight: 1.1 },
-  statLabel: { fontSize: "0.9rem", color: "#6B7280", marginTop: "2px" },
-  tip: {
-    marginTop: "6px",
-    backgroundColor: "white",
-    border: "1px solid #E5E7EB",
-    borderRadius: "14px",
-    padding: "10px 12px",
-    color: "#374151",
+  statRow: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "14px",
+    alignItems: "stretch",
+    marginBottom: "clamp(18px, 2.2vw, 26px)",
   },
-  right: { display: "flex", flexDirection: "column", gap: "10px", alignItems: "center" },
-  illus: {
-    width: "100%",
-    borderRadius: "16px",
-    backgroundColor: "white",
-    border: "1px solid #E5E7EB",
-    padding: "14px",
-    boxSizing: "border-box",
+  statCardBlue: {
+    backgroundColor: COLORS.carolinaBlue,
+    border: `1px solid ${COLORS.carolinaBlue}`,
+    borderRadius: "18px",
+    padding: "14px 18px",
+    minWidth: "200px",
+    flex: "1 1 220px",
+    boxShadow: "0 12px 26px rgba(0,0,0,0.10)",
   },
-  tileRow: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginBottom: "10px" },
-  tile: {
-    height: "62px",
-    borderRadius: "14px",
-    border: "1px solid #E5E7EB",
-    background: "linear-gradient(135deg, rgba(37,99,235,0.10), rgba(30,64,175,0.06))",
+  statNumBlue: {
+    fontSize: "1.65rem",
+    fontWeight: 900,
+    color: COLORS.beige,
+    lineHeight: 1.05,
   },
-  bigBlock: {
-    height: "150px",
-    borderRadius: "16px",
-    border: "1px solid #E5E7EB",
-    background: "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(99,102,241,0.06))",
-    marginBottom: "10px",
+  statLabelBlue: {
+    marginTop: "4px",
+    fontSize: "1rem",
+    fontWeight: 900,
+    color: COLORS.beige,
+    opacity: 0.95,
   },
-  smallRow: { display: "grid", gridTemplateColumns: "0.7fr 1fr 0.7fr", gap: "10px", alignItems: "end" },
-  small: { height: "46px", borderRadius: "14px", border: "1px solid #E5E7EB", backgroundColor: "#F3F4F6" },
-  smallTall: { height: "64px", borderRadius: "14px", border: "1px solid #E5E7EB", backgroundColor: "#F3F4F6" },
-  miniPills: { display: "flex", gap: "8px", flexWrap: "wrap", justifyContent: "center" },
-  pill: {
-    backgroundColor: "white",
-    border: "1px solid #E5E7EB",
+  bottomArea: {
+    marginTop: "clamp(12px, 2vw, 18px)",
+    padding: "0 0 clamp(18px, 2.6vw, 24px)",
+    position: "relative",
+    zIndex: 2,
+  },
+};
+
+const carousel = {
+  track: {
+    gap: "14px",
+    padding: "0 20px",
+  },
+  card: {
+    appearance: "none",
+    border: `1px solid ${COLORS.border}`,
+    backgroundColor: COLORS.beige,
+    borderRadius: "18px",
+    padding: "14px 16px",
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    cursor: "pointer",
+    boxShadow: "0 12px 26px rgba(0,0,0,0.08)",
+    minWidth: "280px",
+    transition: "transform 180ms ease",
+  },
+  avatar: {
+    width: "60px",
+    height: "60px",
     borderRadius: "999px",
-    padding: "6px 10px",
-    fontWeight: 800,
-    fontSize: "0.85rem",
-    color: "#374151",
+    overflow: "hidden",
+    position: "relative",
+    flex: "0 0 60px",
+    border: `2px solid ${COLORS.border}`,
+  },
+  avatarImg: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    display: "block",
+    transform: "scale(1.03)",
+  },
+  avatarOverlay: {
+    position: "absolute",
+    inset: 0,
+    backgroundColor: "rgba(0,0,0,0.28)",
+  },
+  label: {
+    color: COLORS.text,
+    fontWeight: 900,
+    fontSize: "1.05rem",
+    whiteSpace: "nowrap",
+  },
+  helperText: {
+    maxWidth: "1200px",
+    margin: "10px auto 0",
+    padding: "0 20px",
+    boxSizing: "border-box",
+    color: COLORS.headerGray,
+    fontWeight: 700,
+    fontSize: "0.95rem",
   },
 };

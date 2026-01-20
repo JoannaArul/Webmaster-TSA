@@ -465,9 +465,9 @@ const styles = {
     padding: "0 20px",
     boxSizing: "border-box",
     display: "grid",
-    gridTemplateColumns: "1.1fr 0.9fr",
+    gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
     gap: "18px",
-    alignItems: "center",
+    alignItems: "start",
   },
 
   heroContent: {
@@ -478,7 +478,7 @@ const styles = {
   nexus: {
     margin: 0,
     fontFamily: "var(--font-heading)",
-    fontSize: "4rem",
+    fontSize: "clamp(2.7rem, 6vw, 4rem)",
     lineHeight: 1,
     letterSpacing: "-0.02em",
     color: COLORS.carolinaBlue,
@@ -489,7 +489,7 @@ const styles = {
     marginTop: "18px",
     marginBottom: "18px",
     fontFamily: "var(--font-body)",
-    fontSize: "1.45rem",
+    fontSize: "clamp(1.05rem, 2.6vw, 1.45rem)",
     lineHeight: 1.4,
   },
   typePrefix: { color: COLORS.beige, fontWeight: 400 },
@@ -567,9 +567,9 @@ const styles = {
   featureSide: {
     width: "100%",
     display: "flex",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
-    paddingLeft: "6px",
+    paddingLeft: "0",
   },
 
   featureCardOuterHero: {
@@ -704,7 +704,7 @@ const styles = {
   hubTitle: {
     margin: 0,
     fontFamily: "var(--font-heading)",
-    fontSize: "3.2rem",
+    fontSize: "clamp(2.1rem, 5vw, 3.2rem)",
     color: COLORS.beige,
     fontWeight: 900,
     letterSpacing: "-0.02em",
@@ -759,8 +759,8 @@ const styles = {
     overflow: "hidden",
     opacity: 0.35,
   },
-  hubGhostLeft: { left: "50%", transform: "translateX(-92%)" },
-  hubGhostRight: { left: "50%", transform: "translateX(-8%)" },
+  hubGhostLeft: { left: "50%", transform: "translateX(-102%)" },
+  hubGhostRight: { left: "50%", transform: "translateX(2%)" },
   hubGhostImg: {
     background:
       "linear-gradient(135deg, rgba(75,156,211,0.22), rgba(245,252,239,0.08))",
@@ -847,7 +847,7 @@ const styles = {
   hubArrow: {
     position: "absolute",
     top: "50%",
-    transform: "translateY(-35%)",
+    transform: "translateY(-50%)",
     width: "54px",
     height: "54px",
     borderRadius: "999px",
@@ -862,8 +862,9 @@ const styles = {
     fontWeight: 700,
     transition: "filter 180ms ease, transform 180ms ease",
   },
-  hubArrowLeft: { left: "calc(50% - 360px)" },
-  hubArrowRight: { right: "calc(50% - 360px)" },
+  hubArrowLeft: { left: "max(10px, calc(50% - 46vw))" },
+  hubArrowRight: { right: "max(10px, calc(50% - 46vw))" },
+
 
   hubDotsRow: {
     position: "absolute",

@@ -372,5 +372,93 @@
     "link": "https://www.durhamncsports.com/get-involved/internship-program/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "NC State VetCAMP",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Biology",
+    "description": "VetCAMP is a five-day summer program at North Carolina State University run by the Veterinary Professions Advising Center that introduces students to careers in veterinary medicine. Since 2011, the camp has offered hands-on experiences such as animal clinics, livestock work, suture and dissection labs, tours of the College of Veterinary Medicine, and exploration of related NC State majors.",
+    "link": "https://cals.ncsu.edu/vetpac/vetcamp/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Teens Art Council North Carolina Museum of Art",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "The NCMA Teen Arts Council is a group of teen ambassadors who meet weekly from September through June. Members help plan teen takeovers and art exhibitions, participate in artist workshops, attend museum events, and explore careers in the arts.",
+    "link": "https://ncartmuseum.org/events-and-exhibitions/programs/teens/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "North Carolina Museum of Natural Sciences: Junior Interpreters Program",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "As a Junior Interpreter, you serve as a museum ambassador by engaging visitors with hands-on science and real specimens on the museum floor. The program builds strong communication, public speaking, and customer service skills while providing practical experience in science education and outreach.",
+    "link": "https://naturalsciences.org/learn/junior-interpreters",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "NC State Resource Conservation Workshop",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Environmental Science",
+    "description": "The Resource Conservation Workshop is a weeklong, application-based program that immerses students in hands-on learning about natural resources and environmental management. Participants engage in field studies, tours, and career-focused activities, with opportunities to earn awards and scholarships.",
+    "link": "https://precollege.ncsu.edu/resource-conservation-workshop/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Teen X-Treme Summer Camp",
+    "category": "Summer Programs",
+    "cities": ["Raleigh"],
+    "grades": ["9"],
+    "interest": "STEM/Enrichment",
+    "description": "Teen X-Treme is a summer camp for ages 12–14 that offers a fun, interactive curriculum including arts and crafts, indoor and outdoor games, and character and leadership development activities. Participants attend daily and bring their own lunch and snacks.",
+    "link": "https://raleighnc.gov/parks-and-recreation/services/teen-programs/teen-summer-camps#paragraph--305636",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "",
+    "category": "",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "",
+    "description": "",
+    "link": "",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "",
+    "category": "",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "",
+    "description": "",
+    "link": "",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "",
+    "category": "",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "",
+    "description": "",
+    "link": "",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]
