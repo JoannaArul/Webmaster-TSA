@@ -1,9 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 import researchTriangleImg from "../assets/ResearchTriangle.png";
 import localImpactImg from "../assets/LocalImpact.png";
+
+import computerImg from "../assets/Computer.png";
+import filterImg from "../assets/Filter.png";
+import actionImg from "../assets/Action.png";
 
 const COLORS = {
   carolinaBlue: "#4B9CD3",
@@ -17,6 +21,76 @@ const fadeUp = {
   hidden: { opacity: 0, y: 26 },
   show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
+
+function useScrollDirection() {
+  const [dir, setDir] = useState("down");
+  const lastY = useRef(0);
+
+  useEffect(() => {
+    lastY.current = window.scrollY || 0;
+
+    const onScroll = () => {
+      const y = window.scrollY || 0;
+      const nextDir = y > lastY.current ? "down" : y < lastY.current ? "up" : dir;
+      lastY.current = y;
+      if (nextDir !== dir) setDir(nextDir);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [dir]);
+
+  return dir;
+}
+
+function RevealSection({ amount = 0.35, style, children, onReveal }) {
+  const dir = useScrollDirection();
+  const ref = useRef(null);
+  const inView = useInView(ref, { amount, once: false });
+  const [played, setPlayed] = useState(false);
+
+  useEffect(() => {
+    if (!played && inView && dir === "down") {
+      setPlayed(true);
+      if (onReveal) onReveal();
+    }
+  }, [played, inView, dir, onReveal]);
+
+  return (
+    <motion.section
+      ref={ref}
+      variants={fadeUp}
+      initial="hidden"
+      animate={played ? "show" : "hidden"}
+      style={style}
+    >
+      {children}
+    </motion.section>
+  );
+}
+
+function RevealDiv({ amount = 0.35, style, children }) {
+  const dir = useScrollDirection();
+  const ref = useRef(null);
+  const inView = useInView(ref, { amount, once: false });
+  const [played, setPlayed] = useState(false);
+
+  useEffect(() => {
+    if (!played && inView && dir === "down") setPlayed(true);
+  }, [played, inView, dir]);
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={fadeUp}
+      initial="hidden"
+      animate={played ? "show" : "hidden"}
+      style={style}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 function ArrowIcon({ color = COLORS.beige, size = 18 }) {
   return (
@@ -44,24 +118,15 @@ function QuoteMarkIcon({ size = 26, color = COLORS.beige }) {
   );
 }
 
-/**
- * CountUp that ONLY starts when `start` becomes true.
- * It resets when `start` becomes false (so it can replay when scrolling back down).
- */
 function CountUp({ to = 80, durationMs = 950, start = false }) {
   const [value, setValue] = useState(0);
   const rafRef = useRef(0);
 
   useEffect(() => {
     cancelAnimationFrame(rafRef.current);
-
-    if (!start) {
-      setValue(0);
-      return;
-    }
+    if (!start) return;
 
     const startTime = performance.now();
-
     const tick = (t) => {
       const p = Math.min(1, (t - startTime) / durationMs);
       setValue(Math.round(p * to));
@@ -69,7 +134,6 @@ function CountUp({ to = 80, durationMs = 950, start = false }) {
     };
 
     rafRef.current = requestAnimationFrame(tick);
-
     return () => cancelAnimationFrame(rafRef.current);
   }, [to, durationMs, start]);
 
@@ -78,17 +142,31 @@ function CountUp({ to = 80, durationMs = 950, start = false }) {
 
 function FlipCard({ title, backText }) {
   const [flipped, setFlipped] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   return (
     <button
       type="button"
       onClick={() => setFlipped((v) => !v)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={styles.flipBtn}
       aria-pressed={flipped}
     >
-      <div style={{ ...styles.flipScene, ...(flipped ? styles.flipSceneFlipped : null) }}>
-        {/* FRONT */}
-        <div style={{ ...styles.flipFace, ...styles.flipFront }}>
+      <div
+        style={{
+          ...styles.flipScene,
+          ...(flipped ? styles.flipSceneFlipped : null),
+        }}
+      >
+        {/* FRONT — hover effects allowed */}
+        <div
+          style={{
+            ...styles.flipFace,
+            ...styles.flipFront,
+            ...(hovered && !flipped ? styles.flipFaceHover : null),
+          }}
+        >
           <div style={styles.flipTitleWrap}>
             <div style={styles.flipTitle}>{title}</div>
             <div style={styles.flipUnderline} />
@@ -99,8 +177,13 @@ function FlipCard({ title, backText }) {
           </div>
         </div>
 
-        {/* BACK */}
-        <div style={{ ...styles.flipFace, ...styles.flipBack }}>
+        {/* BACK — NO hover styles at all */}
+        <div
+          style={{
+            ...styles.flipFace,
+            ...styles.flipBack,
+          }}
+        >
           <div style={styles.flipBackText}>{backText}</div>
 
           <div style={styles.cornerArrowInverse}>
@@ -109,6 +192,31 @@ function FlipCard({ title, backText }) {
         </div>
       </div>
     </button>
+  );
+}
+
+function FlowCard({ icon, title, description }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <RevealDiv amount={0.35}>
+      <button
+        type="button"
+        style={{ ...styles.flowCardBtn, ...(hovered ? styles.flowCardHover : null) }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        aria-label={`${title} details`}
+      >
+        <div style={styles.flowLeft}>
+          <div style={{ ...styles.flowIcon, backgroundImage: styles.iconBg(icon).backgroundImage }} />
+        </div>
+
+        <div style={styles.flowRight}>
+          <div style={styles.flowTitle}>{title}</div>
+          <div style={styles.flowDesc}>{description}</div>
+        </div>
+      </button>
+    </RevealDiv>
   );
 }
 
@@ -136,19 +244,11 @@ export default function Mission() {
     []
   );
 
-  // ✅ starts ONLY when stats section is in view; resets when out of view
-  const [statsInView, setStatsInView] = useState(false);
+  const [startCount, setStartCount] = useState(false);
 
   return (
     <div style={styles.page}>
-      {/* HERO 1 (fade in on scroll like Home.jsx) */}
-      <motion.section
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.35 }}
-        style={styles.heroImage}
-      >
+      <RevealSection amount={0.35} style={styles.heroImage}>
         <div style={styles.heroOverlay} />
         <div style={styles.heroInner}>
           <h1 style={styles.heroTitle}>
@@ -164,33 +264,23 @@ export default function Mission() {
             </button>
           </div>
         </div>
-      </motion.section>
+      </RevealSection>
 
-      {/* HERO 2 + FLIP CARDS (fade in on scroll) */}
-      <motion.section
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.22 }}
-        style={styles.beigeSection}
-      >
+      <RevealSection amount={0.22} style={styles.beigeSection}>
         <div style={styles.container}>
           <div style={styles.splitRow}>
             <div style={styles.leftMedia}>
-              <img
-                src={localImpactImg}
-                alt="Local impact"
-                style={styles.leftImage}
-                draggable={false}
-              />
+              <img src={localImpactImg} alt="Local impact" style={styles.leftImage} draggable={false} />
             </div>
 
             <div style={styles.rightCopy}>
               <h2 style={styles.bigHeadline}>Local Resources, Real Impact</h2>
               <p style={styles.subText}>
-                Nexus brings together opportunities across the Research Triangle—so families
-                can spend less time digging through dozens of sites and more time taking
-                action.
+                Nexus brings together opportunities across the Research Triangle in one clear, organized
+                hub, so students and families can spend less time digging through scattered websites and more
+                time discovering programs that fit their goals. By highlighting trusted local resources
+                and making next steps easy to understand, we ultimately help turn curiosity into action and make
+                opportunity feel reachable for everyone. 
               </p>
             </div>
           </div>
@@ -203,16 +293,9 @@ export default function Mission() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </RevealSection>
 
-      {/* QUOTE BANNER (fade in on scroll) */}
-      <motion.section
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.35 }}
-        style={styles.quoteSectionFull}
-      >
+      <RevealSection amount={0.35} style={styles.quoteSectionFull}>
         <div style={styles.quoteInner}>
           <div style={styles.quoteMarkCenter}>
             <QuoteMarkIcon />
@@ -225,30 +308,49 @@ export default function Mission() {
             <em>-- Nelson Mandela</em>
           </div>
         </div>
-      </motion.section>
+      </RevealSection>
 
-      {/* HERO 3 (fade in on scroll + triggers counter) */}
-      <motion.section
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.35 }}
-        onViewportEnter={() => setStatsInView(true)}
-        onViewportLeave={() => setStatsInView(false)}
+      <RevealSection
+        amount={0.35}
         style={styles.statsSection}
+        onReveal={() => setStartCount(true)}
       >
         <div style={styles.container}>
           <div style={styles.statsCenter}>
             <p style={styles.statsLine}>
               Students who participate in extracurricular activities are{" "}
-              <CountUp to={80} durationMs={950} start={statsInView} /> more likely to excel in
-              their academics and learn important life skills, so we are focused on
+              <CountUp to={80} durationMs={950} start={startCount} /> more likely to excel in their academics
+              and learn important life skills, so we are focused on
             </p>
 
             <h2 style={styles.discoveryTitle}>Designing for Discovery</h2>
+
+            <p style={styles.discoveryIntro}>
+              Hover over each screen below to see how Nexus turns curiosity into momentum—helping students
+              and families uncover what’s available, understand what fits, and take the next step with
+              confidence.
+            </p>
+
+            <div style={styles.flowStack}>
+              <FlowCard
+                icon={computerImg}
+                title="Discover"
+                description="Explore a curated collection of programs, organizations, and opportunities across the Research Triangle. Resources are organized by category, interest area, grade level, and location so you can easily see what’s available in your community without endless searching."
+              />
+              <FlowCard
+                icon={filterImg}
+                title="Filter"
+                description="Refine your search using clear, intentional filters that help narrow down opportunities based on eligibility, interests, and goals. We surface key details up front so you can quickly understand whether a resource is the right fit for you."
+              />
+              <FlowCard
+                icon={actionImg}
+                title="Take Action"
+                description="Move from information to impact with direct links and straightforward next steps. Whether that means applying to a program, volunteering, attending an event, or reaching out for support, everything you need to act is clearly laid out in one place."
+              />
+            </div>
           </div>
         </div>
-      </motion.section>
+      </RevealSection>
     </div>
   );
 }
@@ -347,7 +449,7 @@ const styles = {
     color: COLORS.textSoft,
     fontSize: "1.06rem",
     lineHeight: 1.75,
-    maxWidth: "52ch",
+    maxWidth: "54ch",
   },
 
   cardsWrap: { marginTop: "42px" },
@@ -385,6 +487,12 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    transition: "filter 180ms ease, box-shadow 180ms ease, transform 180ms ease",
+  },
+  flipFaceHover: {
+    filter: "brightness(0.93)",
+    boxShadow: "0 18px 40px rgba(0,0,0,0.14)",
+    transform: "translateY(1px)",
   },
   flipFront: {
     transform: "rotateY(0deg)",
@@ -439,21 +547,20 @@ const styles = {
     placeItems: "center",
     boxShadow: "0 10px 20px rgba(0,0,0,0.10)",
   },
-  
-  cornerArrowInverse: {
-  position: "absolute",
-  right: "12px",
-  bottom: "12px",
-  width: "36px",
-  height: "36px",
-  borderRadius: "999px",
-  backgroundColor: COLORS.beige, // white/beige background
-  border: "1px solid rgba(0,0,0,0.10)",
-  display: "grid",
-  placeItems: "center",
-  boxShadow: "0 10px 20px rgba(0,0,0,0.10)",
-},
 
+  cornerArrowInverse: {
+    position: "absolute",
+    right: "12px",
+    bottom: "12px",
+    width: "36px",
+    height: "36px",
+    borderRadius: "999px",
+    backgroundColor: COLORS.beige,
+    border: "1px solid rgba(0,0,0,0.10)",
+    display: "grid",
+    placeItems: "center",
+    boxShadow: "0 10px 20px rgba(0,0,0,0.10)",
+  },
 
   quoteSectionFull: { backgroundColor: COLORS.carolinaBlue, padding: "34px 0" },
   quoteInner: {
@@ -468,8 +575,8 @@ const styles = {
   quoteTextCenter: { fontFamily: "var(--font-body)", fontWeight: 700, lineHeight: 1.5 },
   quoteAuthorCenter: { marginTop: "8px", opacity: 0.95 },
 
-  statsSection: { backgroundColor: COLORS.beige, padding: "44px 0 70px" },
-  statsCenter: { textAlign: "center", maxWidth: "80ch", margin: "0 auto" },
+  statsSection: { backgroundColor: COLORS.beige, padding: "44px 0 82px" },
+  statsCenter: { textAlign: "center", maxWidth: "86ch", margin: "0 auto" },
   statsLine: { margin: 0, color: COLORS.text, fontSize: "1.08rem", lineHeight: 1.8 },
   percentBlue: { color: COLORS.carolinaBlue, fontWeight: 900 },
   discoveryTitle: {
@@ -482,6 +589,78 @@ const styles = {
     fontSize: "clamp(2.4rem, 4.8vw, 4.2rem)",
     lineHeight: 1.05,
   },
+  discoveryIntro: {
+    marginTop: "14px",
+    marginBottom: 0,
+    color: COLORS.textSoft,
+    fontSize: "1.06rem",
+    lineHeight: 1.75,
+    maxWidth: "70ch",
+    marginInline: "auto",
+  },
+
+  flowStack: {
+    marginTop: "28px",
+    display: "grid",
+    gap: "16px",
+  },
+  flowCardBtn: {
+    width: "100%",
+    border: "1px solid rgba(0,0,0,0.08)",
+    backgroundColor: COLORS.beige,
+    borderRadius: "18px",
+    boxShadow: "0 16px 34px rgba(0,0,0,0.10)",
+    padding: "16px",
+    boxSizing: "border-box",
+    display: "grid",
+    gridTemplateColumns: "auto 1fr",
+    gap: "14px",
+    alignItems: "center",
+    textAlign: "left",
+    cursor: "pointer",
+    transition: "filter 180ms ease, transform 180ms ease, box-shadow 180ms ease",
+    filter: "brightness(1)",
+  },
+  flowCardHover: {
+    filter: "brightness(0.92)",
+    transform: "translateY(1px)",
+    boxShadow: "0 18px 40px rgba(0,0,0,0.14)",
+  },
+  flowLeft: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingLeft: "4px",
+  },
+  flowIcon: {
+    width: "64px",
+    height: "64px",
+    borderRadius: "999px",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    border: "1px solid rgba(0,0,0,0.18)",
+    boxShadow: "0 10px 22px rgba(0,0,0,0.12)",
+    flexShrink: 0,
+  },
+  iconBg: (img) => ({
+    backgroundImage: `linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url(${img})`,
+  }),
+  flowRight: { minWidth: 0 },
+  flowTitle: {
+    color: COLORS.carolinaBlue,
+    fontFamily: "var(--font-heading)",
+    fontWeight: 900,
+    letterSpacing: "-0.01em",
+    fontSize: "clamp(1.35rem, 2.4vw, 1.75rem)",
+    lineHeight: 1.1,
+    marginBottom: "8px",
+  },
+  flowDesc: {
+    color: COLORS.text,
+    fontSize: "1.0rem",
+    lineHeight: 1.7,
+    opacity: 0.95,
+  },
 
   primaryBtn: {
     fontFamily: "var(--font-body)",
@@ -493,7 +672,6 @@ const styles = {
     cursor: "pointer",
     fontWeight: 700,
     boxShadow: "0 12px 24px rgba(0,0,0,0.18)",
-    transition: "filter 250ms ease, transform 250ms ease, box-shadow 250ms ease",
   },
   secondaryBtn: {
     fontFamily: "var(--font-body)",
@@ -505,6 +683,5 @@ const styles = {
     cursor: "pointer",
     fontWeight: 700,
     boxShadow: "0 12px 24px rgba(0,0,0,0.18)",
-    transition: "filter 250ms ease, transform 250ms ease, box-shadow 250ms ease",
   },
 };
