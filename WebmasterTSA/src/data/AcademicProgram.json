@@ -176,24 +176,35 @@
     "featured": false
   },
     {
-    "name": "",
-    "category": "",
-    "cities": ["Durham", "Raleigh", "Chapel Hill"],
-    "grades": ["9", "10", "11", "12"],
-    "interest": "",
-    "description": "",
-    "link": "",
+    "name": "Durham Youth Employed & Succeeding (YES)",
+    "category": "Academic Program",
+    "cities": ["Durham"],
+    "grades": ["11", "12"],
+    "interest": "Public Service",
+    "description": "Durham YES (Youth Employed and Succeeding) is a federally funded youth services program under the Workforce Innovation and Opportunity Act that helps young adults ages 16–24 prepare for education and employment.",
+    "link": "https://www.durhamnc.gov/576/Youth",
     "openToAllImmigrationStatuses": true,
     "featured": false
   },
     {
-    "name": "",
-    "category": "",
-    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "name": "Durham Literacy Center - College and Career Readiness Program",
+    "category": "Academic Program",
+    "cities": ["Durham"],
     "grades": ["9", "10", "11", "12"],
-    "interest": "",
-    "description": "",
-    "link": "",
+    "interest": "Education",
+    "description": "The Durham Literacy Center’s College and Career Readiness program supports students as they pursue jobs, further training, or college opportunities by providing the skills, knowledge, and guidance needed to advance in their careers or education.",
+    "link": "https://www.durhamliteracy.org/ccr",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Durham Literacy Center - Youth Achievement Program ",
+    "category": "Academic Program",
+    "cities": ["Durham"],
+    "grades": ["11", "12"],
+    "interest": "Education",
+    "description": "The Durham Literacy Center’s Youth Achievement Program (YAP) offers free, individualized high school equivalency instruction for out-of-school young adults ages 16–24 in a supportive and structured environment. The program provides academic teaching, career and social skills counseling, positive role models, and exploration of postsecondary and career pathways, meeting Monday through Thursday at the Durham Literacy Center’s headquarters.",
+    "link": "https://www.durhamliteracy.org/youth-achievement",
     "openToAllImmigrationStatuses": true,
     "featured": false
   }

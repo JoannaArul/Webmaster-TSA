@@ -1,7 +1,7 @@
 [
   {
     "name": "HandsOn Triangle",
-    "category": "Volunteering Opportunities",
+    "category": "Volunteering",
     "cities": ["Durham", "Raleigh", "Chapel Hill"],
     "grades": ["9", "10", "11", "12"],
     "interest": "Public Service",
@@ -100,12 +100,89 @@
   },
     {
     "name": "Hub Farm Volunteer Opportunities",
-    "category": "Volunteering Opportunities",
+    "category": "Volunteering",
     "cities": ["Durham"],
     "grades": ["9", "10", "11", "12"],
     "interest": "Public Service",
     "description": "Hub Farm offers a variety of volunteer opportunities, from working with animals and the land to supporting fundraising efforts. Individuals, families, and groups are welcome to get involved and make a hands-on impact.",
     "link": "https://www.thehubfarm.org/volunteer-questionnaire/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Food Bank of Central & Eastern North Carolina",
+    "category": "Volunteering",
+    "cities": ["Durham", "Chapel Hill", "Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Create meaningful change in just one shift by sorting and packing food, supporting community distributions, and helping neighbors in need. Every hour you volunteer moves us closer to a future without hunger.",
+    "link": "https://foodbankcenc.org/volunteer",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Meals on Wheels Durham",
+    "category": "Volunteering",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Meals on Wheels Durham depends on dedicated volunteers to help deliver meals to seniors, individuals with disabilities, and homebound adults who cannot prepare food on their own. With morning volunteer opportunities available Monday through Friday, you’ll see firsthand how a nutritious meal, a friendly smile, and a kind word can make a meaningful difference.",
+    "link": "https://www.mowdurham.org/volunteer-opportunities",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Urban Ministries of Durham",
+    "category": "Volunteering",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Urban Ministries of Durham works with the community to combat homelessness and poverty by providing food, shelter, and pathways to a better future for neighbors in need.",
+    "link": "https://umdurham.org/volunteer/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Inter-Faith FOOD Shuttle",
+    "category": "Volunteering",
+    "cities": ["Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "We offer a variety of meaningful group and individual volunteer opportunities, including preparing and packing meals, delivering BackPack Buddies, assisting with food recovery, building raised-bed garden boxes, and helping with farm projects—each making a direct impact in the community.",
+    "link": "https://foodshuttle.org/volunteer/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "InStepp Volunteering Opportunities",
+    "category": "Volunteering",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "You can get involved as an InStepp Ambassador by applying through the Volunteer Application Form at volunteer@instepp.org. Opportunities include Communications Volunteers, who help with writing, social media, or newsletters, and Short-Term Project Volunteers for one-time projects with flexible time commitments.",
+    "link": "https://www.instepp.org/get-involved/volunteer/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Boys & Girls Clubs of Durham and Orange Counties",
+    "category": "Volunteering",
+    "cities": ["Durham", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Volunteers are vital to delivering BGCDOC programs and services that support Durham and Chapel Hill youth. By giving your time as a program or event volunteer, you can make a lasting difference in the lives and futures of our members.",
+    "link": "https://bgcdoc.org/volunteer/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Kramden Institute Volunteering",
+    "category": "Volunteering",
+    "cities": ["Durham"],
+    "grades": ["11", "12"],
+    "interest": "Public Service",
+    "description": "Kramden is a community-driven organization powered by the dedication of volunteers who share their time and passion. From refurbishing computers and distributing them to students to supporting recycling drives, volunteers play a vital role in advancing Kramden’s mission.",
+    "link": "https://kramden.org/volunteer/",
     "openToAllImmigrationStatuses": true,
     "featured": false
   }

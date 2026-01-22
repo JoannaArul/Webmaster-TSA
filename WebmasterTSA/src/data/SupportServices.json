@@ -9,5 +9,104 @@
     "link": "https://durhamcountylibrary.org/library-cards/bull-city-nc-slam/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "Hospital School",
+    "category": "Support Services",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Education",
+    "description": "School helps provide students and families with a sense of routine and stability during hospitalization, supporting social, emotional, and academic well-being while offering a positive distraction from medical care. Hospital-based schooling also gives students a sense of control by allowing them to keep learning and maintain schedules despite health challenges. Families or medical staff can request services for students ages 3 through 12th grade, with instruction offered in classrooms, at the bedside, or elsewhere in the hospital.",
+    "link": "https://www.dpsnc.net/o/hospitalschool",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Triangle Disability & Autism Services!",
+    "category": "Support Services",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Triangle Disability & Autism Services, Inc., an affiliated chapter of The Arc, partners with and advocates for children and adults with intellectual and developmental disabilities and autism, helping them pursue their personal goals and dreams within the community.",
+    "link": "https://triangledisability.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Big Brothers Big Sisters",
+    "category": "Support Services",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Big Brothers Big Sisters of the Triangle (BBBST) empowers young people by unlocking their potential and encouraging them to explore what they’re capable of achieving. Through mentorship, BBBST helps bridge the gap between opportunity and success.",
+    "link": "https://bigstri.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "End Hunger Durham",
+    "category": "Support Services",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "End Hunger Durham imagines a fair, connected food system in which everyone has access to healthy food. Its mission is to strengthen food relief efforts and support those facing food insecurity through collaboration, accurate information, and advocacy to eliminate hunger and malnutrition. The organization is guided by the belief that nutritious food is a human right and that all people deserve the resources and knowledge to live healthy lives.",
+    "link": "https://www.endhungerdurham.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "El Futuro",
+    "category": "Support Services",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "We offer culturally responsive mental health and substance use treatment for Latino individuals and families, creating a supportive environment rooted in healing and hope.",
+    "link": "https://elfuturo-nc.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Recovery Community of Durham",
+    "category": "Support Services",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Recovery is a process of growth that helps individuals improve their well-being, live self-directed lives, and reach their full potential. Supported by dignity, respect, and strong communities, recovery creates opportunities to heal, grow, and help others.",
+    "link": "https://www.recoverycommunityofdurham.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Together for Resilient Youth",
+    "category": "Support Services",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "We use a public health and socio-ecological approach to address the root causes of substance use challenges by strengthening resilience and reducing community risk factors through equitable engagement, advocacy, mobilization, and collective impact.",
+    "link": "https://try4resilience.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "World Relief Durham - Children and Youth Support",
+    "category": "Support Services",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Education",
+    "description": "World Relief supports immigrant youth and families in overcoming early challenges and reaching their full potential. The organization promotes healthy integration by connecting families with academic support, tutoring, mentorship, mental health resources, summer enrichment programs, and advocacy, helping youth succeed in school and in their communities.",
+    "link": "https://worldrelief.org/durham/our-work/children-youth-support/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Durham Crisis Response Center",
+    "category": "Support Services",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "The Durham Crisis Response Center offers free, confidential support for survivors of domestic, sexual, and family violence, as well as human trafficking. Community support helps make services possible, including emergency shelter, crisis intervention, legal advocacy, counseling referrals, and support groups.",
+    "link": "https://www.thedcrc.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

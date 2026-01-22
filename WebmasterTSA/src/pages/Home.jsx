@@ -62,10 +62,7 @@ function useTypeRotate({
     }
 
     if (phase === "pausePrefix") {
-      timer.current = setTimeout(
-        () => setPhase("typingWord"),
-        pauseAfterPrefixMs
-      );
+      timer.current = setTimeout(() => setPhase("typingWord"), pauseAfterPrefixMs);
     }
 
     if (phase === "typingWord") {
@@ -79,10 +76,7 @@ function useTypeRotate({
     }
 
     if (phase === "pauseWord") {
-      timer.current = setTimeout(
-        () => setPhase("deletingWord"),
-        pauseAfterWordMs
-      );
+      timer.current = setTimeout(() => setPhase("deletingWord"), pauseAfterWordMs);
     }
 
     if (phase === "deletingWord") {
@@ -113,10 +107,135 @@ function useTypeRotate({
   return { typedPrefix, typedWord };
 }
 
+function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverIndex }) {
+  const total = data.reduce((sum, d) => sum + d.value, 0);
+  const r = size / 2;
+  const outerR = r - 8;
+  const innerR = outerR * innerRatio;
+
+  const polarToCartesian = (cx, cy, radius, angleDeg) => {
+    const angleRad = ((angleDeg - 90) * Math.PI) / 180;
+    return {
+      x: cx + radius * Math.cos(angleRad),
+      y: cy + radius * Math.sin(angleRad),
+    };
+  };
+
+  const describeArc = (cx, cy, radius, startAngle, endAngle) => {
+    const start = polarToCartesian(cx, cy, radius, endAngle);
+    const end = polarToCartesian(cx, cy, radius, startAngle);
+    const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+    return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArcFlag} 0 ${end.x} ${end.y}`;
+  };
+
+  if (!total) {
+    return (
+      <div style={{ width: size, height: size, display: "grid", placeItems: "center" }}>
+        <div style={{ fontFamily: "var(--font-body)", color: COLORS.gray, fontWeight: 600 }}>
+          No resources yet
+        </div>
+      </div>
+    );
+  }
+
+  let currentAngle = 0;
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox={`0 0 ${size} ${size}`}
+      role="img"
+      aria-label="Resource type breakdown pie chart"
+      style={{ overflow: "visible" }}
+    >
+      <g>
+        {data.map((slice, idx) => {
+          const sliceAngle = (slice.value / total) * 360;
+          const start = currentAngle;
+          const end = currentAngle + sliceAngle;
+          currentAngle = end;
+
+          const endSafe = Math.max(end, start + 0.8);
+          const isActive = activeIndex === idx;
+          const bump = isActive ? 10 : 0;
+
+          const midAngle = (start + endSafe) / 2;
+          const offset = polarToCartesian(r, r, bump, midAngle);
+          const dx = offset.x - r;
+          const dy = offset.y - r;
+
+          const outerArc = describeArc(r, r, outerR, start, endSafe);
+          const innerArc = describeArc(r, r, innerR, endSafe, start);
+
+          const innerEnd = polarToCartesian(r, r, innerR, endSafe);
+          const innerStart = polarToCartesian(r, r, innerR, start);
+
+          const d = `${outerArc} L ${innerEnd.x} ${innerEnd.y} ${innerArc} L ${innerStart.x} ${innerStart.y} Z`;
+
+          return (
+            <path
+              key={slice.label}
+              d={d}
+              fill={slice.color}
+              stroke="rgba(0,0,0,0.08)"
+              strokeWidth="1"
+              onMouseEnter={() => onHoverIndex(idx)}
+              onMouseLeave={() => onHoverIndex(null)}
+              style={{
+                transform: `translate(${dx}px, ${dy}px)`,
+                transformOrigin: "center",
+                transition: "transform 220ms ease, filter 220ms ease",
+                filter: isActive ? "brightness(1.03) saturate(1.08)" : "none",
+                cursor: "default",
+              }}
+            >
+              <title>{`${slice.label}: ${slice.value}`}</title>
+            </path>
+          );
+        })}
+      </g>
+
+      <circle cx={r} cy={r} r={innerR - 2} fill="rgba(245,252,239,0.92)" />
+
+      <text
+        x={r}
+        y={r - 6}
+        textAnchor="middle"
+        style={{
+          fontFamily: "var(--font-heading)",
+          fontWeight: 900,
+          fontSize: 18,
+          fill: COLORS.text,
+        }}
+      >
+        Total
+      </text>
+      <text
+        x={r}
+        y={r + 18}
+        textAnchor="middle"
+        style={{
+          fontFamily: "var(--font-heading)",
+          fontWeight: 900,
+          fontSize: 26,
+          fill: COLORS.carolinaBlue,
+        }}
+      >
+        {total}
+      </text>
+    </svg>
+  );
+}
+
+const reveal = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0 },
+};
+
 export default function Home() {
   const navigate = useNavigate();
 
-  // ✅ 5 featured resources (fallback if none are marked featured)
   const featured = useMemo(() => {
     const picks = resourcesData.filter((r) => r.featured === true);
     if (picks.length === 0) return resourcesData.slice(0, 5);
@@ -125,7 +244,6 @@ export default function Home() {
 
   const [active, setActive] = useState(0);
 
-  // ✅ auto rotate (shared for hero highlight + hub carousel)
   useEffect(() => {
     if (!featured.length) return;
     const id = setInterval(() => {
@@ -135,8 +253,7 @@ export default function Home() {
   }, [featured.length]);
 
   const next = () => setActive((i) => (i + 1) % featured.length);
-  const prev = () =>
-    setActive((i) => (i - 1 + featured.length) % featured.length);
+  const prev = () => setActive((i) => (i - 1 + featured.length) % featured.length);
 
   const current = featured[active];
   const prevItem = featured[(active - 1 + featured.length) % featured.length];
@@ -144,14 +261,7 @@ export default function Home() {
 
   const { typedPrefix, typedWord } = useTypeRotate({
     prefix: "Making finding resources ",
-    words: [
-      "faster.",
-      "convenient.",
-      "easier.",
-      "better.",
-      "educational.",
-      "exciting.",
-    ],
+    words: ["faster.", "convenient.", "easier.", "better.", "educational.", "exciting."],
   });
 
   const [hoverPrimary, setHoverPrimary] = useState(false);
@@ -159,9 +269,30 @@ export default function Home() {
   const [hoverMission, setHoverMission] = useState(false);
   const [hoverHubBtn, setHoverHubBtn] = useState(false);
 
+  const resourceBreakdown = useMemo(() => {
+    const counts = [
+      { label: "Academic Programs", value: academicPrograms.length },
+      { label: "Awards", value: awards.length },
+      { label: "Community Events", value: communityEvents.length },
+      { label: "Non-profits", value: nonprofits.length },
+      { label: "Scholarships", value: scholarships.length },
+      { label: "Summer Programs", value: summerPrograms.length },
+      { label: "Support Services", value: supportServices.length },
+      { label: "Volunteering", value: volunteering.length },
+    ];
+
+    const palette = ["#4B9CD3", "#7FB7D6", "#9BBFAD", "#C7C29B", "#E0B07A", "#D69AA8", "#9FA7D8", "#8FB0B8"];
+
+    const data = counts.map((d, i) => ({ ...d, color: palette[i % palette.length] }));
+    const total = data.reduce((s, d) => s + d.value, 0);
+
+    return { data, total };
+  }, []);
+
+  const [hoverSlice, setHoverSlice] = useState(null);
+
   return (
     <div style={styles.page}>
-      {/* HERO */}
       <motion.section
         initial={{ opacity: 0, y: 22 }}
         animate={{ opacity: 1, y: 0 }}
@@ -169,7 +300,6 @@ export default function Home() {
         style={styles.heroWrap}
       >
         <div style={styles.heroGrid}>
-          {/* LEFT: Nexus hero */}
           <div style={styles.heroContent}>
             <motion.h1
               initial={{ opacity: 0, y: 10 }}
@@ -201,7 +331,6 @@ export default function Home() {
             >
               <div style={styles.phonetic}>/ˈneksəs/</div>
               <div style={styles.partOfSpeech}>noun</div>
-
               <div style={styles.definition}>
                 <span style={styles.defNum}>1.</span>{" "}
                 A connection or series of connections linking two or more things
@@ -215,10 +344,7 @@ export default function Home() {
               style={styles.heroButtons}
             >
               <button
-                style={{
-                  ...styles.primaryButton,
-                  ...(hoverPrimary ? styles.buttonHover : {}),
-                }}
+                style={{ ...styles.primaryButton, ...(hoverPrimary ? styles.buttonHover : {}) }}
                 onMouseEnter={() => setHoverPrimary(true)}
                 onMouseLeave={() => setHoverPrimary(false)}
                 onClick={() => navigate("/resource-hub")}
@@ -227,10 +353,7 @@ export default function Home() {
               </button>
 
               <button
-                style={{
-                  ...styles.secondaryButton,
-                  ...(hoverSecondary ? styles.buttonHover : {}),
-                }}
+                style={{ ...styles.secondaryButton, ...(hoverSecondary ? styles.buttonHover : {}) }}
                 onMouseEnter={() => setHoverSecondary(true)}
                 onMouseLeave={() => setHoverSecondary(false)}
                 onClick={() => navigate("/add-resource")}
@@ -240,7 +363,6 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* RIGHT */}
           <div style={styles.featureSide}>
             <div style={styles.featureCardOuterHero}>
               <AnimatePresence mode="wait">
@@ -252,9 +374,7 @@ export default function Home() {
                   transition={{ duration: 0.42, ease: "easeOut" }}
                   style={styles.featureCardHero}
                 >
-                  {current?.featured && (
-                    <div style={styles.featureBadge}>Featured</div>
-                  )}
+                  {current?.featured && <div style={styles.featureBadge}>Featured</div>}
 
                   <h3 style={styles.featureName}>{current?.name}</h3>
 
@@ -263,21 +383,14 @@ export default function Home() {
                     {Array.isArray(current?.cities) && current.cities.length ? (
                       <span>• {current.cities.join(", ")}</span>
                     ) : null}
-                    {current?.interest ? (
-                      <span>• {current.interest}</span>
-                    ) : null}
+                    {current?.interest ? <span>• {current.interest}</span> : null}
                   </div>
 
                   <p style={styles.featureDesc}>{current?.description}</p>
 
                   <div style={styles.featureBottomRow}>
                     {current?.link ? (
-                      <a
-                        href={current.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        style={styles.featureVisitLink}
-                      >
+                      <a href={current.link} target="_blank" rel="noreferrer" style={styles.featureVisitLink}>
                         Visit →
                       </a>
                     ) : null}
@@ -290,28 +403,24 @@ export default function Home() {
       </motion.section>
 
       <motion.section
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        variants={reveal}
+        initial="hidden"
+        whileInView="show"
         transition={{ duration: 0.75, ease: "easeOut" }}
-        viewport={{ once: false, amount: 0.25 }}
+        viewport={{ once: true, amount: 0.25 }}
         style={styles.missionWrap}
       >
         <div style={styles.containerCenter}>
           <h2 style={styles.missionTitle}>Our Mission</h2>
 
           <p style={styles.missionText}>
-            At Nexus, we believe that access to community resources should be
-            clear, welcoming, and easy to navigate. Our mission is to connect
-            residents across the Research Triangle with opportunities and
-            support—so finding help, programs, and pathways feels simple,
-            empowering, and inclusive.
+            At Nexus, we believe that access to community resources should be clear, welcoming, and easy to
+            navigate. Our mission is to connect residents across the Research Triangle with opportunities and
+            support—so finding help, programs, and pathways feels simple, empowering, and inclusive.
           </p>
 
           <button
-            style={{
-              ...styles.missionBtn,
-              ...(hoverMission ? styles.missionBtnHover : {}),
-            }}
+            style={{ ...styles.missionBtn, ...(hoverMission ? styles.missionBtnHover : {}) }}
             onMouseEnter={() => setHoverMission(true)}
             onMouseLeave={() => setHoverMission(false)}
             onClick={() => navigate("/mission")}
@@ -322,25 +431,22 @@ export default function Home() {
       </motion.section>
 
       <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial="hidden"
+        whileInView="show"
+        variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
         transition={{ duration: 0.85, ease: "easeOut" }}
-        viewport={{ once: false, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.2 }}
         style={styles.hubWrap}
       >
         <div style={styles.hubInner}>
           <h2 style={styles.hubTitle}>Our Resource Hub</h2>
           <p style={styles.hubSub}>
-            From summer programs to scholarships, we have a variety of community
-            opportunities to help you learn, grow, and get support across the
-            Triangle.
+            From summer programs to scholarships, we have a variety of community opportunities to help you
+            learn, grow, and get support across the Triangle.
           </p>
 
           <button
-            style={{
-              ...styles.hubBtn,
-              ...(hoverHubBtn ? styles.hubBtnHover : {}),
-            }}
+            style={{ ...styles.hubBtn, ...(hoverHubBtn ? styles.hubBtnHover : {}) }}
             onMouseEnter={() => setHoverHubBtn(true)}
             onMouseLeave={() => setHoverHubBtn(false)}
             onClick={() => navigate("/resource-hub")}
@@ -372,30 +478,19 @@ export default function Home() {
                 <div style={styles.hubCardBody}>
                   <div style={styles.hubCardTopRow}>
                     <div style={styles.hubCardName}>{current?.name}</div>
-                    {current?.category ? (
-                      <div style={styles.hubChip}>{current.category}</div>
-                    ) : null}
+                    {current?.category ? <div style={styles.hubChip}>{current.category}</div> : null}
                   </div>
 
                   <div style={styles.hubCardMeta}>
-                    {Array.isArray(current?.cities) && current.cities.length
-                      ? current.cities.join(", ")
-                      : ""}
+                    {Array.isArray(current?.cities) && current.cities.length ? current.cities.join(", ") : ""}
                     {current?.interest ? ` • ${current.interest}` : ""}
                   </div>
 
-                  <div style={styles.hubCardDesc}>
-                    {current?.description || ""}
-                  </div>
+                  <div style={styles.hubCardDesc}>{current?.description || ""}</div>
 
                   <div style={styles.hubCardActions}>
                     {current?.link ? (
-                      <a
-                        href={current.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        style={styles.hubVisit}
-                      >
+                      <a href={current.link} target="_blank" rel="noreferrer" style={styles.hubVisit}>
                         Visit Resource →
                       </a>
                     ) : null}
@@ -404,18 +499,10 @@ export default function Home() {
               </motion.div>
             </AnimatePresence>
 
-            <button
-              style={{ ...styles.hubArrow, ...styles.hubArrowLeft }}
-              onClick={prev}
-              aria-label="Previous featured resource"
-            >
+            <button style={{ ...styles.hubArrow, ...styles.hubArrowLeft }} onClick={prev} aria-label="Previous featured resource">
               ←
             </button>
-            <button
-              style={{ ...styles.hubArrow, ...styles.hubArrowRight }}
-              onClick={next}
-              aria-label="Next featured resource"
-            >
+            <button style={{ ...styles.hubArrow, ...styles.hubArrowRight }} onClick={next} aria-label="Next featured resource">
               →
             </button>
 
@@ -425,12 +512,76 @@ export default function Home() {
                   key={i}
                   aria-label={`Go to item ${i + 1}`}
                   onClick={() => setActive(i)}
-                  style={{
-                    ...styles.hubDot,
-                    ...(i === active ? styles.hubDotActive : {}),
-                  }}
+                  style={{ ...styles.hubDot, ...(i === active ? styles.hubDotActive : {}) }}
                 />
               ))}
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={reveal}
+        initial="hidden"
+        whileInView="show"
+        transition={{ duration: 0.75, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.25 }}
+        style={styles.snapshotWrap}
+      >
+        <div style={styles.snapshotInner}>
+          <div style={styles.snapshotTop}>
+            <h2 style={styles.snapshotTitle}>The Nexus Resource Mix</h2>
+            <p style={styles.snapshotSub}>
+              Our approach to sending resources is simple: organize opportunities clearly, show what’s most
+              available, and spotlight where the Triangle could benefit from more support.
+            </p>
+          </div>
+
+          <div style={styles.snapshotGrid}>
+            <div style={styles.snapshotInfoCard}>
+              <div style={styles.snapshotInfoTitle}>Our Hub</div>
+              <p style={styles.snapshotInfoText}>
+                Nexus brings together programs, scholarships, events, and support services in one place. This
+                snapshot shows how resources are currently distributed across categories so residents can browse
+                smarter and understand what’s available at a glance.
+              </p>
+
+              <div style={styles.snapshotStatRow}>
+                <div style={styles.snapshotStat}>
+                  <div style={styles.snapshotStatNum}>{resourceBreakdown.total}</div>
+                  <div style={styles.snapshotStatLabel}>Total resources</div>
+                </div>
+              </div>
+            </div>
+
+            <div style={styles.snapshotChartCard}>
+              <div style={styles.snapshotChartWrap}>
+                <PieChart
+                  data={resourceBreakdown.data}
+                  size={420}
+                  innerRatio={0.6}
+                  activeIndex={hoverSlice}
+                  onHoverIndex={setHoverSlice}
+                />
+              </div>
+
+              <div style={styles.snapshotLegend}>
+                {resourceBreakdown.data.map((d, idx) => {
+                  const isActive = hoverSlice === idx;
+                  return (
+                    <div
+                      key={d.label}
+                      onMouseEnter={() => setHoverSlice(idx)}
+                      onMouseLeave={() => setHoverSlice(null)}
+                      style={{ ...styles.legendRow, ...(isActive ? styles.legendRowActive : {}) }}
+                    >
+                      <span style={{ ...styles.legendSwatch, backgroundColor: d.color }} />
+                      <span style={styles.legendLabel}>{d.label}</span>
+                      <span style={styles.legendValue}>{d.value}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -762,8 +913,7 @@ const styles = {
   hubGhostLeft: { left: "50%", transform: "translateX(-102%)" },
   hubGhostRight: { left: "50%", transform: "translateX(2%)" },
   hubGhostImg: {
-    background:
-      "linear-gradient(135deg, rgba(75,156,211,0.22), rgba(245,252,239,0.08))",
+    background: "linear-gradient(135deg, rgba(75,156,211,0.22), rgba(245,252,239,0.08))",
   },
   hubGhostTitle: {
     padding: "12px",
@@ -785,8 +935,7 @@ const styles = {
   },
   hubImg: {
     height: "190px",
-    background:
-      "linear-gradient(135deg, rgba(75,156,211,0.30), rgba(73,74,72,0.12))",
+    background: "linear-gradient(135deg, rgba(75,156,211,0.30), rgba(73,74,72,0.12))",
   },
   hubCardBody: {
     padding: "18px 18px 16px 18px",
@@ -865,7 +1014,6 @@ const styles = {
   hubArrowLeft: { left: "max(10px, calc(50% - 46vw))" },
   hubArrowRight: { right: "max(10px, calc(50% - 46vw))" },
 
-
   hubDotsRow: {
     position: "absolute",
     bottom: "0px",
@@ -885,5 +1033,151 @@ const styles = {
   hubDotActive: {
     backgroundColor: "rgba(75,156,211,0.95)",
     border: "1px solid rgba(75,156,211,1)",
+  },
+
+  snapshotWrap: {
+    width: "100%",
+    padding: "95px 0 95px 0",
+    backgroundColor: COLORS.beige,
+  },
+  snapshotInner: {
+    maxWidth: "1200px",
+    margin: "0 auto",
+    padding: "0 20px",
+    boxSizing: "border-box",
+  },
+  snapshotTop: {
+    textAlign: "center",
+    maxWidth: "920px",
+    margin: "0 auto 44px auto",
+  },
+  snapshotTitle: {
+    margin: 0,
+    fontFamily: "var(--font-heading)",
+    fontSize: "clamp(2.1rem, 5vw, 3.0rem)",
+    color: COLORS.text,
+    fontWeight: 900,
+    letterSpacing: "-0.02em",
+  },
+  snapshotSub: {
+    margin: "12px auto 0 auto",
+    maxWidth: "78ch",
+    fontFamily: "var(--font-body)",
+    fontSize: "1.05rem",
+    lineHeight: 1.7,
+    color: COLORS.textSoft,
+    fontWeight: 400,
+  },
+
+  snapshotGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+    gap: "22px",
+    alignItems: "center",
+  },
+
+  snapshotInfoCard: {
+    backgroundColor: COLORS.beige,
+    borderRadius: "18px",
+    padding: "22px",
+    boxShadow: "0 18px 40px rgba(0,0,0,0.10)",
+    border: "1px solid rgba(0,0,0,0.06)",
+  },
+  snapshotInfoTitle: {
+    fontFamily: "var(--font-heading)",
+    fontSize: "1.6rem",
+    fontWeight: 900,
+    color: COLORS.carolinaBlue,
+    marginBottom: "10px",
+  },
+  snapshotInfoText: {
+    margin: 0,
+    fontFamily: "var(--font-body)",
+    color: COLORS.textSoft,
+    lineHeight: 1.75,
+    fontSize: "1.02rem",
+  },
+
+  snapshotStatRow: {
+    marginTop: "18px",
+    display: "flex",
+    gap: "12px",
+    flexWrap: "wrap",
+  },
+  snapshotStat: {
+    backgroundColor: "rgba(75,156,211,0.10)",
+    border: "1px solid rgba(75,156,211,0.18)",
+    borderRadius: "14px",
+    padding: "12px 14px",
+    minWidth: "180px",
+  },
+  snapshotStatNum: {
+    fontFamily: "var(--font-heading)",
+    fontWeight: 900,
+    fontSize: "1.8rem",
+    color: COLORS.text,
+    lineHeight: 1,
+  },
+  snapshotStatLabel: {
+    marginTop: "6px",
+    fontFamily: "var(--font-body)",
+    color: COLORS.gray,
+    fontWeight: 500,
+  },
+
+  snapshotChartCard: {
+    backgroundColor: "rgba(255,255,255,0.30)",
+    borderRadius: "18px",
+    padding: "18px",
+    boxShadow: "0 18px 40px rgba(0,0,0,0.10)",
+    border: "1px solid rgba(0,0,0,0.06)",
+    display: "grid",
+    gap: "16px",
+    justifyItems: "center",
+  },
+  snapshotChartWrap: {
+    width: "min(460px, 92vw)",
+    display: "grid",
+    placeItems: "center",
+  },
+
+  snapshotLegend: {
+    width: "min(520px, 95%)",
+    display: "grid",
+    gap: "8px",
+    marginTop: "6px",
+  },
+  legendRow: {
+    display: "grid",
+    gridTemplateColumns: "16px 1fr auto",
+    gap: "10px",
+    alignItems: "center",
+    padding: "10px 12px",
+    borderRadius: "14px",
+    backgroundColor: "rgba(245,252,239,0.70)",
+    border: "1px solid rgba(0,0,0,0.05)",
+    transition: "transform 180ms ease, box-shadow 180ms ease, filter 180ms ease",
+    cursor: "default",
+  },
+  legendRowActive: {
+    transform: "translateY(-1px)",
+    boxShadow: "0 14px 28px rgba(0,0,0,0.10)",
+    filter: "brightness(1.02)",
+  },
+  legendSwatch: {
+    width: "12px",
+    height: "12px",
+    borderRadius: "4px",
+  },
+  legendLabel: {
+    fontFamily: "var(--font-body)",
+    color: COLORS.text,
+    fontWeight: 700,
+    fontSize: "0.98rem",
+  },
+  legendValue: {
+    fontFamily: "var(--font-body)",
+    color: COLORS.gray,
+    fontWeight: 800,
   },
 };

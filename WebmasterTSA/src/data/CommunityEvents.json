@@ -141,5 +141,192 @@
     "link": "https://durhamarts.org/art-of-the-party-gala/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "Carolina Jazz Festival",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "Enjoy live jazz performances by touring bands, artists in residence, and UNC Department of Music faculty and students at this annual February festival celebrating jazz.",
+    "link": "https://music.unc.edu/jazzfest/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Nevermore Film Festival",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "Founded in 1999, this juried festival showcases horror, science fiction, mystery, thriller, animated, and dark fantasy films from around the world at the Carolina Theatre. With over 1,000 films screened, it is internationally recognized as a leading genre film festival.",
+    "link": "https://carolinatheatre.org/festival/nevermore-film-festival/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Art in Bloom at the North Carolina Museum of Art",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "This art and flower festival at the North Carolina Museum of Art highlights regional floral designers who create arrangements inspired by the museum’s artwork. Proceeds from the event support the NCMA Foundation.",
+    "link": "https://ncartmuseum.org/artinbloom/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "GRAHAM100: The Centennial Celebration",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "The Martha Graham Dance Company returns to Carolina Performing Arts for its 12th appearance with GRAHAM100: The Centennial Celebration. The program marks the culmination of the company’s three-season 100th anniversary celebration and explores the question, “What is an American?”",
+    "link": "https://carolinaperformingarts.org/events/martha-graham-dance-company-2/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Eclipse",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "Culture Mill returns with a remount of Eclipse, a Carolina Performing Arts–commissioned work that invites audiences and artists to imagine collective monument building. Held outdoors at CURRENT ArtSpace, the performance uses movement and restorative justice practices to explore how shared bodies and stories can create new forms of togetherness.",
+    "link": "https://carolinaperformingarts.org/events/culture-mill/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Jazz at Lincoln Center Orchestra with Wynton Marsalis",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "The Jazz at Lincoln Center Orchestra with Wynton Marsalis returns to Carolina Performing Arts, delivering a vibrant performance that blends swing, soul, and storytelling through their signature sound and dynamic chemistry.",
+    "link": "https://carolinaperformingarts.org/events/jazz-at-lincoln-center-orchestra-with-wynton-marsalis/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Mahler Chamber Orchestra",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "The Mahler Chamber Orchestra returns to Memorial Hall for its fourth Carolina Performing Arts appearance, presenting an evening of music by Prokofiev and Hindemith. The performance is led by GRAMMY Award–winning pianist Yuja Wang, who directs from the piano and is celebrated for her expressive artistry.",
+    "link": "https://carolinaperformingarts.org/events/mahler-chamber-orchestra/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Shakori Hills Grassroots",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "Shakori Hills GrassRoots is a biannual, family-friendly festival in Pittsboro, North Carolina that celebrates music, dance, art, and education. Organized by the nonprofit Shakori Hills Community Arts Center, the festival features diverse musical acts, workshops, kids’ activities, crafts, and camping.",
+    "link": "https://www.shakorihillsgrassroots.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Triangle Trails Summit",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Environmental Science",
+    "description": "The Triangle Trails Summit brings regional leaders, planners, and advocates together at Dix Chapel for a day focused on the future of the Triangle’s greenways and blueways. Through keynotes, discussions, and networking, the annual event explores ways to strengthen connectivity, accessibility, and sustainability across the region’s trail network.",
+    "link": "https://www.triangletrailsnc.com/post/triangle-trails-summit-april-23-2026",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Snow White - Carolina Ballet",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "This production brings the classic fairytale Snow White to life while exploring timeless themes of self-reflection and comparison. Choreographed by Artistic Director and CEO Zalman Raffael, with an original score by Shinji Eshima, the performance offers a thoughtful and modern interpretation of the beloved story.",
+    "link": "https://carolinaballet.com/program/snow-white/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "North Carolina Symphony Beethoven Emperor Concerto",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "Beethoven’s bold and innovative “Emperor” Piano Concerto will be brought to life by guest soloist Anne-Marie McDermott, alongside Bartók’s vibrant Concerto for Orchestra, with Music Director Carlos Miguel Prieto leading the performance.",
+    "link": "https://ncsymphony.org/events/beethoven-emperor-concerto-03-20-26-8pm/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Appalachian Spring with the North Carolina Symphony",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "Music Director Carlos Miguel Prieto leads a program featuring Copland’s iconic Appalachian Spring, along with Gabriela Ortiz’s Kauyumari and Revueltas’s La Noche de los Mayas.",
+    "link": "https://ncsymphony.org/events/appalachian-spring-05-08-26-8pm/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Beauty and the Beast - Carolina Ballet",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "Artistic Director Zalman Raffael unveils a world premiere, Beauty and the Beast, reimagining the timeless tale with fresh creativity and heart. Presented as a new full-length ballet with live music, the production draws audiences into a vividly realized world.",
+    "link": "https://www.martinmariettacenter.com/events/detail/carolina-ballet-presents-beauty-and-the-beast-g5evzbm5nhjmq",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Shakespeare in the Park",
+    "category": "Community Events",
+    "cities": ["Durham", "Raleigh", "Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "Catch As You Like It at the Knightdale Station Park amphitheater. This abridged performance follows Rosalind, banished from court and in disguise, as she navigates mistaken identities, humor, and romance in the Forest of Arden. With witty banter and Shakespeare’s beautiful poetry, it’s a light, enjoyable way to experience the play outdoors or on a busy schedule.",
+    "link": "https://www.knightdalenc.gov/event/shakespeare-park-0",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Chapel Hill Events Guide",
+    "category": "Community Events",
+    "cities": ["Chapel Hill"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "Enjoy great food, live music, and more. Discover a rich arts and history scene through museums, historic homes, murals, and live performances. Take in the area’s natural beauty along greenways, trails, preserves, and riverwalks. Browse shops for one-of-a-kind finds like vintage treasures, locally made pottery, or classic Tar Heel souvenirs.",
+    "link": "https://www.visitchapelhill.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Discover Durham - Events Guide",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "STEM/Enrichment",
+    "description": "Every day in the Bull City, there’s something happening. With thousands of Durham-based events each year, you’ll find concerts, festivals, fundraisers, art shows, and community gatherings for all ages and interests—perfect for locals and visitors alike.",
+    "link": "https://www.discoverdurham.com/events/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Bull City Madness",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Sports & Entertainment",
+    "description": "Bull City Madness returns on Saturday, April 25, 2026, bringing Durham’s 3v3 basketball tournament back to celebrate the city’s deep basketball legacy. The event unites the community through friendly competition while raising awareness and support for local organizations doing meaningful work in Durham.",
+    "link": "https://www.bullcitymadness.com/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]
