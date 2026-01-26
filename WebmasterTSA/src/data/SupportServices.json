@@ -41,7 +41,8 @@
     "description": "Big Brothers Big Sisters of the Triangle (BBBST) empowers young people by unlocking their potential and encouraging them to explore what they’re capable of achieving. Through mentorship, BBBST helps bridge the gap between opportunity and success.",
     "link": "https://bigstri.org/",
     "openToAllImmigrationStatuses": true,
-    "featured": false
+    "featured": true,
+    "image": "BigBroSis"
   },
     {
     "name": "End Hunger Durham",

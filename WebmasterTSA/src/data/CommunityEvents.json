@@ -328,5 +328,17 @@
     "link": "https://www.bullcitymadness.com/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "SMathHacks 2026",
+    "category": "Community Events",
+    "cities": ["Durham", "Chapel Hill", "Raleigh"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Computer Science",
+    "description": "SMathHacks is NCSSM’s annual 36-hour hackathon open to students across North Carolina, where participants collaborate to create innovative software, explore new technologies, and connect with peers.",
+    "link": "https://smathhacks.ncssm.edu/",
+    "openToAllImmigrationStatuses": true,
+    "featured": true,
+    "image": "SMathHacks"
   }
 ]

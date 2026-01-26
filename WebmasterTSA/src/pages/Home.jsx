@@ -11,6 +11,12 @@ import summerPrograms from "../data/SummerPrograms.json";
 import supportServices from "../data/SupportServices.json";
 import volunteering from "../data/Volunteering.json";
 
+import dyesImg from "../assets/dyes.jpg";
+import sMathHacksImg from "../assets/SMathHacks.jpg";
+import floreneScholarshipImg from "../assets/FloreneScholarship.jpg";
+import bigBroSisImg from "../assets/BigBroSis.jpg";
+import handsOnImg from "../assets/HandsOn.jpg";
+
 const COLORS = {
   carolinaBlue: "#4B9CD3",
   gray: "#494A48",
@@ -30,6 +36,35 @@ const resourcesData = [
   ...supportServices,
   ...volunteering,
 ];
+
+function normalizeKey(s) {
+  return String(s || "")
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "")
+    .trim();
+}
+
+const FEATURED_IMAGE_BY_NAME = {
+  [normalizeKey("HandsOn Triangle")]: handsOnImg,
+  [normalizeKey("SMathHacks 2026")]: sMathHacksImg,
+  [normalizeKey("Big Brothers Big Sisters")]: bigBroSisImg,
+  [normalizeKey("Durham Youth Employed & Succeeding (YES)")]: dyesImg,
+  [normalizeKey("Florene Dickmeyer Memorial Scholarship")]: floreneScholarshipImg,
+};
+
+function getResourceImage(resource) {
+  const byName = FEATURED_IMAGE_BY_NAME[normalizeKey(resource?.name)];
+  if (byName) return byName;
+
+  const maybeImageKey = normalizeKey(resource?.image);
+  if (maybeImageKey) {
+    const byKey = FEATURED_IMAGE_BY_NAME[maybeImageKey];
+    if (byKey) return byKey;
+  }
+
+  return null;
+}
 
 function useTypeRotate({
   prefix = "",
@@ -131,9 +166,7 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
   if (!total) {
     return (
       <div style={{ width: size, height: size, display: "grid", placeItems: "center" }}>
-        <div style={{ fontFamily: "var(--font-body)", color: COLORS.gray, fontWeight: 600 }}>
-          No resources yet
-        </div>
+        <div style={{ fontFamily: "var(--font-body)", color: COLORS.gray, fontWeight: 600 }}>No resources yet</div>
       </div>
     );
   }
@@ -202,12 +235,7 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
         x={r}
         y={r - 6}
         textAnchor="middle"
-        style={{
-          fontFamily: "var(--font-heading)",
-          fontWeight: 900,
-          fontSize: 18,
-          fill: COLORS.text,
-        }}
+        style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 18, fill: COLORS.text }}
       >
         Total
       </text>
@@ -215,12 +243,7 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
         x={r}
         y={r + 18}
         textAnchor="middle"
-        style={{
-          fontFamily: "var(--font-heading)",
-          fontWeight: 900,
-          fontSize: 26,
-          fill: COLORS.carolinaBlue,
-        }}
+        style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 26, fill: COLORS.carolinaBlue }}
       >
         {total}
       </text>
@@ -259,6 +282,10 @@ export default function Home() {
   const prevItem = featured[(active - 1 + featured.length) % featured.length];
   const nextItem = featured[(active + 1) % featured.length];
 
+  const currentImg = getResourceImage(current);
+  const prevImg = getResourceImage(prevItem);
+  const nextImg = getResourceImage(nextItem);
+
   const { typedPrefix, typedWord } = useTypeRotate({
     prefix: "Making finding resources ",
     words: ["faster.", "convenient.", "easier.", "better.", "educational.", "exciting."],
@@ -282,7 +309,6 @@ export default function Home() {
     ];
 
     const palette = ["#4B9CD3", "#7FB7D6", "#9BBFAD", "#C7C29B", "#E0B07A", "#D69AA8", "#9FA7D8", "#8FB0B8"];
-
     const data = counts.map((d, i) => ({ ...d, color: palette[i % palette.length] }));
     const total = data.reduce((s, d) => s + d.value, 0);
 
@@ -332,8 +358,7 @@ export default function Home() {
               <div style={styles.phonetic}>/ˈneksəs/</div>
               <div style={styles.partOfSpeech}>noun</div>
               <div style={styles.definition}>
-                <span style={styles.defNum}>1.</span>{" "}
-                A connection or series of connections linking two or more things
+                <span style={styles.defNum}>1.</span> A connection or series of connections linking two or more things
               </div>
             </motion.div>
 
@@ -414,9 +439,9 @@ export default function Home() {
           <h2 style={styles.missionTitle}>Our Mission</h2>
 
           <p style={styles.missionText}>
-            At Nexus, we believe that access to community resources should be clear, welcoming, and easy to
-            navigate. Our mission is to connect residents across the Research Triangle with opportunities and
-            support—so finding help, programs, and pathways feels simple, empowering, and inclusive.
+            At Nexus, we believe that access to community resources should be clear, welcoming, and easy to navigate.
+            Our mission is to connect residents across the Research Triangle with opportunities and support—so finding
+            help, programs, and pathways feels simple, empowering, and inclusive.
           </p>
 
           <button
@@ -441,8 +466,8 @@ export default function Home() {
         <div style={styles.hubInner}>
           <h2 style={styles.hubTitle}>Our Resource Hub</h2>
           <p style={styles.hubSub}>
-            From summer programs to scholarships, we have a variety of community opportunities to help you
-            learn, grow, and get support across the Triangle.
+            From summer programs to scholarships, we have a variety of community opportunities to help you learn, grow,
+            and get support across the Triangle.
           </p>
 
           <button
@@ -456,14 +481,26 @@ export default function Home() {
 
           <div style={styles.hubCarouselStage}>
             <div style={{ ...styles.hubGhostCard, ...styles.hubGhostLeft }}>
-              <div style={styles.hubGhostImg} />
+              <div
+                style={{
+                  ...styles.hubGhostImg,
+                  ...(prevImg ? { backgroundImage: `url(${prevImg})` } : {}),
+                }}
+              />
               <div style={styles.hubGhostTitle}>{prevItem?.name || ""}</div>
             </div>
 
             <div style={{ ...styles.hubGhostCard, ...styles.hubGhostRight }}>
-              <div style={styles.hubGhostImg} />
+              <div
+                style={{
+                  ...styles.hubGhostImg,
+                  ...(nextImg ? { backgroundImage: `url(${nextImg})` } : {}),
+                }}
+              />
               <div style={styles.hubGhostTitle}>{nextItem?.name || ""}</div>
             </div>
+
+            <div style={styles.hubCenterMask} aria-hidden="true" />
 
             <AnimatePresence mode="wait">
               <motion.div
@@ -474,7 +511,15 @@ export default function Home() {
                 transition={{ duration: 0.42, ease: "easeOut" }}
                 style={styles.hubCard}
               >
-                <div style={styles.hubImg} />
+                <div
+                  style={{
+                    ...styles.hubImg,
+                    ...(currentImg ? { backgroundImage: `url(${currentImg})` } : {}),
+                  }}
+                >
+                  <div style={styles.hubImgOverlay} />
+                </div>
+
                 <div style={styles.hubCardBody}>
                   <div style={styles.hubCardTopRow}>
                     <div style={styles.hubCardName}>{current?.name}</div>
@@ -499,10 +544,18 @@ export default function Home() {
               </motion.div>
             </AnimatePresence>
 
-            <button style={{ ...styles.hubArrow, ...styles.hubArrowLeft }} onClick={prev} aria-label="Previous featured resource">
+            <button
+              style={{ ...styles.hubArrow, ...styles.hubArrowLeft }}
+              onClick={prev}
+              aria-label="Previous featured resource"
+            >
               ←
             </button>
-            <button style={{ ...styles.hubArrow, ...styles.hubArrowRight }} onClick={next} aria-label="Next featured resource">
+            <button
+              style={{ ...styles.hubArrow, ...styles.hubArrowRight }}
+              onClick={next}
+              aria-label="Next featured resource"
+            >
               →
             </button>
 
@@ -532,8 +585,8 @@ export default function Home() {
           <div style={styles.snapshotTop}>
             <h2 style={styles.snapshotTitle}>The Nexus Resource Mix</h2>
             <p style={styles.snapshotSub}>
-              Our approach to sending resources is simple: organize opportunities clearly, show what’s most
-              available, and spotlight where the Triangle could benefit from more support.
+              Our approach to sending resources is simple: organize opportunities clearly, show what’s most available,
+              and spotlight where the Triangle could benefit from more support.
             </p>
           </div>
 
@@ -541,9 +594,9 @@ export default function Home() {
             <div style={styles.snapshotInfoCard}>
               <div style={styles.snapshotInfoTitle}>Our Hub</div>
               <p style={styles.snapshotInfoText}>
-                Nexus brings together programs, scholarships, events, and support services in one place. This
-                snapshot shows how resources are currently distributed across categories so residents can browse
-                smarter and understand what’s available at a glance.
+                Nexus brings together programs, scholarships, events, and support services in one place. This snapshot
+                shows how resources are currently distributed across categories so residents can browse smarter and
+                understand what’s available at a glance.
               </p>
 
               <div style={styles.snapshotStatRow}>
@@ -894,13 +947,25 @@ const styles = {
     display: "grid",
     placeItems: "center",
     padding: "30px 0 44px 0",
+    overflow: "hidden",
+    isolation: "isolate",
+  },
+
+  hubCenterMask: {
+    position: "absolute",
+    inset: 0,
+    zIndex: 2,
+    pointerEvents: "none",
+    background:
+      "radial-gradient(circle at center, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 44%, rgba(17,17,17,0) 64%)",
   },
 
   hubGhostCard: {
     position: "absolute",
-    width: "520px",
-    maxWidth: "70vw",
-    height: "260px",
+    zIndex: 1,
+    width: "min(520px, 70vw)",
+    height: "min(260px, 56vw)",
+    maxHeight: "260px",
     borderRadius: "18px",
     backgroundColor: "rgba(245,252,239,0.10)",
     border: "1px solid rgba(245,252,239,0.18)",
@@ -914,6 +979,9 @@ const styles = {
   hubGhostRight: { left: "50%", transform: "translateX(2%)" },
   hubGhostImg: {
     background: "linear-gradient(135deg, rgba(75,156,211,0.22), rgba(245,252,239,0.08))",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
   },
   hubGhostTitle: {
     padding: "12px",
@@ -924,6 +992,8 @@ const styles = {
   },
 
   hubCard: {
+    position: "relative",
+    zIndex: 3,
     width: "620px",
     maxWidth: "86vw",
     borderRadius: "18px",
@@ -936,6 +1006,16 @@ const styles = {
   hubImg: {
     height: "190px",
     background: "linear-gradient(135deg, rgba(75,156,211,0.30), rgba(73,74,72,0.12))",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    position: "relative",
+  },
+  hubImgOverlay: {
+    position: "absolute",
+    inset: 0,
+    background: "linear-gradient(to bottom, rgba(0,0,0,0.18), rgba(0,0,0,0.04))",
+    pointerEvents: "none",
   },
   hubCardBody: {
     padding: "18px 18px 16px 18px",
@@ -1010,6 +1090,7 @@ const styles = {
     fontFamily: "var(--font-body)",
     fontWeight: 700,
     transition: "filter 180ms ease, transform 180ms ease",
+    zIndex: 4,
   },
   hubArrowLeft: { left: "max(10px, calc(50% - 46vw))" },
   hubArrowRight: { right: "max(10px, calc(50% - 46vw))" },
@@ -1021,6 +1102,7 @@ const styles = {
     gap: "10px",
     justifyContent: "center",
     alignItems: "center",
+    zIndex: 4,
   },
   hubDot: {
     width: "10px",

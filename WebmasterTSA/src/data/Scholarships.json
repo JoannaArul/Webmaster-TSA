@@ -261,7 +261,8 @@
     "description": "This scholarship supports students pursuing two-year community college or technical degrees who demonstrate hard work, generosity, and commitment to their community, with preference given to single mothers, refugees, and immigrants.",
     "link": "https://trianglecf.org/award/florene-dickmeyer-memorial-scholarship/",
     "openToAllImmigrationStatuses": true,
-    "featured": false
+    "featured": true,
+    "image": "FloreneScholarship"
   },
     {
     "name": "Marie Wood Memorial Scholarship",

@@ -16,11 +16,11 @@
   --header-h: 72px;
 }
 
-html, body, #root {
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   overflow-x: hidden;
 }
 
@@ -29,10 +29,18 @@ body {
   background: var(--beige);
   color: var(--text);
   padding-top: var(--header-h);
+  overflow-y: auto;
 }
 
 #root {
+  min-height: 100%;
+  width: 100%;
   background: var(--beige);
+  overflow: visible;
+}
+
+#root * {
+  overscroll-behavior: contain;
 }
 
 a {
@@ -48,7 +56,6 @@ button {
   font-family: var(--font-body);
 }
 
-/* Header responsiveness */
 @media (max-width: 860px) {
   .nav-desktop {
     display: none !important;
@@ -71,7 +78,6 @@ button {
     grid-template-columns: 1fr !important;
   }
 }
-
 
 @keyframes blink {
   50% { opacity: 0; }

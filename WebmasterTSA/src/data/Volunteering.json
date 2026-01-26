@@ -8,7 +8,8 @@
     "description": "A large Triangle-area volunteer opportunity database where you can browse roles by date, interest, organization, and community need.",
     "link": "https://www.handsontriangle.org/",
     "openToAllImmigrationStatuses": true,
-    "featured": true
+    "featured": true,
+    "image": "HandsOn"
   },
   {
     "name": "Student Action Board",
@@ -19,7 +20,7 @@
     "description": "A leadership-focused service program where students identify local needs, plan service projects, and build teamwork and community impact skills.",
     "link": "https://thevolunteercenter.org/student-action-board/",
     "openToAllImmigrationStatuses": true,
-    "featured": true
+    "featured": false
   },
   {
     "name": "Habitat for Humanity of Durham",
@@ -30,7 +31,7 @@
     "description": "Volunteer opportunities supporting affordable housing projects in Durham, including build days, site support, and community-based events.",
     "link": "https://durhamhabitat.volunteerhub.com/vv2/lp/individualorientation",
     "openToAllImmigrationStatuses": true,
-    "featured": true
+    "featured": false
   },
   {
     "name": "Teen Board Sponsored Habitat for Humanity of Durham",
@@ -41,7 +42,7 @@
     "description": "A teen leadership group (roughly ages 14–18) that supports youth builds, mentoring, advocacy, and community engagement projects.",
     "link": "https://www.durhamhabitat.org/teen-board",
     "openToAllImmigrationStatuses": true,
-    "featured": true
+    "featured": false
   },
   {
     "name": "SEEDs Volunteering",
@@ -52,7 +53,7 @@
     "description": "Volunteer with SEEDs by submitting the volunteer form to help with community garden and environmental projects.",
     "link": "https://www.seedsnc.org/volunteering",
     "openToAllImmigrationStatuses": true,
-    "featured": true
+    "featured": false
   },
   {
     "name": "Church World Service (CWS) Durham",

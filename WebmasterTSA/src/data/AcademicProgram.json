@@ -184,7 +184,8 @@
     "description": "Durham YES (Youth Employed and Succeeding) is a federally funded youth services program under the Workforce Innovation and Opportunity Act that helps young adults ages 16–24 prepare for education and employment.",
     "link": "https://www.durhamnc.gov/576/Youth",
     "openToAllImmigrationStatuses": true,
-    "featured": false
+    "featured": true,
+    "image": "dyes"
   },
     {
     "name": "Durham Literacy Center - College and Career Readiness Program",

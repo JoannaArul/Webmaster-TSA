@@ -11,11 +11,11 @@ const COLORS = {
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
-  { to: "/mission", label: "Mission" },
-  { to: "/resource-hub", label: "Resource Hub" },
-  { to: "/build-the-hub", label: "Build The Hub" },
-  { to: "/find-ecs", label: "Find Your Path" },
-  { to: "/work-logs", label: "Documentation" },
+  { to: "/our-mission", label: "Our Mission" },
+  { to: "/the-hub", label: "The Hub" },
+  { to: "/grow-the-hub", label: "Grow The Hub" },
+  { to: "/discover", label: "Discover" },
+  { to: "/documentation", label: "Documentation" },
 ];
 
 export default function Header() {
