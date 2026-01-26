@@ -7,32 +7,30 @@ const COLORS = {
 export default function Footer() {
   return (
     <footer style={styles.footer}>
-      <div style={styles.inner}>
-        {/* Left: mission (no logo) */}
+      <style>{css}</style>
+
+      <div style={styles.inner} className="footer-inner">
         <div style={styles.colLeft}>
           <h3 style={styles.footerTitle}>Connecting the Triangle to resources.</h3>
           <p style={styles.footerText}>
-            Nexus helps residents find programs, scholarships, volunteering, and support
-            services: fast, inclusive, and easy to navigate.
+            Nexus helps residents find programs, scholarships, volunteering, and support services: fast, inclusive, and easy to navigate.
           </p>
         </div>
 
-        {/* Middle: links */}
         <div style={styles.col}>
           <div style={styles.colHeader}>Links</div>
           <a style={styles.link} href="/">Home</a>
-          <a style={styles.link} href="/mission">Mission</a>
-          <a style={styles.link} href="/resource-hub">Resource Hub</a>
-          <a style={styles.link} href="/build-the-hub">Build The Hub</a>
-          <a style={styles.link} href="/find-ecs">Find Your Path</a>
+          <a style={styles.link} href="/mission">Our Mission</a>
+          <a style={styles.link} href="/resource-hub">The Hub</a>
+          <a style={styles.link} href="/build-the-hub">Grow the Hub</a>
+          <a style={styles.link} href="/find-ecs">Discover</a>
           <a style={styles.link} href="/work-logs">Documentation</a>
         </div>
 
-        {/* Right: connect */}
-        <div style={styles.colRight}>
+        <div style={styles.colRight} className="footer-colRight">
           <div style={styles.colHeader}>Connect With Us</div>
 
-          <div style={styles.iconRow}>
+          <div style={styles.iconRow} className="footer-iconRow">
             <a
               style={styles.iconLink}
               href="https://www.facebook.com"
@@ -71,7 +69,7 @@ export default function Footer() {
             </a>
           </div>
 
-          <div style={styles.contactBlock}>
+          <div style={styles.contactBlock} className="footer-contactBlock">
             <div style={styles.contactLine}>
               <span style={styles.contactIcon} aria-hidden="true">
                 <CuteMailIcon />
@@ -89,16 +87,17 @@ export default function Footer() {
       </div>
 
       <div style={styles.bottomBar}>
-        <div style={styles.bottomInner}>
+        <div style={styles.bottomInner} className="footer-bottomInner">
           <span>© {new Date().getFullYear()} Nexus</span>
-          <span style={styles.bottomRight}>Built for the Research Triangle Community</span>
+          <span style={styles.bottomRight} className="footer-bottomRight">
+            Built for the Research Triangle Community
+          </span>
         </div>
       </div>
     </footer>
   );
 }
 
-/* Social Icons */
 function IconFacebook() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -143,7 +142,6 @@ function IconYouTube() {
   );
 }
 
-/* Cute Contact Icons */
 function CuteMailIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -199,26 +197,21 @@ const styles = {
     paddingTop: "46px",
     overflowX: "hidden",
   },
-
   inner: {
     maxWidth: "1200px",
     margin: "0 auto",
-    padding: "0 20px 34px 20px", 
+    padding: "0 20px 34px 20px",
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", 
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
     gap: "26px",
     boxSizing: "border-box",
     alignItems: "start",
   },
-
   colLeft: {
     display: "flex",
     flexDirection: "column",
-    paddingLeft: "0px",
-    marginLeft: "0px", 
     minWidth: 0,
   },
-
   footerTitle: {
     margin: "6px 0 10px 0",
     fontFamily: "var(--font-heading)",
@@ -232,7 +225,6 @@ const styles = {
     opacity: 0.95,
     maxWidth: "60ch",
   },
-
   col: { display: "flex", flexDirection: "column", gap: "10px", minWidth: 0 },
   colHeader: {
     fontFamily: "var(--font-heading)",
@@ -248,17 +240,15 @@ const styles = {
     textDecoration: "underline",
     opacity: 0.9,
   },
-
   colRight: {
     display: "flex",
     flexDirection: "column",
     gap: "12px",
-    paddingLeft: "0px", 
-    justifySelf: "start", 
+    justifySelf: "end",
+    alignItems: "flex-end",
     minWidth: 0,
   },
-
-  iconRow: { display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" },
+  iconRow: { display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end" },
   iconLink: {
     color: COLORS.text,
     width: "40px",
@@ -271,14 +261,13 @@ const styles = {
     textDecoration: "none",
     lineHeight: 0,
   },
-
   contactBlock: {
     backgroundColor: "rgba(245,252,239,0.55)",
     borderRadius: "14px",
     padding: "12px 14px",
     boxShadow: "0 10px 20px rgba(0,0,0,0.12)",
+    width: "min(360px, 100%)",
   },
-
   contactLine: {
     fontFamily: "var(--font-body)",
     fontWeight: 600,
@@ -296,7 +285,6 @@ const styles = {
     borderRadius: "999px",
     backgroundColor: "rgba(73,74,72,0.10)",
   },
-
   bottomBar: {
     borderTop: "1px solid rgba(0,0,0,0.15)",
     padding: "14px 0",
@@ -309,10 +297,33 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     gap: "16px",
-    flexWrap: "wrap", 
+    flexWrap: "wrap",
     fontFamily: "var(--font-body)",
     fontWeight: 600,
     boxSizing: "border-box",
   },
-  bottomRight: { opacity: 0.9 },
+  bottomRight: { opacity: 0.9, textAlign: "right" },
 };
+
+const css = `
+  @media (max-width: 820px) {
+    .footer-colRight {
+      justify-self: start !important;
+      align-items: flex-start !important;
+    }
+    .footer-iconRow {
+      justify-content: flex-start !important;
+    }
+    .footer-bottomInner {
+      justify-content: center !important;
+      text-align: center;
+    }
+    .footer-bottomRight {
+      text-align: center !important;
+    }
+    .footer-contactBlock {
+      width: 100% !important;
+      max-width: 520px;
+    }
+  }
+`;
