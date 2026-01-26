@@ -357,11 +357,12 @@ export default function Mission() {
 
 const styles = {
   page: {
-    minHeight: "100vh",
-    backgroundColor: COLORS.beige,
-    fontFamily: "var(--font-body)",
-    overflowX: "hidden",
-  },
+  minHeight: "calc(100vh - var(--header-h))",
+  backgroundColor: COLORS.beige,
+  fontFamily: "var(--font-body)",
+  overflowX: "clip",
+},
+
 
   container: {
     maxWidth: "1100px",

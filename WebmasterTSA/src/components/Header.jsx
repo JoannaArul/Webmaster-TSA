@@ -31,7 +31,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close menu when resizing to desktop
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth > 860) setMenuOpen(false);
@@ -40,7 +39,6 @@ export default function Header() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Close menu if clicking outside the header
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -62,6 +60,17 @@ export default function Header() {
     setMenuOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const prevHtml = document.documentElement.style.overflow;
+    const prevBody = document.body.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.documentElement.style.overflow = prevHtml;
+      document.body.style.overflow = prevBody;
+    };
+  }, [menuOpen]);
 
   const linkStyle = ({ isActive }) => ({
     fontFamily: "var(--font-body)",
@@ -79,108 +88,100 @@ export default function Header() {
 
   const mobileLinkStyle = ({ isActive }) => ({
     fontFamily: "var(--font-body)",
-    color: scrolled ? COLORS.beige : COLORS.text,
+    color: COLORS.text,
     textDecoration: "none",
-    fontWeight: 700,
-    opacity: isActive ? 1 : 0.95,
+    fontWeight: 800,
+    opacity: isActive ? 1 : 0.96,
     padding: "10px 12px",
     borderRadius: "12px",
-    border: isActive
-      ? `1px solid ${
-          scrolled ? "rgba(245,252,239,0.55)" : "rgba(17,17,17,0.18)"
-        }`
-      : "1px solid transparent",
-    backgroundColor: isActive
-      ? scrolled
-        ? "rgba(245,252,239,0.10)"
-        : "rgba(17,17,17,0.06)"
-      : "transparent",
+    border: isActive ? "1px solid rgba(17,17,17,0.18)" : "1px solid transparent",
+    backgroundColor: isActive ? "rgba(17,17,17,0.06)" : "transparent",
   });
 
+  const headerBg = scrolled ? COLORS.gray : COLORS.carolinaBlue;
+  const headerText = scrolled ? COLORS.beige : COLORS.text;
+
   return (
-    <header
-      ref={headerRef}
-      style={{
-        ...styles.header,
-        backgroundColor: scrolled ? COLORS.gray : COLORS.carolinaBlue,
-      }}
-    >
-      <div style={styles.inner}>
-        {/* Logo */}
-        <NavLink
-          to="/"
-          style={styles.logoLink}
-          aria-label="Go to Home"
-          onClick={() => setMenuOpen(false)}
-        >
-          <div style={styles.logoFrame}>
-            <img
-              src={nexusLogo}
-              alt="Nexus"
-              style={{
-                ...styles.logoImg,
-                ...(scrolled ? styles.logoImgScrolled : {}),
-              }}
-            />
-          </div>
-        </NavLink>
+    <>
+      <header
+        ref={headerRef}
+        style={{
+          ...styles.header,
+          backgroundColor: headerBg,
+        }}
+      >
+        <div style={styles.inner}>
+          <NavLink
+            to="/"
+            style={styles.logoLink}
+            aria-label="Go to Home"
+            onClick={() => setMenuOpen(false)}
+          >
+            <div style={styles.logoFrame}>
+              <img
+                src={nexusLogo}
+                alt="Nexus"
+                style={{
+                  ...styles.logoImg,
+                  ...(scrolled ? styles.logoImgScrolled : {}),
+                }}
+              />
+            </div>
+          </NavLink>
 
-        {/* Desktop Nav */}
-        <nav className="nav-desktop" style={styles.navDesktop} aria-label="Primary navigation">
-          {NAV_LINKS.map((l) => (
-            <NavLink key={l.to} to={l.to} style={linkStyle}>
-              {l.label}
-            </NavLink>
-          ))}
-        </nav>
+          <nav className="nav-desktop" style={styles.navDesktop} aria-label="Primary navigation">
+            {NAV_LINKS.map((l) => (
+              <NavLink key={l.to} to={l.to} style={linkStyle}>
+                {l.label}
+              </NavLink>
+            ))}
+          </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          type="button"
-          className="menu-btn"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((v) => !v)}
-          style={{
-            ...styles.menuBtn,
-            color: scrolled ? COLORS.beige : COLORS.text,
-            borderColor: scrolled
-              ? "rgba(245,252,239,0.6)"
-              : "rgba(17,17,17,0.25)",
-            backgroundColor: scrolled
-              ? "rgba(245,252,239,0.08)"
-              : "rgba(245,252,239,0.20)",
-          }}
-        >
-          {menuOpen ? "✕" : "☰"}
-        </button>
-      </div>
+          <button
+            type="button"
+            className="menu-btn"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+            style={{
+              ...styles.menuBtn,
+              color: headerText,
+              borderColor: scrolled ? "rgba(245,252,239,0.6)" : "rgba(17,17,17,0.25)",
+              backgroundColor: scrolled ? "rgba(245,252,239,0.08)" : "rgba(245,252,239,0.20)",
+            }}
+          >
+            {menuOpen ? "✕" : "☰"}
+          </button>
+        </div>
+      </header>
 
-      {/* Mobile Dropdown */}
+      <div
+        aria-hidden={!menuOpen}
+        style={{
+          ...styles.backdrop,
+          ...(menuOpen ? styles.backdropOpen : styles.backdropClosed),
+        }}
+        onClick={() => setMenuOpen(false)}
+      />
+
       <div
         style={{
           ...styles.mobilePanel,
           ...(menuOpen ? styles.mobilePanelOpen : styles.mobilePanelClosed),
-          backgroundColor: scrolled ? COLORS.gray : COLORS.carolinaBlue,
-          borderTop: scrolled
-            ? "1px solid rgba(245,252,239,0.20)"
-            : "1px solid rgba(17,17,17,0.12)",
+          backgroundColor: COLORS.beige,
         }}
+        role="dialog"
+        aria-label="Mobile navigation"
       >
-        <nav style={styles.mobileNav} aria-label="Mobile navigation">
+        <nav style={styles.mobileNav}>
           {NAV_LINKS.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              style={mobileLinkStyle}
-              onClick={() => setMenuOpen(false)}
-            >
+            <NavLink key={l.to} to={l.to} style={mobileLinkStyle} onClick={() => setMenuOpen(false)}>
               {l.label}
             </NavLink>
           ))}
         </nav>
       </div>
-    </header>
+    </>
   );
 }
 
@@ -246,7 +247,7 @@ const styles = {
   },
 
   menuBtn: {
-    display: "none", // shown by CSS media query
+    display: "none",
     width: "42px",
     height: "42px",
     borderRadius: "12px",
@@ -257,23 +258,43 @@ const styles = {
     lineHeight: 1,
   },
 
+  backdrop: {
+    position: "fixed",
+    top: "var(--header-h)",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 9998,
+    transition: "opacity 180ms ease",
+    backgroundColor: "rgba(0,0,0,0.35)",
+  },
+  backdropClosed: { opacity: 0, pointerEvents: "none" },
+  backdropOpen: { opacity: 1, pointerEvents: "auto" },
+
   mobilePanel: {
-    width: "100%",
+    position: "fixed",
+    top: "var(--header-h)",
+    left: 0,
+    right: 0,
+    zIndex: 9999,
     overflow: "hidden",
-    transition: "max-height 260ms ease, opacity 220ms ease",
-    boxShadow: "0 14px 28px rgba(0,0,0,0.16)",
+    transition: "max-height 240ms ease, opacity 200ms ease, transform 200ms ease",
+    boxShadow: "0 18px 40px rgba(0,0,0,0.22)",
+    borderTop: "1px solid rgba(0,0,0,0.10)",
   },
 
   mobilePanelClosed: {
     maxHeight: 0,
     opacity: 0,
     pointerEvents: "none",
+    transform: "translateY(-6px)",
   },
 
   mobilePanelOpen: {
-    maxHeight: 520,
+    maxHeight: "calc(100vh - var(--header-h))",
     opacity: 1,
     pointerEvents: "auto",
+    transform: "translateY(0)",
   },
 
   mobileNav: {
@@ -282,6 +303,6 @@ const styles = {
     padding: "12px 20px 16px",
     boxSizing: "border-box",
     display: "grid",
-    gap: "8px",
+    gap: "8px"
   },
 };

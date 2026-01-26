@@ -323,7 +323,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 22 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.75 }}
-        style={styles.heroWrap}
+        style={{ ...styles.heroWrap, overflow: "visible" }}
       >
         <div style={styles.heroGrid}>
           <div style={styles.heroContent}>
@@ -433,7 +433,7 @@ export default function Home() {
         whileInView="show"
         transition={{ duration: 0.75, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.25 }}
-        style={styles.missionWrap}
+        style={{ ...styles.missionWrap, overflow: "visible" }}
       >
         <div style={styles.containerCenter}>
           <h2 style={styles.missionTitle}>Our Mission</h2>
@@ -461,7 +461,7 @@ export default function Home() {
         variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
         transition={{ duration: 0.85, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.2 }}
-        style={styles.hubWrap}
+        style={{ ...styles.hubWrap, overflow: "visible" }}
       >
         <div style={styles.hubInner}>
           <h2 style={styles.hubTitle}>Our Resource Hub</h2>
@@ -579,7 +579,7 @@ export default function Home() {
         whileInView="show"
         transition={{ duration: 0.75, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.25 }}
-        style={styles.snapshotWrap}
+        style={{ ...styles.snapshotWrap, overflow: "visible" }}
       >
         <div style={styles.snapshotInner}>
           <div style={styles.snapshotTop}>
@@ -645,12 +645,14 @@ export default function Home() {
 
 const styles = {
   page: {
-    margin: 0,
-    padding: 0,
-    backgroundColor: COLORS.beige,
-    width: "100%",
-    overflowX: "hidden",
-    fontFamily: "var(--font-body)",
+  margin: 0,
+  padding: 0,
+  minHeight: "calc(100vh - var(--header-h))",
+  backgroundColor: COLORS.beige,
+  width: "100%",
+  overflowX: "clip",
+  overflowY: "visible",
+  fontFamily: "var(--font-body)",
   },
 
   heroWrap: {
