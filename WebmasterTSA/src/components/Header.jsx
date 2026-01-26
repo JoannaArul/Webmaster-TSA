@@ -22,7 +22,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-  const headerRef = useRef(null);
+  const closeTimerRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -40,23 +40,6 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    if (!menuOpen) return;
-
-    const onDown = (e) => {
-      if (!headerRef.current) return;
-      if (!headerRef.current.contains(e.target)) setMenuOpen(false);
-    };
-
-    window.addEventListener("mousedown", onDown);
-    window.addEventListener("touchstart", onDown, { passive: true });
-
-    return () => {
-      window.removeEventListener("mousedown", onDown);
-      window.removeEventListener("touchstart", onDown);
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
 
@@ -71,6 +54,12 @@ export default function Header() {
       document.body.style.overflow = prevBody;
     };
   }, [menuOpen]);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    };
+  }, []);
 
   const linkStyle = ({ isActive }) => ({
     fontFamily: "var(--font-body)",
@@ -92,19 +81,29 @@ export default function Header() {
     textDecoration: "none",
     fontWeight: 800,
     opacity: isActive ? 1 : 0.96,
-    padding: "10px 12px",
+    padding: "12px 14px",
     borderRadius: "12px",
     border: isActive ? "1px solid rgba(17,17,17,0.18)" : "1px solid transparent",
     backgroundColor: isActive ? "rgba(17,17,17,0.06)" : "transparent",
+    WebkitTapHighlightColor: "transparent",
+    touchAction: "manipulation",
   });
 
   const headerBg = scrolled ? COLORS.gray : COLORS.carolinaBlue;
   const headerText = scrolled ? COLORS.beige : COLORS.text;
 
+  const closeMenu = () => setMenuOpen(false);
+
+  const onMobileLinkClick = () => {
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = window.setTimeout(() => setMenuOpen(false), 0);
+  };
+
   return (
     <>
+      <style>{css}</style>
+
       <header
-        ref={headerRef}
         style={{
           ...styles.header,
           backgroundColor: headerBg,
@@ -115,7 +114,7 @@ export default function Header() {
             to="/"
             style={styles.logoLink}
             aria-label="Go to Home"
-            onClick={() => setMenuOpen(false)}
+            onClick={closeMenu}
           >
             <div style={styles.logoFrame}>
               <img
@@ -155,32 +154,40 @@ export default function Header() {
         </div>
       </header>
 
-      <div
-        aria-hidden={!menuOpen}
-        style={{
-          ...styles.backdrop,
-          ...(menuOpen ? styles.backdropOpen : styles.backdropClosed),
-        }}
-        onClick={() => setMenuOpen(false)}
-      />
-
-      <div
-        style={{
-          ...styles.mobilePanel,
-          ...(menuOpen ? styles.mobilePanelOpen : styles.mobilePanelClosed),
-          backgroundColor: COLORS.beige,
-        }}
-        role="dialog"
-        aria-label="Mobile navigation"
-      >
-        <nav style={styles.mobileNav}>
-          {NAV_LINKS.map((l) => (
-            <NavLink key={l.to} to={l.to} style={mobileLinkStyle} onClick={() => setMenuOpen(false)}>
-              {l.label}
-            </NavLink>
-          ))}
-        </nav>
-      </div>
+      {menuOpen && (
+        <div
+          style={styles.overlay}
+          onMouseDown={closeMenu}
+          onTouchStart={closeMenu}
+          aria-hidden="true"
+        >
+          <div
+            style={{
+              ...styles.mobilePanel,
+              backgroundColor: COLORS.beige,
+            }}
+            role="dialog"
+            aria-label="Mobile navigation"
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+          >
+            <nav style={styles.mobileNav}>
+              {NAV_LINKS.map((l) => (
+                <NavLink
+                  key={l.to}
+                  to={l.to}
+                  style={mobileLinkStyle}
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onTouchStart={(e) => e.stopPropagation()}
+                  onClick={onMobileLinkClick}
+                >
+                  {l.label}
+                </NavLink>
+              ))}
+            </nav>
+          </div>
+        </div>
+      )}
     </>
   );
 }
@@ -258,43 +265,23 @@ const styles = {
     lineHeight: 1,
   },
 
-  backdrop: {
+  overlay: {
     position: "fixed",
-    top: "var(--header-h)",
+    top: 0,
     left: 0,
     right: 0,
     bottom: 0,
     zIndex: 9998,
-    transition: "opacity 180ms ease",
     backgroundColor: "rgba(0,0,0,0.35)",
+    paddingTop: "var(--header-h)",
   },
-  backdropClosed: { opacity: 0, pointerEvents: "none" },
-  backdropOpen: { opacity: 1, pointerEvents: "auto" },
 
   mobilePanel: {
-    position: "fixed",
-    top: "var(--header-h)",
-    left: 0,
-    right: 0,
-    zIndex: 9999,
-    overflow: "hidden",
-    transition: "max-height 240ms ease, opacity 200ms ease, transform 200ms ease",
+    width: "100%",
+    maxHeight: "calc(100vh - var(--header-h))",
+    overflow: "auto",
     boxShadow: "0 18px 40px rgba(0,0,0,0.22)",
     borderTop: "1px solid rgba(0,0,0,0.10)",
-  },
-
-  mobilePanelClosed: {
-    maxHeight: 0,
-    opacity: 0,
-    pointerEvents: "none",
-    transform: "translateY(-6px)",
-  },
-
-  mobilePanelOpen: {
-    maxHeight: "calc(100vh - var(--header-h))",
-    opacity: 1,
-    pointerEvents: "auto",
-    transform: "translateY(0)",
   },
 
   mobileNav: {
@@ -303,6 +290,13 @@ const styles = {
     padding: "12px 20px 16px",
     boxSizing: "border-box",
     display: "grid",
-    gap: "8px"
+    gap: "8px",
   },
 };
+
+const css = `
+  @media (max-width: 860px) {
+    .nav-desktop { display: none !important; }
+    .menu-btn { display: grid !important; place-items: center; }
+  }
+`;
