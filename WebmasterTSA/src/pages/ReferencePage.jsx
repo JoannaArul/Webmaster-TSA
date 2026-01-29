@@ -49,14 +49,16 @@ export default function Documentation() {
     page: {
       minHeight: "calc(100vh - var(--header-h))",
       backgroundColor: COLORS.beige,
-      fontFamily: 'Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+      fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
       overflowX: "clip",
     },
     hero: {
       position: "relative",
       width: "100%",
-      height: "clamp(220px, 36vw, 420px)",
+      aspectRatio: "21 / 9",
+      maxHeight: "min(420px, 70vh)",
       overflow: "hidden",
+      backgroundColor: "#0b0b0b",
     },
     heroImg: {
       position: "absolute",
@@ -65,6 +67,7 @@ export default function Documentation() {
       height: "100%",
       objectFit: "cover",
       transform: "scale(1.02)",
+      display: "block",
     },
     heroOverlay: {
       position: "absolute",
@@ -94,7 +97,7 @@ export default function Documentation() {
       fontSize: "clamp(14px, 1.6vw, 18px)",
       lineHeight: 1.6,
       color: "rgba(255,255,255,0.92)",
-      fontFamily: 'Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+      fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
     },
     wrap: {
       width: "min(1050px, 92vw)",
@@ -185,7 +188,14 @@ export default function Documentation() {
       style={styles.page}
     >
       <div style={styles.hero}>
-        <img src={referenceHero} alt="References hero" style={styles.heroImg} />
+        <img
+          src={referenceHero}
+          alt="References hero"
+          style={styles.heroImg}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
         <div style={styles.heroOverlay} />
         <div style={styles.heroInner}>
           <div>
