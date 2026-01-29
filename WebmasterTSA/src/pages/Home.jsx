@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -15,7 +15,7 @@ import dyesImg from "../assets/dyes.jpg";
 import sMathHacksImg from "../assets/SMathHacks.jpg";
 import floreneScholarshipImg from "../assets/FloreneScholarship.jpg";
 import bigBroSisImg from "../assets/BigBroSis.jpg";
-import handsOnImg from "../assets/HandsOn.jpg";
+import handsOnImg from "../assets/handsOn.jpg";
 
 const COLORS = {
   carolinaBlue: "#4B9CD3",
@@ -185,9 +185,9 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
         maxWidth: size,
         display: "block",
         overflow: "visible",
+        touchAction: "manipulation",
       }}
     >
-
       <g>
         {data.map((slice, idx) => {
           const sliceAngle = (slice.value / total) * 360;
@@ -197,7 +197,7 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
 
           const endSafe = Math.max(end, start + 0.8);
           const isActive = activeIndex === idx;
-          const bump = isActive ? 10 : 0;
+          const bump = isActive ? 8 : 0;
 
           const midAngle = (start + endSafe) / 2;
           const offset = polarToCartesian(r, r, bump, midAngle);
@@ -221,12 +221,26 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
               strokeWidth="1"
               onMouseEnter={() => onHoverIndex(idx)}
               onMouseLeave={() => onHoverIndex(null)}
+              onPointerEnter={(e) => {
+                if (e.pointerType !== "touch") onHoverIndex(idx);
+              }}
+              onPointerLeave={(e) => {
+                if (e.pointerType !== "touch") onHoverIndex(null);
+              }}
+              onPointerDown={(e) => {
+                if (e.pointerType === "touch") onHoverIndex(idx);
+              }}
+              onPointerUp={(e) => {
+                if (e.pointerType === "touch") onHoverIndex(null);
+              }}
               style={{
-                transform: `translate(${dx}px, ${dy}px)`,
-                transformOrigin: "center",
-                transition: "transform 220ms ease, filter 220ms ease",
+                transition: "transform 260ms ease, filter 220ms ease",
                 filter: isActive ? "brightness(1.03) saturate(1.08)" : "none",
                 cursor: "default",
+                transform: `translate(${dx}px, ${dy}px)`,
+                transformBox: "fill-box",
+                transformOrigin: "center",
+                willChange: "transform",
               }}
             >
               <title>{`${slice.label}: ${slice.value}`}</title>
@@ -301,6 +315,24 @@ export default function Home() {
   const [hoverSecondary, setHoverSecondary] = useState(false);
   const [hoverMission, setHoverMission] = useState(false);
   const [hoverHubBtn, setHoverHubBtn] = useState(false);
+
+  const chartWrapRef = useRef(null);
+  const [chartSize, setChartSize] = useState(420);
+
+  useLayoutEffect(() => {
+    if (!chartWrapRef.current) return;
+
+    const el = chartWrapRef.current;
+
+    const ro = new ResizeObserver((entries) => {
+      const w = entries[0]?.contentRect?.width || 420;
+      const next = Math.max(240, Math.min(420, Math.floor(w)));
+      setChartSize(next);
+    });
+
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const resourceBreakdown = useMemo(() => {
     const counts = [
@@ -411,9 +443,7 @@ export default function Home() {
 
                   <div style={styles.featureMeta}>
                     {current?.category ? <span>{current.category}</span> : null}
-                    {Array.isArray(current?.cities) && current.cities.length ? (
-                      <span>• {current.cities.join(", ")}</span>
-                    ) : null}
+                    {Array.isArray(current?.cities) && current.cities.length ? <span>• {current.cities.join(", ")}</span> : null}
                     {current?.interest ? <span>• {current.interest}</span> : null}
                   </div>
 
@@ -445,9 +475,9 @@ export default function Home() {
           <h2 style={styles.missionTitle}>Our Mission</h2>
 
           <p style={styles.missionText}>
-            At Nexus, we believe that access to community resources should be clear, welcoming, and easy to navigate. Our
-            mission is to connect residents across the Research Triangle with opportunities and support—so finding help,
-            programs, and pathways feels simple, empowering, and inclusive.
+            At Nexus, we believe that access to community resources should be clear, welcoming, and easy to navigate. Our mission is to
+            connect residents across the Research Triangle with opportunities and support—so finding help, programs, and pathways feels
+            simple, empowering, and inclusive.
           </p>
 
           <button
@@ -472,8 +502,8 @@ export default function Home() {
         <div style={styles.hubInner}>
           <h2 style={styles.hubTitle}>Our Resource Hub</h2>
           <p style={styles.hubSub}>
-            From summer programs to scholarships, we have a variety of community opportunities to help you learn, grow,
-            and get support across the Triangle.
+            From summer programs to scholarships, we have a variety of community opportunities to help you learn, grow, and get support across
+            the Triangle.
           </p>
 
           <button
@@ -571,8 +601,8 @@ export default function Home() {
           <div style={styles.snapshotTop}>
             <h2 style={styles.snapshotTitle}>The Nexus Resource Mix</h2>
             <p style={styles.snapshotSub}>
-              Our approach to sending resources is simple: organize opportunities clearly, show what’s most available,
-              and spotlight where the Triangle could benefit from more support.
+              Our approach to sending resources is simple: organize opportunities clearly, show what’s most available, and spotlight where the
+              Triangle could benefit from more support.
             </p>
           </div>
 
@@ -580,9 +610,8 @@ export default function Home() {
             <div style={styles.snapshotInfoCard}>
               <div style={styles.snapshotInfoTitle}>Our Hub</div>
               <p style={styles.snapshotInfoText}>
-                Nexus brings together programs, scholarships, events, and support services in one place. This snapshot shows
-                how resources are currently distributed across categories so residents can browse smarter and understand what’s
-                available at a glance.
+                Nexus brings together programs, scholarships, events, and support services in one place. This snapshot shows how resources are
+                currently distributed across categories so residents can browse smarter and understand what’s available at a glance.
               </p>
 
               <div style={styles.snapshotStatRow}>
@@ -594,10 +623,10 @@ export default function Home() {
             </div>
 
             <div style={styles.snapshotChartCard}>
-              <div style={styles.snapshotChartWrap}>
+              <div ref={chartWrapRef} style={styles.snapshotChartWrap}>
                 <PieChart
                   data={resourceBreakdown.data}
-                  size={420}
+                  size={chartSize}
                   innerRatio={0.6}
                   activeIndex={hoverSlice}
                   onHoverIndex={setHoverSlice}
@@ -612,6 +641,18 @@ export default function Home() {
                       key={d.label}
                       onMouseEnter={() => setHoverSlice(idx)}
                       onMouseLeave={() => setHoverSlice(null)}
+                      onPointerEnter={(e) => {
+                        if (e.pointerType !== "touch") setHoverSlice(idx);
+                      }}
+                      onPointerLeave={(e) => {
+                        if (e.pointerType !== "touch") setHoverSlice(null);
+                      }}
+                      onPointerDown={(e) => {
+                        if (e.pointerType === "touch") setHoverSlice(idx);
+                      }}
+                      onPointerUp={(e) => {
+                        if (e.pointerType === "touch") setHoverSlice(null);
+                      }}
                       style={{ ...styles.legendRow, ...(isActive ? styles.legendRowActive : {}) }}
                     >
                       <span style={{ ...styles.legendSwatch, backgroundColor: d.color }} />
@@ -1220,12 +1261,11 @@ const styles = {
   },
   snapshotChartWrap: {
     width: "min(460px, 92vw)",
+    maxWidth: "100%",
     display: "grid",
     placeItems: "center",
-    maxWidth: "100%",
     overflow: "hidden",
   },
-
 
   snapshotLegend: {
     width: "min(520px, 95%)",
@@ -1244,6 +1284,7 @@ const styles = {
     border: "1px solid rgba(0,0,0,0.05)",
     transition: "transform 180ms ease, box-shadow 180ms ease, filter 180ms ease",
     cursor: "default",
+    touchAction: "manipulation",
   },
   legendRowActive: {
     transform: "translateY(-1px)",
