@@ -15,7 +15,7 @@ import dyesImg from "../assets/dyes.jpg";
 import sMathHacksImg from "../assets/SMathHacks.jpg";
 import floreneScholarshipImg from "../assets/FloreneScholarship.jpg";
 import bigBroSisImg from "../assets/BigBroSis.jpg";
-import handsOnImg from "../assets/handsOn.jpg";
+import handsOnImg from "../assets/HandsOn.jpg";
 
 const COLORS = {
   carolinaBlue: "#4B9CD3",
