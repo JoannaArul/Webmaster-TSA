@@ -175,13 +175,19 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
 
   return (
     <svg
-      width={size}
-      height={size}
       viewBox={`0 0 ${size} ${size}`}
       role="img"
       aria-label="Resource type breakdown pie chart"
-      style={{ overflow: "visible" }}
+      preserveAspectRatio="xMidYMid meet"
+      style={{
+        width: "100%",
+        height: "auto",
+        maxWidth: size,
+        display: "block",
+        overflow: "visible",
+      }}
     >
+
       <g>
         {data.map((slice, idx) => {
           const sliceAngle = (slice.value / total) * 360;
@@ -1216,7 +1222,10 @@ const styles = {
     width: "min(460px, 92vw)",
     display: "grid",
     placeItems: "center",
+    maxWidth: "100%",
+    overflow: "hidden",
   },
+
 
   snapshotLegend: {
     width: "min(520px, 95%)",
