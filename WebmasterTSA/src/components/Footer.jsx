@@ -24,7 +24,7 @@ export default function Footer() {
           <a style={styles.link} href="/resource-hub">The Hub</a>
           <a style={styles.link} href="/build-the-hub">Grow the Hub</a>
           <a style={styles.link} href="/find-ecs">Discover</a>
-          <a style={styles.link} href="/work-logs">Documentation</a>
+          <a style={styles.link} href="/reference-page">Reference Page</a>
         </div>
 
         <div style={styles.colRight} className="footer-colRight">

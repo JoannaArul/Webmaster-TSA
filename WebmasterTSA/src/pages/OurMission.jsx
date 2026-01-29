@@ -2,8 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 
-import researchTriangleImg from "../assets/ResearchTriangle.png";
-import localImpactImg from "../assets/LocalImpact.png";
+import researchTriangleImg from "../assets/ResearchTriangle.jpg";
+import VolunteeringImg from "../assets/Volunteering.jpg"; 
 
 import computerImg from "../assets/Computer.png";
 import filterImg from "../assets/Filter.png";
@@ -270,7 +270,7 @@ export default function Mission() {
         <div style={styles.container}>
           <div style={styles.splitRow}>
             <div style={styles.leftMedia}>
-              <img src={localImpactImg} alt="Local impact" style={styles.leftImage} draggable={false} />
+              <img src={VolunteeringImg} alt="Local impact" style={styles.leftImage} draggable={false} />
             </div>
 
             <div style={styles.rightCopy}>

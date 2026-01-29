@@ -7,7 +7,7 @@ import Home from "./pages/Home.jsx";
 import TheHub from "./pages/TheHub.jsx";
 import GrowtheHub from "./pages/GrowtheHub.jsx";
 import Discover from "./pages/Discover.jsx";
-import Documentation from "./pages/Documentation.jsx";
+import ReferencePage from "./pages/ReferencePage.jsx";
 import OurMission from "./pages/OurMission.jsx";
 
 export default function App() {
@@ -22,7 +22,7 @@ export default function App() {
         <Route path="/the-hub" element={<TheHub />} />
         <Route path="/grow-the-hub" element={<GrowtheHub />} />
         <Route path="/discover" element={<Discover />} />
-        <Route path="/documentation" element={<Documentation />} />
+        <Route path="/reference-page" element={<ReferencePage />} />
       </Routes>
 
       <Footer />

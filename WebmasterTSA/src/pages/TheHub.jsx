@@ -13,7 +13,6 @@ import volunteering from "../data/Volunteering.json";
 import FilterBar from "../components/FilterBar.jsx";
 import ResourceCard from "../components/ResourceCard.jsx";
 
-// ✅ Category images (adjust path if your assets folder is different)
 import AcademicProgramImg from "../assets/AcademicProgram.jpg";
 import AwardsImg from "../assets/Awards.jpg";
 import CommunityEventsImg from "../assets/CommunityEvents.jpg";
@@ -21,9 +20,8 @@ import NonprofitsImg from "../assets/Non-profits.jpg";
 import ScholarshipsImg from "../assets/Scholarships.jpg";
 import SummerProgramsImg from "../assets/SummerPrograms.jpg";
 import SupportServicesImg from "../assets/SupportServices.jpg";
-import VolunteeringImg from "../assets/Volunteering.jpg"; // if missing, swap to another
+import VolunteeringImg from "../assets/Volunteering.jpg"; 
 
-// ✅ NEW: hero background image
 import ResourceHubBg from "../assets/ResourceHubBackground.jpg";
 
 const COLORS = {

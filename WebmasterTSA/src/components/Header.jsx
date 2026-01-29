@@ -15,7 +15,7 @@ const NAV_LINKS = [
   { to: "/the-hub", label: "The Hub" },
   { to: "/grow-the-hub", label: "Grow the Hub" },
   { to: "/discover", label: "Discover" },
-  { to: "/documentation", label: "Documentation" },
+  { to: "/reference-page", label: "Reference Page" },
 ];
 
 export default function Header() {

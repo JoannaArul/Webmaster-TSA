@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import discoverHero from "../assets/DiscoverHero.jpg";
 
@@ -74,6 +75,14 @@ const formatGrades = (grades) => {
   if (nums.length === 1) return `${nums[0]}`;
   return nums.join(", ");
 };
+
+const slugify = (s) =>
+  String(s || "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 
 const QUIZ = [
   {
@@ -200,140 +209,140 @@ const QUIZ = [
 
 const CAREERS_BY_INTEREST = {
   Biology: [
-    { title: "Natural Sciences Manager", medianSalary: "~$137,904", education: "Bachelor’s+ (often Master’s/PhD)", schoolYears: "4–10", img: discoverHero },
-    { title: "Biologists", medianSalary: "~$82,246", education: "Master’s", schoolYears: "6", img: discoverHero },
-    { title: "Agricultural Technicians", medianSalary: "~$40,828k", education: "Bachelor’s+ (often Master’s)", schoolYears: "4–6", img: discoverHero },
-    { title: "Molecular and Cellular Biologists", medianSalary: "~$82,246", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Forensic Science Technicians", medianSalary: "~$61,873k", education: "Bachelor’s/Master’s", schoolYears: "4–6", img: discoverHero },
-    { title: "Microbiologists", medianSalary: "~$79,060", education: "Associate’s/Bachelor’s", schoolYears: "2–4", img: discoverHero },
+    { title: "Natural Sciences Manager", medianSalary: "~$137,904", education: "Bachelor’s+ (often Master’s/PhD)", schoolYears: "4–10", blurb: "Leads scientific teams and research programs, budgets, timelines, and lab operations." },
+    { title: "Biologists", medianSalary: "~$82,246", education: "Master’s", schoolYears: "6", blurb: "Studies living organisms and ecosystems through fieldwork, experiments, and data." },
+    { title: "Agricultural Technicians", medianSalary: "~$40,828", education: "Bachelor’s+ (often Master’s)", schoolYears: "4–6", blurb: "Supports crop/livestock research by collecting samples, running tests, and tracking results." },
+    { title: "Molecular and Cellular Biologists", medianSalary: "~$82,246", education: "Bachelor’s", schoolYears: "4", blurb: "Investigates cells, genes, and proteins to understand disease and develop treatments." },
+    { title: "Forensic Science Technicians", medianSalary: "~$61,873", education: "Bachelor’s/Master’s", schoolYears: "4–6", blurb: "Analyzes evidence and lab samples to support investigations and courtroom testimony." },
+    { title: "Microbiologists", medianSalary: "~$79,060", education: "Associate’s/Bachelor’s", schoolYears: "2–4", blurb: "Studies bacteria/viruses and runs lab tests for health, food safety, and research." },
   ],
   "Computer Science": [
-    { title: "Software Engineer", medianSalary: "~$120k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Data Scientist", medianSalary: "~$125k", education: "Bachelor’s+ (often Master’s)", schoolYears: "4–6", img: discoverHero },
-    { title: "Cybersecurity Analyst", medianSalary: "~$110k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "UI/UX Designer", medianSalary: "~$90k", education: "Bachelor’s/Portfolio", schoolYears: "2–4", img: discoverHero },
-    { title: "AI/ML Engineer", medianSalary: "~$140k", education: "Bachelor’s+ (often Master’s)", schoolYears: "4–6", img: discoverHero },
-    { title: "Product Manager (Tech)", medianSalary: "~$130k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
+    { title: "Software Engineer", medianSalary: "~$120k", education: "Bachelor’s", schoolYears: "4", blurb: "Builds and maintains software systems, features, and infrastructure for real users." },
+    { title: "Data Scientist", medianSalary: "~$125k", education: "Bachelor’s+ (often Master’s)", schoolYears: "4–6", blurb: "Turns messy data into insights using statistics, ML, and storytelling." },
+    { title: "Cybersecurity Analyst", medianSalary: "~$110k", education: "Bachelor’s", schoolYears: "4", blurb: "Protects networks and accounts by detecting threats, patching risks, and responding fast." },
+    { title: "UI/UX Designer", medianSalary: "~$90k", education: "Bachelor’s/Portfolio", schoolYears: "2–4", blurb: "Designs interfaces that feel intuitive—research, wireframes, prototypes, and testing." },
+    { title: "AI/ML Engineer", medianSalary: "~$140k", education: "Bachelor’s+ (often Master’s)", schoolYears: "4–6", blurb: "Builds models and pipelines that learn from data and power intelligent features." },
+    { title: "Product Manager (Tech)", medianSalary: "~$130k", education: "Bachelor’s", schoolYears: "4", blurb: "Aligns teams around a product vision—priorities, roadmap, and customer impact." },
   ],
   Education: [
-    { title: "High School Teacher", medianSalary: "~$60k", education: "Bachelor’s + licensure", schoolYears: "4–5", img: discoverHero },
-    { title: "School Counselor", medianSalary: "~$65k", education: "Master’s", schoolYears: "6", img: discoverHero },
-    { title: "Instructional Designer", medianSalary: "~$80k", education: "Bachelor’s/Master’s", schoolYears: "4–6", img: discoverHero },
-    { title: "Special Education Teacher", medianSalary: "~$62k", education: "Bachelor’s + licensure", schoolYears: "4–5", img: discoverHero },
-    { title: "Education Policy Analyst", medianSalary: "~$85k", education: "Bachelor’s/Master’s", schoolYears: "4–6", img: discoverHero },
-    { title: "Tutor / Academic Coach", medianSalary: "~$35–70k", education: "Varies", schoolYears: "—", img: discoverHero },
+    { title: "High School Teacher", medianSalary: "~$60k", education: "Bachelor’s + licensure", schoolYears: "4–5", blurb: "Plans lessons, teaches, assesses learning, and supports student growth day-to-day." },
+    { title: "School Counselor", medianSalary: "~$65k", education: "Master’s", schoolYears: "6", blurb: "Supports academic planning, mental wellness, and college/career readiness." },
+    { title: "Instructional Designer", medianSalary: "~$80k", education: "Bachelor’s/Master’s", schoolYears: "4–6", blurb: "Builds training courses and learning materials that actually work and stick." },
+    { title: "Special Education Teacher", medianSalary: "~$62k", education: "Bachelor’s + licensure", schoolYears: "4–5", blurb: "Creates supports and adaptations so students can learn confidently and independently." },
+    { title: "Education Policy Analyst", medianSalary: "~$85k", education: "Bachelor’s/Master’s", schoolYears: "4–6", blurb: "Studies school systems and programs to improve outcomes through policy decisions." },
+    { title: "Tutor / Academic Coach", medianSalary: "~$35–70k", education: "Varies", schoolYears: "—", blurb: "Works 1:1 or small group to build skills, confidence, and learning strategies." },
   ],
   Engineering: [
-    { title: "Mechanical Engineer", medianSalary: "~$95k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Civil Engineer", medianSalary: "~$90k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Electrical Engineer", medianSalary: "~$105k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Aerospace Engineer", medianSalary: "~$120k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Biomedical Engineer", medianSalary: "~$100k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Systems Engineer", medianSalary: "~$115k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
+    { title: "Mechanical Engineer", medianSalary: "~$95k", education: "Bachelor’s", schoolYears: "4", blurb: "Designs machines and mechanisms—CAD, prototypes, testing, and iteration." },
+    { title: "Civil Engineer", medianSalary: "~$90k", education: "Bachelor’s", schoolYears: "4", blurb: "Plans and builds infrastructure like roads, bridges, water systems, and buildings." },
+    { title: "Electrical Engineer", medianSalary: "~$105k", education: "Bachelor’s", schoolYears: "4", blurb: "Designs circuits and systems powering devices—hardware, signals, and control." },
+    { title: "Aerospace Engineer", medianSalary: "~$120k", education: "Bachelor’s", schoolYears: "4", blurb: "Builds aircraft/spacecraft components with a focus on safety, performance, and materials." },
+    { title: "Biomedical Engineer", medianSalary: "~$100k", education: "Bachelor’s", schoolYears: "4", blurb: "Combines engineering + medicine to develop devices, diagnostics, and prosthetics." },
+    { title: "Systems Engineer", medianSalary: "~$115k", education: "Bachelor’s", schoolYears: "4", blurb: "Makes complex systems work together—requirements, integration, and reliability." },
   ],
   "Environmental Science": [
-    { title: "Environmental Scientist", medianSalary: "~$78k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Sustainability Analyst", medianSalary: "~$75k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Conservation Scientist", medianSalary: "~$70k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Climate Data Analyst", medianSalary: "~$90k", education: "Bachelor’s+", schoolYears: "4–6", img: discoverHero },
-    { title: "Environmental Engineer", medianSalary: "~$100k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Water Quality Specialist", medianSalary: "~$65k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
+    { title: "Environmental Scientist", medianSalary: "~$78k", education: "Bachelor’s", schoolYears: "4", blurb: "Assesses environmental impact using field samples, lab testing, and reporting." },
+    { title: "Sustainability Analyst", medianSalary: "~$75k", education: "Bachelor’s", schoolYears: "4", blurb: "Tracks sustainability metrics and helps organizations cut waste and emissions." },
+    { title: "Conservation Scientist", medianSalary: "~$70k", education: "Bachelor’s", schoolYears: "4", blurb: "Protects land and ecosystems through research, restoration, and stewardship plans." },
+    { title: "Climate Data Analyst", medianSalary: "~$90k", education: "Bachelor’s+", schoolYears: "4–6", blurb: "Analyzes climate datasets to model trends and support decisions." },
+    { title: "Environmental Engineer", medianSalary: "~$100k", education: "Bachelor’s", schoolYears: "4", blurb: "Designs solutions for clean air/water, pollution control, and waste systems." },
+    { title: "Water Quality Specialist", medianSalary: "~$65k", education: "Bachelor’s", schoolYears: "4", blurb: "Tests water systems, investigates contamination, and ensures safety standards." },
   ],
   Mathematics: [
-    { title: "Actuary", medianSalary: "~$120k", education: "Bachelor’s + exams", schoolYears: "4+", img: discoverHero },
-    { title: "Statistician", medianSalary: "~$95k", education: "Bachelor’s/Master’s", schoolYears: "4–6", img: discoverHero },
-    { title: "Operations Research Analyst", medianSalary: "~$105k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Quantitative Analyst", medianSalary: "~$140k", education: "Bachelor’s+ (often Master’s)", schoolYears: "4–6", img: discoverHero },
-    { title: "Data Analyst", medianSalary: "~$85k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Math Teacher (Secondary)", medianSalary: "~$60k", education: "Bachelor’s + licensure", schoolYears: "4–5", img: discoverHero },
+    { title: "Actuary", medianSalary: "~$120k", education: "Bachelor’s + exams", schoolYears: "4+", blurb: "Uses probability + finance to measure risk in insurance, pensions, and more." },
+    { title: "Statistician", medianSalary: "~$95k", education: "Bachelor’s/Master’s", schoolYears: "4–6", blurb: "Designs studies and interprets data to answer real questions with confidence." },
+    { title: "Operations Research Analyst", medianSalary: "~$105k", education: "Bachelor’s", schoolYears: "4", blurb: "Optimizes systems (routes, staffing, scheduling) using models and constraints." },
+    { title: "Quantitative Analyst", medianSalary: "~$140k", education: "Bachelor’s+ (often Master’s)", schoolYears: "4–6", blurb: "Builds math models for trading, pricing, forecasting, and decision-making." },
+    { title: "Data Analyst", medianSalary: "~$85k", education: "Bachelor’s", schoolYears: "4", blurb: "Transforms data into dashboards and insights that guide everyday decisions." },
+    { title: "Math Teacher (Secondary)", medianSalary: "~$60k", education: "Bachelor’s + licensure", schoolYears: "4–5", blurb: "Teaches math foundations and problem-solving with structure and clarity." },
   ],
   Chemistry: [
-    { title: "Chemist", medianSalary: "~$85k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Pharmacist", medianSalary: "~$125k", education: "PharmD", schoolYears: "6–8", img: discoverHero },
-    { title: "Forensic Scientist", medianSalary: "~$70k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Chemical Engineer", medianSalary: "~$110k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Quality Control Analyst", medianSalary: "~$65k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Materials Scientist", medianSalary: "~$100k", education: "Bachelor’s+ (often PhD)", schoolYears: "4–10", img: discoverHero },
+    { title: "Chemist", medianSalary: "~$85k", education: "Bachelor’s", schoolYears: "4", blurb: "Runs experiments to create and test substances for products and research." },
+    { title: "Pharmacist", medianSalary: "~$125k", education: "PharmD", schoolYears: "6–8", blurb: "Dispenses medication, checks interactions, and guides patients on safe use." },
+    { title: "Forensic Scientist", medianSalary: "~$70k", education: "Bachelor’s", schoolYears: "4", blurb: "Applies lab science to analyze evidence like fibers, chemicals, and residues." },
+    { title: "Chemical Engineer", medianSalary: "~$110k", education: "Bachelor’s", schoolYears: "4", blurb: "Designs large-scale processes to manufacture chemicals, fuels, and materials." },
+    { title: "Quality Control Analyst", medianSalary: "~$65k", education: "Bachelor’s", schoolYears: "4", blurb: "Tests products to ensure safety, consistency, and compliance with standards." },
+    { title: "Materials Scientist", medianSalary: "~$100k", education: "Bachelor’s+ (often PhD)", schoolYears: "4–10", blurb: "Develops new materials with better strength, conductivity, or durability." },
   ],
   "English Literature Writing": [
-    { title: "Journalist", medianSalary: "~$55k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Copywriter", medianSalary: "~$70k", education: "Bachelor’s/Portfolio", schoolYears: "2–4", img: discoverHero },
-    { title: "Editor", medianSalary: "~$65k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Technical Writer", medianSalary: "~$85k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Content Strategist", medianSalary: "~$95k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Attorney (Writing-heavy)", medianSalary: "~$130k", education: "JD", schoolYears: "7", img: discoverHero },
+    { title: "Journalist", medianSalary: "~$55k", education: "Bachelor’s", schoolYears: "4", blurb: "Reports stories, interviews sources, and explains what’s happening and why." },
+    { title: "Copywriter", medianSalary: "~$70k", education: "Bachelor’s/Portfolio", schoolYears: "2–4", blurb: "Writes clear, persuasive text for brands—websites, ads, emails, campaigns." },
+    { title: "Editor", medianSalary: "~$65k", education: "Bachelor’s", schoolYears: "4", blurb: "Refines writing for clarity and voice—structure, pacing, and accuracy." },
+    { title: "Technical Writer", medianSalary: "~$85k", education: "Bachelor’s", schoolYears: "4", blurb: "Explains complex products (software, tools) in guides, docs, and tutorials." },
+    { title: "Content Strategist", medianSalary: "~$95k", education: "Bachelor’s", schoolYears: "4", blurb: "Plans content systems that match user needs—tone, topics, and structure." },
+    { title: "Attorney (Writing-heavy)", medianSalary: "~$130k", education: "JD", schoolYears: "7", blurb: "Writes arguments, briefs, and documents where precision and logic matter." },
   ],
   "Arts Performance": [
-    { title: "Graphic Designer", medianSalary: "~$60k", education: "Bachelor’s/Portfolio", schoolYears: "2–4", img: discoverHero },
-    { title: "UX/UI Designer", medianSalary: "~$90k", education: "Bachelor’s/Portfolio", schoolYears: "2–4", img: discoverHero },
-    { title: "Film/Video Editor", medianSalary: "~$65k", education: "Bachelor’s/Portfolio", schoolYears: "2–4", img: discoverHero },
-    { title: "Performer / Actor", medianSalary: "Varies", education: "Training/Portfolio", schoolYears: "—", img: discoverHero },
-    { title: "Music Producer", medianSalary: "Varies", education: "Training/Portfolio", schoolYears: "—", img: discoverHero },
-    { title: "Art Director", medianSalary: "~$105k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
+    { title: "Graphic Designer", medianSalary: "~$60k", education: "Bachelor’s/Portfolio", schoolYears: "2–4", blurb: "Creates visuals for brands—posters, layouts, social media, and identity." },
+    { title: "UX/UI Designer", medianSalary: "~$90k", education: "Bachelor’s/Portfolio", schoolYears: "2–4", blurb: "Designs digital experiences that feel smooth, accessible, and beautiful." },
+    { title: "Film/Video Editor", medianSalary: "~$65k", education: "Bachelor’s/Portfolio", schoolYears: "2–4", blurb: "Shapes raw footage into compelling stories with pacing, sound, and color." },
+    { title: "Performer / Actor", medianSalary: "Varies", education: "Training/Portfolio", schoolYears: "—", blurb: "Builds characters and performs live/on camera through practice and auditions." },
+    { title: "Music Producer", medianSalary: "Varies", education: "Training/Portfolio", schoolYears: "—", blurb: "Creates songs—recording, arranging, mixing, and guiding the sound." },
+    { title: "Art Director", medianSalary: "~$105k", education: "Bachelor’s", schoolYears: "4", blurb: "Leads visual direction for campaigns, projects, and creative teams." },
   ],
   "Law & Government": [
-    { title: "Attorney", medianSalary: "~$135k", education: "JD", schoolYears: "7", img: discoverHero },
-    { title: "Policy Advisor", medianSalary: "~$90k", education: "Bachelor’s/Master’s", schoolYears: "4–6", img: discoverHero },
-    { title: "Legislative Assistant", medianSalary: "~$60k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Compliance Officer", medianSalary: "~$95k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Judge (long-term)", medianSalary: "Varies", education: "JD + experience", schoolYears: "7+", img: discoverHero },
-    { title: "Public Administrator", medianSalary: "~$85k", education: "Bachelor’s/Master’s", schoolYears: "4–6", img: discoverHero },
+    { title: "Attorney", medianSalary: "~$135k", education: "JD", schoolYears: "7", blurb: "Advises clients and argues cases using research, writing, and negotiation." },
+    { title: "Policy Advisor", medianSalary: "~$90k", education: "Bachelor’s/Master’s", schoolYears: "4–6", blurb: "Develops policy ideas and briefs leaders on what to do next." },
+    { title: "Legislative Assistant", medianSalary: "~$60k", education: "Bachelor’s", schoolYears: "4", blurb: "Supports lawmakers with research, constituent work, and drafting documents." },
+    { title: "Compliance Officer", medianSalary: "~$95k", education: "Bachelor’s", schoolYears: "4", blurb: "Ensures organizations follow laws and policies; manages audits and risk." },
+    { title: "Judge (long-term)", medianSalary: "Varies", education: "JD + experience", schoolYears: "7+", blurb: "Presides over cases and makes rulings after years of legal practice." },
+    { title: "Public Administrator", medianSalary: "~$85k", education: "Bachelor’s/Master’s", schoolYears: "4–6", blurb: "Manages public programs and services—budgets, teams, and community outcomes." },
   ],
   Physics: [
-    { title: "Physicist", medianSalary: "~$130k", education: "PhD (often)", schoolYears: "8–10", img: discoverHero },
-    { title: "Aerospace Engineer", medianSalary: "~$120k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Medical Physicist", medianSalary: "~$150k", education: "Graduate + residency", schoolYears: "8+", img: discoverHero },
-    { title: "Research Scientist", medianSalary: "~$120k", education: "PhD (often)", schoolYears: "8–10", img: discoverHero },
-    { title: "Data Scientist", medianSalary: "~$125k", education: "Bachelor’s+ (often Master’s)", schoolYears: "4–6", img: discoverHero },
-    { title: "Energy Systems Analyst", medianSalary: "~$95k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
+    { title: "Physicist", medianSalary: "~$130k", education: "PhD (often)", schoolYears: "8–10", blurb: "Studies fundamental laws of nature through theory, experiments, and computation." },
+    { title: "Aerospace Engineer", medianSalary: "~$120k", education: "Bachelor’s", schoolYears: "4", blurb: "Designs flight systems and components using physics, materials, and testing." },
+    { title: "Medical Physicist", medianSalary: "~$150k", education: "Graduate + residency", schoolYears: "8+", blurb: "Works with radiation and imaging to support safe and effective treatment." },
+    { title: "Research Scientist", medianSalary: "~$120k", education: "PhD (often)", schoolYears: "8–10", blurb: "Runs investigations, publishes results, and builds new tools or methods." },
+    { title: "Data Scientist", medianSalary: "~$125k", education: "Bachelor’s+ (often Master’s)", schoolYears: "4–6", blurb: "Builds models and insights from data to solve complex real-world problems." },
+    { title: "Energy Systems Analyst", medianSalary: "~$95k", education: "Bachelor’s", schoolYears: "4", blurb: "Analyzes energy grids and systems to improve efficiency and reliability." },
   ],
   "Political Science": [
-    { title: "Policy Analyst", medianSalary: "~$85k", education: "Bachelor’s/Master’s", schoolYears: "4–6", img: discoverHero },
-    { title: "Campaign Manager", medianSalary: "Varies", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "International Relations Specialist", medianSalary: "~$90k", education: "Bachelor’s/Master’s", schoolYears: "4–6", img: discoverHero },
-    { title: "Public Affairs Specialist", medianSalary: "~$80k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Community Organizer", medianSalary: "~$55k", education: "Varies", schoolYears: "—", img: discoverHero },
-    { title: "Legislative Analyst", medianSalary: "~$75k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
+    { title: "Policy Analyst", medianSalary: "~$85k", education: "Bachelor’s/Master’s", schoolYears: "4–6", blurb: "Evaluates policies using research + data to recommend better decisions." },
+    { title: "Campaign Manager", medianSalary: "Varies", education: "Bachelor’s", schoolYears: "4", blurb: "Plans campaign strategy—messaging, fundraising, organizing, and outreach." },
+    { title: "International Relations Specialist", medianSalary: "~$90k", education: "Bachelor’s/Master’s", schoolYears: "4–6", blurb: "Works on global issues—diplomacy, policy research, and cross-cultural work." },
+    { title: "Public Affairs Specialist", medianSalary: "~$80k", education: "Bachelor’s", schoolYears: "4", blurb: "Communicates policy updates and builds public trust through media and messaging." },
+    { title: "Community Organizer", medianSalary: "~$55k", education: "Varies", schoolYears: "—", blurb: "Builds coalitions and mobilizes communities around shared goals." },
+    { title: "Legislative Analyst", medianSalary: "~$75k", education: "Bachelor’s", schoolYears: "4", blurb: "Reviews bills, summarizes impacts, and briefs decision-makers quickly." },
   ],
   Business: [
-    { title: "Entrepreneur", medianSalary: "Varies", education: "Varies", schoolYears: "—", img: discoverHero },
-    { title: "Marketing Manager", medianSalary: "~$115k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Financial Analyst", medianSalary: "~$95k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Project Manager", medianSalary: "~$105k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Management Consultant", medianSalary: "~$130k", education: "Bachelor’s+ (often MBA)", schoolYears: "4–6", img: discoverHero },
-    { title: "Product Manager", medianSalary: "~$130k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
+    { title: "Entrepreneur", medianSalary: "Varies", education: "Varies", schoolYears: "—", blurb: "Builds a business from idea to execution—customers, product, and growth." },
+    { title: "Marketing Manager", medianSalary: "~$115k", education: "Bachelor’s", schoolYears: "4", blurb: "Leads marketing strategy—campaigns, brand, analytics, and customer research." },
+    { title: "Financial Analyst", medianSalary: "~$95k", education: "Bachelor’s", schoolYears: "4", blurb: "Analyzes financials and forecasts to guide investments and business decisions." },
+    { title: "Project Manager", medianSalary: "~$105k", education: "Bachelor’s", schoolYears: "4", blurb: "Keeps projects on track—scope, timelines, risks, and stakeholders." },
+    { title: "Management Consultant", medianSalary: "~$130k", education: "Bachelor’s+ (often MBA)", schoolYears: "4–6", blurb: "Solves business problems for clients using analysis and structured strategy." },
+    { title: "Product Manager", medianSalary: "~$130k", education: "Bachelor’s", schoolYears: "4", blurb: "Owns product direction—user needs, roadmap, and cross-team execution." },
   ],
   Psychology: [
-    { title: "Clinical Psychologist", medianSalary: "~$95k", education: "PhD/PsyD", schoolYears: "8–10", img: discoverHero },
-    { title: "School Psychologist", medianSalary: "~$80k", education: "Specialist/Master’s", schoolYears: "6–7", img: discoverHero },
-    { title: "Therapist (LCSW/LMHC)", medianSalary: "~$65k", education: "Master’s", schoolYears: "6", img: discoverHero },
-    { title: "UX Researcher", medianSalary: "~$105k", education: "Bachelor’s/Master’s", schoolYears: "4–6", img: discoverHero },
-    { title: "Behavior Analyst", medianSalary: "~$75k", education: "Master’s", schoolYears: "6", img: discoverHero },
-    { title: "HR Specialist", medianSalary: "~$70k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
+    { title: "Clinical Psychologist", medianSalary: "~$95k", education: "PhD/PsyD", schoolYears: "8–10", blurb: "Assesses and treats mental health using therapy and evidence-based care." },
+    { title: "School Psychologist", medianSalary: "~$80k", education: "Specialist/Master’s", schoolYears: "6–7", blurb: "Supports student learning needs through evaluations and intervention planning." },
+    { title: "Therapist (LCSW/LMHC)", medianSalary: "~$65k", education: "Master’s", schoolYears: "6", blurb: "Provides counseling and support plans for individuals, couples, or groups." },
+    { title: "UX Researcher", medianSalary: "~$105k", education: "Bachelor’s/Master’s", schoolYears: "4–6", blurb: "Studies how people use products through interviews, tests, and insights." },
+    { title: "Behavior Analyst", medianSalary: "~$75k", education: "Master’s", schoolYears: "6", blurb: "Designs behavior plans and interventions, often in clinical or school settings." },
+    { title: "HR Specialist", medianSalary: "~$70k", education: "Bachelor’s", schoolYears: "4", blurb: "Supports hiring, onboarding, culture, and employee development." },
   ],
   "STEM/Enrichment": [
-    { title: "Research Intern (HS/Undergrad)", medianSalary: "Varies", education: "In progress", schoolYears: "—", img: discoverHero },
-    { title: "Robotics Builder", medianSalary: "Varies", education: "Varies", schoolYears: "—", img: discoverHero },
-    { title: "Hackathon Developer", medianSalary: "Varies", education: "Varies", schoolYears: "—", img: discoverHero },
-    { title: "STEM Program Mentor", medianSalary: "~$35–60k", education: "Varies", schoolYears: "—", img: discoverHero },
-    { title: "Science Communicator", medianSalary: "~$60k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Innovation Program Lead", medianSalary: "~$80k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
+    { title: "Research Intern (HS/Undergrad)", medianSalary: "Varies", education: "In progress", schoolYears: "—", blurb: "Assists in research—literature review, experiments, data cleaning, and posters." },
+    { title: "Robotics Builder", medianSalary: "Varies", education: "Varies", schoolYears: "—", blurb: "Builds and tests robots—mechanical, electrical, and iteration under deadlines." },
+    { title: "Hackathon Developer", medianSalary: "Varies", education: "Varies", schoolYears: "—", blurb: "Creates fast prototypes with a team—shipping an idea in 24–48 hours." },
+    { title: "STEM Program Mentor", medianSalary: "~$35–60k", education: "Varies", schoolYears: "—", blurb: "Mentors students in projects and skills, helping them grow confidence." },
+    { title: "Science Communicator", medianSalary: "~$60k", education: "Bachelor’s", schoolYears: "4", blurb: "Explains science clearly through writing, video, teaching, or outreach." },
+    { title: "Innovation Program Lead", medianSalary: "~$80k", education: "Bachelor’s", schoolYears: "4", blurb: "Runs workshops and programs that help teams turn ideas into real pilots." },
   ],
   "Public Service": [
-    { title: "Social Worker", medianSalary: "~$60k", education: "Bachelor’s/Master’s", schoolYears: "4–6", img: discoverHero },
-    { title: "Public Health Coordinator", medianSalary: "~$70k", education: "Bachelor’s/Master’s", schoolYears: "4–6", img: discoverHero },
-    { title: "Nonprofit Program Manager", medianSalary: "~$75k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Urban Planner", medianSalary: "~$85k", education: "Master’s", schoolYears: "6", img: discoverHero },
-    { title: "Community Outreach Specialist", medianSalary: "~$60k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Emergency Management Specialist", medianSalary: "~$90k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
+    { title: "Social Worker", medianSalary: "~$60k", education: "Bachelor’s/Master’s", schoolYears: "4–6", blurb: "Connects people to services and support while advocating for their needs." },
+    { title: "Public Health Coordinator", medianSalary: "~$70k", education: "Bachelor’s/Master’s", schoolYears: "4–6", blurb: "Coordinates programs that improve community health and access to care." },
+    { title: "Nonprofit Program Manager", medianSalary: "~$75k", education: "Bachelor’s", schoolYears: "4", blurb: "Plans and runs nonprofit programs—outcomes, logistics, partners, and budgets." },
+    { title: "Urban Planner", medianSalary: "~$85k", education: "Master’s", schoolYears: "6", blurb: "Designs community plans for housing, transportation, and public spaces." },
+    { title: "Community Outreach Specialist", medianSalary: "~$60k", education: "Bachelor’s", schoolYears: "4", blurb: "Builds relationships and awareness through events, partnerships, and communication." },
+    { title: "Emergency Management Specialist", medianSalary: "~$90k", education: "Bachelor’s", schoolYears: "4", blurb: "Plans responses for disasters and coordinates resources when emergencies happen." },
   ],
   "Sports & Entertainment": [
-    { title: "Sports Marketing Manager", medianSalary: "~$90k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Event Producer", medianSalary: "~$75k", education: "Bachelor’s/Portfolio", schoolYears: "2–4", img: discoverHero },
-    { title: "Sports Analyst", medianSalary: "~$85k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Content Creator", medianSalary: "Varies", education: "Portfolio", schoolYears: "—", img: discoverHero },
-    { title: "Talent Manager", medianSalary: "~$80k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
-    { title: "Broadcast Producer", medianSalary: "~$95k", education: "Bachelor’s", schoolYears: "4", img: discoverHero },
+    { title: "Sports Marketing Manager", medianSalary: "~$90k", education: "Bachelor’s", schoolYears: "4", blurb: "Promotes teams/events through campaigns, partnerships, and fan engagement." },
+    { title: "Event Producer", medianSalary: "~$75k", education: "Bachelor’s/Portfolio", schoolYears: "2–4", blurb: "Plans events end-to-end—logistics, vendors, schedules, and live execution." },
+    { title: "Sports Analyst", medianSalary: "~$85k", education: "Bachelor’s", schoolYears: "4", blurb: "Uses stats and video to evaluate performance and strategy." },
+    { title: "Content Creator", medianSalary: "Varies", education: "Portfolio", schoolYears: "—", blurb: "Creates social/video content that grows an audience through storytelling and consistency." },
+    { title: "Talent Manager", medianSalary: "~$80k", education: "Bachelor’s", schoolYears: "4", blurb: "Supports creators/athletes—contracts, branding, opportunities, and negotiation." },
+    { title: "Broadcast Producer", medianSalary: "~$95k", education: "Bachelor’s", schoolYears: "4", blurb: "Coordinates live/recorded shows—run of show, crew, timing, and delivery." },
   ],
 };
 
@@ -342,17 +351,12 @@ const DEFAULT_CAREERS = Array.from({ length: 6 }).map(() => ({
   medianSalary: "~$—",
   education: "Varies",
   schoolYears: "—",
-  img: discoverHero,
+  blurb: "A short preview of this career would appear here, along with a Learn more link.",
 }));
 
 const careerCardVariants = {
   rest: { y: 0, scale: 1, boxShadow: "0 12px 26px rgba(0,0,0,0.10)" },
   hover: { y: -8, scale: 1.02, boxShadow: "0 22px 45px rgba(75,156,211,0.22)" },
-};
-
-const careerImgVariants = {
-  rest: { scale: 1 },
-  hover: { scale: 1.08 },
 };
 
 const RESOURCE_NORMALIZE = (arr, categoryLabel) =>
@@ -580,9 +584,7 @@ export default function Discover() {
             <div style={styles.resultBox}>
               <div style={styles.resultKicker}>Your best-fit interest area</div>
               <div style={styles.resultTitle}>{resultInterest.toUpperCase()}</div>
-              <div style={styles.resultSub}>
-                These are example careers connected to your result. Your interests can lead to many different paths.
-              </div>
+              <div style={styles.resultSub}>These are example careers connected to your result. Your interests can lead to many different paths.</div>
               <div style={styles.resultActions}>
                 <button
                   type="button"
@@ -603,49 +605,48 @@ export default function Discover() {
             </div>
 
             <div className="discover-career-grid" style={styles.careerGrid}>
-              {(scored?.careers || DEFAULT_CAREERS).slice(0, 6).map((c) => (
-                <motion.div
-                  key={c.title}
-                  style={styles.careerCard}
-                  variants={careerCardVariants}
-                  initial="rest"
-                  animate="rest"
-                  whileHover="hover"
-                  transition={{ type: "spring", stiffness: 260, damping: 18 }}
-                >
-                  <div style={styles.careerImgWrap}>
-                    <motion.img
-                      src={c.img}
-                      alt={c.title}
-                      style={styles.careerImg}
-                      variants={careerImgVariants}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                    />
-                    <div style={styles.careerImgOverlay} />
-                    <div style={styles.careerGlow} />
-                  </div>
+              {(scored?.careers || DEFAULT_CAREERS).slice(0, 6).map((c) => {
+                const slug = slugify(c.title);
+                return (
+                  <motion.div
+                    key={c.title}
+                    style={styles.careerCard}
+                    variants={careerCardVariants}
+                    initial="rest"
+                    animate="rest"
+                    whileHover="hover"
+                    transition={{ type: "spring", stiffness: 260, damping: 18 }}
+                  >
+                    <div style={styles.careerBody}>
+                      <div style={styles.careerTitle}>{c.title}</div>
+                      <div style={styles.careerBlurb}>{c.blurb || "Learn what this role involves, what skills it uses, and how people get started."}</div>
 
-                  <div style={styles.careerBody}>
-                    <div style={styles.careerTitle}>{c.title}</div>
-                    <div style={styles.careerMeta}>
-                      <div style={styles.metaRow}>
-                        <span style={styles.metaKey}>Median Salary:</span>
-                        <span style={styles.metaVal}>{c.medianSalary}</span>
+                      <div style={styles.careerMeta}>
+                        <div style={styles.metaRow}>
+                          <span style={styles.metaKey}>Median Salary:</span>
+                          <span style={styles.metaVal}>{c.medianSalary}</span>
+                        </div>
+                        <div style={styles.metaRow}>
+                          <span style={styles.metaKey}>Education:</span>
+                          <span style={styles.metaVal}>{c.education}</span>
+                        </div>
+                        <div style={styles.metaRow}>
+                          <span style={styles.metaKey}>Years of School:</span>
+                          <span style={styles.metaVal}>{c.schoolYears}</span>
+                        </div>
                       </div>
-                      <div style={styles.metaRow}>
-                        <span style={styles.metaKey}>Education:</span>
-                        <span style={styles.metaVal}>{c.education}</span>
-                      </div>
-                      <div style={styles.metaRow}>
-                        <span style={styles.metaKey}>Years of School:</span>
-                        <span style={styles.metaVal}>{c.schoolYears}</span>
+
+                      <div style={styles.learnMoreRow}>
+                        <Link to={`/careers/${slug}`} style={styles.learnMoreLink}>
+                          Learn more →
+                        </Link>
                       </div>
                     </div>
-                  </div>
 
-                  <div style={styles.cardAccent} aria-hidden="true" />
-                </motion.div>
-              ))}
+                    <div style={styles.cardAccent} aria-hidden="true" />
+                  </motion.div>
+                );
+              })}
             </div>
 
             <div style={{ ...styles.card, marginTop: 4 }}>
@@ -706,11 +707,12 @@ export default function Discover() {
 
 const styles = {
   page: {
-    minHeight: "100vh",
+    minHeight: "calc(100vh - var(--header-h))",
     backgroundColor: COLORS.beige,
     paddingBottom: "32px",
     fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
     color: COLORS.text,
+    overflowX: "clip",
   },
   container: { maxWidth: "1200px", margin: "0 auto", padding: "0 20px", boxSizing: "border-box" },
 
@@ -835,27 +837,27 @@ const styles = {
     borderRadius: "18px",
     border: `1px solid ${COLORS.border}`,
     backgroundColor: COLORS.cardFill,
-    display: "grid",
-    gridTemplateRows: "150px 1fr",
     minHeight: 320,
     transformOrigin: "center",
   },
-  careerImgWrap: { position: "relative", width: "100%", height: 150, overflow: "hidden" },
-  careerImg: { width: "100%", height: "100%", objectFit: "cover", display: "block" },
-  careerImgOverlay: { position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.32)" },
-  careerGlow: {
-    position: "absolute",
-    inset: -40,
-    background: "radial-gradient(circle at 40% 30%, rgba(75,156,211,0.35), rgba(0,0,0,0) 55%)",
-    mixBlendMode: "screen",
-    pointerEvents: "none",
-  },
-  careerBody: { padding: "14px 14px 16px" },
-  careerTitle: { fontWeight: 950, fontSize: "1.06rem", color: COLORS.text, marginBottom: 10 },
-  careerMeta: { display: "grid", gap: 8 },
+  careerBody: { padding: "14px 14px 16px", display: "grid", gap: 10 },
+  careerTitle: { fontWeight: 950, fontSize: "1.06rem", color: COLORS.text, marginBottom: 2 },
+  careerBlurb: { color: COLORS.textSoft, fontWeight: 650, lineHeight: 1.45, fontSize: "0.95rem" },
+  careerMeta: { display: "grid", gap: 8, marginTop: 2 },
   metaRow: { display: "flex", justifyContent: "space-between", gap: 12 },
   metaKey: { color: "#374151", fontWeight: 800 },
   metaVal: { color: COLORS.text, fontWeight: 900, textAlign: "right" },
+
+  learnMoreRow: { marginTop: 4, display: "flex", justifyContent: "flex-end" },
+  learnMoreLink: {
+    textDecoration: "none",
+    fontWeight: 950,
+    color: COLORS.carolinaBlue,
+    padding: "8px 10px",
+    borderRadius: "12px",
+    border: "1px solid rgba(75,156,211,0.25)",
+    backgroundColor: "rgba(75,156,211,0.08)",
+  },
 
   cardAccent: {
     position: "absolute",
@@ -1087,7 +1089,7 @@ const mediaCss = `
 
 (function injectMediaOnce() {
   if (typeof document === "undefined") return;
-  const id = "discover-media-css-v3";
+  const id = "discover-media-css-v4";
   if (document.getElementById(id)) return;
   const s = document.createElement("style");
   s.id = id;
