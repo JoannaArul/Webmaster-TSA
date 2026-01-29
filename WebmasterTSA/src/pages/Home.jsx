@@ -197,7 +197,7 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
 
           const endSafe = Math.max(end, start + 0.8);
           const isActive = activeIndex === idx;
-          const bump = isActive ? 8 : 0;
+          const bump = isActive ? 7 : 0;
 
           const midAngle = (start + endSafe) / 2;
           const offset = polarToCartesian(r, r, bump, midAngle);
@@ -213,12 +213,15 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
           const d = `${outerArc} L ${innerEnd.x} ${innerEnd.y} ${innerArc} L ${innerStart.x} ${innerStart.y} Z`;
 
           return (
-            <path
+            <motion.path
               key={slice.label}
               d={d}
               fill={slice.color}
               stroke="rgba(0,0,0,0.08)"
               strokeWidth="1"
+              initial={false}
+              animate={{ x: dx, y: dy }}
+              transition={{ type: "spring", stiffness: 260, damping: 26, mass: 0.7 }}
               onMouseEnter={() => onHoverIndex(idx)}
               onMouseLeave={() => onHoverIndex(null)}
               onPointerEnter={(e) => {
@@ -234,17 +237,13 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
                 if (e.pointerType === "touch") onHoverIndex(null);
               }}
               style={{
-                transition: "transform 260ms ease, filter 220ms ease",
+                transition: "filter 220ms ease",
                 filter: isActive ? "brightness(1.03) saturate(1.08)" : "none",
                 cursor: "default",
-                transform: `translate(${dx}px, ${dy}px)`,
-                transformBox: "fill-box",
-                transformOrigin: "center",
-                willChange: "transform",
               }}
             >
               <title>{`${slice.label}: ${slice.value}`}</title>
-            </path>
+            </motion.path>
           );
         })}
       </g>
@@ -270,6 +269,7 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
     </svg>
   );
 }
+
 
 const reveal = {
   hidden: { opacity: 0, y: 14 },
