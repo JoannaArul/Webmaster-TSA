@@ -1,12 +1,10 @@
+import { motion } from "framer-motion";
 import referenceHero from "../assets/ReferenceImage.jpg";
 
 const COLORS = {
   carolinaBlue: "#4B9CD3",
   beige: "#F5FCEF",
   beigeLight: "#FAFFF6",
-  text: "#000000",
-  gray: "#494A48",
-  white: "#FFFFFF",
   black: "#000000",
 };
 
@@ -51,15 +49,13 @@ export default function Documentation() {
     page: {
       minHeight: "calc(100vh - var(--header-h))",
       backgroundColor: COLORS.beige,
-      fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
-      color: COLORS.text,
+      fontFamily: 'Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
       overflowX: "clip",
     },
     hero: {
       position: "relative",
       width: "100%",
       height: "clamp(220px, 36vw, 420px)",
-      borderRadius: 0,
       overflow: "hidden",
     },
     heroImg: {
@@ -98,7 +94,7 @@ export default function Documentation() {
       fontSize: "clamp(14px, 1.6vw, 18px)",
       lineHeight: 1.6,
       color: "rgba(255,255,255,0.92)",
-      fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+      fontFamily: 'Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
     },
     wrap: {
       width: "min(1050px, 92vw)",
@@ -182,7 +178,12 @@ export default function Documentation() {
   };
 
   return (
-    <div style={styles.page}>
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      style={styles.page}
+    >
       <div style={styles.hero}>
         <img src={referenceHero} alt="References hero" style={styles.heroImg} />
         <div style={styles.heroOverlay} />
@@ -259,6 +260,6 @@ export default function Documentation() {
           </div>
         </section>
       </div>
-    </div>
+    </motion.div>
   );
 }
