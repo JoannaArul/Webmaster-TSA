@@ -150,10 +150,7 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
 
   const polarToCartesian = (cx, cy, radius, angleDeg) => {
     const angleRad = ((angleDeg - 90) * Math.PI) / 180;
-    return {
-      x: cx + radius * Math.cos(angleRad),
-      y: cy + radius * Math.sin(angleRad),
-    };
+    return { x: cx + radius * Math.cos(angleRad), y: cy + radius * Math.sin(angleRad) };
   };
 
   const describeArc = (cx, cy, radius, startAngle, endAngle) => {
@@ -197,9 +194,10 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
 
           const endSafe = Math.max(end, start + 0.8);
           const isActive = activeIndex === idx;
-          const bump = isActive ? 7 : 0;
 
           const midAngle = (start + endSafe) / 2;
+
+          const bump = isActive ? 7 : 0;
           const offset = polarToCartesian(r, r, bump, midAngle);
           const dx = offset.x - r;
           const dy = offset.y - r;
@@ -213,17 +211,11 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
           const d = `${outerArc} L ${innerEnd.x} ${innerEnd.y} ${innerArc} L ${innerStart.x} ${innerStart.y} Z`;
 
           return (
-            <motion.path
+            <motion.g
               key={slice.label}
-              d={d}
-              fill={slice.color}
-              stroke="rgba(0,0,0,0.08)"
-              strokeWidth="1"
               initial={false}
               animate={{ x: dx, y: dy }}
               transition={{ type: "spring", stiffness: 260, damping: 26, mass: 0.7 }}
-              onMouseEnter={() => onHoverIndex(idx)}
-              onMouseLeave={() => onHoverIndex(null)}
               onPointerEnter={(e) => {
                 if (e.pointerType !== "touch") onHoverIndex(idx);
               }}
@@ -236,14 +228,20 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
               onPointerUp={(e) => {
                 if (e.pointerType === "touch") onHoverIndex(null);
               }}
-              style={{
-                transition: "filter 220ms ease",
-                filter: isActive ? "brightness(1.03) saturate(1.08)" : "none",
-                cursor: "default",
-              }}
             >
-              <title>{`${slice.label}: ${slice.value}`}</title>
-            </motion.path>
+              <path
+                d={d}
+                fill={slice.color}
+                stroke="rgba(0,0,0,0.08)"
+                strokeWidth="1"
+                style={{
+                  transition: "filter 220ms ease",
+                  filter: isActive ? "brightness(1.03) saturate(1.08)" : "none",
+                }}
+              >
+                <title>{`${slice.label}: ${slice.value}`}</title>
+              </path>
+            </motion.g>
           );
         })}
       </g>
@@ -269,6 +267,7 @@ function PieChart({ data, size = 420, innerRatio = 0.6, activeIndex, onHoverInde
     </svg>
   );
 }
+
 
 
 const reveal = {
