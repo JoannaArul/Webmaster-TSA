@@ -325,7 +325,7 @@ export default function Home() {
 
     const ro = new ResizeObserver((entries) => {
       const w = entries[0]?.contentRect?.width || 420;
-      const next = Math.max(240, Math.min(420, Math.floor(w)));
+      const next = Math.max(240, Math.min(420, Math.floor(w * 0.95)));
       setChartSize(next);
     });
 
@@ -600,7 +600,7 @@ export default function Home() {
           <div style={styles.snapshotTop}>
             <h2 style={styles.snapshotTitle}>The Nexus Resource Mix</h2>
             <p style={styles.snapshotSub}>
-              Our approach to sending resources is simple: organize opportunities clearly, show what’s most available, and spotlight where the
+              Our approach to sending resources is simple: organize opportunities clearly, show what's most available, and spotlight where the
               Triangle could benefit from more support.
             </p>
           </div>
@@ -610,7 +610,7 @@ export default function Home() {
               <div style={styles.snapshotInfoTitle}>Our Hub</div>
               <p style={styles.snapshotInfoText}>
                 Nexus brings together programs, scholarships, events, and support services in one place. This snapshot shows how resources are
-                currently distributed across categories so residents can browse smarter and understand what’s available at a glance.
+                currently distributed across categories so residents can browse smarter and understand what's available at a glance.
               </p>
 
               <div style={styles.snapshotStatRow}>
@@ -1251,23 +1251,25 @@ const styles = {
   snapshotChartCard: {
     backgroundColor: "rgba(255,255,255,0.30)",
     borderRadius: "18px",
-    padding: "18px",
+    padding: "22px",
     boxShadow: "0 18px 40px rgba(0,0,0,0.10)",
     border: "1px solid rgba(0,0,0,0.06)",
     display: "grid",
     gap: "16px",
     justifyItems: "center",
+    overflow: "hidden",
   },
   snapshotChartWrap: {
-    width: "min(460px, 92vw)",
-    maxWidth: "100%",
+    width: "100%",
+    maxWidth: "460px",
     display: "grid",
     placeItems: "center",
     overflow: "hidden",
   },
 
   snapshotLegend: {
-    width: "min(520px, 95%)",
+    width: "100%",
+    maxWidth: "520px",
     display: "grid",
     gap: "8px",
     marginTop: "6px",
