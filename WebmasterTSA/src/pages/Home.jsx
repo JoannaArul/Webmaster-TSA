@@ -439,9 +439,9 @@ export default function Home() {
           <h2 style={styles.missionTitle}>Our Mission</h2>
 
           <p style={styles.missionText}>
-            At Nexus, we believe that access to community resources should be clear, welcoming, and easy to navigate.
-            Our mission is to connect residents across the Research Triangle with opportunities and support—so finding
-            help, programs, and pathways feels simple, empowering, and inclusive.
+            At Nexus, we believe that access to community resources should be clear, welcoming, and easy to navigate. Our
+            mission is to connect residents across the Research Triangle with opportunities and support—so finding help,
+            programs, and pathways feels simple, empowering, and inclusive.
           </p>
 
           <button
@@ -481,81 +481,61 @@ export default function Home() {
 
           <div style={styles.hubCarouselStage}>
             <div style={{ ...styles.hubGhostCard, ...styles.hubGhostLeft }}>
-              <div
-                style={{
-                  ...styles.hubGhostImg,
-                  ...(prevImg ? { backgroundImage: `url(${prevImg})` } : {}),
-                }}
-              />
+              <div style={{ ...styles.hubGhostImg, ...(prevImg ? { backgroundImage: `url(${prevImg})` } : {}) }} />
               <div style={styles.hubGhostTitle}>{prevItem?.name || ""}</div>
             </div>
 
             <div style={{ ...styles.hubGhostCard, ...styles.hubGhostRight }}>
-              <div
-                style={{
-                  ...styles.hubGhostImg,
-                  ...(nextImg ? { backgroundImage: `url(${nextImg})` } : {}),
-                }}
-              />
+              <div style={{ ...styles.hubGhostImg, ...(nextImg ? { backgroundImage: `url(${nextImg})` } : {}) }} />
               <div style={styles.hubGhostTitle}>{nextItem?.name || ""}</div>
             </div>
 
             <div style={styles.hubCenterMask} aria-hidden="true" />
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`${current?.name}-${active}-hub`}
-                initial={{ opacity: 0, y: 10, scale: 0.985 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.985 }}
-                transition={{ duration: 0.42, ease: "easeOut" }}
-                style={styles.hubCard}
-              >
-                <div
-                  style={{
-                    ...styles.hubImg,
-                    ...(currentImg ? { backgroundImage: `url(${currentImg})` } : {}),
-                  }}
+            <div style={styles.hubCardStack}>
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={`${current?.name}-${active}-hub`}
+                  layout
+                  initial={{ opacity: 0, x: 26, scale: 0.995 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -26, scale: 0.995 }}
+                  transition={{ duration: 0.42, ease: "easeOut" }}
+                  style={styles.hubCard}
                 >
-                  <div style={styles.hubImgOverlay} />
-                </div>
-
-                <div style={styles.hubCardBody}>
-                  <div style={styles.hubCardTopRow}>
-                    <div style={styles.hubCardName}>{current?.name}</div>
-                    {current?.category ? <div style={styles.hubChip}>{current.category}</div> : null}
+                  <div style={{ ...styles.hubImg, ...(currentImg ? { backgroundImage: `url(${currentImg})` } : {}) }}>
+                    <div style={styles.hubImgOverlay} />
                   </div>
 
-                  <div style={styles.hubCardMeta}>
-                    {Array.isArray(current?.cities) && current.cities.length ? current.cities.join(", ") : ""}
-                    {current?.interest ? ` • ${current.interest}` : ""}
+                  <div style={styles.hubCardBody}>
+                    <div style={styles.hubCardTopRow}>
+                      <div style={styles.hubCardName}>{current?.name}</div>
+                      {current?.category ? <div style={styles.hubChip}>{current.category}</div> : null}
+                    </div>
+
+                    <div style={styles.hubCardMeta}>
+                      {Array.isArray(current?.cities) && current.cities.length ? current.cities.join(", ") : ""}
+                      {current?.interest ? ` • ${current.interest}` : ""}
+                    </div>
+
+                    <div style={styles.hubCardDesc}>{current?.description || ""}</div>
+
+                    <div style={styles.hubCardActions}>
+                      {current?.link ? (
+                        <a href={current.link} target="_blank" rel="noreferrer" style={styles.hubVisit}>
+                          Visit Resource →
+                        </a>
+                      ) : null}
+                    </div>
                   </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-                  <div style={styles.hubCardDesc}>{current?.description || ""}</div>
-
-                  <div style={styles.hubCardActions}>
-                    {current?.link ? (
-                      <a href={current.link} target="_blank" rel="noreferrer" style={styles.hubVisit}>
-                        Visit Resource →
-                      </a>
-                    ) : null}
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            <button
-              style={{ ...styles.hubArrow, ...styles.hubArrowLeft }}
-              onClick={prev}
-              aria-label="Previous featured resource"
-            >
+            <button style={{ ...styles.hubArrow, ...styles.hubArrowLeft }} onClick={prev} aria-label="Previous featured resource">
               ←
             </button>
-            <button
-              style={{ ...styles.hubArrow, ...styles.hubArrowRight }}
-              onClick={next}
-              aria-label="Next featured resource"
-            >
+            <button style={{ ...styles.hubArrow, ...styles.hubArrowRight }} onClick={next} aria-label="Next featured resource">
               →
             </button>
 
@@ -594,9 +574,9 @@ export default function Home() {
             <div style={styles.snapshotInfoCard}>
               <div style={styles.snapshotInfoTitle}>Our Hub</div>
               <p style={styles.snapshotInfoText}>
-                Nexus brings together programs, scholarships, events, and support services in one place. This snapshot
-                shows how resources are currently distributed across categories so residents can browse smarter and
-                understand what’s available at a glance.
+                Nexus brings together programs, scholarships, events, and support services in one place. This snapshot shows
+                how resources are currently distributed across categories so residents can browse smarter and understand what’s
+                available at a glance.
               </p>
 
               <div style={styles.snapshotStatRow}>
@@ -645,14 +625,14 @@ export default function Home() {
 
 const styles = {
   page: {
-  margin: 0,
-  padding: 0,
-  minHeight: "calc(100vh - var(--header-h))",
-  backgroundColor: COLORS.beige,
-  width: "100%",
-  overflowX: "clip",
-  overflowY: "visible",
-  fontFamily: "var(--font-body)",
+    margin: 0,
+    padding: 0,
+    minHeight: "calc(100vh - var(--header-h))",
+    backgroundColor: COLORS.beige,
+    width: "100%",
+    overflowX: "clip",
+    overflowY: "visible",
+    fontFamily: "var(--font-body)",
   },
 
   heroWrap: {
@@ -948,7 +928,7 @@ const styles = {
     marginTop: "48px",
     display: "grid",
     placeItems: "center",
-    padding: "30px 0 44px 0",
+    padding: "30px 0 56px 0",
     overflow: "hidden",
     isolation: "isolate",
   },
@@ -993,26 +973,37 @@ const styles = {
     textAlign: "left",
   },
 
+  hubCardStack: {
+    position: "relative",
+    width: "620px",
+    maxWidth: "86vw",
+    zIndex: 3,
+  },
+
   hubCard: {
     position: "relative",
     zIndex: 3,
-    width: "620px",
-    maxWidth: "86vw",
+    width: "100%",
     borderRadius: "18px",
     backgroundColor: COLORS.beige,
     color: COLORS.text,
     overflow: "hidden",
     boxShadow: "0 26px 60px rgba(0,0,0,0.45)",
     border: "1px solid rgba(0,0,0,0.08)",
+    display: "flex",
+    flexDirection: "column",
   },
+
   hubImg: {
-    height: "190px",
+    height: "clamp(150px, 24vw, 190px)",
+    flex: "0 0 auto",
     background: "linear-gradient(135deg, rgba(75,156,211,0.30), rgba(73,74,72,0.12))",
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     position: "relative",
   },
+
   hubImgOverlay: {
     position: "absolute",
     inset: 0,
@@ -1022,6 +1013,9 @@ const styles = {
   hubCardBody: {
     padding: "18px 18px 16px 18px",
     textAlign: "left",
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
   },
   hubCardTopRow: {
     display: "flex",
@@ -1048,25 +1042,24 @@ const styles = {
     whiteSpace: "nowrap",
   },
   hubCardMeta: {
-    marginTop: "6px",
     fontFamily: "var(--font-body)",
     fontSize: "0.95rem",
     color: COLORS.gray,
   },
   hubCardDesc: {
-    marginTop: "12px",
     fontFamily: "var(--font-body)",
     color: COLORS.textSoft,
     lineHeight: 1.65,
     fontSize: "1.0rem",
+    maxHeight: "clamp(96px, 18vh, 170px)",
+    overflowY: "auto",
+    paddingRight: "6px",
   },
   hubCardActions: {
-    marginTop: "14px",
     display: "flex",
     justifyContent: "flex-end",
-    gap: "12px",
     alignItems: "center",
-    flexWrap: "wrap",
+    marginTop: "2px",
   },
   hubVisit: {
     textDecoration: "none",
@@ -1099,7 +1092,7 @@ const styles = {
 
   hubDotsRow: {
     position: "absolute",
-    bottom: "0px",
+    bottom: "10px",
     display: "flex",
     gap: "10px",
     justifyContent: "center",
