@@ -20,10 +20,10 @@ export default function Footer() {
         <div style={styles.col}>
           <div style={styles.colHeader}>Links</div>
           <a style={styles.link} href="/">Home</a>
-          <a style={styles.link} href="/mission">Our Mission</a>
-          <a style={styles.link} href="/resource-hub">The Hub</a>
-          <a style={styles.link} href="/build-the-hub">Grow the Hub</a>
-          <a style={styles.link} href="/find-ecs">Discover</a>
+          <a style={styles.link} href="/our-mission">Our Mission</a>
+          <a style={styles.link} href="/the-hub">The Hub</a>
+          <a style={styles.link} href="/grow-the-hub">Grow the Hub</a>
+          <a style={styles.link} href="/discover">Discover</a>
           <a style={styles.link} href="/reference-page">Reference Page</a>
         </div>
 
