@@ -23,6 +23,9 @@ export default function Documentation() {
   ];
 
   const mla = [
+    "BigFuture by College Board. “10 Jobs for Engineering Majors.” BigFuture, College Board, bigfuture.collegeboard.org/explore-careers/get-started/career-paths-for-popular-majors/10-jobs-engineering-majors. Accessed 29 Jan. 2026.",
+    "BigFuture by College Board. “7 Jobs for Political Science Majors.” BigFuture, College Board, bigfuture.collegeboard.org/explore-careers/get-started/career-paths-for-popular-majors/7-jobs-political-science-majors. Accessed 29 Jan. 2026.",
+    "Coursera. “Jobs for English Majors.” Coursera, www.coursera.org/articles/jobs-for-english-majors. Accessed 29 Jan. 2026.",
     "Freepik. Authentic book club scene. Freepik, www.freepik.com/free-photo/authentic-book-club-scene_37155647.htm. Accessed 28 Jan. 2026.",
     "Freepik. Business company concept. Freepik, www.freepik.com/free-photo/business-company-concept_238033824.htm. Accessed 28 Jan. 2026.",
     "Freepik. Business concept with wooden blocks with icons and green plant. Freepik, www.freepik.com/free-photo/business-concept-with-wooden-blocks-with-icons-green-plant_10183577.htm. Accessed 28 Jan. 2026.",
@@ -31,6 +34,17 @@ export default function Documentation() {
     "Freepik. Medium shot of people hugging. Freepik, www.freepik.com/free-photo/medium-shot-people-hugging_20550523.htm. Accessed 28 Jan. 2026.",
     "Freepik. Ottawa street. Freepik, www.freepik.com/free-photo/ottawa-street_26923665.htm. Accessed 28 Jan. 2026.",
     "Freepik. Team of college students working on a business management project. Freepik, www.freepik.com/free-photo/team-college-students-working-project-related-business-management_416754949.htm. Accessed 28 Jan. 2026.",
+    "Graduate Programs at Northeastern University. “Best Math Careers.” Northeastern University, graduate.northeastern.edu/knowledge-hub/best-math-careers/. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. “Bachelor’s Degree in Education Jobs.” Indeed, www.indeed.com/career-advice/finding-a-job/bachelors-degree-in-education-jobs. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. “Biology Degree Jobs.” Indeed, www.indeed.com/career-advice/finding-a-job/biology-degree-jobs. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. “Careers in Sports.” Indeed, www.indeed.com/career-advice/career-development/careers-in-sports. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. “Computer Scientist Degree.” Indeed, www.indeed.com/career-advice/finding-a-job/computer-scientist-degree. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. “Environmental Science Degree Jobs.” Indeed, www.indeed.com/career-advice/finding-a-job/environmental-science-degree-jobs. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. “Jobs for Art Majors.” Indeed, www.indeed.com/career-advice/finding-a-job/jobs-with-an-art-degree. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. “Jobs for Business Majors.” Indeed, www.indeed.com/career-advice/finding-a-job/jobs-for-business-majors. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. “Law Degree Government Jobs.” Indeed, www.indeed.com/career-advice/finding-a-job/law-degree-government-jobs. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. “Public Service Degree Jobs.” Indeed, www.indeed.com/career-advice/finding-a-job/public-service-degree-jobs. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. “Top Chemistry Degree Jobs.” Indeed, www.indeed.com/career-advice/finding-a-job/top-chemistry-degree-jobs. Accessed 29 Jan. 2026.",
     "In Education Online. “Importance of Extracurricular Activities.” In Education Online, 5 Sept. 2024, ineducationonline.org/2024/09/05/importance-of-extracurricular-activities/. Accessed 28 Jan. 2026.",
     "Pexels. A volunteer giving charity to children. Pexels, www.pexels.com/photo/a-volunteer-giving-charity-to-children-9090746/. Accessed 28 Jan. 2026.",
     "Pexels. Children walking with UNICEF backpacks. Pexels, www.pexels.com/photo/children-walking-with-unicef-backpacks-12886800/. Accessed 28 Jan. 2026.",
@@ -41,6 +55,9 @@ export default function Documentation() {
     "Pixabay. Mentor, school, students, college. Pixabay, pixabay.com/photos/mentor-school-students-college-3512369/. Accessed 28 Jan. 2026.",
     "Pixabay. NC State, North Carolina State. Pixabay, pixabay.com/photos/nc-state-north-carolina-state-5287789/. Accessed 28 Jan. 2026.",
     "Pixabay. Pen, notebook, notepad, diary. Pixabay, pixabay.com/photos/pen-notebook-notepad-diary-4337521/. Accessed 28 Jan. 2026.",
+    "Superprof. “Career Prospects in Physics.” Superprof, www.superprof.com/blog/career-prospects-physics/. Accessed 29 Jan. 2026.",
+    "U.S. News & World Report. “Best STEM Jobs.” U.S. News & World Report, careers.usnews.com/best-jobs/rankings/best-stem-jobs. Accessed 29 Jan. 2026.",
+    "University of North Dakota. “Highest-Paying Jobs with a Psychology Degree.” UND Today, und.edu/blog/highest-paying-jobs-with-a-psychology-degree.html. Accessed 29 Jan. 2026.",
     "Unsplash. A person placing a block into a pile of wooden blocks. Unsplash, unsplash.com/photos/a-person-placing-a-block-into-a-pile-of-wooden-blocks-bTMTggEt5s4. Accessed 28 Jan. 2026.",
     "Unsplash. Person in red sweater holding baby’s hand. Unsplash, unsplash.com/photos/person-in-red-sweater-holding-babys-hand-Zyx1bK9mqmA. Accessed 28 Jan. 2026.",
   ];
