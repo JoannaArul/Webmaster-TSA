@@ -233,7 +233,7 @@ export default function Mission() {
       {
         title: "Equity",
         backText:
-          "A commitment to highlighting inclusive and accessible resources, with special attention to opportunities that are open regardless of immigration status, financial background, or prior experience.",
+          "A commitment to highlighting inclusive and accessible resources, with special attention to opportunities that are open regardless of immigration status.",
       },
       {
         title: "Community",
@@ -256,10 +256,10 @@ export default function Mission() {
           </h1>
 
           <div style={styles.heroActions}>
-            <button style={styles.primaryBtn} onClick={() => navigate("/resource-hub")}>
+            <button style={styles.primaryBtn} onClick={() => navigate("/the-hub")}>
               Explore Resources
             </button>
-            <button style={styles.secondaryBtn} onClick={() => navigate("/add-resource")}>
+            <button style={styles.secondaryBtn} onClick={() => navigate("/grow-the-hub")}>
               Add a Resource
             </button>
           </div>
@@ -326,8 +326,8 @@ export default function Mission() {
             <h2 style={styles.discoveryTitle}>Designing for Discovery</h2>
 
             <p style={styles.discoveryIntro}>
-              Hover over each screen below to see how Nexus turns curiosity into momentum—helping students
-              and families uncover what’s available, understand what fits, and take the next step with
+              Hover over each screen below to see how Nexus turns curiosity into momentum. We help students
+              and families uncover what’s available and understand what fits, allowing them to take the next step with
               confidence.
             </p>
 

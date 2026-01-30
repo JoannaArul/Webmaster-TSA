@@ -15,11 +15,11 @@ export default function Documentation() {
   ];
 
   const tools = [
-    { name: "Github", desc: "This was used to host code repository", href: "https://github.com/" },
-    { name: "Visual Studio Code", desc: "Integrated Development Environment", href: "https://code.visualstudio.com/" },
+    { name: "Github", desc: "This was used to host code repository.", href: "https://github.com/" },
+    { name: "Visual Studio Code", desc: "This was our integrated development environment.", href: "https://code.visualstudio.com/" },
     { name: "Vercel", desc: "This was utilized only for website hosting and not to generate pre-built sites", href: "https://vercel.com/" },
     { name: "Formspree", desc: "This tool was utilized for form submission.", href: "https://formspree.io/" },
-    { name: "Canva", desc: "This was created to create our logo and for Canva free images.", href: "https://www.canva.com/" },
+    { name: "Canva", desc: "This was used to create our logo and for Canva free images.", href: "https://www.canva.com/" },
   ];
 
   const mla = [

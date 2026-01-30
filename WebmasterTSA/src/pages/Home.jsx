@@ -409,7 +409,7 @@ export default function Home() {
                 style={{ ...styles.primaryButton, ...(hoverPrimary ? styles.buttonHover : {}) }}
                 onMouseEnter={() => setHoverPrimary(true)}
                 onMouseLeave={() => setHoverPrimary(false)}
-                onClick={() => navigate("/resource-hub")}
+                onClick={() => navigate("/the-hub")}
               >
                 Explore Resources
               </button>
@@ -418,7 +418,7 @@ export default function Home() {
                 style={{ ...styles.secondaryButton, ...(hoverSecondary ? styles.buttonHover : {}) }}
                 onMouseEnter={() => setHoverSecondary(true)}
                 onMouseLeave={() => setHoverSecondary(false)}
-                onClick={() => navigate("/add-resource")}
+                onClick={() => navigate("/grow-the-hub")}
               >
                 Request/Add Resources
               </button>
@@ -475,15 +475,15 @@ export default function Home() {
 
           <p style={styles.missionText}>
             At Nexus, we believe that access to community resources should be clear, welcoming, and easy to navigate. Our mission is to
-            connect residents across the Research Triangle with opportunities and support—so finding help, programs, and pathways feels
-            simple, empowering, and inclusive.
+            connect residents across the Research Triangle with opportunities and support, so finding help, programs, and pathways feels
+            simple and inclusive.
           </p>
 
           <button
             style={{ ...styles.missionBtn, ...(hoverMission ? styles.missionBtnHover : {}) }}
             onMouseEnter={() => setHoverMission(true)}
             onMouseLeave={() => setHoverMission(false)}
-            onClick={() => navigate("/mission")}
+            onClick={() => navigate("/our-mission")}
           >
             Read more →
           </button>
@@ -509,7 +509,7 @@ export default function Home() {
             style={{ ...styles.hubBtn, ...(hoverHubBtn ? styles.hubBtnHover : {}) }}
             onMouseEnter={() => setHoverHubBtn(true)}
             onMouseLeave={() => setHoverHubBtn(false)}
-            onClick={() => navigate("/resource-hub")}
+            onClick={() => navigate("/the-hub")}
           >
             View Full Hub
           </button>

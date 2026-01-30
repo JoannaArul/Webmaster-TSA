@@ -27,8 +27,8 @@ import ResourceHubBg from "../assets/ResourceHubBackground.jpg";
 const COLORS = {
   carolinaBlue: "#4B9CD3",
   headerGray: "#494A48",
-  beige: "#F5FCEF", // background of curved areas / page
-  cardBg: "#FAFFF6", // inside filter boxes
+  beige: "#F5FCEF", 
+  cardBg: "#FAFFF6", 
   text: "#000000",
   border: "#DCE7D1",
 };
@@ -199,7 +199,7 @@ export default function ResourceHub() {
           .nexus-track { animation: none; }
         }
 
-        /* ✅ Responsive resource grid */
+        /*  Responsive resource grid */
         @media (max-width: 980px) {
           .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
         }
@@ -207,7 +207,7 @@ export default function ResourceHub() {
           .resource-grid { grid-template-columns: 1fr !important; }
         }
 
-        /* ✅ Make FilterBar "inner boxes" lighter background (#FAFFF6) */
+        /*  Make FilterBar "inner boxes" lighter background (#FAFFF6) */
         .filterbar, .filter-bar, .filters, .filterWrap, .filter-wrap,
         .filterCard, .filter-card, .filterSection, .filter-section,
         .filterGroup, .filter-group {
@@ -220,7 +220,7 @@ export default function ResourceHub() {
           background: ${COLORS.cardBg} !important;
         }
 
-        /* ✅ Make SEARCH button Carolina blue (covers common button patterns) */
+        /*  Make SEARCH button Carolina blue (covers common button patterns) */
         .filters button,
         .filter-bar button,
         .filterbar button,
@@ -234,7 +234,7 @@ export default function ResourceHub() {
           color: ${COLORS.beige} !important;
         }
 
-        /* ✅ Keep "Visit Resource" as a link (not a button) */
+        /*  Keep "Visit Resource" as a link (not a button) */
         a.visit,
         a.visitResource,
         .visit-resource,
@@ -247,7 +247,7 @@ export default function ResourceHub() {
         }
       `}</style>
 
-      {/* ✅ FULL-WIDTH HERO with IMAGE + BLACK OVERLAY */}
+      {/*  FULL-WIDTH HERO with IMAGE + BLACK OVERLAY */}
       <section style={hero.fullBleed}>
         <div style={hero.bgImage} />
         <div style={hero.overlay} />
@@ -259,11 +259,10 @@ export default function ResourceHub() {
             </span>
           </h1>
 
-          {/* ✅ only this text changed to white */}
           <p style={hero.subWhite}>
             Search local resources in one place with Nexus. Filter by type, city,
             area of interest, grade level, and eligibility to find programs,
-            scholarships, volunteering, nonprofits, and support services.
+            scholarships, volunteering, nonprofits, support services, and more.
           </p>
 
           <div style={hero.statRow}>
@@ -284,7 +283,6 @@ export default function ResourceHub() {
           </div>
         </div>
 
-        {/* ✅ Moving category row */}
         <div style={hero.bottomArea}>
           <div className="nexus-marquee">
             <div className="nexus-track" style={carousel.track}>
@@ -318,7 +316,6 @@ export default function ResourceHub() {
         </div>
       </section>
 
-      {/* keep the rest the same */}
       <div style={styles.container}>
         <div style={styles.filtersWrap}>
           <FilterBar
@@ -398,7 +395,6 @@ const hero = {
     borderBottom: `1px solid ${COLORS.border}`,
     overflow: "hidden",
   },
-  // ✅ background image layer
   bgImage: {
     position: "absolute",
     inset: 0,
@@ -409,7 +405,7 @@ const hero = {
     transform: "scale(1.02)",
     zIndex: 0,
   },
-  // ✅ black overlay
+
   overlay: {
     position: "absolute",
     inset: 0,
@@ -432,7 +428,6 @@ const hero = {
     fontWeight: 900,
     fontFamily: '"Merriweather", serif',
   },
-  // ✅ only subtext is white now
   subWhite: {
     marginTop: "18px",
     marginBottom: "22px",

@@ -517,7 +517,7 @@ export default function Discover() {
               </h1>
 
               <p style={hero.sub}>
-                A quick interest test can bring clarity by matching what you enjoy with possible career directions — plus resources and opportunities to explore next.
+                A quick interest test can bring clarity by matching what you enjoy with possible career directions, resources, and opportunities to explore next.
               </p>
 
               <div style={hero.actions}>
