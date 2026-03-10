@@ -4,7 +4,9 @@ import Footer from "./components/Footer.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 
 import Home from "./pages/Home.jsx";
-import TheHub from "./pages/TheHub.jsx";
+import ResourceHub from "./pages/ResourceHub.jsx";
+import ResourceHubMap from "./pages/ResourceHubMap.jsx";
+import ResourceHubCalendar from "./pages/ResourceHubCalendar.jsx";
 import GrowtheHub from "./pages/GrowtheHub.jsx";
 import Discover from "./pages/Discover.jsx";
 import ReferencePage from "./pages/ReferencePage.jsx";
@@ -19,7 +21,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/our-mission" element={<OurMission />} />
-        <Route path="/the-hub" element={<TheHub />} />
+        <Route path="/resource-hub" element={<ResourceHub />} />
+        <Route path="/resource-hub/map" element={<ResourceHubMap />} />
+        <Route path="/resource-hub/calendar" element={<ResourceHubCalendar />} />
         <Route path="/grow-the-hub" element={<GrowtheHub />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/reference-page" element={<ReferencePage />} />

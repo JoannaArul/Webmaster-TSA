@@ -12,17 +12,27 @@ const COLORS = {
 const NAV_LINKS = [
   { to: "/", label: "Home" },
   { to: "/our-mission", label: "Our Mission" },
-  { to: "/the-hub", label: "The Hub" },
   { to: "/grow-the-hub", label: "Grow the Hub" },
   { to: "/discover", label: "Discover" },
   { to: "/reference-page", label: "Reference Page" },
 ];
 
+const HUB_MENU = [
+  { to: "/resource-hub", label: "Resource Hub", end: true },
+  { to: "/resource-hub/map", label: "Map View" },
+  { to: "/resource-hub/calendar", label: "Calendar View" },
+];
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hubOpen, setHubOpen] = useState(false);
+
   const location = useLocation();
   const closeTimerRef = useRef(null);
+  const hubCloseTimerRef = useRef(null);
+  const hubBtnRef = useRef(null);
+  const hubMenuRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -41,6 +51,7 @@ export default function Header() {
 
   useEffect(() => {
     setMenuOpen(false);
+    setHubOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -58,21 +69,91 @@ export default function Header() {
   useEffect(() => {
     return () => {
       if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+      if (hubCloseTimerRef.current) window.clearTimeout(hubCloseTimerRef.current);
     };
   }, []);
 
+  useEffect(() => {
+    if (!hubOpen) return;
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setHubOpen(false);
+        hubBtnRef.current?.focus?.();
+      }
+    };
+
+    const onPointerDown = (e) => {
+      const btn = hubBtnRef.current;
+      const menu = hubMenuRef.current;
+      if (!btn || !menu) return;
+      if (btn.contains(e.target) || menu.contains(e.target)) return;
+      setHubOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [hubOpen]);
+
   const linkStyle = ({ isActive }) => ({
     fontFamily: "var(--font-body)",
+    fontSize: "16px",
+    fontWeight: 600,
     color: scrolled ? COLORS.beige : COLORS.text,
     textDecoration: "none",
-    fontWeight: 600,
     opacity: isActive ? 1 : 0.92,
-    borderBottom: isActive
-      ? `2px solid ${scrolled ? COLORS.beige : COLORS.text}`
-      : "2px solid transparent",
+    borderBottom: "2px solid transparent",
     paddingBottom: "4px",
-    transition: "color 300ms ease, border-color 300ms ease, opacity 300ms ease",
+    transition: "color 300ms ease, opacity 300ms ease",
     whiteSpace: "nowrap",
+    display: "inline-flex",
+    alignItems: "center",
+    height: "100%",
+    lineHeight: 1,
+  });
+
+  const hubTopLinkStyle = {
+    fontFamily: "var(--font-body)",
+    fontSize: "16px",
+    fontWeight: 600,
+    color: scrolled ? COLORS.beige : COLORS.text,
+    textDecoration: "none",
+    opacity: 0.92,
+    borderBottom: "2px solid transparent",
+    padding: "0",
+    paddingBottom: "4px",
+    margin: "0",
+    height: "100%",
+    background: "none",
+    borderTop: "none",
+    borderLeft: "none",
+    borderRight: "none",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "6px",
+    cursor: "pointer",
+    transition: "color 300ms ease",
+    whiteSpace: "nowrap",
+    lineHeight: 1,
+  };
+
+  const hubItemStyle = ({ isActive }) => ({
+    fontFamily: "var(--font-body)",
+    color: COLORS.text,
+    textDecoration: "none",
+    fontWeight: 800,
+    padding: "10px 12px",
+    borderRadius: "12px",
+    backgroundColor: isActive ? "rgba(17,17,17,0.06)" : "transparent",
+    border: isActive ? "1px solid rgba(17,17,17,0.18)" : "1px solid transparent",
+    display: "block",
+    whiteSpace: "nowrap",
+    WebkitTapHighlightColor: "transparent",
+    touchAction: "manipulation",
   });
 
   const mobileLinkStyle = ({ isActive }) => ({
@@ -92,11 +173,24 @@ export default function Header() {
   const headerBg = scrolled ? COLORS.gray : COLORS.carolinaBlue;
   const headerText = scrolled ? COLORS.beige : COLORS.text;
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setHubOpen(false);
+  };
 
   const onMobileLinkClick = () => {
     if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
     closeTimerRef.current = window.setTimeout(() => setMenuOpen(false), 0);
+  };
+
+  const openHubSoon = () => {
+    if (hubCloseTimerRef.current) window.clearTimeout(hubCloseTimerRef.current);
+    setHubOpen(true);
+  };
+
+  const closeHubSoon = () => {
+    if (hubCloseTimerRef.current) window.clearTimeout(hubCloseTimerRef.current);
+    hubCloseTimerRef.current = window.setTimeout(() => setHubOpen(false), 120);
   };
 
   return (
@@ -110,12 +204,7 @@ export default function Header() {
         }}
       >
         <div style={styles.inner}>
-          <NavLink
-            to="/"
-            style={styles.logoLink}
-            aria-label="Go to Home"
-            onClick={closeMenu}
-          >
+          <NavLink to="/" style={styles.logoLink} aria-label="Go to Home" onClick={closeMenu}>
             <div style={styles.logoFrame}>
               <img
                 src={nexusLogo}
@@ -129,7 +218,69 @@ export default function Header() {
           </NavLink>
 
           <nav className="nav-desktop" style={styles.navDesktop} aria-label="Primary navigation">
-            {NAV_LINKS.map((l) => (
+            <NavLink to="/" style={linkStyle} end>
+              Home
+            </NavLink>
+
+            <NavLink to="/our-mission" style={linkStyle}>
+              Our Mission
+            </NavLink>
+
+            <div style={styles.hubWrap} onMouseEnter={openHubSoon} onMouseLeave={closeHubSoon}>
+              <button
+                ref={hubBtnRef}
+                type="button"
+                aria-haspopup="menu"
+                aria-expanded={hubOpen}
+                onClick={() => setHubOpen((v) => !v)}
+                onFocus={openHubSoon}
+                style={hubTopLinkStyle}
+              >
+                Resource Hub
+                <span
+                  aria-hidden="true"
+                  style={{
+                    fontWeight: 900,
+                    transform: hubOpen ? "rotate(180deg)" : "rotate(0deg)",
+                    transition: "transform 180ms ease",
+                    display: "inline-block",
+                    position: "relative",
+                    top: "1px",
+                  }}
+                >
+                  ▾
+                </span>
+              </button>
+
+              {hubOpen && (
+                <div
+                  ref={hubMenuRef}
+                  role="menu"
+                  aria-label="Resource Hub menu"
+                  style={{
+                    ...styles.hubMenu,
+                    backgroundColor: COLORS.beige,
+                  }}
+                  onMouseEnter={openHubSoon}
+                  onMouseLeave={closeHubSoon}
+                >
+                  {HUB_MENU.map((item) => (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      end={item.end}
+                      role="menuitem"
+                      style={hubItemStyle}
+                      onClick={() => setHubOpen(false)}
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {NAV_LINKS.filter((x) => x.to !== "/" && x.to !== "/our-mission").map((l) => (
               <NavLink key={l.to} to={l.to} style={linkStyle}>
                 {l.label}
               </NavLink>
@@ -141,7 +292,10 @@ export default function Header() {
             className="menu-btn"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((v) => !v)}
+            onClick={() => {
+              setMenuOpen((v) => !v);
+              setHubOpen(false);
+            }}
             style={{
               ...styles.menuBtn,
               color: headerText,
@@ -172,15 +326,31 @@ export default function Header() {
             onTouchStart={(e) => e.stopPropagation()}
           >
             <nav style={styles.mobileNav}>
-              {NAV_LINKS.map((l) => (
-                <NavLink
-                  key={l.to}
-                  to={l.to}
-                  style={mobileLinkStyle}
-                  onMouseDown={(e) => e.stopPropagation()}
-                  onTouchStart={(e) => e.stopPropagation()}
-                  onClick={onMobileLinkClick}
-                >
+              <NavLink to="/" style={mobileLinkStyle} end onClick={onMobileLinkClick}>
+                Home
+              </NavLink>
+
+              <NavLink to="/our-mission" style={mobileLinkStyle} onClick={onMobileLinkClick}>
+                Our Mission
+              </NavLink>
+
+              <div style={styles.mobileSection}>
+                <div style={styles.mobileSectionTitle}>Resource Hub</div>
+                {HUB_MENU.map((item) => (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    end={item.end}
+                    style={mobileLinkStyle}
+                    onClick={onMobileLinkClick}
+                  >
+                    {item.label}
+                  </NavLink>
+                ))}
+              </div>
+
+              {NAV_LINKS.filter((x) => x.to !== "/" && x.to !== "/our-mission").map((l) => (
+                <NavLink key={l.to} to={l.to} style={mobileLinkStyle} onClick={onMobileLinkClick}>
                   {l.label}
                 </NavLink>
               ))}
@@ -250,7 +420,29 @@ const styles = {
     display: "flex",
     gap: "18px",
     alignItems: "center",
-    flexWrap: "wrap",
+    flexWrap: "nowrap",
+    height: "100%",
+  },
+
+  hubWrap: {
+    position: "relative",
+    display: "inline-flex",
+    alignItems: "center",
+    height: "100%",
+  },
+
+  hubMenu: {
+    position: "absolute",
+    top: "calc(100% + 10px)",
+    left: 0,
+    minWidth: "220px",
+    padding: "10px",
+    borderRadius: "16px",
+    boxShadow: "0 18px 40px rgba(0,0,0,0.22)",
+    border: "1px solid rgba(0,0,0,0.10)",
+    display: "grid",
+    gap: "8px",
+    zIndex: 10000,
   },
 
   menuBtn: {
@@ -291,6 +483,22 @@ const styles = {
     boxSizing: "border-box",
     display: "grid",
     gap: "8px",
+  },
+
+  mobileSection: {
+    padding: "6px 0 6px",
+    display: "grid",
+    gap: "8px",
+  },
+
+  mobileSectionTitle: {
+    fontFamily: "var(--font-body)",
+    fontWeight: 900,
+    color: "rgba(17,17,17,0.70)",
+    padding: "8px 14px 0",
+    letterSpacing: "0.2px",
+    textTransform: "uppercase",
+    fontSize: "12px",
   },
 };
 

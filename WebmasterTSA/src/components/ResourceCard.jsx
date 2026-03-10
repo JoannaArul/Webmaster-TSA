@@ -132,7 +132,7 @@ const styles = {
   },
 
   link: {
-    color: "#4B9CD3", // Carolina blue text link
+    color: "#4B9CD3", 
     fontWeight: 700,
     textDecoration: "none",
     whiteSpace: "nowrap",
