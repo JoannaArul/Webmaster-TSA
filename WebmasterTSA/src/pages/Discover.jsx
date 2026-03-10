@@ -500,7 +500,7 @@ export default function Discover() {
   };
 
   return (
-    <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }} style={styles.page}>
+    <div style={styles.page}>
       <section
         style={{
           ...hero.fullBleed,
@@ -752,7 +752,7 @@ export default function Discover() {
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
 

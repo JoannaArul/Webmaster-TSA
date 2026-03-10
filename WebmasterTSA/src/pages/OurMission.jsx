@@ -248,7 +248,7 @@ export default function Mission() {
 
   return (
     <div style={styles.page}>
-      <RevealSection amount={0.35} style={styles.heroImage}>
+      <section style={styles.heroImage}>
         <div style={styles.heroOverlay} />
         <div style={styles.heroInner}>
           <h1 style={styles.heroTitle}>
@@ -264,7 +264,7 @@ export default function Mission() {
             </button>
           </div>
         </div>
-      </RevealSection>
+      </section>
 
       <RevealSection amount={0.22} style={styles.beigeSection}>
         <div style={styles.container}>

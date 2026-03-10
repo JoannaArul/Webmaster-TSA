@@ -198,12 +198,7 @@ export default function Documentation() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      style={styles.page}
-    >
+    <div style={styles.page}>
       <div style={styles.hero}>
         <img
           src={referenceHero}
@@ -287,6 +282,6 @@ export default function Documentation() {
           </div>
         </section>
       </div>
-    </motion.div>
+    </div>
   );
 }

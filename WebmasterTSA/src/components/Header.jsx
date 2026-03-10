@@ -18,7 +18,7 @@ const NAV_LINKS = [
 ];
 
 const HUB_MENU = [
-  { to: "/resource-hub", label: "Resource Hub", end: true },
+  { to: "/resource-hub", label: "Resource Hub" },
   { to: "/resource-hub/map", label: "Map View" },
   { to: "/resource-hub/calendar", label: "Calendar View" },
 ];
@@ -99,13 +99,16 @@ export default function Header() {
     };
   }, [hubOpen]);
 
-  const linkStyle = ({ isActive }) => ({
+  const hubIsActive =
+    location.pathname === "/resource-hub" || location.pathname.startsWith("/resource-hub/");
+
+  const linkStyle = () => ({
     fontFamily: "var(--font-body)",
     fontSize: "16px",
     fontWeight: 600,
     color: scrolled ? COLORS.beige : COLORS.text,
     textDecoration: "none",
-    opacity: isActive ? 1 : 0.92,
+    opacity: 0.92,
     borderBottom: "2px solid transparent",
     paddingBottom: "4px",
     transition: "color 300ms ease, opacity 300ms ease",
@@ -218,7 +221,7 @@ export default function Header() {
           </NavLink>
 
           <nav className="nav-desktop" style={styles.navDesktop} aria-label="Primary navigation">
-            <NavLink to="/" style={linkStyle} end>
+            <NavLink to="/" style={linkStyle}>
               Home
             </NavLink>
 
@@ -268,7 +271,6 @@ export default function Header() {
                     <NavLink
                       key={item.to}
                       to={item.to}
-                      end={item.end}
                       role="menuitem"
                       style={hubItemStyle}
                       onClick={() => setHubOpen(false)}
@@ -326,7 +328,7 @@ export default function Header() {
             onTouchStart={(e) => e.stopPropagation()}
           >
             <nav style={styles.mobileNav}>
-              <NavLink to="/" style={mobileLinkStyle} end onClick={onMobileLinkClick}>
+              <NavLink to="/" style={mobileLinkStyle} onClick={onMobileLinkClick}>
                 Home
               </NavLink>
 
@@ -340,7 +342,6 @@ export default function Header() {
                   <NavLink
                     key={item.to}
                     to={item.to}
-                    end={item.end}
                     style={mobileLinkStyle}
                     onClick={onMobileLinkClick}
                   >

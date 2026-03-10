@@ -389,13 +389,7 @@ export default function ResourceHubCalendar() {
               </button>
               <AnimatePresence>
                 {showFilters && (
-                  <motion.div
-                    className="filter-panel"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                  <div style={styles.page}>
                     <div style={{ ...s.legendRow, paddingTop: 8 }}>
                       {categories.map(cat => {
                         const col = CATEGORY_COLORS[cat] || C.carolinaBlue;
@@ -414,7 +408,7 @@ export default function ResourceHubCalendar() {
                         </button>
                       )}
                     </div>
-                  </motion.div>
+                  </div>
                 )}
               </AnimatePresence>
             </div>

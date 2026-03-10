@@ -751,13 +751,8 @@ export default function Home() {
 
   return (
     <div style={styles.page}>
-      {/* ── HERO (animations kept as-is) ── */}
-      <motion.section
-        initial={{ opacity: 0, y: 22 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.75 }}
-        style={{ ...styles.heroWrap, overflow: "visible" }}
-      >
+      <section style={{ ...styles.heroWrap, overflow: "visible" }}>
+
         <div style={styles.heroGrid}>
           <div style={styles.heroContent}>
             <motion.h1
@@ -849,7 +844,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* ── OUR MISSION ── */}
       <motion.section
