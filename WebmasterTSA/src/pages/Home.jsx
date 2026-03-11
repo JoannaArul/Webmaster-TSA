@@ -11,14 +11,12 @@ import summerPrograms from "../data/SummerPrograms.json";
 import supportServices from "../data/SupportServices.json";
 import volunteering from "../data/Volunteering.json";
 
-import dyesImg from "../assets/dyes.jpg";
-import sMathHacksImg from "../assets/SMathHacks.jpg";
-import floreneScholarshipImg from "../assets/FloreneScholarship.jpg";
-import bigBroSisImg from "../assets/BigBroSis.jpg";
-import handsOnImg from "../assets/HandsOn.jpg";
-
-// Placeholder profile image — swap out per person later
-import BuildImg from "../assets/Build.jpg";
+import dyesImg from "../assets/dyes.webp";
+import sMathHacksImg from "../assets/SMathHacks.webp";
+import floreneScholarshipImg from "../assets/FloreneScholarship.webp";
+import bigBroSisImg from "../assets/BigBroSis.webp";
+import handsOnImg from "../assets/HandsOn.webp";
+import BuildImg from "../assets/Build.webp";
 
 const COLORS = {
   carolinaBlue: "#4B9CD3",

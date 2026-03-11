@@ -22,7 +22,7 @@ import SummerProgramsImg from "../assets/SummerPrograms.jpg";
 import SupportServicesImg from "../assets/SupportServices.jpg";
 import VolunteeringImg from "../assets/Volunteering.jpg";
 
-import ResourceHubBg from "../assets/ResourceHubBackground.jpg";
+import ResourceHubBg from "../assets/ResourceHubBackground.webp";
 
 const COLORS = {
   carolinaBlue: "#4B9CD3", 

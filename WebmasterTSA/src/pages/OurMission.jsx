@@ -2,8 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 
-import researchTriangleImg from "../assets/ResearchTriangle.jpg";
-import VolunteeringImg from "../assets/Volunteering.jpg"; 
+import researchTriangleImg from "../assets/ResearchTriangle.webp";
+import VolunteeringImg from "../assets/Volunteering.webp"; 
 
 import computerImg from "../assets/Computer.png";
 import filterImg from "../assets/Filter.png";

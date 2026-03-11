@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import referenceHero from "../assets/ReferenceImage.jpg";
+import referenceHero from "../assets/ReferenceImage.webp";
 
 const COLORS = {
   carolinaBlue: "#4B9CD3",
