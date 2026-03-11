@@ -19,7 +19,6 @@ const NAV_LINKS = [
 
 const HUB_MENU = [
   { to: "/resource-hub", label: "Resource Hub" },
-  { to: "/resource-hub/map", label: "Map View" },
   { to: "/resource-hub/calendar", label: "Calendar View" },
 ];
 

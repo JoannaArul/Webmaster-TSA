@@ -5,7 +5,7 @@
     "cities": ["Durham", "Raleigh", "Chapel Hill"],
     "grades": ["9", "10", "11", "12"],
     "interest": "Public Service",
-    "description": "A large Triangle-area volunteer opportunity database where you can browse roles by date, interest, organization, and community need.",
+    "description": "A Triangle-area volunteer opportunity database where students can browse roles by date, interest, organization, and community need, making it easier to find meaningful ways to get involved locally.",
     "link": "https://www.handsontriangle.org/",
     "openToAllImmigrationStatuses": true,
     "featured": true,

@@ -20,18 +20,20 @@ import NonprofitsImg from "../assets/Non-profits.jpg";
 import ScholarshipsImg from "../assets/Scholarships.jpg";
 import SummerProgramsImg from "../assets/SummerPrograms.jpg";
 import SupportServicesImg from "../assets/SupportServices.jpg";
-import VolunteeringImg from "../assets/Volunteering.jpg"; 
+import VolunteeringImg from "../assets/Volunteering.jpg";
 
 import ResourceHubBg from "../assets/ResourceHubBackground.jpg";
 
 const COLORS = {
-  carolinaBlue: "#4B9CD3",
-  headerGray: "#494A48",
-  beige: "#F5FCEF", 
-  cardBg: "#FAFFF6", 
-  text: "#000000",
-  border: "#DCE7D1",
+  carolinaBlue: "#4B9CD3", 
+  headerGray: "#494A48",     
+  pageBg: "#F0EBE3",  
+  lightBg: "#FAF7F4",  
+  border: "#E2D5C8",   
+  text: "#000000",         
 };
+
+const PAGE_SIZE = 30;
 
 const TYPE_OPTIONS = [
   "Academic Program",
@@ -64,7 +66,7 @@ const INTEREST_OPTIONS = [
   "STEM/Enrichment",
   "Public Service",
   "Sports & Entertainment",
-  "General Scholarships"
+  "General Scholarships",
 ];
 
 const GRADE_OPTIONS = ["9", "10", "11", "12"];
@@ -102,7 +104,12 @@ export default function ResourceHub() {
   });
 
   const [appliedFilters, setAppliedFilters] = useState(draftFilters);
-  const applySearch = () => setAppliedFilters(draftFilters);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  const applySearch = () => {
+    setAppliedFilters(draftFilters);
+    setVisibleCount(PAGE_SIZE);
+  };
 
   const categories = useMemo(() => TYPE_OPTIONS, []);
   const cities = useMemo(() => CITY_OPTIONS, []);
@@ -111,91 +118,54 @@ export default function ResourceHub() {
 
   const filtered = useMemo(() => {
     const q = appliedFilters.search.trim().toLowerCase();
-
     return resourcesData.filter((r) => {
       const resourceCities = Array.isArray(r.cities) ? r.cities : [];
       const resourceGrades = Array.isArray(r.grades) ? r.grades : [];
-
       const haystack = [
-        r.name,
-        r.description,
-        r.category,
-        r.interest,
-        resourceCities.join(" "),
-        resourceGrades.join(" "),
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
+        r.name, r.description, r.category, r.interest,
+        resourceCities.join(" "), resourceGrades.join(" "),
+      ].filter(Boolean).join(" ").toLowerCase();
 
       const matchesSearch = !q || haystack.includes(q);
-
-      const matchesCategory =
-        appliedFilters.categories.length === 0 ||
-        appliedFilters.categories.includes(r.category);
-
-      const matchesCity =
-        appliedFilters.cities.length === 0 ||
-        resourceCities.some((c) => appliedFilters.cities.includes(c));
-
-      const matchesInterest =
-        appliedFilters.interests.length === 0 ||
-        appliedFilters.interests.includes(r.interest);
-
-      const matchesGrades =
-        appliedFilters.grades.length === 0 ||
-        resourceGrades.some((g) => appliedFilters.grades.includes(g));
-
-      const matchesImmigration =
-        !appliedFilters.onlyOpenToAllImmigrationStatuses ||
-        r.openToAllImmigrationStatuses === true;
-
-      return (
-        matchesSearch &&
-        matchesCategory &&
-        matchesCity &&
-        matchesInterest &&
-        matchesGrades &&
-        matchesImmigration
-      );
+      const matchesCategory = appliedFilters.categories.length === 0 || appliedFilters.categories.includes(r.category);
+      const matchesCity = appliedFilters.cities.length === 0 || resourceCities.some((c) => appliedFilters.cities.includes(c));
+      const matchesInterest = appliedFilters.interests.length === 0 || appliedFilters.interests.includes(r.interest);
+      const matchesGrades = appliedFilters.grades.length === 0 || resourceGrades.some((g) => appliedFilters.grades.includes(g));
+      const matchesImmigration = !appliedFilters.onlyOpenToAllImmigrationStatuses || r.openToAllImmigrationStatuses === true;
+      return matchesSearch && matchesCategory && matchesCity && matchesInterest && matchesGrades && matchesImmigration;
     });
   }, [appliedFilters]);
 
-  const featuredCount = useMemo(
-    () => resourcesData.filter((r) => r.featured).length,
-    []
-  );
+  const featuredCount = useMemo(() => resourcesData.filter((r) => r.featured).length, []);
+  const marqueeCards = useMemo(() => [...CATEGORY_CARDS, ...CATEGORY_CARDS], []);
 
-  const marqueeCards = useMemo(
-    () => [...CATEGORY_CARDS, ...CATEGORY_CARDS],
-    []
-  );
+  const showing = Math.min(visibleCount, filtered.length);
+  const total = filtered.length;
+  const hasMore = visibleCount < total;
+  const progressPct = total === 0 ? 100 : Math.round((showing / total) * 100);
 
   return (
     <div style={styles.page}>
-
       <style>{`
         @keyframes nexusMarquee {
-          0% { transform: translateX(0); }
+          0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-        .nexus-marquee {
-          overflow: hidden;
-          width: 100%;
-        }
+        .nexus-marquee { overflow: hidden; width: 100%; }
         .nexus-track {
           display: flex;
           width: max-content;
           animation: nexusMarquee 44s linear infinite;
         }
-        .nexus-marquee:hover .nexus-track {
-          animation-play-state: paused;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .nexus-track { animation: none; }
-        }
+        .nexus-marquee:hover .nexus-track { animation-play-state: paused; }
+        @media (prefers-reduced-motion: reduce) { .nexus-track { animation: none; } }
 
-        /*  Responsive resource grid */
+        /* Resource grid breakpoints */
+        .resource-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 18px;
+        }
         @media (max-width: 980px) {
           .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
         }
@@ -203,47 +173,114 @@ export default function ResourceHub() {
           .resource-grid { grid-template-columns: 1fr !important; }
         }
 
-        /*  Make FilterBar "inner boxes" lighter background (#FAFFF6) */
-        .filterbar, .filter-bar, .filters, .filterWrap, .filter-wrap,
-        .filterCard, .filter-card, .filterSection, .filter-section,
-        .filterGroup, .filter-group {
-          background: ${COLORS.cardBg} !important;
+        /* ── Filter bar: force lighter bg on every child ── */
+        .filters-outer,
+        .filters-outer > *,
+        .filters-outer div,
+        .filters-outer input,
+        .filters-outer select,
+        .filters-outer textarea,
+        .filters-outer label,
+        .filters-outer span {
+          background-color: ${COLORS.lightBg} !important;
         }
-        .filterbar *, .filter-bar *, .filters * {
-          box-sizing: border-box;
+        /* Checkboxes: match lighter bg */
+        .filters-outer input[type="checkbox"] {
+          accent-color: ${COLORS.carolinaBlue};
+          background-color: ${COLORS.lightBg} !important;
         }
-        input, select, textarea {
-          background: ${COLORS.cardBg} !important;
-        }
-
-        /*  Make SEARCH button Carolina blue (covers common button patterns) */
-        .filters button,
-        .filter-bar button,
-        .filterbar button,
-        .filterWrap button,
-        .filter-wrap button,
-        button.search,
-        button.searchBtn,
-        .search-btn {
-          background: ${COLORS.carolinaBlue} !important;
+        /* Search button stays blue */
+        .filters-outer button {
+          background-color: ${COLORS.carolinaBlue} !important;
           border-color: ${COLORS.carolinaBlue} !important;
-          color: ${COLORS.beige} !important;
+          color: #fff !important;
+        }
+        /* Reset button — transparent */
+        .filters-outer button:last-of-type {
+          background-color: transparent !important;
+          border: 1px solid ${COLORS.border} !important;
+          color: ${COLORS.text} !important;
         }
 
-        /*  Keep "Visit Resource" as a link (not a button) */
-        a.visit,
-        a.visitResource,
-        .visit-resource,
-        .resource-card a,
-        .resourceCard a,
-        .ResourceCard a {
-          color: ${COLORS.carolinaBlue} !important;
+        /* ── Resource card wrapper ── */
+        .rcard-wrap {
+          background-color: ${COLORS.lightBg};
+          border: 1px solid ${COLORS.border};
+          border-radius: 12px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+          display: flex;
+          flex-direction: column;
+          transition: box-shadow 180ms ease, transform 180ms ease;
+          overflow: hidden;
+        }
+        .rcard-wrap:hover {
+          box-shadow: 0 6px 22px rgba(75,156,211,0.18);
+          transform: translateY(-2px);
+        }
+        /* Strip ResourceCard's own bg/border so wrapper colour shows */
+        .rcard-inner {
+          flex: 1;
+          padding: 18px 18px 10px 18px;
+        }
+        .rcard-inner > * {
           background: transparent !important;
           border: none !important;
+          box-shadow: none !important;
+        }
+        /* Hide any "Visit Resource" link rendered inside ResourceCard itself */
+        .rcard-inner a[href],
+        .rcard-inner a {
+          display: none !important;
+        }
+        .rcard-footer {
+          padding: 10px 18px 16px 18px;
+          border-top: 1px solid ${COLORS.border};
+        }
+
+        /* ── Progress bar ── */
+        .prog-track {
+          width: 100%;
+          max-width: 420px;
+          height: 7px;
+          background: ${COLORS.border};
+          border-radius: 99px;
+          overflow: hidden;
+        }
+        .prog-fill {
+          height: 100%;
+          background: ${COLORS.carolinaBlue};
+          border-radius: 99px;
+          transition: width 350ms ease;
+        }
+
+        /* ── Load more button ── */
+        .load-more-btn {
+          display: block;
+          width: 100%;
+          max-width: 480px;
+          padding: 15px 0;
+          background: transparent;
+          border: 2px solid #111;
+          border-radius: 0;
+          font-size: 0.88rem;
+          font-weight: 900;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #111;
+          cursor: pointer;
+          transition: background 180ms ease, color 180ms ease;
+        }
+        .load-more-btn:hover {
+          background: #111;
+          color: ${COLORS.lightBg};
+        }
+
+        @media (max-width: 600px) {
+          .load-more-btn, .prog-track { max-width: 100%; }
         }
       `}</style>
 
-      {/*  FULL-WIDTH HERO with IMAGE + BLACK OVERLAY */}
+      {/* ── HERO ── */}
       <section style={hero.fullBleed}>
         <div style={hero.bgImage} />
         <div style={hero.overlay} />
@@ -266,12 +303,10 @@ export default function ResourceHub() {
               <div style={hero.statNumBlue}>{resourcesData.length}</div>
               <div style={hero.statLabelBlue}>Resources listed</div>
             </div>
-
             <div style={hero.statCardBlue}>
               <div style={hero.statNumBlue}>{featuredCount}</div>
               <div style={hero.statLabelBlue}>Featured picks</div>
             </div>
-
             <div style={hero.statCardBlue}>
               <div style={hero.statNumBlue}>{filtered.length}</div>
               <div style={hero.statLabelBlue}>Showing now</div>
@@ -279,6 +314,7 @@ export default function ResourceHub() {
           </div>
         </div>
 
+        {/* ── CAROUSEL — identical to original ── */}
         <div style={hero.bottomArea}>
           <div className="nexus-marquee">
             <div className="nexus-track" style={carousel.track}>
@@ -307,13 +343,25 @@ export default function ResourceHub() {
               ))}
             </div>
           </div>
-
           <div style={carousel.helperText}></div>
         </div>
       </section>
 
+      {/* ── MAIN CONTENT ── */}
       <div style={styles.container}>
-        <div style={styles.filtersWrap}>
+
+        {/* Filter bar */}
+        <div
+          className="filters-outer"
+          style={{
+            backgroundColor: COLORS.lightBg,
+            border: `1px solid ${COLORS.border}`,
+            borderRadius: "1px",
+            padding: "14px",
+            boxShadow: "0 12px 26px rgba(0,0,0,0.08)",
+            marginTop: "18px",
+          }}
+        >
           <FilterBar
             categories={categories}
             cities={cities}
@@ -325,28 +373,74 @@ export default function ResourceHub() {
           />
         </div>
 
+        {/* Results count */}
         <div style={styles.resultsRow}>
           <span style={styles.count}>
-            Showing {filtered.length} resource{filtered.length === 1 ? "" : "s"}
+            Showing {showing} of {total} resource{total === 1 ? "" : "s"}
           </span>
         </div>
 
-        <div className="resource-grid" style={styles.grid}>
-          {filtered.map((r) => (
-            <ResourceCard key={`${r.name}-${r.link}`} resource={r} />
+        {/* Resource grid */}
+        <div className="resource-grid">
+          {filtered.slice(0, visibleCount).map((r) => (
+            <div key={`${r.name}-${r.link}`} className="rcard-wrap">
+              <div className="rcard-inner">
+                <ResourceCard resource={r} />
+              </div>
+              {/* Visit Resource pinned bottom-left — internal link hidden via CSS above */}
+              <div className="rcard-footer">
+                {r.link ? (
+                  <a
+                    href={r.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: COLORS.carolinaBlue,
+                      fontWeight: 700,
+                      fontSize: "0.9rem",
+                      textDecoration: "none",
+                    }}
+                  >
+                    Visit Resource →
+                  </a>
+                ) : null}
+              </div>
+            </div>
           ))}
         </div>
+
+        {/* ── Load more: progress bar + button ── */}
+        {total > 0 && (
+          <div style={styles.loadMoreSection}>
+            <p style={styles.showingLabel}>
+              Showing {showing} of {total} resources
+            </p>
+            <div className="prog-track">
+              <div className="prog-fill" style={{ width: `${progressPct}%` }} />
+            </div>
+            {hasMore && (
+              <button
+                type="button"
+                className="load-more-btn"
+                onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
+              >
+                Load more resources
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
 }
-//
+
+// ─── Style objects ────────────────────────────────────────────────────────────
 
 const styles = {
   page: {
     minHeight: "100vh",
-    backgroundColor: COLORS.beige,
-    padding: "0 0 30px",
+    backgroundColor: COLORS.pageBg,
+    padding: "0 0 48px",
     overflowX: "hidden",
   },
   container: {
@@ -354,14 +448,6 @@ const styles = {
     margin: "0 auto",
     padding: "0 20px",
     boxSizing: "border-box",
-  },
-  filtersWrap: {
-    backgroundColor: COLORS.cardBg,
-    border: `1px solid ${COLORS.border}`,
-    borderRadius: "1px",
-    padding: "14px",
-    boxShadow: "0 12px 26px rgba(0,0,0,0.08)",
-    marginTop: "18px",
   },
   resultsRow: {
     marginTop: "14px",
@@ -376,10 +462,19 @@ const styles = {
     color: COLORS.text,
     fontWeight: 900,
   },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-    gap: "18px",
+  loadMoreSection: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "16px",
+    marginTop: "44px",
+    padding: "0 20px 8px",
+  },
+  showingLabel: {
+    margin: 0,
+    fontSize: "0.95rem",
+    fontWeight: 600,
+    color: COLORS.headerGray,
   },
 };
 
@@ -402,7 +497,6 @@ const hero = {
     transform: "scale(1.02)",
     zIndex: 0,
   },
-
   overlay: {
     position: "absolute",
     inset: 0,
@@ -453,14 +547,14 @@ const hero = {
   statNumBlue: {
     fontSize: "1.65rem",
     fontWeight: 900,
-    color: COLORS.beige,
+    color: "#F0FAE8",
     lineHeight: 1.05,
   },
   statLabelBlue: {
     marginTop: "4px",
     fontSize: "1rem",
     fontWeight: 900,
-    color: COLORS.beige,
+    color: "#F0FAE8",
     opacity: 0.95,
   },
   bottomArea: {
@@ -479,7 +573,7 @@ const carousel = {
   card: {
     appearance: "none",
     border: `1px solid ${COLORS.border}`,
-    backgroundColor: COLORS.beige,
+    backgroundColor: COLORS.lightBg,
     borderRadius: "18px",
     padding: "14px 16px",
     display: "flex",

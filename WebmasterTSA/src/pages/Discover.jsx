@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-import discoverHero from "../assets/DiscoverHero.jpg";
+import discoverHero from "../assets/DiscoverHero.webp";
 
 import academicPrograms from "../data/AcademicProgram.json";
 import awards from "../data/Awards.json";

@@ -2,10 +2,10 @@ import { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "@formspree/react";
 
-import buildingBlockBg from "../assets/BuildingBlock.jpg";
-import buildImg from "../assets/Build.jpg";
-import academicImg from "../assets/Academic.jpeg";
-import reviewImg from "../assets/ReviewProcess.jpg";
+import buildingBlockBg from "../assets/BuildingBlock.webp";
+import buildImg from "../assets/Build.webp";
+import academicImg from "../assets/Academic.webp";
+import reviewImg from "../assets/ReviewProcess.webp";
 
 const TYPE_OPTIONS = [
   "Academic Program",
