@@ -20,7 +20,7 @@ import NonprofitsImg from "../assets/Non-profits.jpg";
 import ScholarshipsImg from "../assets/Scholarships.jpg";
 import SummerProgramsImg from "../assets/SummerPrograms.jpg";
 import SupportServicesImg from "../assets/SupportServices.jpg";
-import VolunteeringImg from "../assets/Volunteering.jpg";
+import VolunteeringImg from "../assets/Volunteering.webp";
 
 import ResourceHubBg from "../assets/ResourceHubBackground.webp";
 
