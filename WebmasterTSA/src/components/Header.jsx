@@ -13,25 +13,41 @@ const NAV_LINKS = [
   { to: "/", label: "Home" },
   { to: "/our-mission", label: "Our Mission" },
   { to: "/grow-the-hub", label: "Grow the Hub" },
-  { to: "/discover", label: "Discover" },
   { to: "/reference-page", label: "Reference Page" },
 ];
 
 const HUB_MENU = [
-  { to: "/resource-hub", label: "Resource Hub" },
+  { to: "/resource-hub", label: "Resource Hub", end: true },
   { to: "/resource-hub/calendar", label: "Calendar View" },
+  { to: "/path-builder", label: "Path Builder" },
+];
+
+const DISCOVER_MENU = [
+  { to: "/discover", label: "Discover", end: true },
+  { to: "/blog", label: "Blog" },
 ];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
   const [hubOpen, setHubOpen] = useState(false);
+  const [discoverOpen, setDiscoverOpen] = useState(false);
+
+  const [mobileHubOpen, setMobileHubOpen] = useState(false);
+  const [mobileDiscoverOpen, setMobileDiscoverOpen] = useState(false);
 
   const location = useLocation();
+
   const closeTimerRef = useRef(null);
   const hubCloseTimerRef = useRef(null);
+  const discoverCloseTimerRef = useRef(null);
+
   const hubBtnRef = useRef(null);
   const hubMenuRef = useRef(null);
+
+  const discoverBtnRef = useRef(null);
+  const discoverMenuRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -42,7 +58,11 @@ export default function Header() {
 
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth > 860) setMenuOpen(false);
+      if (window.innerWidth > 860) {
+        setMenuOpen(false);
+        setMobileHubOpen(false);
+        setMobileDiscoverOpen(false);
+      }
     };
     window.addEventListener("resize", onResize, { passive: true });
     return () => window.removeEventListener("resize", onResize);
@@ -51,6 +71,9 @@ export default function Header() {
   useEffect(() => {
     setMenuOpen(false);
     setHubOpen(false);
+    setDiscoverOpen(false);
+    setMobileHubOpen(false);
+    setMobileDiscoverOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -69,48 +92,69 @@ export default function Header() {
     return () => {
       if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
       if (hubCloseTimerRef.current) window.clearTimeout(hubCloseTimerRef.current);
+      if (discoverCloseTimerRef.current) window.clearTimeout(discoverCloseTimerRef.current);
     };
   }, []);
 
   useEffect(() => {
-    if (!hubOpen) return;
-
     const onKeyDown = (e) => {
       if (e.key === "Escape") {
-        setHubOpen(false);
-        hubBtnRef.current?.focus?.();
+        if (hubOpen) {
+          setHubOpen(false);
+          hubBtnRef.current?.focus?.();
+        }
+        if (discoverOpen) {
+          setDiscoverOpen(false);
+          discoverBtnRef.current?.focus?.();
+        }
       }
     };
 
     const onPointerDown = (e) => {
-      const btn = hubBtnRef.current;
-      const menu = hubMenuRef.current;
-      if (!btn || !menu) return;
-      if (btn.contains(e.target) || menu.contains(e.target)) return;
-      setHubOpen(false);
+      const hubBtn = hubBtnRef.current;
+      const hubMenu = hubMenuRef.current;
+      const discoverBtn = discoverBtnRef.current;
+      const discoverMenu = discoverMenuRef.current;
+
+      const clickedInsideHub =
+        (hubBtn && hubBtn.contains(e.target)) ||
+        (hubMenu && hubMenu.contains(e.target));
+
+      const clickedInsideDiscover =
+        (discoverBtn && discoverBtn.contains(e.target)) ||
+        (discoverMenu && discoverMenu.contains(e.target));
+
+      if (!clickedInsideHub) setHubOpen(false);
+      if (!clickedInsideDiscover) setDiscoverOpen(false);
     };
 
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("pointerdown", onPointerDown);
+
     return () => {
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("pointerdown", onPointerDown);
     };
-  }, [hubOpen]);
+  }, [hubOpen, discoverOpen]);
 
   const hubIsActive =
-    location.pathname === "/resource-hub" || location.pathname.startsWith("/resource-hub/");
+    location.pathname === "/resource-hub" || location.pathname === "/path-builder";
 
-  const linkStyle = () => ({
+  const discoverIsActive =
+    location.pathname === "/discover" || location.pathname === "/blog";
+
+  const linkStyle = ({ isActive }) => ({
     fontFamily: "var(--font-body)",
     fontSize: "16px",
     fontWeight: 600,
     color: scrolled ? COLORS.beige : COLORS.text,
     textDecoration: "none",
-    opacity: 0.92,
-    borderBottom: "2px solid transparent",
+    opacity: isActive ? 1 : 0.92,
+    borderBottom: isActive
+      ? `2px solid ${scrolled ? COLORS.beige : COLORS.text}`
+      : "2px solid transparent",
     paddingBottom: "4px",
-    transition: "color 300ms ease, opacity 300ms ease",
+    transition: "color 300ms ease, opacity 300ms ease, border-color 300ms ease",
     whiteSpace: "nowrap",
     display: "inline-flex",
     alignItems: "center",
@@ -124,8 +168,10 @@ export default function Header() {
     fontWeight: 600,
     color: scrolled ? COLORS.beige : COLORS.text,
     textDecoration: "none",
-    opacity: 0.92,
-    borderBottom: "2px solid transparent",
+    opacity: hubIsActive ? 1 : 0.92,
+    borderBottom: `2px solid ${
+      hubIsActive ? (scrolled ? COLORS.beige : COLORS.text) : "transparent"
+    }`,
     padding: "0",
     paddingBottom: "4px",
     margin: "0",
@@ -138,12 +184,39 @@ export default function Header() {
     alignItems: "center",
     gap: "6px",
     cursor: "pointer",
-    transition: "color 300ms ease",
+    transition: "color 300ms ease, border-color 300ms ease",
     whiteSpace: "nowrap",
     lineHeight: 1,
   };
 
-  const hubItemStyle = ({ isActive }) => ({
+  const discoverTopLinkStyle = {
+    fontFamily: "var(--font-body)",
+    fontSize: "16px",
+    fontWeight: 600,
+    color: scrolled ? COLORS.beige : COLORS.text,
+    textDecoration: "none",
+    opacity: discoverIsActive ? 1 : 0.92,
+    borderBottom: `2px solid ${
+      discoverIsActive ? (scrolled ? COLORS.beige : COLORS.text) : "transparent"
+    }`,
+    padding: "0",
+    paddingBottom: "4px",
+    margin: "0",
+    height: "100%",
+    background: "none",
+    borderTop: "none",
+    borderLeft: "none",
+    borderRight: "none",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "6px",
+    cursor: "pointer",
+    transition: "color 300ms ease, border-color 300ms ease",
+    whiteSpace: "nowrap",
+    lineHeight: 1,
+  };
+
+  const dropdownItemStyle = ({ isActive }) => ({
     fontFamily: "var(--font-body)",
     color: COLORS.text,
     textDecoration: "none",
@@ -170,6 +243,7 @@ export default function Header() {
     backgroundColor: isActive ? "rgba(17,17,17,0.06)" : "transparent",
     WebkitTapHighlightColor: "transparent",
     touchAction: "manipulation",
+    display: "block",
   });
 
   const headerBg = scrolled ? COLORS.gray : COLORS.carolinaBlue;
@@ -178,11 +252,18 @@ export default function Header() {
   const closeMenu = () => {
     setMenuOpen(false);
     setHubOpen(false);
+    setDiscoverOpen(false);
+    setMobileHubOpen(false);
+    setMobileDiscoverOpen(false);
   };
 
   const onMobileLinkClick = () => {
     if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
-    closeTimerRef.current = window.setTimeout(() => setMenuOpen(false), 0);
+    closeTimerRef.current = window.setTimeout(() => {
+      setMenuOpen(false);
+      setMobileHubOpen(false);
+      setMobileDiscoverOpen(false);
+    }, 0);
   };
 
   const openHubSoon = () => {
@@ -193,6 +274,16 @@ export default function Header() {
   const closeHubSoon = () => {
     if (hubCloseTimerRef.current) window.clearTimeout(hubCloseTimerRef.current);
     hubCloseTimerRef.current = window.setTimeout(() => setHubOpen(false), 120);
+  };
+
+  const openDiscoverSoon = () => {
+    if (discoverCloseTimerRef.current) window.clearTimeout(discoverCloseTimerRef.current);
+    setDiscoverOpen(true);
+  };
+
+  const closeDiscoverSoon = () => {
+    if (discoverCloseTimerRef.current) window.clearTimeout(discoverCloseTimerRef.current);
+    discoverCloseTimerRef.current = window.setTimeout(() => setDiscoverOpen(false), 120);
   };
 
   return (
@@ -220,7 +311,7 @@ export default function Header() {
           </NavLink>
 
           <nav className="nav-desktop" style={styles.navDesktop} aria-label="Primary navigation">
-            <NavLink to="/" style={linkStyle}>
+            <NavLink to="/" style={linkStyle} end>
               Home
             </NavLink>
 
@@ -228,13 +319,16 @@ export default function Header() {
               Our Mission
             </NavLink>
 
-            <div style={styles.hubWrap} onMouseEnter={openHubSoon} onMouseLeave={closeHubSoon}>
+            <div style={styles.dropdownWrap} onMouseEnter={openHubSoon} onMouseLeave={closeHubSoon}>
               <button
                 ref={hubBtnRef}
                 type="button"
                 aria-haspopup="menu"
                 aria-expanded={hubOpen}
-                onClick={() => setHubOpen((v) => !v)}
+                onClick={() => {
+                  setHubOpen((v) => !v);
+                  setDiscoverOpen(false);
+                }}
                 onFocus={openHubSoon}
                 style={hubTopLinkStyle}
               >
@@ -260,7 +354,7 @@ export default function Header() {
                   role="menu"
                   aria-label="Resource Hub menu"
                   style={{
-                    ...styles.hubMenu,
+                    ...styles.dropdownMenu,
                     backgroundColor: COLORS.beige,
                   }}
                   onMouseEnter={openHubSoon}
@@ -270,9 +364,71 @@ export default function Header() {
                     <NavLink
                       key={item.to}
                       to={item.to}
+                      end={item.end}
                       role="menuitem"
-                      style={hubItemStyle}
+                      style={dropdownItemStyle}
                       onClick={() => setHubOpen(false)}
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div
+              style={styles.dropdownWrap}
+              onMouseEnter={openDiscoverSoon}
+              onMouseLeave={closeDiscoverSoon}
+            >
+              <button
+                ref={discoverBtnRef}
+                type="button"
+                aria-haspopup="menu"
+                aria-expanded={discoverOpen}
+                onClick={() => {
+                  setDiscoverOpen((v) => !v);
+                  setHubOpen(false);
+                }}
+                onFocus={openDiscoverSoon}
+                style={discoverTopLinkStyle}
+              >
+                Discover
+                <span
+                  aria-hidden="true"
+                  style={{
+                    fontWeight: 900,
+                    transform: discoverOpen ? "rotate(180deg)" : "rotate(0deg)",
+                    transition: "transform 180ms ease",
+                    display: "inline-block",
+                    position: "relative",
+                    top: "1px",
+                  }}
+                >
+                  ▾
+                </span>
+              </button>
+
+              {discoverOpen && (
+                <div
+                  ref={discoverMenuRef}
+                  role="menu"
+                  aria-label="Discover menu"
+                  style={{
+                    ...styles.dropdownMenu,
+                    backgroundColor: COLORS.beige,
+                  }}
+                  onMouseEnter={openDiscoverSoon}
+                  onMouseLeave={closeDiscoverSoon}
+                >
+                  {DISCOVER_MENU.map((item) => (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      end={item.end}
+                      role="menuitem"
+                      style={dropdownItemStyle}
+                      onClick={() => setDiscoverOpen(false)}
                     >
                       {item.label}
                     </NavLink>
@@ -296,6 +452,9 @@ export default function Header() {
             onClick={() => {
               setMenuOpen((v) => !v);
               setHubOpen(false);
+              setDiscoverOpen(false);
+              setMobileHubOpen(false);
+              setMobileDiscoverOpen(false);
             }}
             style={{
               ...styles.menuBtn,
@@ -327,7 +486,7 @@ export default function Header() {
             onTouchStart={(e) => e.stopPropagation()}
           >
             <nav style={styles.mobileNav}>
-              <NavLink to="/" style={mobileLinkStyle} onClick={onMobileLinkClick}>
+              <NavLink to="/" style={mobileLinkStyle} onClick={onMobileLinkClick} end>
                 Home
               </NavLink>
 
@@ -336,17 +495,93 @@ export default function Header() {
               </NavLink>
 
               <div style={styles.mobileSection}>
-                <div style={styles.mobileSectionTitle}>Resource Hub</div>
-                {HUB_MENU.map((item) => (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    style={mobileLinkStyle}
-                    onClick={onMobileLinkClick}
+                <button
+                  type="button"
+                  onClick={() => setMobileHubOpen((v) => !v)}
+                  aria-expanded={mobileHubOpen}
+                  style={{
+                    ...styles.mobileSectionToggle,
+                    ...(hubIsActive ? styles.mobileSectionToggleActive : {}),
+                  }}
+                >
+                  <span>Resource Hub</span>
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      transform: mobileHubOpen ? "rotate(180deg)" : "rotate(0deg)",
+                      transition: "transform 180ms ease",
+                      display: "inline-block",
+                    }}
                   >
-                    {item.label}
-                  </NavLink>
-                ))}
+                    ▾
+                  </span>
+                </button>
+
+                <div
+                  style={{
+                    ...styles.mobileSubmenu,
+                    maxHeight: mobileHubOpen ? "320px" : "0px",
+                    opacity: mobileHubOpen ? 1 : 0,
+                    marginTop: mobileHubOpen ? "6px" : "0px",
+                  }}
+                >
+                  {HUB_MENU.map((item) => (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      end={item.end}
+                      style={mobileLinkStyle}
+                      onClick={onMobileLinkClick}
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+
+              <div style={styles.mobileSection}>
+                <button
+                  type="button"
+                  onClick={() => setMobileDiscoverOpen((v) => !v)}
+                  aria-expanded={mobileDiscoverOpen}
+                  style={{
+                    ...styles.mobileSectionToggle,
+                    ...(discoverIsActive ? styles.mobileSectionToggleActive : {}),
+                  }}
+                >
+                  <span>Discover</span>
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      transform: mobileDiscoverOpen ? "rotate(180deg)" : "rotate(0deg)",
+                      transition: "transform 180ms ease",
+                      display: "inline-block",
+                    }}
+                  >
+                    ▾
+                  </span>
+                </button>
+
+                <div
+                  style={{
+                    ...styles.mobileSubmenu,
+                    maxHeight: mobileDiscoverOpen ? "220px" : "0px",
+                    opacity: mobileDiscoverOpen ? 1 : 0,
+                    marginTop: mobileDiscoverOpen ? "6px" : "0px",
+                  }}
+                >
+                  {DISCOVER_MENU.map((item) => (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      end={item.end}
+                      style={mobileLinkStyle}
+                      onClick={onMobileLinkClick}
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                </div>
               </div>
 
               {NAV_LINKS.filter((x) => x.to !== "/" && x.to !== "/our-mission").map((l) => (
@@ -424,14 +659,14 @@ const styles = {
     height: "100%",
   },
 
-  hubWrap: {
+  dropdownWrap: {
     position: "relative",
     display: "inline-flex",
     alignItems: "center",
     height: "100%",
   },
 
-  hubMenu: {
+  dropdownMenu: {
     position: "absolute",
     top: "calc(100% + 10px)",
     left: 0,
@@ -486,19 +721,40 @@ const styles = {
   },
 
   mobileSection: {
-    padding: "6px 0 6px",
     display: "grid",
-    gap: "8px",
+    gap: "0px",
   },
 
-  mobileSectionTitle: {
+  mobileSectionToggle: {
     fontFamily: "var(--font-body)",
-    fontWeight: 900,
-    color: "rgba(17,17,17,0.70)",
-    padding: "8px 14px 0",
-    letterSpacing: "0.2px",
-    textTransform: "uppercase",
-    fontSize: "12px",
+    color: COLORS.text,
+    backgroundColor: "transparent",
+    border: "1px solid transparent",
+    textAlign: "left",
+    fontWeight: 800,
+    fontSize: "inherit",
+    padding: "12px 14px",
+    borderRadius: "12px",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    WebkitTapHighlightColor: "transparent",
+    touchAction: "manipulation",
+  },
+
+  mobileSectionToggleActive: {
+    border: "1px solid rgba(17,17,17,0.18)",
+    backgroundColor: "rgba(17,17,17,0.06)",
+  },
+
+  mobileSubmenu: {
+    overflow: "hidden",
+    display: "grid",
+    gap: "8px",
+    paddingLeft: "14px",
+    transition: "max-height 260ms ease, opacity 220ms ease, margin-top 220ms ease",
   },
 };
 
