@@ -40,6 +40,7 @@ const css = `
     background: none;
     border: none;
     cursor: pointer;
+    letter-spacing: 0.01em;
   }
 
   .back-btn:hover { color: #ffffff; }
@@ -92,6 +93,7 @@ const css = `
     margin-bottom: 2.3rem;
     padding-bottom: 2.3rem;
     border-bottom: 1.5px solid #dce8d5;
+    flex-wrap: wrap;
   }
 
   .art-dot {
@@ -166,6 +168,13 @@ const css = `
     margin-top: 3rem;
   }
 
+  .resource-box h3 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
   .resource-link {
     display: flex;
     align-items: center;
@@ -202,7 +211,7 @@ export default function TeacherRecommendation() {
         </nav>
 
         <div className="art-hero-wrap">
-          <img src={teacherRecHero} alt="Email notifications on phone" className="art-hero" />
+          <img src={teacherRecHero} alt="Teacher recommendation email" className="art-hero" />
         </div>
 
         <div className="art-container">
@@ -222,11 +231,12 @@ export default function TeacherRecommendation() {
           </div>
 
           <p className="art-intro">
-            Securing a spot in a summer research program or a competitive weekend lab as a high schooler is a major win. But these programs usually have tiny cohorts, which means they rely heavily on what your teachers say about you.
+            Securing a spot in a summer research program or a competitive weekend lab as a high schooler is a major win. But these programs usually have tiny cohorts, which means they rely heavily on what your teachers say about you. You aren't just looking for a generic “they are a good student” letter.You aren't just looking for a "they are a good student" letter. You need a "they are curious, they don't give up when a lab fails, and they actually follow safety rules" letter.
+
           </p>
 
           <p className="art-intro-lead">
-            Asking a teacher for this kind of favor can feel awkward, but if you approach it like a professional, you'll stand out before the teacher even opens their laptop to write.
+            Strong programs want to hear that you are curious, persistent, and capable of working through problems when experiments fail. Asking a teacher for that kind of recommendation can feel awkward, but approaching it professionally helps you stand out before the letter is even written.
           </p>
 
           <div className="art-body">
@@ -234,33 +244,84 @@ export default function TeacherRecommendation() {
             <img src={teacherClass} alt="Teacher classroom" className="art-section-img" />
 
             <h2>1. Choose the Teacher Who Saw You Do Science</h2>
+
             <p>
-              For research programs, the teacher who gave you an A in English is great, but the teacher who watched you struggle through a complex chemistry lab is better.
+              For research programs, the teacher who gave you an A+ in English is great, but the teacher who watched you struggle through a complex chemistry lab is better. You want someone who can talk about your technical skills and the way you approach problems.
             </p>
 
-            <img src={emailEnvelope} alt="Email envelope" className="art-section-img" />
+            <p>
+              Think about which teacher saw you ask thoughtful questions or work through a project that did not go as planned. Research is mostly troubleshooting, so a teacher who can write something like, “When the experiment failed, they stayed after class to figure out why,” is incredibly valuable.
+            </p>
+
+            <p>
+              If you are applying for a math-heavy program, ask your math or physics teacher. If it is a biology or biotechnology program, choose someone who supervised your lab work or research projects in that area.
+            </p>
+
+            <img src={emailEnvelope} alt="Email envelope illustration" className="art-section-img" />
 
             <h2>2. Timing: Don't Be the Last Minute Student</h2>
+
             <p>
-              The sweet spot is at least three to four weeks before the program's deadline. This gives teachers time to write a thoughtful recommendation.
+              Teachers are often juggling grading, lesson planning, meetings, and their own personal lives. If you ask for a recommendation letter only a few days before the deadline, you are essentially asking them to rush something important.
             </p>
 
-            <img src={laptopMeeting} alt="Laptop meeting" className="art-section-img" />
+            <p>
+              The best time to ask is at least three to four weeks before the program’s deadline. This gives them enough time to think carefully about your strengths and write a thoughtful letter rather than a rushed paragraph.
+            </p>
+
+            <p>
+              Asking early also signals that you are organized and responsible. Those traits matter a lot in research settings where missing deadlines or forgetting details can disrupt an entire experiment.
+            </p>
+
+            <img src={laptopMeeting} alt="Laptop meeting discussion" className="art-section-img" />
 
             <h2>3. Send the Research Cheat Sheet</h2>
+
+            <p>
+              Even teachers who know you well might not remember every detail of the project you completed months ago. When you send your request email, include a short document that gives them helpful information they can reference while writing.
+            </p>
 
             <div className="cheatsheet-box">
               <span className="cheatsheet-label">Your cheat sheet should include:</span>
               <ul>
-                <li>The program name and link</li>
-                <li>Why you want to do this research</li>
-                <li>A project you did in their class</li>
-                <li>Your resume or science extracurriculars</li>
+                <li>The name of the research program and a link to its website</li>
+                <li>A short explanation of why you want to participate in that program</li>
+                <li>A reminder of a specific project or lab you completed in their class</li>
+                <li>Your resume or a list of science-related extracurricular activities</li>
               </ul>
             </div>
 
+            <h2>4. Use Professional (but Human) Language</h2>
+
+            <p>
+              Your request email should be polite and clear without sounding overly formal. Start by reminding the teacher which class you were in and when you had them.
+            </p>
+
+            <p>
+              Explain the program you are applying to and why you thought of them specifically when choosing someone to write the recommendation. Mentioning something specific about their class, such as a project or teaching style you appreciated, makes the request feel more personal.
+            </p>
+
+            <p>
+              Finally, clearly state the deadline and include any forms or submission links they might need. Keeping the request organized makes the process much easier for them.
+            </p>
+
+            <h2>5. Close the Loop and Say Thank You</h2>
+
+            <p>
+              Once a teacher agrees to write your letter, send a quick follow-up message confirming the deadline and providing any additional instructions they might need.
+            </p>
+
+            <p>
+              After you hear back from the program, let them know the outcome. Teachers spend significant time writing these letters, and they genuinely want to know if their support helped you succeed.
+            </p>
+
+            <p>
+              A simple message saying, “I got into the program, thank you again for writing the recommendation,” can strengthen the relationship and make it easier to ask for future recommendations later in your academic career.
+            </p>
+
             <div className="resource-box">
-              <h3>Ready-to-Use Email &amp; Organization Tools</h3>
+
+              <h3>Ready-to-Use Email & Organization Tools</h3>
 
               <a
                 className="resource-link"
@@ -268,7 +329,7 @@ export default function TeacherRecommendation() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Email Template for Teacher Recommendation Requests
+                Teacher Recommendation Email Template
               </a>
 
               <a
@@ -279,6 +340,7 @@ export default function TeacherRecommendation() {
               >
                 Common App Teacher Brag Sheet (PDF)
               </a>
+
             </div>
 
             <button
