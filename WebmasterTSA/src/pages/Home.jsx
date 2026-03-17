@@ -18,6 +18,17 @@ import bigBroSisImg from "../assets/BigBroSis.webp";
 import handsOnImg from "../assets/HandsOn.webp";
 import BuildImg from "../assets/Build.webp";
 
+import AliceImg from "../assets/Alice.webp";
+import NaomiImg from "../assets/Naomi.webp";
+import SophiaImg from "../assets/Sophia.webp";
+import PriyaImg from "../assets/Priya.webp";
+import JordanImg from "../assets/Jordan.webp";
+import LilaImg from "../assets/Lila.webp";
+import ShawnImg from "../assets/Shawn.webp";
+import MarcusImg from "../assets/Marcus.webp";
+import TylerImg from "../assets/Tyler.webp";
+import CarlosImg from "../assets/Carlos.webp";
+
 const COLORS = {
   carolinaBlue: "#4B9CD3",
   gray: "#494A48",
@@ -42,7 +53,7 @@ const TESTIMONIALS = [
   {
     name: "Alice Johnson",
     location: "Durham, NC",
-    img: BuildImg,
+    img: AliceImg,
     quote:
       "Nexus helped me find a summer internship I never would have discovered on my own. The resource hub is incredibly well-organized and easy to use.",
     tag: "Summer Programs",
@@ -50,7 +61,7 @@ const TESTIMONIALS = [
   {
     name: "Marcus Williams",
     location: "Chapel Hill, NC",
-    img: BuildImg,
+    img: MarcusImg,
     quote:
       "I found a scholarship through Nexus that covered my first semester. Having everything in one place made the search so much less overwhelming.",
     tag: "Scholarships",
@@ -58,7 +69,7 @@ const TESTIMONIALS = [
   {
     name: "Jordan Lee",
     location: "Raleigh, NC",
-    img: BuildImg,
+    img: JordanImg,
     quote:
       "As a first-generation student, I didn't know where to start. Nexus pointed me to academic programs I didn't even know existed in the Triangle.",
     tag: "Academic Programs",
@@ -66,7 +77,7 @@ const TESTIMONIALS = [
   {
     name: "Priya Sharma",
     location: "Cary, NC",
-    img: BuildImg,
+    img: PriyaImg,
     quote:
       "The community events section helped me connect with local nonprofits doing meaningful work. I'm now a regular volunteer thanks to Nexus.",
     tag: "Volunteering",
@@ -74,7 +85,7 @@ const TESTIMONIALS = [
   {
     name: "Tyler Brooks",
     location: "Durham, NC",
-    img: BuildImg,
+    img: TylerImg,
     quote:
       "I was struggling to find mental health support services. Nexus made it simple and judgment-free — found exactly what I needed within minutes.",
     tag: "Support Services",
@@ -82,15 +93,15 @@ const TESTIMONIALS = [
   {
     name: "Sophia Martinez",
     location: "Morrisville, NC",
-    img: BuildImg,
+    img: SophiaImg,
     quote:
       "My daughter applied to three programs she found through Nexus. She got into two of them. This platform is a game changer for Triangle families.",
     tag: "Academic Programs",
   },
   {
-    name: "DeShawn Carter",
+    name: "Shawn Carter",
     location: "Raleigh, NC",
-    img: BuildImg,
+    img: ShawnImg,
     quote:
       "The map view is brilliant. I could see every resource near me at a glance. It's the kind of tool every community deserves.",
     tag: "Resource Hub",
@@ -98,7 +109,7 @@ const TESTIMONIALS = [
   {
     name: "Lila Thompson",
     location: "Durham, NC",
-    img: BuildImg,
+    img: LilaImg,
     quote:
       "I added our nonprofit to the hub and received new volunteer inquiries the same week. Nexus truly bridges the gap between organizations and residents.",
     tag: "Nonprofits",
@@ -106,7 +117,7 @@ const TESTIMONIALS = [
   {
     name: "Carlos Rivera",
     location: "Apex, NC",
-    img: BuildImg,
+    img: CarlosImg,
     quote:
       "Growing up in a Spanish-speaking household, finding local resources always felt like a barrier. Nexus made everything accessible and stress-free.",
     tag: "Support Services",
@@ -114,7 +125,7 @@ const TESTIMONIALS = [
   {
     name: "Naomi Grant",
     location: "Chapel Hill, NC",
-    img: BuildImg,
+    img: NaomiImg,
     quote:
       "I use Nexus every semester to discover new opportunities. It's become my go-to tool for staying connected with what's happening in the Triangle.",
     tag: "Community Events",
