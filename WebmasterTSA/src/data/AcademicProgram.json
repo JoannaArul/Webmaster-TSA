@@ -208,5 +208,38 @@
     "link": "https://www.durhamliteracy.org/youth-achievement",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "Health Careers Day On “The Hill”",
+    "category": "Academic Program",
+    "cities": ["Chapel Hill"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "Health Careers Day on the Hill introduces students to a range of healthcare professions through presentations from representatives of UNC’s health professional schools and the Duke Physician Assistant Program. The event also features hands-on workshops, such as Stop the Bleed training, and provides opportunities to connect with healthcare professionals while learning about college and career pathways in the health field.",
+    "link": "https://nchcap.unc.edu/pre-college/health-careers-day-on-the-hill/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Fusion Academy Chapel Hill",
+    "category": "Academic Program",
+    "cities": ["Chapel Hill"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "Fusion Academy Chapel Hill offers a personalized one-to-one learning model designed for middle and high school students who benefit from individualized academic support. Students work closely with teachers in one-on-one classes, participate in small group sessions, and engage in guided digital learning, all within a flexible schedule that provides daily feedback and accommodates different learning needs.",
+    "link": "https://www.fusionacademy.com/campuses/chapel-hill/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "North Carolina Health Careers Initiative (NC-HCAP): HCIE Workshops",
+    "category": "Academic Program",
+    "cities": ["Chapel Hill"],
+    "grades": ["9","10","11","12"],
+    "interest": "Biology",
+    "description": "The HCIE Workshop Series offers interactive, hands-on sessions designed to spark interest in healthcare careers for students in grades 5–12. Through small group discussions and cooperative activities, participants explore health career pathways, build academic and goal-setting skills, and learn about college preparation and financial aid while developing their own career plans.",
+    "link": "https://nchcap.unc.edu/pre-college/hcie-workshops/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

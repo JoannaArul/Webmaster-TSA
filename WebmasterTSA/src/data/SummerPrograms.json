@@ -173,7 +173,8 @@
     "description": "The 2026 Chuck Stone Program is a four-day, in-person journalism workshop for rising high school seniors, offering hands-on reporting, newsroom practice, and mentorship while producing a collaborative multimedia publication.",
     "link": "https://chuckstone.web.unc.edu/",
     "openToAllImmigrationStatuses": true,
-    "featured": false
+    "featured": false,
+    "deadline": "2026-03-15"
   },
   {
     "name": "NC State Design Camp",
@@ -427,7 +428,163 @@
     "link": "https://raleighnc.gov/parks-and-recreation/services/teen-programs/teen-summer-camps#paragraph--305636",
     "openToAllImmigrationStatuses": true,
     "featured": false,
-      "deadline": "2026-04-22"
-
+    "deadline": "2026-04-22"
+  },
+    {
+    "name": "Outset Medical Summer Camp",
+    "category": "Summer Programs",
+    "cities": ["Chapel Hill"],
+    "grades": ["9","10","11","12"],
+    "interest": "Biology",
+    "description": "Outset is a one-week pre-college camp that gives high school students hands-on exposure to healthcare careers. Held on the UNC–Chapel Hill campus, students learn from physicians, medical faculty, and medical students while exploring fields such as family medicine, surgery, neurosurgery, pediatrics, dentistry, and pharmacy, combining medical training and simulations with social activities that build community among future healthcare leaders.",
+    "link": "https://www.joinoutset.com/all-programs",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "UNC-Chapel Hill: Summer School for Rising High School Seniors",
+    "category": "Summer Programs",
+    "cities": ["Chapel Hill"],
+    "grades": ["11"],
+    "interest": "Education",
+    "description": "This program allows rising high school seniors to enroll as Summer School Visitors at UNC–Chapel Hill and take rigorous college-level courses during the summer. Students must apply with transcripts, a personal statement explaining their course goals, and letters of recommendation. The accelerated courses require a strong commitment, with daily class sessions and several hours of additional work, and final grades appear on official UNC transcripts.",
+    "link": "https://summer.unc.edu/dual-enrollment/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Project Uplift",
+    "category": "Summer Programs",
+    "cities": ["Chapel Hill"],
+    "grades": ["12"],
+    "interest": "STEM/Enrichment",
+    "description": "Project Uplift offers high school seniors an immersive, full-day experience at UNC–Chapel Hill designed to connect students with the university community. Participants attend lectures and small seminars, interact with current students, faculty, and staff, and learn about the admissions and financial aid process while gaining a firsthand look at campus life.",
+    "link": "https://cheop.unc.edu/pre-college-programs/project-uplift-and-uplift-plus/about-project-uplift/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Upward Bound",
+    "category": "Summer Programs",
+    "cities": ["Chapel Hill"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "Upward Bound at UNC–Chapel Hill is a competitive program that supports about 100 high school students in building the academic skills and motivation needed to succeed in high school and pursue a bachelor’s degree. Participants receive academic enrichment, college preparation support, and mentoring, and must attend designated high schools while meeting federal income and educational background guidelines.",
+    "link": "https://upwardbound.unc.edu/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Emerson Waldorf School Summer Camps",
+    "category": "Summer Programs",
+    "cities": ["Chapel Hill"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "Emerson Waldorf School Summer Camps offer outdoor-focused programs centered on arts, crafts, fort-building, sports, farming, and nature exploration. With intentionally small group sizes, the camps emphasize individualized attention while encouraging active days, creativity, and meaningful connections with nature.",
+    "link": "https://www.emersonwaldorf.org/summercamps",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Uplift PLUS",
+    "category": "Summer Programs",
+    "cities": ["Chapel Hill"],
+    "grades": ["11"],
+    "interest": "STEM/Enrichment",
+    "description": "Uplift PLUS is a two-week residential program for North Carolina students who participate in Project Uplift, focused on academic enrichment and college preparation. Participants live on campus while taking an essay-writing course for college applications, engaging in leadership development and experiential learning, and connecting with current UNC students and university resources.",
+    "link": "https://cheop.unc.edu/pre-college-programs/project-uplift-and-uplift-plus/about-uplift-plus/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline": "2026-04-05"
+  },
+    {
+    "name": "iHEAL Overnight Healthcare Leadership Camp",
+    "category": "Summer Programs",
+    "cities": ["Chapel Hill"],
+    "grades": ["9"],
+    "interest": "Biology",
+    "description": "iHEAL (Interdisciplinary Health Education for Aspiring Leaders) is a free overnight camp for rising 9th graders that introduces students to healthcare careers in southeastern North Carolina. Through hands-on simulations, seminars, campus tours, and guest speaker sessions, participants explore health careers, social determinants of health, and leadership skills while building connections that continue through alumni mentorship and learning opportunities during high school.",
+    "link": "https://uncw.edu/academics/colleges/chhs/pre-health/iheal",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline": "2026-04-24"
+  },
+    {
+    "name": "NSLC Raleigh-Durham Summer Programs",
+    "category": "Summer Programs",
+    "cities": ["Durham", "Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "The National Student Leadership Conference at Duke University offers immersive pre-college summer programs that help high school students explore potential careers and interests. Through hands-on simulations and experiential learning, participants gain real-world insight into different fields while experiencing life on a college campus.",
+    "link": "https://www.nslcleaders.org/summer-program-locations/raleigh-durham-high-school-programs/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "NCMNS Teen Science Cafes",
+    "category": "Summer Programs",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "Teen Science Cafés bring teens together in an informal setting to explore science and technology through engaging presentations and interactive activities. Held monthly during the school year, each café features a scientist talk, hands-on activity, Q&A session, and time to connect with other teens interested in science. The program is recommended for ages 11–17 and is free to attend.",
+    "link": "https://naturalsciences.org/learn/teen-science-cafes",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "NCMNS Cafe Coordinators",
+    "category": "Summer Programs",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "Café Coordinators are student volunteers who plan and host the Museum’s Teen Science Cafés, monthly events that highlight cutting-edge scientific research and STEM careers. Coordinators work with guest scientists to organize the programs, select topics, manage outreach and marketing, and develop skills in science communication, leadership, and public speaking while helping make these teen-led events possible.",
+    "link": "https://naturalsciences.org/learn/cafe-coordinators",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "NCMNS Junior Curators",
+    "category": "Summer Programs",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "Environmental Science",
+    "description": "Junior Curators are volunteers with a strong interest in conservation, animal care, and field biology. Participants support the Museum’s conservation efforts by assisting with educational programs and events, participating in field experiences and service projects, and helping care for the Museum’s live animal collection.",
+    "link": "https://naturalsciences.org/learn/junior-curators",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "NCMNS CLIMATE RESILIENCE CAMP",
+    "category": "Summer Programs",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "Environmental Science",
+    "description": "Climate Resilience Camp is a week-long STEM enrichment program for students entering grades 9–12 that explores the impacts of natural disasters and extreme weather. Through hands-on activities on topics like extreme heat, flooding, and air quality, students investigate ways to strengthen community resilience, connect with professionals in climate-related fields, and are encouraged to lead a service project in their community during the school year.",
+    "link": "https://naturalsciences.org/learn/climate-resilience-camp",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline": "2026-04-08"
+  },
+    {
+    "name": "Liberation Out Loud",
+    "category": "Summer Programs",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "Liberation Out Loud is a program for high school students that encourages them to use their passions and talents to support their communities and promote social justice. Participants connect their interests with opportunities for community service, collaboration, and advocacy while working toward collective liberation.",
+    "link": "https://wake.ces.ncsu.edu/teen-programs/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Wake County 4-H Teen Council",
+    "category": "Summer Programs",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "Public Service",
+    "description": "Wake County 4-H Teen Council helps teens develop leadership, communication, citizenship, financial management, and resilience skills. Members meet monthly in a youth-led environment to plan educational programs, organize community service projects, and participate in social activities while working with diverse peers.",
+    "link": "https://wake.ces.ncsu.edu/teen-programs/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

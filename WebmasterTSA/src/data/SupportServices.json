@@ -109,5 +109,16 @@
     "link": "https://www.thedcrc.org/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "Resources for Youth Success & Empowerment (RYSE) Assessment Center",
+    "category": "Support Services",
+    "cities": ["Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Public Service",
+    "description": "Durham youth ages 10–17 experiencing social, emotional, or behavioral challenges can access voluntary, cost-free support services. The program offers same-day screenings and referrals and works with local partners to provide comprehensive care for youth and their families in the Durham community.",
+    "link": "https://dconc.gov/Youth-Home/RYSE",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

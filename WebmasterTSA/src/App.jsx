@@ -9,6 +9,8 @@ import ResourceHubCalendar from "./pages/ResourceHubCalendar.jsx";
 import GrowtheHub from "./pages/GrowtheHub.jsx";
 import Discover from "./pages/Discover.jsx";
 import Blog from "./pages/Blog.jsx";
+import Resume from "./pages/Resume.jsx";
+import TeacherRecommendation from "./pages/TeacherRecommendation.jsx";
 import PathBuilder from "./pages/PathBuilder.jsx";
 import ReferencePage from "./pages/ReferencePage.jsx";
 import OurMission from "./pages/OurMission.jsx";
@@ -28,6 +30,8 @@ export default function App() {
         <Route path="/grow-the-hub" element={<GrowtheHub />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/resume" element={<Resume />} />
+        <Route path="/blog/teacher-recommendation" element={<TeacherRecommendation />} />
         <Route path="/reference-page" element={<ReferencePage />} />
       </Routes>
 

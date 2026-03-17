@@ -340,5 +340,77 @@
     "openToAllImmigrationStatuses": true,
     "featured": true,
     "image": "SMathHacks"
+  },
+  {
+    "name": "Durham Earth Day Festival",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Environmental Science",
+    "description": "Join us in celebrating Earth Day 2026 as we come together to honor and protect our planet. This year’s theme, “Our Power, Our Planet,” emphasizes the ability of individuals, communities, businesses, and governments to take meaningful action and work collectively toward a more sustainable future. 🌍🌱",
+    "link": "https://www.dprplaymore.org/299/Earth-Day-Festival",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline": "2026-04-19"
+  },
+  {
+    "name": "Canine Field Day",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Enjoy a day in the park with your furry friend at Canine Field Day! Bring your dog to participate in a variety of fun activities for all energy levels, including an agility course, non-competitive Frisbee and fetch areas, bobbing for treats, a treasure hunt, and more. After your pup has burned off some energy, take a stroll through the pet market or grab a bite to eat from the food trucks. 🐶🌳",
+    "link": "https://www.dprplaymore.org/294/Canine-Field-Day",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline": "2026-4-25"
+  },
+  {
+    "name": "Bimbé Cultural Arts Festival",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Arts Performance",
+    "description": "The nationally award-winning Bimbé Cultural Arts Festival will celebrate its 56th anniversary on May 16, 2026! Join us for a vibrant day featuring live music, arts and crafts, community resources, traditional food, and performances from talented local artists. Stay tuned for upcoming announcements about headlining acts and performers. 🎶🎨",
+    "link": "https://www.dprplaymore.org/281/Bimbe-Cultural-Arts-Festival",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline": "2026-05-16"
+  },
+  {
+    "name": "July 4th Celebration",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Celebrate community pride with Durham Parks and Recreation and the Durham Bulls. Attend the baseball game and enjoy an exciting fireworks show following the game.",
+    "link": "https://www.dprplaymore.org/312/July-4th-Celebration",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline": "2026-07-04"
+  },
+  {
+    "name": "Durham Fiesta Latina",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Save the date for Durham Fiesta Latina, presented by Durham Parks & Recreation in partnership with El Centro Hispano. This annual event celebrates Latino culture with authentic food, live music, folkloric dancing, family activities, and community resources.",
+    "link": "https://www.dprplaymore.org/544/Durham-Fiesta-Latina",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline": "2026-08-02"
+  },
+  {
+    "name": "Barktoberfest",
+    "category": "Community Events",
+    "cities": ["Durham"],
+    "grades": ["9", "10", "11", "12"],
+    "interest": "Public Service",
+    "description": "Durham Parks and Recreation and Beyond Fences host Barktoberfest, a fun-filled celebration for dogs and their humans that brings the community together for a day of canine activities, festive entertainment, and tasty treats.",
+    "link": "https://www.dprplaymore.org/276/Barktoberfest",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline": "2026-10-24"
   }
 ]
