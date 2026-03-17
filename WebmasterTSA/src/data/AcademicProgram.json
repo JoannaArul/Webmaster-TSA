@@ -241,5 +241,27 @@
     "link": "https://nchcap.unc.edu/pre-college/hcie-workshops/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "Raleigh Teen Connect Co-Op at Saint Monica Teen Center",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "The Raleigh Teen Connect Co-Op at Saint Monica Teen Center is a collaborative space designed to create a welcoming and supportive environment where teens can learn, grow, and build connections with one another. This shared space allows nonprofit organizations and teen-led groups to host a variety of programs, including educational and career-focused workshops, recreational activities, and creative projects.",
+    "link": "https://raleighnc.gov/parks-and-recreation/services/teen-programs",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Living Life as an Art",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "Arts Performance",
+    "description": "Living Life as an Art is a program for high school students that blends creativity, community, and personal growth to connect work and play in meaningful ways. Participants will create art, explore design, engage in hands-on activities, go on field trips, and take part in volunteer projects. The program focuses on helping teens discover themselves, build new skills, and make a positive impact—all while having fun. If you’re looking to better understand yourself, connect with your community, and grow alongside others, apply now and join the first meeting on October 15, 2025.",
+    "link": "https://raleighnc.gov/parks-and-recreation/services/teen-programs",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

@@ -120,5 +120,28 @@
     "link": "https://dconc.gov/Youth-Home/RYSE",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "RTC Teen Zones",
+    "category": "Support Services",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "Teen Zones are popular hangout spots for Raleigh Teen Connect (RTC) members, offering teens a place to relax, socialize, and have fun. Whether you enjoy gaming, basketball, movies, or simply spending time with friends, there’s something for everyone.",
+    "link": "https://ncraleighweb.myvscloud.com/webtrac/web/search.html?Action=Start&SubAction=&_csrf_token=cl0O0514711E1C271W3C453Z5T555D6H1I5K645E5W065Z40554V1K6M4L4L561E6Y4F6N5D6W5V4V5X6A1A714C6L4C06704J58530G574R464F045P4V646F6M5R606K&keyword=teen&type=&category=&age=&secondarycode=&keywordoption=Match+One&subtype=&display=detail&module=PM&multiselectlist_value=&pmwebsearch_buttonsearch=yes",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Grief Talks: Holding on to Love and Loss",
+    "category": "Support Services",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "Public Service",
+    "description": "Amanda began her career working with children and families and now focuses on supporting adults and young adults through major life transitions. She believes life is rarely purely good or bad but exists in a balance of both, which is especially true in experiences of grief. Much of her work centers on helping individuals navigate loss, along with trauma, depression, anxiety, and transitions such as caregiving and the Sandwich Generation.",
+    "link": "https://dorotheadixpark.org/event/grief-talks-holding-love-and-loss",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline":"2026-04-12"
   }
 ]

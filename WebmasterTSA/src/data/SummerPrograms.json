@@ -586,5 +586,17 @@
     "link": "https://wake.ces.ncsu.edu/teen-programs/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "Raleigh Summer Youth Employment Program",
+    "category": "Summer Programs",
+    "cities": ["Raleigh"],
+    "grades": ["10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "The Raleigh Summer Youth Employment Program (RSYEP) gives teens ages 15 to 18 the opportunity to gain hands-on experience and prepare for their future through paid work with the City of Raleigh. Over the course of eight weeks, participants explore different career paths while building valuable professional and life skills for success in today’s workforce.",
+    "link": "https://raleighnc.gov/careers-jobs-and-volunteering/services/raleigh-summer-youth-employment",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline":"2026-03-18"
   }
 ]

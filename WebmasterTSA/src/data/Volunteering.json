@@ -226,7 +226,7 @@
     "cities": ["Durham"],
     "grades": ["9", "10", "11", "12"],
     "interest": "Environmental Science",
-    "description": "Interested in volunteering for the Earth Day celebration? Visit our iVolunteer site to sign up. Volunteers will receive an Earth Day festival T-shirt, along with snacks and water during the event. 🌍🌱",
+    "description": "Interested in volunteering for the Earth Day celebration? Visit our iVolunteer site to sign up. Volunteers will receive an Earth Day festival T-shirt, along with snacks and water during the event.",
     "link": "https://dprvolunteers.ivolunteer.com/event_2025earthdaycelebration_001",
     "openToAllImmigrationStatuses": true,
     "featured": false,
@@ -367,6 +367,17 @@
     "interest": "Education",
     "description": "Durham County Library Volunteers support library staff by helping with a variety of tasks that enhance programs and services for the community. Volunteers may assist with organizing materials, supporting library events and activities, helping with youth programs, and contributing to a welcoming environment for visitors.",
     "link": "https://durhamcountylibrary.org/volunteer-opportunities/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Dix Park Volunteer",
+    "category": "Volunteering",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "Public Service",
+    "description": "Thank you for your interest in volunteering with Raleigh Parks! To sign up for an upcoming event, select the event button to view the details, then click the register button at the bottom of the listing. If you’d like step-by-step guidance, you can also watch a video demonstration.",
+    "link": "https://dorotheadixpark.org/volunteer",
     "openToAllImmigrationStatuses": true,
     "featured": false
   }
