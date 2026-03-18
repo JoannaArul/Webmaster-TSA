@@ -380,5 +380,27 @@
     "link": "https://dorotheadixpark.org/volunteer",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "Cary Teen Council",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Public Service",
+    "description": "The Cary Teen Council is a volunteer organization made up of teens from schools across Cary and surrounding areas that promotes leadership, accountability, and service. Members gain experience through volunteer work, leadership opportunities, and participation in programs focused on community service, education, teamwork, fundraising, and event planning while building strong communication and time management skills.",
+    "link": "https://www.carync.gov/recreation-enjoyment/special-populations/cary-teen-council",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "WakeMed Junior Volunteer Program",
+    "category": "Volunteering",
+    "cities": ["Raleigh"],
+    "grades": ["11","12"],
+    "interest": "Biology",
+    "description": "For students interested in healthcare, the WakeMed Summer Teen Volunteer Program offers a structured clinical volunteering experience at the Raleigh Campus or Cary Hospital. Participants are placed in specific departments where they assist staff and interact with patients and visitors, gaining real insight into the medical field while contributing to the local community, with the option to continue after completing 30 hours of service.",
+    "link": "https://www.wakemed.org/volunteer/junior-volunteering",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

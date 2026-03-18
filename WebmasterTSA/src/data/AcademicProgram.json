@@ -263,5 +263,93 @@
     "link": "https://raleighnc.gov/parks-and-recreation/services/teen-programs",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "Wake Early College of Health and Science",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "Biology",
+    "description": "This five year program, in partnership with WakeMed, allows students to earn a high school diploma while working toward an associate degree. Students complete two years of rigorous honors courses at the Perry Health Sciences Campus before finishing their remaining classes at the Scott Northern Wake Campus.",
+    "link": "https://nc01911451.schoolwires.net/healthscienceec",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Wake Early College of Information and Biotechnologies",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "Computer Science",
+    "description": "Located in the Lilly Science and Technology Center on the RTP Campus, this program allows students to earn a high school diploma while working toward an associate degree. It focuses on three areas: biotechnology, computer programming, and cybersecurity.",
+    "link": "https://nc01911451.schoolwires.net/infobiotechec",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Vernon Malone College and Career Academy",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "Students meet high school graduation requirements while earning college credits that can be applied toward an associate degree, diploma, or certificate at Wake Tech.",
+    "link": "https://nc01911451.schoolwires.net/vernonmalonecca",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "North Wake College and Career Academy",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "Students fulfill high school graduation requirements while earning college credits that count toward an associate degree, diploma, or certificate at Wake Tech.",
+    "link": "https://nc01911451.schoolwires.net/northwakecca",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "YMCA High School Leaders Club",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "Public Service",
+    "description": "Leaders Club is a year long leadership development program for middle and high school teens that offers hands on training and volunteer opportunities supporting YMCA programs and services. Along with building leadership through service, advisors introduce teens to the Y’s impact on the community and help prepare them to become future leaders.",
+    "link": "https://www.ymcatriangle.org/programs/teen-programs/leaders-club",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "YMCA Lightner Y Achievers",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "Public Service",
+    "description": "Clarence E. Lightner Y Achievers supports young people in exploring higher education and career goals by building the skills they need to succeed and serve as community role models. The program empowers students in grades 6 to 12 by connecting them with dedicated adult mentors who guide them on their path beyond high school.",
+    "link": "https://www.ymcatriangle.org/programs/teen-programs/lightner-y-achievers",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "YMCA Southeast Raleigh Fellowship",
+    "category": "Academic Program",
+    "cities": ["Raleigh"],
+    "grades": ["11","12"],
+    "interest": "Public Service",
+    "description": "The Southeast Raleigh YMCA Teen and Young Adult Fellowship is a 24 week immersive program that empowers up to 30 young leaders to explore career paths, build leadership skills, and connect their sense of purpose to meaningful impact at no cost.",
+    "link": "https://www.ymcatriangle.org/programs/teen-programs/southeast-raleigh-fellowship",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "SKEMA Business School",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Business",
+    "description": "SKEMA Business School offers immersive Summer School programs designed for students and young professionals seeking a global learning experience. These short term programs combine academic rigor, cultural exploration, and real world business insights while emphasizing innovation, global mobility, and multicultural collaboration.",
+    "link": "https://www.skema.edu/en",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

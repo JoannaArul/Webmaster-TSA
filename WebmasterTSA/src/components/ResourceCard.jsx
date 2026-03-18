@@ -32,14 +32,17 @@ export default function ResourceCard({ resource }) {
 
       <p style={styles.desc}>{resource.description || ""}</p>
 
-      <div style={styles.bottomRow}>
-        {resource.openToAllImmigrationStatuses && (
+      {/* Immigration badge — own centered row */}
+      {resource.openToAllImmigrationStatuses && (
+        <div style={styles.badgeRow}>
           <span style={styles.openBadge}>
             Open regardless of immigration status
           </span>
-        )}
+        </div>
+      )}
 
-        {resource.link && (
+      {resource.link && (
+        <div style={styles.linkRow}>
           <a
             style={styles.link}
             href={resource.link}
@@ -48,15 +51,15 @@ export default function ResourceCard({ resource }) {
           >
             Visit Resource →
           </a>
-        )}
-      </div>
+        </div>
+      )}
     </motion.article>
   );
 }
 
 const styles = {
   card: {
-    backgroundColor: "#F5FCEF", // beige background
+    backgroundColor: "#F5FCEF",
     padding: "18px",
     borderRadius: "14px",
     border: "1px solid #DCE7D1",
@@ -65,6 +68,7 @@ const styles = {
     flexDirection: "column",
     gap: "10px",
     minWidth: 0,
+    textAlign: "left",
   },
 
   topRow: {
@@ -73,6 +77,7 @@ const styles = {
     justifyContent: "space-between",
     gap: "12px",
     flexWrap: "wrap",
+    textAlign: "left",
   },
 
   name: {
@@ -84,6 +89,7 @@ const styles = {
     flex: "1 1 auto",
     minWidth: 0,
     wordBreak: "break-word",
+    textAlign: "left",
   },
 
   badge: {
@@ -102,6 +108,7 @@ const styles = {
     color: "#494A48",
     fontSize: "0.9rem",
     lineHeight: 1.45,
+    textAlign: "left",
   },
 
   desc: {
@@ -110,15 +117,15 @@ const styles = {
     fontSize: "0.95rem",
     lineHeight: 1.45,
     wordBreak: "break-word",
+    textAlign: "left",
   },
 
-  bottomRow: {
+  // Full-width row just for the immigration badge — centered
+  badgeRow: {
     display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    gap: "12px",
-    flexWrap: "wrap",
-    marginTop: "6px",
+    justifyContent: "center",
+    width: "100%",
+    marginTop: "4px",
   },
 
   openBadge: {
@@ -126,13 +133,20 @@ const styles = {
     border: "1px solid #DCE7D1",
     color: "#000000",
     fontSize: "0.78rem",
-    padding: "4px 10px",
+    padding: "4px 14px",
     borderRadius: "999px",
     whiteSpace: "nowrap",
   },
 
+  // Link row — left-aligned
+  linkRow: {
+    display: "flex",
+    justifyContent: "flex-start",
+    marginTop: "2px",
+  },
+
   link: {
-    color: "#4B9CD3", 
+    color: "#4B9CD3",
     fontWeight: 700,
     textDecoration: "none",
     whiteSpace: "nowrap",

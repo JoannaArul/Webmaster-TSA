@@ -25,12 +25,12 @@ import VolunteeringImg from "../assets/Volunteering.webp";
 import ResourceHubBg from "../assets/ResourceHubBackground.webp";
 
 const COLORS = {
-  carolinaBlue: "#4B9CD3", 
-  headerGray: "#494A48",     
-  pageBg: "#F0EBE3",  
-  lightBg: "#FAF7F4",  
-  border: "#E2D5C8",   
-  text: "#000000",         
+  carolinaBlue: "#4B9CD3",
+  headerGray: "#494A48",
+  pageBg: "#F0EBE3",
+  lightBg: "#FAF7F4",
+  border: "#E2D5C8",
+  text: "#000000",
 };
 
 const PAGE_SIZE = 30;
@@ -160,7 +160,6 @@ export default function ResourceHub() {
         .nexus-marquee:hover .nexus-track { animation-play-state: paused; }
         @media (prefers-reduced-motion: reduce) { .nexus-track { animation: none; } }
 
-        /* Resource grid breakpoints */
         .resource-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -173,7 +172,6 @@ export default function ResourceHub() {
           .resource-grid { grid-template-columns: 1fr !important; }
         }
 
-        /* ── Filter bar: force lighter bg on every child ── */
         .filters-outer,
         .filters-outer > *,
         .filters-outer div,
@@ -184,25 +182,21 @@ export default function ResourceHub() {
         .filters-outer span {
           background-color: ${COLORS.lightBg} !important;
         }
-        /* Checkboxes: match lighter bg */
         .filters-outer input[type="checkbox"] {
           accent-color: ${COLORS.carolinaBlue};
           background-color: ${COLORS.lightBg} !important;
         }
-        /* Search button stays blue */
         .filters-outer button {
           background-color: ${COLORS.carolinaBlue} !important;
           border-color: ${COLORS.carolinaBlue} !important;
           color: #fff !important;
         }
-        /* Reset button — transparent */
         .filters-outer button:last-of-type {
           background-color: transparent !important;
           border: 1px solid ${COLORS.border} !important;
           color: ${COLORS.text} !important;
         }
 
-        /* ── Resource card wrapper ── */
         .rcard-wrap {
           background-color: ${COLORS.lightBg};
           border: 1px solid ${COLORS.border};
@@ -217,7 +211,6 @@ export default function ResourceHub() {
           box-shadow: 0 6px 22px rgba(75,156,211,0.18);
           transform: translateY(-2px);
         }
-        /* Strip ResourceCard's own bg/border so wrapper colour shows */
         .rcard-inner {
           flex: 1;
           padding: 18px 18px 10px 18px;
@@ -227,7 +220,6 @@ export default function ResourceHub() {
           border: none !important;
           box-shadow: none !important;
         }
-        /* Hide any "Visit Resource" link rendered inside ResourceCard itself */
         .rcard-inner a[href],
         .rcard-inner a {
           display: none !important;
@@ -235,9 +227,11 @@ export default function ResourceHub() {
         .rcard-footer {
           padding: 10px 18px 16px 18px;
           border-top: 1px solid ${COLORS.border};
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
-        /* ── Progress bar ── */
         .prog-track {
           width: 100%;
           max-width: 420px;
@@ -253,7 +247,6 @@ export default function ResourceHub() {
           transition: width 350ms ease;
         }
 
-        /* ── Load more button ── */
         .load-more-btn {
           display: block;
           width: 100%;
@@ -280,7 +273,6 @@ export default function ResourceHub() {
         }
       `}</style>
 
-      {/* ── HERO ── */}
       <section style={hero.fullBleed}>
         <div style={hero.bgImage} />
         <div style={hero.overlay} />
@@ -314,7 +306,6 @@ export default function ResourceHub() {
           </div>
         </div>
 
-        {/* ── CAROUSEL — identical to original ── */}
         <div style={hero.bottomArea}>
           <div className="nexus-marquee">
             <div className="nexus-track" style={carousel.track}>
@@ -347,10 +338,8 @@ export default function ResourceHub() {
         </div>
       </section>
 
-      {/* ── MAIN CONTENT ── */}
       <div style={styles.container}>
 
-        {/* Filter bar */}
         <div
           className="filters-outer"
           style={{
@@ -373,21 +362,18 @@ export default function ResourceHub() {
           />
         </div>
 
-        {/* Results count */}
         <div style={styles.resultsRow}>
           <span style={styles.count}>
             Showing {showing} of {total} resource{total === 1 ? "" : "s"}
           </span>
         </div>
 
-        {/* Resource grid */}
         <div className="resource-grid">
           {filtered.slice(0, visibleCount).map((r) => (
             <div key={`${r.name}-${r.link}`} className="rcard-wrap">
               <div className="rcard-inner">
                 <ResourceCard resource={r} />
               </div>
-              {/* Visit Resource pinned bottom-left — internal link hidden via CSS above */}
               <div className="rcard-footer">
                 {r.link ? (
                   <a
@@ -409,7 +395,6 @@ export default function ResourceHub() {
           ))}
         </div>
 
-        {/* ── Load more: progress bar + button ── */}
         {total > 0 && (
           <div style={styles.loadMoreSection}>
             <p style={styles.showingLabel}>
@@ -433,8 +418,6 @@ export default function ResourceHub() {
     </div>
   );
 }
-
-// ─── Style objects ────────────────────────────────────────────────────────────
 
 const styles = {
   page: {

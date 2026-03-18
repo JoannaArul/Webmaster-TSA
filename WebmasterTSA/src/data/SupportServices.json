@@ -143,5 +143,16 @@
     "openToAllImmigrationStatuses": true,
     "featured": false,
     "deadline":"2026-04-12"
+  },
+    {
+    "name": "LINKS Academy",
+    "category": "Support Services",
+    "cities": ["Raleigh"],
+    "grades": ["9","10","11","12"],
+    "interest": "Public Service",
+    "description": "LINKS Academy nights support teens in developing essential life skills for future success while building relationships with trusted adults and connecting with peers who share similar experiences in foster care. Programming focuses on workforce readiness, college preparation, career exploration, health and wellness, financial management, and more.",
+    "link": "https://hopecenteratpullen.org/what-we-do/teen-programs/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]
