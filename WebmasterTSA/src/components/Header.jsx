@@ -27,27 +27,38 @@ const DISCOVER_MENU = [
   { to: "/blog", label: "Blog" },
 ];
 
+const SUPPORT_MENU = [
+  { to: "/support", label: "Support", end: true },
+  { to: "/beyond-the-classroom", label: "Beyond the Classroom" },
+];
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const [hubOpen, setHubOpen] = useState(false);
   const [discoverOpen, setDiscoverOpen] = useState(false);
+  const [supportOpen, setSupportOpen] = useState(false);
 
   const [mobileHubOpen, setMobileHubOpen] = useState(false);
   const [mobileDiscoverOpen, setMobileDiscoverOpen] = useState(false);
+  const [mobileSupportOpen, setMobileSupportOpen] = useState(false);
 
   const location = useLocation();
 
   const closeTimerRef = useRef(null);
   const hubCloseTimerRef = useRef(null);
   const discoverCloseTimerRef = useRef(null);
+  const supportCloseTimerRef = useRef(null);
 
   const hubBtnRef = useRef(null);
   const hubMenuRef = useRef(null);
 
   const discoverBtnRef = useRef(null);
   const discoverMenuRef = useRef(null);
+
+  const supportBtnRef = useRef(null);
+  const supportMenuRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -62,6 +73,7 @@ export default function Header() {
         setMenuOpen(false);
         setMobileHubOpen(false);
         setMobileDiscoverOpen(false);
+        setMobileSupportOpen(false);
       }
     };
     window.addEventListener("resize", onResize, { passive: true });
@@ -72,8 +84,10 @@ export default function Header() {
     setMenuOpen(false);
     setHubOpen(false);
     setDiscoverOpen(false);
+    setSupportOpen(false);
     setMobileHubOpen(false);
     setMobileDiscoverOpen(false);
+    setMobileSupportOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -93,6 +107,7 @@ export default function Header() {
       if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
       if (hubCloseTimerRef.current) window.clearTimeout(hubCloseTimerRef.current);
       if (discoverCloseTimerRef.current) window.clearTimeout(discoverCloseTimerRef.current);
+      if (supportCloseTimerRef.current) window.clearTimeout(supportCloseTimerRef.current);
     };
   }, []);
 
@@ -107,6 +122,10 @@ export default function Header() {
           setDiscoverOpen(false);
           discoverBtnRef.current?.focus?.();
         }
+        if (supportOpen) {
+          setSupportOpen(false);
+          supportBtnRef.current?.focus?.();
+        }
       }
     };
 
@@ -115,6 +134,8 @@ export default function Header() {
       const hubMenu = hubMenuRef.current;
       const discoverBtn = discoverBtnRef.current;
       const discoverMenu = discoverMenuRef.current;
+      const supportBtn = supportBtnRef.current;
+      const supportMenu = supportMenuRef.current;
 
       const clickedInsideHub =
         (hubBtn && hubBtn.contains(e.target)) ||
@@ -124,8 +145,13 @@ export default function Header() {
         (discoverBtn && discoverBtn.contains(e.target)) ||
         (discoverMenu && discoverMenu.contains(e.target));
 
+      const clickedInsideSupport =
+        (supportBtn && supportBtn.contains(e.target)) ||
+        (supportMenu && supportMenu.contains(e.target));
+
       if (!clickedInsideHub) setHubOpen(false);
       if (!clickedInsideDiscover) setDiscoverOpen(false);
+      if (!clickedInsideSupport) setSupportOpen(false);
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -135,13 +161,16 @@ export default function Header() {
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("pointerdown", onPointerDown);
     };
-  }, [hubOpen, discoverOpen]);
+  }, [hubOpen, discoverOpen, supportOpen]);
 
   const hubIsActive =
     location.pathname === "/resource-hub" || location.pathname === "/path-builder";
 
   const discoverIsActive =
     location.pathname === "/discover" || location.pathname === "/blog";
+
+  const supportIsActive =
+    location.pathname === "/support" || location.pathname === "/beyond-the-classroom";
 
   const linkStyle = ({ isActive }) => ({
     fontFamily: "var(--font-body)",
@@ -216,6 +245,33 @@ export default function Header() {
     lineHeight: 1,
   };
 
+  const supportTopLinkStyle = {
+    fontFamily: "var(--font-body)",
+    fontSize: "16px",
+    fontWeight: 600,
+    color: scrolled ? COLORS.beige : COLORS.text,
+    textDecoration: "none",
+    opacity: supportIsActive ? 1 : 0.92,
+    borderBottom: `2px solid ${
+      supportIsActive ? (scrolled ? COLORS.beige : COLORS.text) : "transparent"
+    }`,
+    padding: "0",
+    paddingBottom: "4px",
+    margin: "0",
+    height: "100%",
+    background: "none",
+    borderTop: "none",
+    borderLeft: "none",
+    borderRight: "none",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "6px",
+    cursor: "pointer",
+    transition: "color 300ms ease, border-color 300ms ease",
+    whiteSpace: "nowrap",
+    lineHeight: 1,
+  };
+
   const dropdownItemStyle = ({ isActive }) => ({
     fontFamily: "var(--font-body)",
     color: COLORS.text,
@@ -253,8 +309,10 @@ export default function Header() {
     setMenuOpen(false);
     setHubOpen(false);
     setDiscoverOpen(false);
+    setSupportOpen(false);
     setMobileHubOpen(false);
     setMobileDiscoverOpen(false);
+    setMobileSupportOpen(false);
   };
 
   const onMobileLinkClick = () => {
@@ -263,6 +321,7 @@ export default function Header() {
       setMenuOpen(false);
       setMobileHubOpen(false);
       setMobileDiscoverOpen(false);
+      setMobileSupportOpen(false);
     }, 0);
   };
 
@@ -284,6 +343,16 @@ export default function Header() {
   const closeDiscoverSoon = () => {
     if (discoverCloseTimerRef.current) window.clearTimeout(discoverCloseTimerRef.current);
     discoverCloseTimerRef.current = window.setTimeout(() => setDiscoverOpen(false), 120);
+  };
+
+  const openSupportSoon = () => {
+    if (supportCloseTimerRef.current) window.clearTimeout(supportCloseTimerRef.current);
+    setSupportOpen(true);
+  };
+
+  const closeSupportSoon = () => {
+    if (supportCloseTimerRef.current) window.clearTimeout(supportCloseTimerRef.current);
+    supportCloseTimerRef.current = window.setTimeout(() => setSupportOpen(false), 120);
   };
 
   return (
@@ -328,6 +397,7 @@ export default function Header() {
                 onClick={() => {
                   setHubOpen((v) => !v);
                   setDiscoverOpen(false);
+                  setSupportOpen(false);
                 }}
                 onFocus={openHubSoon}
                 style={hubTopLinkStyle}
@@ -389,6 +459,7 @@ export default function Header() {
                 onClick={() => {
                   setDiscoverOpen((v) => !v);
                   setHubOpen(false);
+                  setSupportOpen(false);
                 }}
                 onFocus={openDiscoverSoon}
                 style={discoverTopLinkStyle}
@@ -437,6 +508,68 @@ export default function Header() {
               )}
             </div>
 
+            <div
+              style={styles.dropdownWrap}
+              onMouseEnter={openSupportSoon}
+              onMouseLeave={closeSupportSoon}
+            >
+              <button
+                ref={supportBtnRef}
+                type="button"
+                aria-haspopup="menu"
+                aria-expanded={supportOpen}
+                onClick={() => {
+                  setSupportOpen((v) => !v);
+                  setHubOpen(false);
+                  setDiscoverOpen(false);
+                }}
+                onFocus={openSupportSoon}
+                style={supportTopLinkStyle}
+              >
+                Support
+                <span
+                  aria-hidden="true"
+                  style={{
+                    fontWeight: 900,
+                    transform: supportOpen ? "rotate(180deg)" : "rotate(0deg)",
+                    transition: "transform 180ms ease",
+                    display: "inline-block",
+                    position: "relative",
+                    top: "1px",
+                  }}
+                >
+                  ▾
+                </span>
+              </button>
+
+              {supportOpen && (
+                <div
+                  ref={supportMenuRef}
+                  role="menu"
+                  aria-label="Support menu"
+                  style={{
+                    ...styles.dropdownMenu,
+                    backgroundColor: COLORS.beige,
+                  }}
+                  onMouseEnter={openSupportSoon}
+                  onMouseLeave={closeSupportSoon}
+                >
+                  {SUPPORT_MENU.map((item) => (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      end={item.end}
+                      role="menuitem"
+                      style={dropdownItemStyle}
+                      onClick={() => setSupportOpen(false)}
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                </div>
+              )}
+            </div>
+
             {NAV_LINKS.filter((x) => x.to !== "/" && x.to !== "/our-mission").map((l) => (
               <NavLink key={l.to} to={l.to} style={linkStyle}>
                 {l.label}
@@ -453,8 +586,10 @@ export default function Header() {
               setMenuOpen((v) => !v);
               setHubOpen(false);
               setDiscoverOpen(false);
+              setSupportOpen(false);
               setMobileHubOpen(false);
               setMobileDiscoverOpen(false);
+              setMobileSupportOpen(false);
             }}
             style={{
               ...styles.menuBtn,
@@ -571,6 +706,51 @@ export default function Header() {
                   }}
                 >
                   {DISCOVER_MENU.map((item) => (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      end={item.end}
+                      style={mobileLinkStyle}
+                      onClick={onMobileLinkClick}
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+
+              <div style={styles.mobileSection}>
+                <button
+                  type="button"
+                  onClick={() => setMobileSupportOpen((v) => !v)}
+                  aria-expanded={mobileSupportOpen}
+                  style={{
+                    ...styles.mobileSectionToggle,
+                    ...(supportIsActive ? styles.mobileSectionToggleActive : {}),
+                  }}
+                >
+                  <span>Support</span>
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      transform: mobileSupportOpen ? "rotate(180deg)" : "rotate(0deg)",
+                      transition: "transform 180ms ease",
+                      display: "inline-block",
+                    }}
+                  >
+                    ▾
+                  </span>
+                </button>
+
+                <div
+                  style={{
+                    ...styles.mobileSubmenu,
+                    maxHeight: mobileSupportOpen ? "220px" : "0px",
+                    opacity: mobileSupportOpen ? 1 : 0,
+                    marginTop: mobileSupportOpen ? "6px" : "0px",
+                  }}
+                >
+                  {SUPPORT_MENU.map((item) => (
                     <NavLink
                       key={item.to}
                       to={item.to}

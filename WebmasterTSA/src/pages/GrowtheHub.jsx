@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "@formspree/react";
 
@@ -48,6 +48,45 @@ const COLORS = {
   textSoft: "#2B2B2B",
   border: "#E5E7EB",
 };
+
+function BlurImage({ src, alt, style, eager = false }) {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = src;
+    if (img.complete) {
+      setLoaded(true);
+    }
+  }, [src]);
+
+  return (
+    <div style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: "#c8d6c0",
+          transition: "opacity 0.4s ease",
+          opacity: loaded ? 0 : 1,
+          zIndex: 1,
+        }}
+      />
+      <img
+        src={src}
+        alt={alt}
+        loading={eager ? "eager" : "lazy"}
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+        style={{
+          ...style,
+          transition: "opacity 0.4s ease",
+          opacity: loaded ? 1 : 0,
+        }}
+      />
+    </div>
+  );
+}
 
 export default function AddResource() {
   const formTopRef = useRef(null);
@@ -154,6 +193,14 @@ export default function AddResource() {
 
   return (
     <div style={styles.page}>
+      {/*
+        Preload the hero background and the three card images so the browser
+        fetches them immediately — before CSS paint — on all devices.
+        These <link> tags are injected into the document <head> once on mount.
+      */}
+      <PreloadImages
+        srcs={[buildingBlockBg, buildImg, academicImg, reviewImg]}
+      />
 
       <section
         style={{
@@ -187,7 +234,7 @@ export default function AddResource() {
 
               <div style={hero.statsRow}>
                 <div style={hero.stat}>
-                  <div style={hero.statNum}>9–12</div>
+                  <div style={hero.statNum}>9 to 12</div>
                   <div style={hero.statLabel}>Grades supported</div>
                 </div>
                 <div style={hero.stat}>
@@ -207,7 +254,17 @@ export default function AddResource() {
                 >
                   <div style={hero.cardImgWrap}>
                     <div style={hero.imgOverlay} />
-                    <img src={c.img} alt={c.title} style={hero.cardImg} />
+                    {/*
+                      eager=true on all hero cards — they are above the fold
+                      on every device. BlurImage fades from a green-tinted
+                      placeholder to the real image to eliminate the gray flash.
+                    */}
+                    <BlurImage
+                      src={c.img}
+                      alt={c.title}
+                      eager
+                      style={hero.cardImg}
+                    />
                   </div>
 
                   <div style={hero.cardText}>
@@ -234,8 +291,8 @@ export default function AddResource() {
         <div ref={formTopRef} />
 
         {(submitted || state.succeeded) && (
-            <div style={styles.success}>✅ Submission received! Thank you for helping build Nexus.</div>
-          )}
+          <div style={styles.success}>Submission received! Thank you for helping build Nexus.</div>
+        )}
 
         <div style={styles.card}>
           <h2 style={styles.cardTitle}>Submission Form</h2>
@@ -271,7 +328,7 @@ export default function AddResource() {
                   value={form.category}
                   onChange={(e) => update("category", e.target.value)}
                 >
-                  <option value="">Select type…</option>
+                  <option value="">Select type...</option>
                   {TYPE_OPTIONS.map((t) => (
                     <option key={t} value={t}>
                       {t}
@@ -288,7 +345,7 @@ export default function AddResource() {
                   value={form.interest}
                   onChange={(e) => update("interest", e.target.value)}
                 >
-                  <option value="">Select area of interest…</option>
+                  <option value="">Select area of interest...</option>
                   {INTEREST_OPTIONS.map((i) => (
                     <option key={i} value={i}>
                       {i}
@@ -356,7 +413,7 @@ export default function AddResource() {
                 style={styles.textarea}
                 value={form.description}
                 onChange={(e) => update("description", e.target.value)}
-                placeholder="Briefly explain what the resource offers, who it’s for, and key details."
+                placeholder="Briefly explain what the resource offers, who it is for, and key details."
               />
             </div>
 
@@ -414,12 +471,28 @@ export default function AddResource() {
   );
 }
 
+function PreloadImages({ srcs }) {
+  useEffect(() => {
+    srcs.forEach((src) => {
+      if (!src) return;
+      const existing = document.querySelector(`link[rel="preload"][href="${src}"]`);
+      if (existing) return;
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = src;
+      document.head.appendChild(link);
+    });
+  }, [srcs]);
+  return null;
+}
+
 const styles = {
   page: {
     minHeight: "100vh",
     backgroundColor: COLORS.beige,
     paddingBottom: "28px",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
     color: COLORS.text,
   },
   container: { maxWidth: "1200px", margin: "0 auto", padding: "0 20px", boxSizing: "border-box" },
@@ -441,7 +514,7 @@ const styles = {
     color: "#991B1B",
     padding: "10px 12px",
     borderRadius: "12px",
-    fontWeight: 700,
+    fontWeight: 600,
   },
   success: {
     marginTop: "10px",
@@ -450,12 +523,12 @@ const styles = {
     color: "#065F46",
     padding: "10px 12px",
     borderRadius: "12px",
-    fontWeight: 700,
+    fontWeight: 600,
   },
   formGrid: { display: "grid", gap: "12px" },
   row2: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "12px" },
   field: { display: "grid", gap: "6px" },
-  label: { fontWeight: 800, color: COLORS.text },
+  label: { fontWeight: 600, color: COLORS.text },
   input: {
     width: "100%",
     padding: "12px",
@@ -465,7 +538,7 @@ const styles = {
     color: COLORS.text,
     backgroundColor: "#FAFFF6",
     boxSizing: "border-box",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
   },
   textarea: {
     width: "100%",
@@ -478,7 +551,7 @@ const styles = {
     backgroundColor: "#FAFFF6",
     boxSizing: "border-box",
     resize: "vertical",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
   },
   select: {
     width: "100%",
@@ -489,10 +562,10 @@ const styles = {
     color: COLORS.text,
     backgroundColor: "#FAFFF6",
     boxSizing: "border-box",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
   },
   group: { border: `1px solid ${COLORS.border}`, borderRadius: "12px", padding: "12px", backgroundColor: "#FAFFF6" },
-  groupTitle: { fontWeight: 800, color: COLORS.text, marginBottom: "8px" },
+  groupTitle: { fontWeight: 600, color: COLORS.text, marginBottom: "8px" },
   checkList: { display: "grid", gap: "8px" },
   checkRow: { display: "flex", gap: "10px", alignItems: "center", color: COLORS.text },
   checkLabel: { color: COLORS.text },
@@ -503,9 +576,10 @@ const styles = {
     border: "1px solid transparent",
     backgroundColor: COLORS.carolinaBlue,
     color: "#FAFFF6",
-    fontWeight: 800,
+    fontWeight: 600,
     transition: "background-color 160ms ease",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    cursor: "pointer",
   },
   secondary: {
     padding: "10px 14px",
@@ -513,10 +587,10 @@ const styles = {
     border: `1px solid ${COLORS.border}`,
     backgroundColor: "#FAFFF6",
     cursor: "pointer",
-    fontWeight: 800,
+    fontWeight: 600,
     color: COLORS.text,
     transition: "background-color 160ms ease",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
   },
 };
 
@@ -526,7 +600,9 @@ const hero = {
     padding: "42px 0",
     backgroundSize: "cover",
     backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
     borderBottom: `1px solid ${COLORS.border}`,
+    willChange: "transform",
   },
   innerMax: {
     maxWidth: "1200px",
@@ -536,7 +612,7 @@ const hero = {
   },
   innerGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
     gap: "22px",
     alignItems: "center",
   },
@@ -546,7 +622,7 @@ const hero = {
     gap: "14px",
     color: "#FAFFF6",
     maxWidth: "60ch",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
   },
   kicker: {
     display: "inline-flex",
@@ -555,7 +631,7 @@ const hero = {
     borderRadius: "999px",
     backgroundColor: "rgba(245,252,239,0.92)",
     color: COLORS.text,
-    fontWeight: 800,
+    fontWeight: 600,
     fontSize: "0.85rem",
     border: "1px solid rgba(255,255,255,0.25)",
     backdropFilter: "blur(6px)",
@@ -572,7 +648,7 @@ const hero = {
     margin: 0,
     color: "rgba(255,255,255,0.92)",
     lineHeight: 1.6,
-    fontWeight: 600,
+    fontWeight: 500,
     fontSize: "1.02rem",
   },
   actions: { display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "4px" },
@@ -583,10 +659,10 @@ const hero = {
     backgroundColor: COLORS.carolinaBlue,
     color: "#FAFFF6",
     cursor: "pointer",
-    fontWeight: 800,
+    fontWeight: 600,
     boxShadow: "0 10px 22px rgba(0,0,0,0.18)",
     transition: "background-color 160ms ease, transform 160ms ease",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
   },
   statsRow: { display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "4px" },
   stat: {
@@ -595,12 +671,12 @@ const hero = {
     borderRadius: "16px",
     padding: "10px 12px",
     border: "1px solid rgba(255,255,255,0.25)",
-    minWidth: "150px",
+    minWidth: "130px",
     backdropFilter: "blur(6px)",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
   },
-  statNum: { fontWeight: 800, fontSize: "1.35rem", lineHeight: 1.1 },
-  statLabel: { marginTop: "2px", color: "#4B5563", fontWeight: 700, fontSize: "0.9rem" },
+  statNum: { fontWeight: 700, fontSize: "1.35rem", lineHeight: 1.1 },
+  statLabel: { marginTop: "2px", color: "#4B5563", fontWeight: 500, fontSize: "0.9rem" },
   right: { display: "grid", gap: "12px" },
   infoCard: {
     position: "relative",
@@ -618,13 +694,15 @@ const hero = {
     width: "96px",
     minHeight: "100%",
     position: "relative",
-    backgroundColor: "rgba(0,0,0,0.06)",
+    backgroundColor: "#c8d6c0",
+    overflow: "hidden",
   },
   imgOverlay: {
     position: "absolute",
     inset: 0,
     backgroundColor: "rgba(0,0,0,0.35)",
-    zIndex: 1,
+    zIndex: 2,
+    pointerEvents: "none",
   },
   cardImg: {
     width: "100%",
@@ -632,17 +710,17 @@ const hero = {
     objectFit: "cover",
     display: "block",
     position: "relative",
-    zIndex: 0,
+    zIndex: 1,
   },
   cardText: {
     padding: "12px 14px 12px 0",
     color: COLORS.text,
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
   },
-  cardTitle: { fontWeight: 700, fontSize: "1.05rem" },
-  cardTitleBig: { fontWeight: 700, fontSize: "1.12rem" },
+  cardTitle: { fontWeight: 600, fontSize: "1.05rem" },
+  cardTitleBig: { fontWeight: 600, fontSize: "1.12rem" },
   cardLine: { width: "100%", height: "1px", backgroundColor: "rgba(0,0,0,0.10)", margin: "8px 0" },
-  cardDesc: { color: COLORS.textSoft, fontWeight: 500, lineHeight: 1.4, fontSize: "0.95rem" },
+  cardDesc: { color: COLORS.textSoft, fontWeight: 400, lineHeight: 1.4, fontSize: "0.95rem" },
   cardAccent: {
     position: "absolute",
     left: 0,

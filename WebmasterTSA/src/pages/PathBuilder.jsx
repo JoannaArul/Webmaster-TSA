@@ -19,8 +19,8 @@ const ALL_RESOURCES = [
   ...volunteering,
 ];
 
-const FD = `"Playfair Display", Georgia, serif`;
-const FB = `"DM Sans", system-ui, sans-serif`;
+const FD = `'Merriweather', Georgia, serif`;
+const FB = `'Inter', system-ui, sans-serif`;
 
 const C = {
   carolinaBlue: "#4B9CD3",
@@ -189,7 +189,7 @@ function Chip({ label, selected, onClick, color = C.carolinaBlue }) {
         border:`1.5px solid ${selected ? color : C.border}`,
         background: selected ? `${color}14` : C.lightBg,
         color: selected ? color : C.headerGray,
-        fontWeight: selected ? 700 : 500,
+        fontWeight: selected ? 600 : 400,
         fontSize:"0.83rem", cursor:"pointer",
         transition:"all 140ms ease", fontFamily:FB,
       }}
@@ -204,7 +204,6 @@ function Chip({ label, selected, onClick, color = C.carolinaBlue }) {
   );
 }
 
-// ── MOBILE VERTICAL CARD (replaces old StepCard) ──────────────────────────────
 function MobileRoadmapCard({ step, index, total, active, onClick }) {
   const color = CAT_COLOR[step.category] || C.carolinaBlue;
   const [g1, g2] = CAT_GRADIENT[step.category] || [color, color];
@@ -212,9 +211,7 @@ function MobileRoadmapCard({ step, index, total, active, onClick }) {
 
   return (
     <div style={{ display:"flex", gap:"0", position:"relative" }}>
-      {/* Left timeline */}
       <div style={{ display:"flex", flexDirection:"column", alignItems:"center", width:"48px", flexShrink:0 }}>
-        {/* Node */}
         <div style={{
           width:"44px", height:"44px", borderRadius:"14px",
           background:`linear-gradient(135deg, ${g1}, ${g2})`,
@@ -231,10 +228,9 @@ function MobileRoadmapCard({ step, index, total, active, onClick }) {
             background:`linear-gradient(135deg, ${g1}, ${g2})`,
             border:`2px solid ${C.pageBg}`,
             display:"flex", alignItems:"center", justifyContent:"center",
-            fontSize:"0.58rem", fontWeight:900, color:"#fff", fontFamily:FB,
+            fontSize:"0.58rem", fontWeight:700, color:"#fff", fontFamily:FB,
           }}>{index + 1}</div>
         </div>
-        {/* Connector */}
         {!isLast && (
           <div style={{
             width:"2px", flex:1, minHeight:"20px",
@@ -244,7 +240,6 @@ function MobileRoadmapCard({ step, index, total, active, onClick }) {
         )}
       </div>
 
-      {/* Card */}
       <div
         onClick={onClick}
         style={{
@@ -258,7 +253,6 @@ function MobileRoadmapCard({ step, index, total, active, onClick }) {
           background: C.lightBg,
         }}
       >
-        {/* Card top stripe */}
         <div style={{
           height:"5px",
           background:`linear-gradient(90deg, ${g1}, ${g2})`,
@@ -266,7 +260,7 @@ function MobileRoadmapCard({ step, index, total, active, onClick }) {
 
         <div style={{ padding:"14px 16px" }}>
           <div style={{
-            fontSize:"0.6rem", fontWeight:800, letterSpacing:"0.1em",
+            fontSize:"0.6rem", fontWeight:600, letterSpacing:"0.1em",
             textTransform:"uppercase", color:color, marginBottom:"4px", fontFamily:FB,
           }}>
             {step.category}
@@ -278,12 +272,11 @@ function MobileRoadmapCard({ step, index, total, active, onClick }) {
             {step.name}
           </div>
 
-          {/* Location + grade pills always visible */}
           <div style={{ display:"flex", flexWrap:"wrap", gap:"5px", marginBottom: active ? "12px" : 0 }}>
             {step.cities && (
               <span style={{
                 display:"inline-flex", alignItems:"center", gap:"4px",
-                fontSize:"0.68rem", fontWeight:600, color:C.headerGray,
+                fontSize:"0.68rem", fontWeight:500, color:C.headerGray,
                 background:C.pageBg, padding:"3px 8px", borderRadius:"20px",
                 border:`1px solid ${C.border}`, fontFamily:FB,
               }}>
@@ -293,7 +286,7 @@ function MobileRoadmapCard({ step, index, total, active, onClick }) {
             )}
             {step.grades && (
               <span style={{
-                fontSize:"0.68rem", fontWeight:600, color:C.headerGray,
+                fontSize:"0.68rem", fontWeight:500, color:C.headerGray,
                 background:C.pageBg, padding:"3px 8px", borderRadius:"20px",
                 border:`1px solid ${C.border}`, fontFamily:FB,
               }}>
@@ -302,16 +295,11 @@ function MobileRoadmapCard({ step, index, total, active, onClick }) {
             )}
           </div>
 
-          {/* Expandable description */}
           {active && (
             <div style={{ animation:"fadeUp 180ms ease" }}>
               <p style={{
                 margin:"0 0 12px", fontSize:"0.84rem",
                 color:C.headerGray, lineHeight:1.7, fontFamily:FB,
-                display:"-webkit-box",
-                WebkitLineClamp:999,
-                WebkitBoxOrient:"vertical",
-                overflow:"hidden",
               }}>
                 {step.description}
               </p>
@@ -322,7 +310,7 @@ function MobileRoadmapCard({ step, index, total, active, onClick }) {
                     display:"inline-flex", alignItems:"center", gap:"6px",
                     padding:"9px 18px",
                     background:`linear-gradient(135deg, ${g1}, ${g2})`,
-                    color:"#fff", fontWeight:700, fontSize:"0.8rem",
+                    color:"#fff", fontWeight:600, fontSize:"0.8rem",
                     borderRadius:"8px", textDecoration:"none", fontFamily:FB,
                     boxShadow:`0 4px 14px ${color}44`,
                   }}
@@ -334,7 +322,6 @@ function MobileRoadmapCard({ step, index, total, active, onClick }) {
             </div>
           )}
 
-          {/* Tap hint */}
           <div style={{
             display:"flex", alignItems:"center", justifyContent:"flex-end",
             marginTop:"6px",
@@ -353,14 +340,10 @@ function MobileRoadmapCard({ step, index, total, active, onClick }) {
   );
 }
 
-// ── DESKTOP ROADMAP ────────────────────────────────────────────────────────────
 function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
   return (
     <div>
-      {/* The road strip */}
       <div style={{ position:"relative", padding:"16px 0 0" }}>
-
-        {/* Dashed road line */}
         <div style={{
           position:"absolute",
           top:"52px",
@@ -375,7 +358,6 @@ function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
           zIndex:0,
         }} />
 
-        {/* Cards row */}
         <div style={{
           display:"grid",
           gridTemplateColumns:`repeat(${path.length}, minmax(0, 1fr))`,
@@ -400,7 +382,6 @@ function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
                   gap:"0",
                 }}
               >
-                {/* Card above or below connector */}
                 <div style={{
                   width:"100%",
                   borderRadius:"16px",
@@ -415,14 +396,12 @@ function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
                   marginBottom: isEven ? 0 : "8px",
                   marginTop: isEven ? "8px" : 0,
                 }}>
-                  {/* Color stripe */}
                   <div style={{
                     height:"4px",
                     background:`linear-gradient(90deg, ${g1}, ${g2})`,
                   }} />
 
                   <div style={{ padding:"14px 14px 12px" }}>
-                    {/* Icon */}
                     <div style={{
                       width:"46px", height:"46px", borderRadius:"13px",
                       background:`linear-gradient(135deg, ${g1}22, ${g2}18)`,
@@ -441,7 +420,7 @@ function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
                     </div>
 
                     <div style={{
-                      fontSize:"0.58rem", fontWeight:800, letterSpacing:"0.1em",
+                      fontSize:"0.58rem", fontWeight:600, letterSpacing:"0.1em",
                       textTransform:"uppercase", color:color,
                       marginBottom:"4px", fontFamily:FB,
                     }}>
@@ -456,12 +435,11 @@ function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
                       {step.name}
                     </div>
 
-                    {/* Always-visible pills */}
                     <div style={{ display:"flex", flexWrap:"wrap", gap:"4px", marginBottom:"8px" }}>
                       {step.cities && (
                         <span style={{
                           display:"inline-flex", alignItems:"center", gap:"3px",
-                          fontSize:"0.62rem", fontWeight:600, color:C.headerGray,
+                          fontSize:"0.62rem", fontWeight:500, color:C.headerGray,
                           background:C.pageBg, padding:"2px 7px", borderRadius:"20px",
                           border:`1px solid ${C.border}`, fontFamily:FB,
                         }}>
@@ -471,7 +449,7 @@ function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
                       )}
                       {step.grades && (
                         <span style={{
-                          fontSize:"0.62rem", fontWeight:600, color:C.headerGray,
+                          fontSize:"0.62rem", fontWeight:500, color:C.headerGray,
                           background:C.pageBg, padding:"2px 7px", borderRadius:"20px",
                           border:`1px solid ${C.border}`, fontFamily:FB,
                         }}>
@@ -480,7 +458,6 @@ function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
                       )}
                     </div>
 
-                    {/* Preview snippet of description — always shown, ellipsis when collapsed */}
                     <p style={{
                       margin:"0 0 8px",
                       fontSize:"0.75rem",
@@ -496,7 +473,6 @@ function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
                       {step.description}
                     </p>
 
-                    {/* CTA always shown */}
                     {step.link && (
                       <a
                         href={step.link} target="_blank" rel="noopener noreferrer"
@@ -509,7 +485,7 @@ function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
                             : C.pageBg,
                           color: active ? "#fff" : color,
                           border: `1.5px solid ${color}44`,
-                          fontWeight:700, fontSize:"0.73rem",
+                          fontWeight:600, fontSize:"0.73rem",
                           borderRadius:"7px", textDecoration:"none",
                           fontFamily:FB, transition:"all 200ms ease",
                           boxShadow: active ? `0 4px 14px ${color}40` : "none",
@@ -523,7 +499,6 @@ function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
                   </div>
                 </div>
 
-                {/* Road node connector */}
                 <div style={{
                   display:"flex", flexDirection:"column", alignItems:"center",
                   flexShrink:0,
@@ -540,7 +515,7 @@ function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
                     border:`3px solid ${C.pageBg}`,
                     boxShadow:`0 0 0 2px ${color}60, 0 4px 14px ${color}40`,
                     display:"flex", alignItems:"center", justifyContent:"center",
-                    fontSize:"0.62rem", fontWeight:900, color:"#fff", fontFamily:FB,
+                    fontSize:"0.62rem", fontWeight:700, color:"#fff", fontFamily:FB,
                     transition:"all 240ms ease",
                     transform: active ? "scale(1.2)" : "scale(1)",
                   }}>
@@ -614,7 +589,7 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
   return (
     <div style={{ backgroundColor:C.pageBg, minHeight:"100vh", padding:"0 0 72px", overflowX:"hidden", fontFamily:FB }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         @keyframes fadeUp {
           from { opacity:0; transform:translateY(14px); }
           to   { opacity:1; transform:translateY(0); }
@@ -626,10 +601,10 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
         }
         .pb-btn {
           display:inline-flex; align-items:center; gap:6px;
-          padding:11px 22px; border-radius:8px; font-weight:700;
+          padding:11px 22px; border-radius:8px; font-weight:600;
           font-size:0.85rem; letter-spacing:0.02em; cursor:pointer;
           transition:all 150ms ease; border:1.5px solid transparent;
-          font-family:${FB};
+          font-family:'Inter', system-ui, sans-serif;
         }
         .pb-btn:disabled { opacity:0.32; cursor:not-allowed; }
         .pb-primary { background:${C.carolinaBlue}; color:#fff; box-shadow:0 4px 14px ${C.carolinaBlue}44; }
@@ -642,9 +617,9 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
           appearance:none;
           background:${C.lightBg} url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M0 0l5.5 7L11 0z' fill='%23494A48'/%3E%3C/svg%3E") no-repeat right 13px center;
           border:1.5px solid ${C.border}; border-radius:8px;
-          padding:10px 34px 10px 12px; font-size:0.87rem; font-weight:600;
+          padding:10px 34px 10px 12px; font-size:0.87rem; font-weight:500;
           color:${C.text}; cursor:pointer; outline:none; width:100%;
-          font-family:${FB}; transition:border-color 140ms;
+          font-family:'Inter', system-ui, sans-serif; transition:border-color 140ms;
         }
         .pb-select:focus { border-color:${C.carolinaBlue}; }
         @media (max-width:480px) {
@@ -653,7 +628,6 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
         }
       `}</style>
 
-      {/* ── HERO ── */}
       <div style={{
         background:`linear-gradient(150deg, #1c5f8c 0%, #2d7db3 55%, #1a6ea0 100%)`,
         padding:"clamp(44px,7vw,80px) 20px clamp(32px,5vw,52px)",
@@ -677,7 +651,7 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
             display:"inline-block",
             borderBottom:`2px solid rgba(255,255,255,0.3)`,
             paddingBottom:"5px",
-            fontSize:"0.7rem", fontWeight:700, letterSpacing:"0.14em",
+            fontSize:"0.7rem", fontWeight:600, letterSpacing:"0.14em",
             textTransform:"uppercase", color:"rgba(255,255,255,0.65)",
             marginBottom:"18px", fontFamily:FB,
           }}>
@@ -698,16 +672,14 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
             fontSize:"clamp(0.88rem,1.4vw,1rem)",
             maxWidth:"50ch", lineHeight:1.75, fontFamily:FB,
           }}>
-            Share your interests and goals — we'll build a personalised roadmap
+            Share your interests and goals. We will build a personalised roadmap
             of local resources to help you get there.
           </p>
         </div>
       </div>
 
-      {/* ── WIZARD ── */}
       <div style={{ maxWidth:"1100px", margin:"0 auto", padding:"0 24px" }}>
 
-        {/* Progress */}
         {!generated && (
           <div style={{ display:"flex", alignItems:"center", justifyContent:"center", marginTop:"36px", marginBottom:"32px" }}>
             {[1,2,3].map((s) => {
@@ -724,7 +696,7 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
                       boxShadow: active ? `0 0 0 4px ${C.carolinaBlue}28` : "none",
                       display:"flex", alignItems:"center", justifyContent:"center",
                       color: done || active ? "#fff" : C.headerGray,
-                      fontWeight:800, fontSize:"0.77rem",
+                      fontWeight:700, fontSize:"0.77rem",
                       transition:"all 220ms", fontFamily:FB,
                     }}>
                       {done
@@ -733,7 +705,7 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
                       }
                     </div>
                     <span style={{
-                      fontSize:"0.65rem", fontWeight:600, letterSpacing:"0.06em",
+                      fontSize:"0.65rem", fontWeight:500, letterSpacing:"0.06em",
                       textTransform:"uppercase", fontFamily:FB,
                       color: active ? C.carolinaBlue : done ? C.carolinaBlue : C.headerGray,
                     }}>
@@ -754,10 +726,9 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
           </div>
         )}
 
-        {/* Step 1 */}
         {!generated && step === 1 && (
           <div style={{ animation:"fadeUp 260ms ease" }}>
-            <StepHeader num={1} of={3} title="What are you into?" sub="Select one or more areas — we'll find resources that match your passions." />
+            <StepHeader num={1} of={3} title="What are you into?" sub="Select one or more areas. We will find resources that match your passions." />
             <div style={{ display:"flex", flexWrap:"wrap", gap:"7px", marginBottom:"28px" }}>
               {INTEREST_OPTIONS.map(({ id, label }) => (
                 <Chip key={id} label={label} selected={interests.includes(id)} onClick={() => toggleArr(interests, setInterests, id)} />
@@ -772,7 +743,6 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
           </div>
         )}
 
-        {/* Step 2 */}
         {!generated && step === 2 && (
           <div style={{ animation:"fadeUp 260ms ease" }}>
             <StepHeader num={2} of={3} title="What do you want to achieve?" sub="Pick the goals that matter most to you." />
@@ -794,30 +764,28 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
           </div>
         )}
 
-        {/* Step 3 */}
         {!generated && step === 3 && (
           <div style={{ animation:"fadeUp 260ms ease" }}>
             <StepHeader num={3} of={3} title="A bit more about you" sub="Your grade and city help us surface the most relevant opportunities." />
             <div style={{ display:"grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1fr", gap:"13px", marginBottom:"20px" }}>
               <label style={{ display:"flex", flexDirection:"column", gap:"5px" }}>
-                <span style={{ fontSize:"0.7rem", fontWeight:700, color:C.headerGray, letterSpacing:"0.07em", textTransform:"uppercase", fontFamily:FB }}>Grade Level</span>
+                <span style={{ fontSize:"0.7rem", fontWeight:600, color:C.headerGray, letterSpacing:"0.07em", textTransform:"uppercase", fontFamily:FB }}>Grade Level</span>
                 <select className="pb-select" value={grade} onChange={(e) => setGrade(e.target.value)}>
-                  <option value="">Select grade…</option>
+                  <option value="">Select grade...</option>
                   {GRADE_OPTIONS.map((g) => <option key={g} value={g}>Grade {g}</option>)}
                 </select>
               </label>
               <label style={{ display:"flex", flexDirection:"column", gap:"5px" }}>
-                <span style={{ fontSize:"0.7rem", fontWeight:700, color:C.headerGray, letterSpacing:"0.07em", textTransform:"uppercase", fontFamily:FB }}>Your City</span>
+                <span style={{ fontSize:"0.7rem", fontWeight:600, color:C.headerGray, letterSpacing:"0.07em", textTransform:"uppercase", fontFamily:FB }}>Your City</span>
                 <select className="pb-select" value={city} onChange={(e) => setCity(e.target.value)}>
-                  <option value="">Select city…</option>
+                  <option value="">Select city...</option>
                   {CITY_OPTIONS.map((c) => <option key={c} value={c}>{c}</option>)}
                 </select>
               </label>
             </div>
 
-            {/* Summary */}
             <div style={{ background:C.lightBg, border:`1.5px solid ${C.border}`, borderRadius:"10px", padding:"13px 15px", marginBottom:"22px" }}>
-              <div style={{ fontSize:"0.66rem", fontWeight:800, color:C.headerGray, letterSpacing:"0.09em", textTransform:"uppercase", marginBottom:"9px", fontFamily:FB }}>
+              <div style={{ fontSize:"0.66rem", fontWeight:600, color:C.headerGray, letterSpacing:"0.09em", textTransform:"uppercase", marginBottom:"9px", fontFamily:FB }}>
                 Your path is based on
               </div>
               <div style={{ display:"flex", flexWrap:"wrap", gap:"6px" }}>
@@ -839,12 +807,11 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
           </div>
         )}
 
-        {/* ── RESULT ── */}
         {generated && (
           <div ref={pathRef} style={{ animation:"fadeUp 300ms ease", paddingTop:"36px" }}>
             <div style={{ display:"flex", flexWrap:"wrap", alignItems:"flex-start", justifyContent:"space-between", gap:"12px", marginBottom:"18px" }}>
               <div>
-                <div style={{ fontSize:"0.67rem", fontWeight:800, letterSpacing:"0.1em", textTransform:"uppercase", color:C.carolinaBlue, marginBottom:"4px", fontFamily:FB }}>
+                <div style={{ fontSize:"0.67rem", fontWeight:600, letterSpacing:"0.1em", textTransform:"uppercase", color:C.carolinaBlue, marginBottom:"4px", fontFamily:FB }}>
                   Your Personalised Roadmap
                 </div>
                 <h2 style={{ margin:0, fontSize:"clamp(1.3rem,3vw,1.6rem)", fontWeight:900, color:C.text, fontFamily:FD }}>
@@ -865,13 +832,12 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
 
             {path.length === 0 ? (
               <div style={{ textAlign:"center", padding:"52px 20px", background:C.lightBg, border:`1.5px dashed ${C.border}`, borderRadius:"14px" }}>
-                <div style={{ fontWeight:800, fontSize:"0.98rem", marginBottom:"7px", fontFamily:FD, color:C.text }}>No matches found</div>
+                <div style={{ fontWeight:700, fontSize:"0.98rem", marginBottom:"7px", fontFamily:FD, color:C.text }}>No matches found</div>
                 <p style={{ margin:0, fontSize:"0.85rem", lineHeight:1.65, color:C.headerGray, fontFamily:FB }}>
                   Try adjusting your interests or goals, or select "Any / Remote" for location.
                 </p>
               </div>
             ) : narrow ? (
-              /* ── MOBILE: stacked cards with timeline ── */
               <div style={{ paddingTop:"4px" }}>
                 {path.map((s, i) => (
                   <MobileRoadmapCard
@@ -882,7 +848,6 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
                 ))}
               </div>
             ) : (
-              /* ── DESKTOP: zigzag roadmap ── */
               <div style={{
                 background:C.lightBg,
                 border:`1.5px solid ${C.border}`,
@@ -907,13 +872,13 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
                 justifyContent:"space-between", gap:"12px",
               }}>
                 <div>
-                  <div style={{ fontWeight:800, fontSize:"0.92rem", color:C.text, marginBottom:"2px", fontFamily:FB }}>Want to explore more?</div>
+                  <div style={{ fontWeight:600, fontSize:"0.92rem", color:C.text, marginBottom:"2px", fontFamily:FB }}>Want to explore more?</div>
                   <div style={{ fontSize:"0.8rem", color:C.headerGray, fontFamily:FB }}>Browse all resources in the full Resource Hub.</div>
                 </div>
                 <a href="/resource-hub" style={{
                   display:"inline-flex", alignItems:"center", gap:"6px",
                   padding:"10px 20px", background:C.carolinaBlue, color:"#fff",
-                  fontWeight:700, fontSize:"0.82rem", borderRadius:"8px",
+                  fontWeight:600, fontSize:"0.82rem", borderRadius:"8px",
                   textDecoration:"none", fontFamily:FB, whiteSpace:"nowrap",
                   boxShadow:`0 4px 12px ${C.carolinaBlue}33`,
                 }}>
@@ -932,7 +897,7 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
 function StepHeader({ num, of, title, sub }) {
   return (
     <div style={{ marginBottom:"22px" }}>
-      <div style={{ fontSize:"0.67rem", fontWeight:800, letterSpacing:"0.1em", textTransform:"uppercase", color:C.carolinaBlue, marginBottom:"5px", fontFamily:FB }}>
+      <div style={{ fontSize:"0.67rem", fontWeight:600, letterSpacing:"0.1em", textTransform:"uppercase", color:C.carolinaBlue, marginBottom:"5px", fontFamily:FB }}>
         Step {num} of {of}
       </div>
       <h2 style={{ margin:"0 0 5px", fontSize:"clamp(1.2rem,3vw,1.5rem)", fontWeight:900, color:C.text, fontFamily:FD }}>
@@ -955,7 +920,7 @@ const tag = (color) => ({
   display:"inline-flex", alignItems:"center",
   padding:"3px 10px", borderRadius:"20px",
   background:`${color}12`, border:`1px solid ${color}30`,
-  fontSize:"0.73rem", fontWeight:600,
+  fontSize:"0.73rem", fontWeight:500,
   color: color === C.headerGray ? C.headerGray : color,
   fontFamily:FB,
 });

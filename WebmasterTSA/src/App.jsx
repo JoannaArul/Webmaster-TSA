@@ -14,6 +14,8 @@ import TeacherRecommendation from "./pages/TeacherRecommendation.jsx";
 import PathBuilder from "./pages/PathBuilder.jsx";
 import ReferencePage from "./pages/ReferencePage.jsx";
 import OurMission from "./pages/OurMission.jsx";
+import Support from "./pages/Support.jsx";
+import BeyondTheClassroom from "./pages/BeyondTheClassroom.jsx";
 
 export default function App() {
   return (
@@ -33,6 +35,8 @@ export default function App() {
         <Route path="/blog/resume" element={<Resume />} />
         <Route path="/blog/teacher-recommendation" element={<TeacherRecommendation />} />
         <Route path="/reference-page" element={<ReferencePage />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/beyond-the-classroom" element={<BeyondTheClassroom />} />
       </Routes>
 
       <Footer />

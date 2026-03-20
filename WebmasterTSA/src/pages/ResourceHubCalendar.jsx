@@ -155,7 +155,7 @@ function EventSheet({ selected, onClose }) {
           <div style={{ fontWeight: 800, fontSize: "1rem", color: C.text, fontFamily: "'Merriweather', serif" }}>
             {selected.date.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
           </div>
-          <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1.1rem", color: C.mutedText }}>✕</button>
+          <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1.1rem", color: C.mutedText }}>x</button>
         </div>
         <div style={{ overflowY: "auto", maxHeight: "55vh" }}>
           {selected.events.length === 0 ? (
@@ -164,10 +164,10 @@ function EventSheet({ selected, onClose }) {
             <div key={i} style={{ ...s.eventCard, borderLeft: `4px solid ${ev._color}`, marginBottom: 10 }}>
               <a href={ev.link || "#"} target="_blank" rel="noopener noreferrer"
                 style={{ ...s.eventNameLink, color: ev._color, fontSize: "0.95rem" }}>
-                {ev.name} →
+                {ev.name} &rarr;
               </a>
               <div style={{ ...s.eventCat, color: ev._color }}>{ev.category}</div>
-              {ev.interest && <div style={s.eventInterest}>📚 {ev.interest}</div>}
+              {ev.interest && <div style={s.eventInterest}>{ev.interest}</div>}
               {ev.description && <div style={s.eventDesc}>{ev.description}</div>}
             </div>
           ))}
@@ -253,7 +253,6 @@ export default function ResourceHubCalendar() {
   }, [visibleEvents, isMobile]);
 
   const dayLabels = isMobile ? DAYS_SHORT : DAYS_FULL;
-
   const cellMinHeight = isMobile ? 52 : isTablet ? 80 : 110;
   const maxPillsVisible = isMobile ? 0 : isTablet ? 1 : 3;
 
@@ -265,7 +264,7 @@ export default function ResourceHubCalendar() {
       style={s.page}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap');
         *, *::before, *::after { box-sizing: border-box; }
 
         .cal-cell {
@@ -304,7 +303,7 @@ export default function ResourceHubCalendar() {
           border-radius: 4px;
           margin: 1px 0;
           overflow: hidden;
-          font-family: 'DM Sans', sans-serif;
+          font-family: 'Inter', sans-serif;
           text-decoration: none;
           cursor: pointer;
           transition: opacity 120ms;
@@ -332,11 +331,11 @@ export default function ResourceHubCalendar() {
           padding: 5px 11px;
           border-radius: 99px;
           border: 1.5px solid transparent;
-          font-weight: 700;
+          font-weight: 600;
           font-size: 0.75rem;
           cursor: pointer;
           transition: all 140ms ease;
-          font-family: 'DM Sans', sans-serif;
+          font-family: 'Inter', sans-serif;
           white-space: nowrap;
           -webkit-tap-highlight-color: transparent;
         }
@@ -356,16 +355,13 @@ export default function ResourceHubCalendar() {
         .upcoming-row:hover, .upcoming-row:active { background: ${C.beige}; }
         .upcoming-row:last-child { border-bottom: none; }
 
-        .filter-panel {
-          overflow: hidden;
-        }
+        .filter-panel { overflow: hidden; }
 
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: ${C.border}; border-radius: 4px; }
       `}</style>
 
-      {/* ── HEADER ── */}
       <header style={s.header}>
         <div style={{ ...s.headerInner, flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "flex-end" }}>
           <div>
@@ -389,7 +385,7 @@ export default function ResourceHubCalendar() {
               </button>
               <AnimatePresence>
                 {showFilters && (
-                  <div style={styles.page}>
+                  <div style={{ padding: "8px 0" }}>
                     <div style={{ ...s.legendRow, paddingTop: 8 }}>
                       {categories.map(cat => {
                         const col = CATEGORY_COLORS[cat] || C.carolinaBlue;
@@ -435,14 +431,12 @@ export default function ResourceHubCalendar() {
         </div>
       </header>
 
-      {/* ── BODY ── */}
       <div style={{ ...s.body, padding: isMobile ? "12px 12px 80px" : "24px 24px 48px" }}>
         <div style={{ display: "flex", gap: 22, alignItems: "flex-start", flexDirection: isDesktop ? "row" : "column" }}>
 
-          {/* ── CALENDAR ── */}
           <div style={{ ...s.calWrap, width: "100%", flex: isDesktop ? "1 1 640px" : "none" }}>
             <div style={s.navBar}>
-              <button style={s.navBtn} onClick={prevMonth}>‹</button>
+              <button style={s.navBtn} onClick={prevMonth}>&#8249;</button>
               <MonthYearPicker
                 viewMonth={viewMonth}
                 viewYear={viewYear}
@@ -450,7 +444,7 @@ export default function ResourceHubCalendar() {
                 setViewYear={setViewYear}
                 compact={isMobile}
               />
-              <button style={s.navBtn} onClick={nextMonth}>›</button>
+              <button style={s.navBtn} onClick={nextMonth}>&#8250;</button>
               {!isMobile && (
                 <button style={s.todayBtn} onClick={goToToday}>Today</button>
               )}
@@ -487,7 +481,7 @@ export default function ResourceHubCalendar() {
                             <span key={i} className="ev-dot" style={{ background: ev._color }} />
                           ))}
                           {evs.length > 3 && (
-                            <span style={{ fontSize: "0.55rem", color: C.mutedText, fontWeight: 800 }}>+{evs.length - 3}</span>
+                            <span style={{ fontSize: "0.55rem", color: C.mutedText, fontWeight: 700 }}>+{evs.length - 3}</span>
                           )}
                         </div>
                       )
@@ -509,7 +503,7 @@ export default function ResourceHubCalendar() {
                           </a>
                         ))}
                         {evs.length > maxPillsVisible && (
-                          <div style={{ fontSize: "0.58rem", color: C.mutedText, fontWeight: 700, marginTop: 2, paddingLeft: 2 }}>
+                          <div style={{ fontSize: "0.58rem", color: C.mutedText, fontWeight: 600, marginTop: 2, paddingLeft: 2 }}>
                             +{evs.length - maxPillsVisible} more
                           </div>
                         )}
@@ -527,7 +521,6 @@ export default function ResourceHubCalendar() {
             )}
           </div>
 
-          {/* ── SIDEBAR (desktop/tablet) — hidden on mobile (replaced by bottom sheet) ── */}
           {!isMobile && (
             <aside style={{ ...s.sidebar, width: isTablet ? "100%" : 310 }}>
               <AnimatePresence>
@@ -545,7 +538,7 @@ export default function ResourceHubCalendar() {
                         {selected.date.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
                       </div>
                       <button onClick={() => setSelected(null)}
-                        style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1rem", color: C.mutedText }}>✕</button>
+                        style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1rem", color: C.mutedText }}>x</button>
                     </div>
                     {selected.events.length === 0 ? (
                       <p style={{ color: C.mutedText, fontSize: "0.84rem" }}>No deadlines on this day.</p>
@@ -553,9 +546,9 @@ export default function ResourceHubCalendar() {
                       <motion.div key={i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}
                         style={{ ...s.eventCard, borderLeft: `4px solid ${ev._color}` }}>
                         <a href={ev.link || "#"} target="_blank" rel="noopener noreferrer"
-                          style={{ ...s.eventNameLink, color: ev._color }}>{ev.name} →</a>
+                          style={{ ...s.eventNameLink, color: ev._color }}>{ev.name} &rarr;</a>
                         <div style={{ ...s.eventCat, color: ev._color }}>{ev.category}</div>
-                        {ev.interest && <div style={s.eventInterest}>📚 {ev.interest}</div>}
+                        {ev.interest && <div style={s.eventInterest}>{ev.interest}</div>}
                         {ev.description && <div style={s.eventDesc}>{ev.description}</div>}
                       </motion.div>
                     ))}
@@ -571,8 +564,8 @@ export default function ResourceHubCalendar() {
                   <div key={i} className="upcoming-row"
                     onClick={() => { setViewYear(ev._date.getFullYear()); setViewMonth(ev._date.getMonth()); setSelected({ date: ev._date, events: [ev] }); }}>
                     <div style={{ ...s.dateBadge, background: ev._color + "18", color: ev._color, border: `1.5px solid ${ev._color}55` }}>
-                      <div style={{ fontSize: "1rem", fontWeight: 900, lineHeight: 1 }}>{ev._date.getDate()}</div>
-                      <div style={{ fontSize: "0.58rem", fontWeight: 700, textTransform: "uppercase" }}>
+                      <div style={{ fontSize: "1rem", fontWeight: 900, lineHeight: 1, fontFamily: "'Merriweather', serif" }}>{ev._date.getDate()}</div>
+                      <div style={{ fontSize: "0.58rem", fontWeight: 600, textTransform: "uppercase", fontFamily: "'Inter', sans-serif" }}>
                         {MONTHS[ev._date.getMonth()].slice(0, 3)}
                       </div>
                     </div>
@@ -606,7 +599,6 @@ export default function ResourceHubCalendar() {
           )}
         </div>
 
-        {/* ── MOBILE: Upcoming strip below calendar ── */}
         {isMobile && upcoming.length > 0 && (
           <div style={{ ...s.upcomingPanel, marginTop: 16 }}>
             <div style={s.sidebarTitle}>Upcoming (next 60 days)</div>
@@ -614,8 +606,8 @@ export default function ResourceHubCalendar() {
               <div key={i} className="upcoming-row"
                 onClick={() => { setViewYear(ev._date.getFullYear()); setViewMonth(ev._date.getMonth()); setSelected({ date: ev._date, events: [ev] }); }}>
                 <div style={{ ...s.dateBadge, background: ev._color + "18", color: ev._color, border: `1.5px solid ${ev._color}55`, width: 38, height: 38 }}>
-                  <div style={{ fontSize: "0.9rem", fontWeight: 900, lineHeight: 1 }}>{ev._date.getDate()}</div>
-                  <div style={{ fontSize: "0.55rem", fontWeight: 700, textTransform: "uppercase" }}>
+                  <div style={{ fontSize: "0.9rem", fontWeight: 900, lineHeight: 1, fontFamily: "'Merriweather', serif" }}>{ev._date.getDate()}</div>
+                  <div style={{ fontSize: "0.55rem", fontWeight: 600, textTransform: "uppercase", fontFamily: "'Inter', sans-serif" }}>
                     {MONTHS[ev._date.getMonth()].slice(0, 3)}
                   </div>
                 </div>
@@ -630,7 +622,6 @@ export default function ResourceHubCalendar() {
           </div>
         )}
 
-        {/* ── MOBILE: Stats strip ── */}
         {isMobile && (
           <div style={{ ...s.statsRow, marginTop: 12 }}>
             {[
@@ -647,7 +638,6 @@ export default function ResourceHubCalendar() {
         )}
       </div>
 
-      {/* ── MOBILE: Bottom sheet on cell tap ── */}
       {isMobile && <EventSheet selected={selected} onClose={() => setSelected(null)} />}
     </motion.div>
   );
@@ -657,7 +647,7 @@ const s = {
   page: {
     minHeight: "100vh",
     backgroundColor: C.beige,
-    fontFamily: "'DM Sans', sans-serif",
+    fontFamily: "'Inter', sans-serif",
     overflowX: "hidden",
   },
   header: {
@@ -687,8 +677,9 @@ const s = {
     margin: "8px 0 0",
     color: C.mutedText,
     fontSize: "0.92rem",
-    fontWeight: 500,
+    fontWeight: 400,
     maxWidth: "60ch",
+    fontFamily: "'Inter', sans-serif",
   },
   legendRow: { display: "flex", flexWrap: "wrap", gap: 7, alignItems: "center" },
   body: { maxWidth: 1260, margin: "0 auto" },
@@ -722,6 +713,7 @@ const s = {
     justifyContent: "center",
     fontWeight: 700,
     flexShrink: 0,
+    fontFamily: "'Inter', sans-serif",
   },
   monthLabel: {
     fontFamily: "'Merriweather', serif",
@@ -756,7 +748,7 @@ const s = {
     borderRadius: 7,
     cursor: "pointer",
     fontSize: "0.8rem",
-    fontFamily: "'DM Sans', sans-serif",
+    fontFamily: "'Inter', sans-serif",
     textAlign: "left",
     transition: "background 100ms",
   },
@@ -767,10 +759,10 @@ const s = {
     border: "none",
     borderRadius: 8,
     padding: "7px 14px",
-    fontWeight: 700,
+    fontWeight: 600,
     fontSize: "0.82rem",
     cursor: "pointer",
-    fontFamily: "'DM Sans', sans-serif",
+    fontFamily: "'Inter', sans-serif",
     flexShrink: 0,
   },
   dayHeaders: {
@@ -782,11 +774,12 @@ const s = {
   dayHeader: {
     padding: "7px 0",
     textAlign: "center",
-    fontWeight: 700,
+    fontWeight: 600,
     fontSize: "0.68rem",
     color: C.mutedText,
     letterSpacing: "0.05em",
     textTransform: "uppercase",
+    fontFamily: "'Inter', sans-serif",
   },
   grid: {
     display: "grid",
@@ -794,13 +787,14 @@ const s = {
     background: "#fff",
   },
   dayNum: {
-    fontWeight: 700,
+    fontWeight: 600,
     color: C.headerGray,
     marginBottom: 2,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: "50%",
+    fontFamily: "'Inter', sans-serif",
   },
   dayNumToday: { background: C.carolinaBlue, color: "#fff" },
 
@@ -820,22 +814,24 @@ const s = {
     border: `1px solid ${C.border}`,
   },
   eventNameLink: {
-    fontWeight: 800,
+    fontWeight: 700,
     textDecoration: "none",
     display: "block",
     lineHeight: 1.3,
     marginBottom: 3,
     fontSize: "0.9rem",
+    fontFamily: "'Inter', sans-serif",
   },
   eventCat: {
-    fontWeight: 700,
+    fontWeight: 600,
     fontSize: "0.67rem",
     textTransform: "uppercase",
     letterSpacing: "0.04em",
     marginBottom: 3,
+    fontFamily: "'Inter', sans-serif",
   },
-  eventInterest: { fontSize: "0.74rem", color: C.mutedText, fontWeight: 500, marginBottom: 4 },
-  eventDesc: { fontSize: "0.77rem", color: C.headerGray, lineHeight: 1.55, marginTop: 4 },
+  eventInterest: { fontSize: "0.74rem", color: C.mutedText, fontWeight: 400, marginBottom: 4, fontFamily: "'Inter', sans-serif" },
+  eventDesc: { fontSize: "0.77rem", color: C.headerGray, lineHeight: 1.55, marginTop: 4, fontFamily: "'Inter', sans-serif" },
 
   upcomingPanel: {
     background: "#fff",
@@ -880,11 +876,12 @@ const s = {
   },
   statLabel: {
     fontSize: "0.6rem",
-    fontWeight: 700,
+    fontWeight: 600,
     color: C.mutedText,
     marginTop: 4,
     textTransform: "uppercase",
     letterSpacing: "0.05em",
+    fontFamily: "'Inter', sans-serif",
   },
 
   sheetBackdrop: {
