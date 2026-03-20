@@ -19,9 +19,8 @@ const ALL_RESOURCES = [
   ...volunteering,
 ];
 
-
-const FD = `"Merriweather", Georgia, serif`;
-const FB = `"Inter", system-ui, sans-serif`;
+const FD = `"Playfair Display", Georgia, serif`;
+const FB = `"DM Sans", system-ui, sans-serif`;
 
 const C = {
   carolinaBlue: "#4B9CD3",
@@ -80,44 +79,55 @@ const CAT_COLOR = {
   "Volunteering":      C.purple,
 };
 
+const CAT_GRADIENT = {
+  "Academic Program":  ["#4B9CD3", "#2d7db3"],
+  "Awards":            ["#C8860A", "#e6a020"],
+  "Community Events":  ["#1E9B8A", "#16b89f"],
+  "Non-profits":       ["#1E9B8A", "#16b89f"],
+  "Scholarships":      ["#C8860A", "#e6a020"],
+  "Summer Programs":   ["#C94F3A", "#e05a45"],
+  "Support Services":  ["#4B9CD3", "#2d7db3"],
+  "Volunteering":      ["#6B4FAF", "#8060c8"],
+};
+
 const CAT_SVG = {
   "Academic Program": (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
     </svg>
   ),
   "Awards": (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
     </svg>
   ),
   "Community Events": (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
     </svg>
   ),
   "Non-profits": (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
     </svg>
   ),
   "Scholarships": (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
     </svg>
   ),
   "Summer Programs": (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
     </svg>
   ),
   "Support Services": (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
     </svg>
   ),
   "Volunteering": (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
     </svg>
   ),
@@ -194,224 +204,127 @@ function Chip({ label, selected, onClick, color = C.carolinaBlue }) {
   );
 }
 
-function StepCard({ step, index, total, active, onClick }) {
-  const color  = CAT_COLOR[step.category] || C.carolinaBlue;
+// ── MOBILE VERTICAL CARD (replaces old StepCard) ──────────────────────────────
+function MobileRoadmapCard({ step, index, total, active, onClick }) {
+  const color = CAT_COLOR[step.category] || C.carolinaBlue;
+  const [g1, g2] = CAT_GRADIENT[step.category] || [color, color];
   const isLast = index === total - 1;
+
   return (
-    <div style={{ display:"flex", alignItems:"flex-start", position:"relative" }}>
-      {!isLast && (
+    <div style={{ display:"flex", gap:"0", position:"relative" }}>
+      {/* Left timeline */}
+      <div style={{ display:"flex", flexDirection:"column", alignItems:"center", width:"48px", flexShrink:0 }}>
+        {/* Node */}
         <div style={{
-          position:"absolute", left:"19px", top:"42px",
-          width:"2px", height:"calc(100% - 14px)",
-          background:`linear-gradient(to bottom, ${color}66, ${color}11)`,
-          borderRadius:"99px", zIndex:0,
-        }} />
-      )}
-      <div
-        onClick={onClick}
-        style={{
-          width:"40px", height:"40px", borderRadius:"50%", flexShrink:0,
-          background: active ? color : C.lightBg,
-          border:`2px solid ${active ? color : C.border}`,
+          width:"44px", height:"44px", borderRadius:"14px",
+          background:`linear-gradient(135deg, ${g1}, ${g2})`,
           display:"flex", alignItems:"center", justifyContent:"center",
-          color: active ? "#fff" : color,
-          cursor:"pointer", transition:"all 180ms ease", zIndex:1,
-          boxShadow: active ? `0 4px 14px ${color}44` : "none",
-        }}
-      >
-        {CAT_SVG[step.category] || <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/></svg>}
-      </div>
-      <div
-        onClick={onClick}
-        style={{
-          flex:1, marginLeft:"12px", marginBottom:"14px",
-          background:C.lightBg,
-          border:`1.5px solid ${active ? color : C.border}`,
-          borderRadius:"10px", padding:"13px 15px",
-          cursor:"pointer", transition:"all 180ms ease",
-          boxShadow: active ? `0 4px 18px ${color}18` : "none",
-        }}
-      >
-        <div style={{ fontSize:"0.67rem", fontWeight:700, letterSpacing:"0.08em", textTransform:"uppercase", color:color, marginBottom:"3px", fontFamily:FB }}>
-          Step {index + 1} — {step.category}
+          color:"#fff", flexShrink:0, zIndex:1,
+          boxShadow:`0 6px 18px ${color}44`,
+          border:`2px solid rgba(255,255,255,0.3)`,
+          position:"relative",
+        }}>
+          {CAT_SVG[step.category]}
+          <div style={{
+            position:"absolute", top:"-8px", right:"-8px",
+            width:"20px", height:"20px", borderRadius:"50%",
+            background:`linear-gradient(135deg, ${g1}, ${g2})`,
+            border:`2px solid ${C.pageBg}`,
+            display:"flex", alignItems:"center", justifyContent:"center",
+            fontSize:"0.58rem", fontWeight:900, color:"#fff", fontFamily:FB,
+          }}>{index + 1}</div>
         </div>
-        <div style={{ fontWeight:700, fontSize:"0.93rem", color:C.text, lineHeight:1.35, fontFamily:FB }}>
-          {step.name}
-        </div>
-        {active && (
-          <div style={{ marginTop:"10px" }}>
-            {step.cities && (
-              <div style={{
-                display:"inline-flex", alignItems:"center", gap:"5px",
-                fontSize:"0.72rem", fontWeight:600, color:C.headerGray,
-                background:C.pageBg, padding:"3px 9px", borderRadius:"4px",
-                border:`1px solid ${C.border}`, marginBottom:"8px", fontFamily:FB,
-              }}>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
-                {Array.isArray(step.cities) ? step.cities.join(", ") : step.cities}
-              </div>
-            )}
-            <p style={{ margin:"0 0 11px", fontSize:"0.84rem", color:C.headerGray, lineHeight:1.65, fontFamily:FB }}>
-              {step.description}
-            </p>
-            {step.link && (
-              <a
-                href={step.link} target="_blank" rel="noopener noreferrer"
-                style={{
-                  display:"inline-flex", alignItems:"center", gap:"6px",
-                  padding:"8px 16px", background:color, color:"#fff",
-                  fontWeight:700, fontSize:"0.8rem", borderRadius:"6px",
-                  textDecoration:"none", fontFamily:FB,
-                  boxShadow:`0 3px 10px ${color}33`,
-                }}
-              >
-                Visit Resource
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            )}
-          </div>
+        {/* Connector */}
+        {!isLast && (
+          <div style={{
+            width:"2px", flex:1, minHeight:"20px",
+            background:`linear-gradient(to bottom, ${color}66, ${color}11)`,
+            margin:"4px 0",
+          }} />
         )}
       </div>
-    </div>
-  );
-}
 
-function HorizontalPath({ path, activeIdx, setActiveIdx }) {
-  return (
-    <div>
-      <div style={{ overflowX:"auto", WebkitOverflowScrolling:"touch" }}>
+      {/* Card */}
+      <div
+        onClick={onClick}
+        style={{
+          flex:1, marginLeft:"12px", marginBottom: isLast ? 0 : "12px",
+          borderRadius:"16px", overflow:"hidden", cursor:"pointer",
+          border:`1.5px solid ${active ? color : C.border}`,
+          boxShadow: active
+            ? `0 8px 32px ${color}28, 0 2px 8px ${color}18`
+            : `0 2px 8px rgba(0,0,0,0.06)`,
+          transition:"all 220ms ease",
+          background: C.lightBg,
+        }}
+      >
+        {/* Card top stripe */}
         <div style={{
-          display:"flex", alignItems:"stretch",
-          minWidth:`${path.length * 200}px`,
-          padding:"8px 4px 16px", gap:0,
-        }}>
-          {path.map((step, i) => {
-            const color  = CAT_COLOR[step.category] || C.carolinaBlue;
-            const active = activeIdx === i;
-            const isLast = i === path.length - 1;
-            const nextColor = CAT_COLOR[path[i+1]?.category] || C.carolinaBlue;
-            return (
-              <div key={i} style={{ display:"flex", alignItems:"center", flex:"1 0 auto" }}>
-                <div
-                  onClick={() => setActiveIdx(active ? null : i)}
-                  style={{
-                    flex:1, cursor:"pointer",
-                    display:"flex", flexDirection:"column", alignItems:"center",
-                    padding:"20px 10px 16px",
-                    borderRadius:"12px",
-                    background: active
-                      ? `linear-gradient(160deg, ${color}18 0%, ${color}08 100%)`
-                      : "transparent",
-                    border: active ? `1.5px solid ${color}44` : "1.5px solid transparent",
-                    transition:"all 200ms ease",
-                    position:"relative",
-                  }}
-                >
-                  <div style={{
-                    width:"8px", height:"8px", borderRadius:"50%",
-                    background: color,
-                    marginBottom:"14px",
-                    opacity: active ? 1 : 0.35,
-                    boxShadow: active ? `0 0 10px ${color}99` : "none",
-                    transition:"all 200ms",
-                  }} />
+          height:"5px",
+          background:`linear-gradient(90deg, ${g1}, ${g2})`,
+        }} />
 
-                  <div style={{
-                    width:"64px", height:"64px", borderRadius:"16px",
-                    background: active ? color : C.pageBg,
-                    border: `2px solid ${active ? color : color}33`,
-                    display:"flex", alignItems:"center", justifyContent:"center",
-                    color: active ? "#fff" : color,
-                    transition:"all 220ms ease",
-                    boxShadow: active ? `0 8px 20px ${color}40` : `0 2px 8px ${color}18`,
-                    marginBottom:"12px",
-                    flexShrink:0,
-                  }}>
-                    {CAT_SVG[step.category] || <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/></svg>}
-                  </div>
-
-                  <div style={{
-                    fontSize:"0.58rem", fontWeight:800, letterSpacing:"0.1em",
-                    textTransform:"uppercase", fontFamily:FB,
-                    color: active ? color : `${color}88`,
-                    marginBottom:"4px", transition:"color 200ms",
-                  }}>
-                    {step.category}
-                  </div>
-
-                  <div style={{
-                    fontSize:"0.78rem", fontWeight:700, fontFamily:FB,
-                    color: active ? C.text : C.headerGray,
-                    textAlign:"center", lineHeight:1.3,
-                    wordBreak:"break-word", transition:"color 200ms",
-                    maxWidth:"140px",
-                  }}>
-                    {step.name}
-                  </div>
-
-                  <div style={{
-                    position:"absolute", top:"12px", right:"12px",
-                    width:"18px", height:"18px", borderRadius:"50%",
-                    background: active ? color : C.border,
-                    color: active ? "#fff" : C.headerGray,
-                    fontSize:"0.58rem", fontWeight:900, fontFamily:FB,
-                    display:"flex", alignItems:"center", justifyContent:"center",
-                    transition:"all 200ms",
-                  }}>
-                    {i + 1}
-                  </div>
-                </div>
-
-                {!isLast && (
-                  <div style={{
-                    display:"flex", flexDirection:"column", alignItems:"center",
-                    gap:"3px", flexShrink:0, padding:"0 2px", paddingBottom:"16px",
-                  }}>
-                    {[0,1,2].map(d => (
-                      <div key={d} style={{
-                        width:"4px", height:"4px", borderRadius:"50%",
-                        background:`linear-gradient(to bottom, ${color}, ${nextColor})`,
-                        opacity: 0.3 + d * 0.2,
-                      }} />
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {activeIdx !== null && path[activeIdx] && (() => {
-        const s     = path[activeIdx];
-        const color = CAT_COLOR[s.category] || C.carolinaBlue;
-        return (
+        <div style={{ padding:"14px 16px" }}>
           <div style={{
-            marginTop:"4px", padding:"20px 22px",
-            background:C.pageBg,
-            border:`1.5px solid ${color}44`,
-            borderRadius:"12px",
-            boxShadow:`0 4px 20px ${color}12`,
-            animation:"fadeUp 180ms ease",
+            fontSize:"0.6rem", fontWeight:800, letterSpacing:"0.1em",
+            textTransform:"uppercase", color:color, marginBottom:"4px", fontFamily:FB,
           }}>
-            <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"space-between", flexWrap:"wrap", gap:"12px", marginBottom:"10px" }}>
-              <div>
-                <div style={{ fontSize:"0.63rem", fontWeight:800, letterSpacing:"0.1em", textTransform:"uppercase", color:color, marginBottom:"4px", fontFamily:FB }}>
-                  Step {activeIdx + 1} — {s.category}
-                </div>
-                <div style={{ fontWeight:800, fontSize:"1.05rem", fontFamily:FD, color:C.text, lineHeight:1.25 }}>
-                  {s.name}
-                </div>
-              </div>
-              {s.link && (
+            {step.category}
+          </div>
+          <div style={{
+            fontWeight:700, fontSize:"0.97rem", color:C.text,
+            lineHeight:1.3, fontFamily:FD, marginBottom:"8px",
+          }}>
+            {step.name}
+          </div>
+
+          {/* Location + grade pills always visible */}
+          <div style={{ display:"flex", flexWrap:"wrap", gap:"5px", marginBottom: active ? "12px" : 0 }}>
+            {step.cities && (
+              <span style={{
+                display:"inline-flex", alignItems:"center", gap:"4px",
+                fontSize:"0.68rem", fontWeight:600, color:C.headerGray,
+                background:C.pageBg, padding:"3px 8px", borderRadius:"20px",
+                border:`1px solid ${C.border}`, fontFamily:FB,
+              }}>
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
+                {Array.isArray(step.cities) ? step.cities.join(", ") : step.cities}
+              </span>
+            )}
+            {step.grades && (
+              <span style={{
+                fontSize:"0.68rem", fontWeight:600, color:C.headerGray,
+                background:C.pageBg, padding:"3px 8px", borderRadius:"20px",
+                border:`1px solid ${C.border}`, fontFamily:FB,
+              }}>
+                Gr. {Array.isArray(step.grades) ? step.grades.join(", ") : step.grades}
+              </span>
+            )}
+          </div>
+
+          {/* Expandable description */}
+          {active && (
+            <div style={{ animation:"fadeUp 180ms ease" }}>
+              <p style={{
+                margin:"0 0 12px", fontSize:"0.84rem",
+                color:C.headerGray, lineHeight:1.7, fontFamily:FB,
+                display:"-webkit-box",
+                WebkitLineClamp:999,
+                WebkitBoxOrient:"vertical",
+                overflow:"hidden",
+              }}>
+                {step.description}
+              </p>
+              {step.link && (
                 <a
-                  href={s.link} target="_blank" rel="noopener noreferrer"
+                  href={step.link} target="_blank" rel="noopener noreferrer"
                   style={{
                     display:"inline-flex", alignItems:"center", gap:"6px",
-                    padding:"9px 18px", background:color, color:"#fff",
-                    fontWeight:700, fontSize:"0.8rem", borderRadius:"6px",
-                    textDecoration:"none", fontFamily:FB, whiteSpace:"nowrap",
-                    boxShadow:`0 4px 12px ${color}40`, flexShrink:0,
+                    padding:"9px 18px",
+                    background:`linear-gradient(135deg, ${g1}, ${g2})`,
+                    color:"#fff", fontWeight:700, fontSize:"0.8rem",
+                    borderRadius:"8px", textDecoration:"none", fontFamily:FB,
+                    boxShadow:`0 4px 14px ${color}44`,
                   }}
                 >
                   Visit Resource
@@ -419,34 +332,226 @@ function HorizontalPath({ path, activeIdx, setActiveIdx }) {
                 </a>
               )}
             </div>
-            <p style={{ margin:"0 0 12px", fontSize:"0.87rem", color:C.headerGray, lineHeight:1.72, fontFamily:FB }}>
-              {s.description}
-            </p>
-            <div style={{ display:"flex", flexWrap:"wrap", gap:"6px" }}>
-              {s.cities && (
-                <span style={{
-                  display:"inline-flex", alignItems:"center", gap:"5px",
-                  fontSize:"0.72rem", fontWeight:600, color:C.headerGray,
-                  background:C.lightBg, padding:"4px 10px", borderRadius:"4px",
-                  border:`1px solid ${C.border}`, fontFamily:FB,
-                }}>
-                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
-                  {Array.isArray(s.cities) ? s.cities.join(", ") : s.cities}
-                </span>
-              )}
-              {s.grades && (
-                <span style={{
-                  fontSize:"0.72rem", fontWeight:600, color:C.headerGray,
-                  background:C.lightBg, padding:"4px 10px", borderRadius:"4px",
-                  border:`1px solid ${C.border}`, fontFamily:FB,
-                }}>
-                  Grade {Array.isArray(s.grades) ? s.grades.join(", ") : s.grades}
-                </span>
-              )}
-            </div>
+          )}
+
+          {/* Tap hint */}
+          <div style={{
+            display:"flex", alignItems:"center", justifyContent:"flex-end",
+            marginTop:"6px",
+          }}>
+            <svg
+              width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke={color} strokeWidth="2.5" strokeLinecap="round"
+              style={{ transform: active ? "rotate(180deg)" : "rotate(0deg)", transition:"transform 220ms ease" }}
+            >
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
           </div>
-        );
-      })()}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── DESKTOP ROADMAP ────────────────────────────────────────────────────────────
+function DesktopRoadmap({ path, activeIdx, setActiveIdx }) {
+  return (
+    <div>
+      {/* The road strip */}
+      <div style={{ position:"relative", padding:"16px 0 0" }}>
+
+        {/* Dashed road line */}
+        <div style={{
+          position:"absolute",
+          top:"52px",
+          left:"10%", right:"10%",
+          height:"4px",
+          borderRadius:"99px",
+          background:`repeating-linear-gradient(
+            90deg,
+            ${C.border} 0px, ${C.border} 18px,
+            transparent 18px, transparent 30px
+          )`,
+          zIndex:0,
+        }} />
+
+        {/* Cards row */}
+        <div style={{
+          display:"grid",
+          gridTemplateColumns:`repeat(${path.length}, minmax(0, 1fr))`,
+          gap:"16px",
+          position:"relative", zIndex:1,
+        }}>
+          {path.map((step, i) => {
+            const color = CAT_COLOR[step.category] || C.carolinaBlue;
+            const [g1, g2] = CAT_GRADIENT[step.category] || [color, color];
+            const active = activeIdx === i;
+            const isEven = i % 2 === 0;
+
+            return (
+              <div
+                key={i}
+                onClick={() => setActiveIdx(active ? null : i)}
+                style={{
+                  display:"flex",
+                  flexDirection: isEven ? "column" : "column-reverse",
+                  alignItems:"center",
+                  cursor:"pointer",
+                  gap:"0",
+                }}
+              >
+                {/* Card above or below connector */}
+                <div style={{
+                  width:"100%",
+                  borderRadius:"16px",
+                  background: C.lightBg,
+                  border:`1.5px solid ${active ? color : C.border}`,
+                  overflow:"hidden",
+                  boxShadow: active
+                    ? `0 12px 36px ${color}30, 0 3px 10px ${color}20`
+                    : `0 3px 12px rgba(0,0,0,0.07)`,
+                  transition:"all 240ms cubic-bezier(.34,1.56,.64,1)",
+                  transform: active ? "translateY(-4px) scale(1.02)" : "translateY(0) scale(1)",
+                  marginBottom: isEven ? 0 : "8px",
+                  marginTop: isEven ? "8px" : 0,
+                }}>
+                  {/* Color stripe */}
+                  <div style={{
+                    height:"4px",
+                    background:`linear-gradient(90deg, ${g1}, ${g2})`,
+                  }} />
+
+                  <div style={{ padding:"14px 14px 12px" }}>
+                    {/* Icon */}
+                    <div style={{
+                      width:"46px", height:"46px", borderRadius:"13px",
+                      background:`linear-gradient(135deg, ${g1}22, ${g2}18)`,
+                      border:`1.5px solid ${color}30`,
+                      display:"flex", alignItems:"center", justifyContent:"center",
+                      color:color,
+                      marginBottom:"10px",
+                      transition:"all 240ms ease",
+                      ...(active ? {
+                        background:`linear-gradient(135deg, ${g1}, ${g2})`,
+                        color:"#fff",
+                        boxShadow:`0 6px 18px ${color}40`,
+                      } : {}),
+                    }}>
+                      {CAT_SVG[step.category]}
+                    </div>
+
+                    <div style={{
+                      fontSize:"0.58rem", fontWeight:800, letterSpacing:"0.1em",
+                      textTransform:"uppercase", color:color,
+                      marginBottom:"4px", fontFamily:FB,
+                    }}>
+                      {step.category}
+                    </div>
+
+                    <div style={{
+                      fontWeight:700, fontSize:"0.88rem",
+                      color:C.text, lineHeight:1.3,
+                      fontFamily:FD, marginBottom:"8px",
+                    }}>
+                      {step.name}
+                    </div>
+
+                    {/* Always-visible pills */}
+                    <div style={{ display:"flex", flexWrap:"wrap", gap:"4px", marginBottom:"8px" }}>
+                      {step.cities && (
+                        <span style={{
+                          display:"inline-flex", alignItems:"center", gap:"3px",
+                          fontSize:"0.62rem", fontWeight:600, color:C.headerGray,
+                          background:C.pageBg, padding:"2px 7px", borderRadius:"20px",
+                          border:`1px solid ${C.border}`, fontFamily:FB,
+                        }}>
+                          <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
+                          {Array.isArray(step.cities) ? step.cities.slice(0,2).join(", ") : step.cities}
+                        </span>
+                      )}
+                      {step.grades && (
+                        <span style={{
+                          fontSize:"0.62rem", fontWeight:600, color:C.headerGray,
+                          background:C.pageBg, padding:"2px 7px", borderRadius:"20px",
+                          border:`1px solid ${C.border}`, fontFamily:FB,
+                        }}>
+                          Gr {Array.isArray(step.grades) ? step.grades.join(", ") : step.grades}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Preview snippet of description — always shown, ellipsis when collapsed */}
+                    <p style={{
+                      margin:"0 0 8px",
+                      fontSize:"0.75rem",
+                      color: C.headerGray,
+                      lineHeight:1.6,
+                      fontFamily:FB,
+                      display:"-webkit-box",
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient:"vertical",
+                      overflow:"hidden",
+                      textOverflow:"ellipsis",
+                    }}>
+                      {step.description}
+                    </p>
+
+                    {/* CTA always shown */}
+                    {step.link && (
+                      <a
+                        href={step.link} target="_blank" rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                          display:"inline-flex", alignItems:"center", gap:"5px",
+                          padding:"7px 13px",
+                          background: active
+                            ? `linear-gradient(135deg, ${g1}, ${g2})`
+                            : C.pageBg,
+                          color: active ? "#fff" : color,
+                          border: `1.5px solid ${color}44`,
+                          fontWeight:700, fontSize:"0.73rem",
+                          borderRadius:"7px", textDecoration:"none",
+                          fontFamily:FB, transition:"all 200ms ease",
+                          boxShadow: active ? `0 4px 14px ${color}40` : "none",
+                          marginTop:"2px",
+                        }}
+                      >
+                        Visit Resource
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                {/* Road node connector */}
+                <div style={{
+                  display:"flex", flexDirection:"column", alignItems:"center",
+                  flexShrink:0,
+                  ...(isEven ? { marginTop:"0" } : { marginBottom:"0" }),
+                }}>
+                  <div style={{
+                    width:"2px", height:"20px",
+                    background:`linear-gradient(to bottom, ${color}66, ${color}22)`,
+                    ...(isEven ? {} : { transform:"scaleY(-1)" }),
+                  }} />
+                  <div style={{
+                    width:"28px", height:"28px", borderRadius:"50%",
+                    background:`linear-gradient(135deg, ${g1}, ${g2})`,
+                    border:`3px solid ${C.pageBg}`,
+                    boxShadow:`0 0 0 2px ${color}60, 0 4px 14px ${color}40`,
+                    display:"flex", alignItems:"center", justifyContent:"center",
+                    fontSize:"0.62rem", fontWeight:900, color:"#fff", fontFamily:FB,
+                    transition:"all 240ms ease",
+                    transform: active ? "scale(1.2)" : "scale(1)",
+                  }}>
+                    {i + 1}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
@@ -509,14 +614,19 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
   return (
     <div style={{ backgroundColor:C.pageBg, minHeight:"100vh", padding:"0 0 72px", overflowX:"hidden", fontFamily:FB }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700;800;900&display=swap');
         @keyframes fadeUp {
-          from { opacity:0; transform:translateY(12px); }
+          from { opacity:0; transform:translateY(14px); }
           to   { opacity:1; transform:translateY(0); }
+        }
+        @keyframes pulse-ring {
+          0%   { box-shadow: 0 0 0 0 rgba(75,156,211,0.4); }
+          70%  { box-shadow: 0 0 0 8px rgba(75,156,211,0); }
+          100% { box-shadow: 0 0 0 0 rgba(75,156,211,0); }
         }
         .pb-btn {
           display:inline-flex; align-items:center; gap:6px;
-          padding:11px 22px; border-radius:6px; font-weight:700;
+          padding:11px 22px; border-radius:8px; font-weight:700;
           font-size:0.85rem; letter-spacing:0.02em; cursor:pointer;
           transition:all 150ms ease; border:1.5px solid transparent;
           font-family:${FB};
@@ -526,12 +636,12 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
         .pb-primary:hover:not(:disabled) { background:#3a8ec4; transform:translateY(-1px); box-shadow:0 6px 20px ${C.carolinaBlue}55; }
         .pb-ghost { background:transparent; color:${C.headerGray}; border-color:${C.border}; }
         .pb-ghost:hover:not(:disabled) { background:${C.border}; color:${C.text}; }
-        .pb-generate { background:${C.carolinaBlue}; color:#fff; font-size:0.88rem; padding:12px 28px; border:none; box-shadow:0 4px 18px ${C.carolinaBlue}44; }
+        .pb-generate { background:${C.carolinaBlue}; color:#fff; font-size:0.88rem; padding:12px 28px; border:none; box-shadow:0 4px 18px ${C.carolinaBlue}44; border-radius:8px; }
         .pb-generate:hover:not(:disabled) { background:#3a8ec4; transform:translateY(-1px); box-shadow:0 7px 24px ${C.carolinaBlue}55; }
         .pb-select {
           appearance:none;
           background:${C.lightBg} url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M0 0l5.5 7L11 0z' fill='%23494A48'/%3E%3C/svg%3E") no-repeat right 13px center;
-          border:1.5px solid ${C.border}; border-radius:6px;
+          border:1.5px solid ${C.border}; border-radius:8px;
           padding:10px 34px 10px 12px; font-size:0.87rem; font-weight:600;
           color:${C.text}; cursor:pointer; outline:none; width:100%;
           font-family:${FB}; transition:border-color 140ms;
@@ -550,7 +660,6 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
         textAlign:"center", position:"relative", overflow:"hidden",
         borderBottom:`3px solid ${C.carolinaBlue}`,
       }}>
-        {/* Subtle grid */}
         <div style={{
           position:"absolute", inset:0, zIndex:0, pointerEvents:"none",
           backgroundImage:`linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px)`,
@@ -596,7 +705,7 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
       </div>
 
       {/* ── WIZARD ── */}
-      <div style={{ maxWidth:"780px", margin:"0 auto", padding:"0 20px" }}>
+      <div style={{ maxWidth:"1100px", margin:"0 auto", padding:"0 24px" }}>
 
         {/* Progress */}
         {!generated && (
@@ -707,7 +816,7 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
             </div>
 
             {/* Summary */}
-            <div style={{ background:C.lightBg, border:`1.5px solid ${C.border}`, borderRadius:"8px", padding:"13px 15px", marginBottom:"22px" }}>
+            <div style={{ background:C.lightBg, border:`1.5px solid ${C.border}`, borderRadius:"10px", padding:"13px 15px", marginBottom:"22px" }}>
               <div style={{ fontSize:"0.66rem", fontWeight:800, color:C.headerGray, letterSpacing:"0.09em", textTransform:"uppercase", marginBottom:"9px", fontFamily:FB }}>
                 Your path is based on
               </div>
@@ -730,7 +839,7 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
           </div>
         )}
 
-        {/* Result */}
+        {/* ── RESULT ── */}
         {generated && (
           <div ref={pathRef} style={{ animation:"fadeUp 300ms ease", paddingTop:"36px" }}>
             <div style={{ display:"flex", flexWrap:"wrap", alignItems:"flex-start", justifyContent:"space-between", gap:"12px", marginBottom:"18px" }}>
@@ -747,7 +856,7 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
               </button>
             </div>
 
-            <div style={{ display:"flex", flexWrap:"wrap", gap:"6px", marginBottom:"20px" }}>
+            <div style={{ display:"flex", flexWrap:"wrap", gap:"6px", marginBottom:"24px" }}>
               {grade && <span style={tag(C.carolinaBlue)}>Grade {grade}</span>}
               {city  && <span style={tag(C.teal)}>{city}</span>}
               {interests.slice(0,3).map((id) => { const o = INTEREST_OPTIONS.find((x) => x.id === id); return o ? <span key={id} style={tag(C.headerGray)}>{o.label}</span> : null; })}
@@ -755,29 +864,47 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
             </div>
 
             {path.length === 0 ? (
-              <div style={{ textAlign:"center", padding:"52px 20px", background:C.lightBg, border:`1.5px dashed ${C.border}`, borderRadius:"10px" }}>
+              <div style={{ textAlign:"center", padding:"52px 20px", background:C.lightBg, border:`1.5px dashed ${C.border}`, borderRadius:"14px" }}>
                 <div style={{ fontWeight:800, fontSize:"0.98rem", marginBottom:"7px", fontFamily:FD, color:C.text }}>No matches found</div>
                 <p style={{ margin:0, fontSize:"0.85rem", lineHeight:1.65, color:C.headerGray, fontFamily:FB }}>
                   Try adjusting your interests or goals, or select "Any / Remote" for location.
                 </p>
               </div>
             ) : narrow ? (
-              <div>
+              /* ── MOBILE: stacked cards with timeline ── */
+              <div style={{ paddingTop:"4px" }}>
                 {path.map((s, i) => (
-                  <StepCard key={i} step={s} index={i} total={path.length} active={activeIdx === i} onClick={() => setActiveIdx(activeIdx === i ? null : i)} />
+                  <MobileRoadmapCard
+                    key={i} step={s} index={i} total={path.length}
+                    active={activeIdx === i}
+                    onClick={() => setActiveIdx(activeIdx === i ? null : i)}
+                  />
                 ))}
               </div>
             ) : (
-              <div style={{ background:C.lightBg, border:`1.5px solid ${C.border}`, borderRadius:"12px", padding:"24px 20px", boxShadow:"0 2px 14px rgba(0,0,0,0.05)" }}>
-                <HorizontalPath path={path} activeIdx={activeIdx} setActiveIdx={(i) => setActiveIdx(activeIdx === i ? null : i)} />
+              /* ── DESKTOP: zigzag roadmap ── */
+              <div style={{
+                background:C.lightBg,
+                border:`1.5px solid ${C.border}`,
+                borderRadius:"20px",
+                padding:"32px 28px 36px",
+                boxShadow:"0 4px 24px rgba(0,0,0,0.07)",
+              }}>
+                <DesktopRoadmap
+                  path={path}
+                  activeIdx={activeIdx}
+                  setActiveIdx={(i) => setActiveIdx(activeIdx === i ? null : i)}
+                />
               </div>
             )}
 
             {path.length > 0 && (
               <div style={{
-                marginTop:"26px", background:C.lightBg, border:`1.5px solid ${C.border}`,
-                borderRadius:"10px", padding:"17px 20px",
-                display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"space-between", gap:"12px",
+                marginTop:"28px", background:C.lightBg,
+                border:`1.5px solid ${C.border}`,
+                borderRadius:"14px", padding:"18px 22px",
+                display:"flex", flexWrap:"wrap", alignItems:"center",
+                justifyContent:"space-between", gap:"12px",
               }}>
                 <div>
                   <div style={{ fontWeight:800, fontSize:"0.92rem", color:C.text, marginBottom:"2px", fontFamily:FB }}>Want to explore more?</div>
@@ -786,7 +913,7 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
                 <a href="/resource-hub" style={{
                   display:"inline-flex", alignItems:"center", gap:"6px",
                   padding:"10px 20px", background:C.carolinaBlue, color:"#fff",
-                  fontWeight:700, fontSize:"0.82rem", borderRadius:"6px",
+                  fontWeight:700, fontSize:"0.82rem", borderRadius:"8px",
                   textDecoration:"none", fontFamily:FB, whiteSpace:"nowrap",
                   boxShadow:`0 4px 12px ${C.carolinaBlue}33`,
                 }}>
@@ -826,7 +953,7 @@ function NavRow({ children }) {
 
 const tag = (color) => ({
   display:"inline-flex", alignItems:"center",
-  padding:"3px 10px", borderRadius:"4px",
+  padding:"3px 10px", borderRadius:"20px",
   background:`${color}12`, border:`1px solid ${color}30`,
   fontSize:"0.73rem", fontWeight:600,
   color: color === C.headerGray ? C.headerGray : color,
