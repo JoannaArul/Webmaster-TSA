@@ -49,46 +49,57 @@ const COLORS = {
   border: "#E5E7EB",
 };
 
-function BlurImage({ src, alt, style, eager = false }) {
-  const [loaded, setLoaded] = useState(false);
+const FADE_STYLE_ID = "img-fade-style";
+function injectFadeStyle() {
+  if (typeof document === "undefined") return;
+  if (document.getElementById(FADE_STYLE_ID)) return;
+  const style = document.createElement("style");
+  style.id = FADE_STYLE_ID;
+  style.textContent = `.img-pending{opacity:0}.img-loaded{opacity:1;transition:opacity 0.35s ease}`;
+  document.head.appendChild(style);
+}
+injectFadeStyle();
+
+function BlurImage({ src, alt, style, eager = false, dominantColor = "#b8c9b0" }) {
+  const imgRef = useRef(null);
 
   useEffect(() => {
-    const img = new Image();
-    img.src = src;
-    if (img.complete) {
-      setLoaded(true);
+    const el = imgRef.current;
+    if (!el) return;
+    if (el.complete && el.naturalWidth > 0) {
+      el.classList.remove("img-pending");
+      el.classList.add("img-loaded");
     }
-  }, [src]);
+  }, []);
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundColor: "#c8d6c0",
-          transition: "opacity 0.4s ease",
-          opacity: loaded ? 0 : 1,
-          zIndex: 1,
-        }}
-      />
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        overflow: "hidden",
+        backgroundColor: dominantColor,
+      }}
+    >
       <img
+        ref={imgRef}
         src={src}
         alt={alt}
         loading={eager ? "eager" : "lazy"}
         decoding="async"
-        onLoad={() => setLoaded(true)}
-        style={{
-          ...style,
-          transition: "opacity 0.4s ease",
-          opacity: loaded ? 1 : 0,
+        className="img-pending"
+        onLoad={(e) => {
+          e.currentTarget.classList.remove("img-pending");
+          e.currentTarget.classList.add("img-loaded");
         }}
+        style={style}
       />
     </div>
   );
 }
 
-export default function AddResource() {
+export default function GrowtheHub() {
   const formTopRef = useRef(null);
 
   const [form, setForm] = useState({
@@ -132,6 +143,7 @@ export default function AddResource() {
         description:
           "Do you have a resource that would benefit the community? Use the form below to submit resources to the Hub.",
         img: buildImg,
+        dominantColor: "#7a9e8a",
       },
       {
         title: "Submission Guidelines",
@@ -139,6 +151,7 @@ export default function AddResource() {
         description:
           "Accepted resources include Academic Program, Awards, Community Events, Non-profits, Scholarships, Summer Programs, Support Services, and Volunteering.",
         img: academicImg,
+        dominantColor: "#8fa3b1",
       },
       {
         title: "Review Process",
@@ -146,6 +159,7 @@ export default function AddResource() {
         description:
           "The Nexus committee and website manager will review all resources considering quality before adding it to the Hub. Thank you for supporting your community!",
         img: reviewImg,
+        dominantColor: "#a09070",
       },
     ],
     []
@@ -254,15 +268,11 @@ export default function AddResource() {
                 >
                   <div style={hero.cardImgWrap}>
                     <div style={hero.imgOverlay} />
-                    {/*
-                      eager=true on all hero cards — they are above the fold
-                      on every device. BlurImage fades from a green-tinted
-                      placeholder to the real image to eliminate the gray flash.
-                    */}
                     <BlurImage
                       src={c.img}
                       alt={c.title}
                       eager
+                      dominantColor={c.dominantColor}
                       style={hero.cardImg}
                     />
                   </div>
