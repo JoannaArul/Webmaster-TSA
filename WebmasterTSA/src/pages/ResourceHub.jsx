@@ -13,9 +13,10 @@ import volunteering from "../data/Volunteering.json";
 import FilterBar from "../components/FilterBar.jsx";
 import ResourceCard from "../components/ResourceCard.jsx";
 
-import AcademicProgramImg from "../assets/AcademicProgram.jpg";
-import AwardsImg from "../assets/Awards.jpg";
-import CommunityEventsImg from "../assets/CommunityEvents.jpg";
+import AcademicProgramImg from "../assets/AcademicProgram.webp";
+import AwardsImg from "../assets/Awards.webp";
+import CommunityEventsImg from "../assets/CommunityEvents.webp";
+
 import NonprofitsImg from "../assets/Non-profits.jpg";
 import ScholarshipsImg from "../assets/Scholarships.jpg";
 import SummerProgramsImg from "../assets/SummerPrograms.jpg";

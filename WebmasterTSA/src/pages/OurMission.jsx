@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 import researchTriangleImg from "../assets/ResearchTriangle.webp";
 import VolunteeringImg from "../assets/Volunteering.webp"; 
 
-import computerImg from "../assets/Computer.png";
+import computerImg from "../assets/Computer.webp";
 import filterImg from "../assets/Filter.png";
 import actionImg from "../assets/Action.png";
 
