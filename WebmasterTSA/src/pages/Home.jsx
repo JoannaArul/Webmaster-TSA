@@ -11,12 +11,12 @@ import summerPrograms from "../data/SummerPrograms.json";
 import supportServices from "../data/SupportServices.json";
 import volunteering from "../data/Volunteering.json";
 
-import dyesImg from "../assets/dyes.webp";
+import dyesImg from "../assets/dyes.avif";
 import sMathHacksImg from "../assets/SMathHacks.webp";
 import floreneScholarshipImg from "../assets/FloreneScholarship.webp";
 import bigBroSisImg from "../assets/BigBroSis.webp";
 import handsOnImg from "../assets/HandsOn.webp";
-import BuildImg from "../assets/Build.webp";
+import BuildImg from "../assets/Build.avif";
 
 import AliceImg from "../assets/Alice.webp";
 import NaomiImg from "../assets/Naomi.webp";

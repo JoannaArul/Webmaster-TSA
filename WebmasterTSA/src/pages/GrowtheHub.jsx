@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useForm } from "@formspree/react";
 
 import buildingBlockBg from "../assets/BuildingBlock.webp";
-import buildImg from "../assets/Build.webp";
+import buildImg from "../assets/Build.avif";
 import academicImg from "../assets/Academic.webp";
 import reviewImg from "../assets/ReviewProcess.webp";
 
