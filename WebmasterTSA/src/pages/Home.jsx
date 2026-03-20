@@ -11,7 +11,7 @@ import summerPrograms from "../data/SummerPrograms.json";
 import supportServices from "../data/SupportServices.json";
 import volunteering from "../data/Volunteering.json";
 
-import dyesImg from "../assets/dyes.avif";
+import dyesImg from "../assets/dyes.webp";
 import sMathHacksImg from "../assets/SMathHacks.webp";
 import floreneScholarshipImg from "../assets/FloreneScholarship.webp";
 import bigBroSisImg from "../assets/BigBroSis.webp";
