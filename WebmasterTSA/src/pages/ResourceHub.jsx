@@ -17,10 +17,10 @@ import AcademicProgramImg from "../assets/AcademicProgram.webp";
 import AwardsImg from "../assets/Awards.webp";
 import CommunityEventsImg from "../assets/CommunityEvents.webp";
 
-import NonprofitsImg from "../assets/Non-profits.jpg";
-import ScholarshipsImg from "../assets/Scholarships.jpg";
-import SummerProgramsImg from "../assets/SummerPrograms.jpg";
-import SupportServicesImg from "../assets/SupportServices.jpg";
+import NonprofitsImg from "../assets/Non-profits.webp";
+import ScholarshipsImg from "../assets/Scholarships.webp";
+import SummerProgramsImg from "../assets/SummerPrograms.webp";
+import SupportServicesImg from "../assets/SupportServices.webp";
 import VolunteeringImg from "../assets/Volunteering.webp";
 
 import ResourceHubBg from "../assets/ResourceHubBackground.webp";
