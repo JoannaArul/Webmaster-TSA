@@ -205,7 +205,7 @@ export default function Documentation() {
           alt="References hero"
           style={styles.heroImg}
           loading="eager"
-          decoding="async"
+          decoding="sync"
           fetchPriority="high"
         />
         <div style={styles.heroOverlay} />
