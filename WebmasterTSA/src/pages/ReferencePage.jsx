@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import referenceHero from "../assets/ReferenceImage.webp";
 
 const COLORS = {
@@ -8,7 +8,19 @@ const COLORS = {
   black: "#000000",
 };
 
-export default function Documentation() {
+function useImagePreload(src) {
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => setLoaded(true);
+  }, [src]);
+  return loaded;
+}
+
+export default function ReferencePage() {
+  const heroLoaded = useImagePreload(referenceHero);
+
   const requiredLinks = [
     { label: "Student Copyright Checklist", href: "/docs/StudentCopyrightChecklist.pdf" },
     { label: "Work Log", href: "/docs/WorkLog.pdf" },
@@ -23,9 +35,9 @@ export default function Documentation() {
   ];
 
   const mla = [
-    "BigFuture by College Board. “10 Jobs for Engineering Majors.” BigFuture, College Board, bigfuture.collegeboard.org/explore-careers/get-started/career-paths-for-popular-majors/10-jobs-engineering-majors. Accessed 29 Jan. 2026.",
-    "BigFuture by College Board. “7 Jobs for Political Science Majors.” BigFuture, College Board, bigfuture.collegeboard.org/explore-careers/get-started/career-paths-for-popular-majors/7-jobs-political-science-majors. Accessed 29 Jan. 2026.",
-    "Coursera. “Jobs for English Majors.” Coursera, www.coursera.org/articles/jobs-for-english-majors. Accessed 29 Jan. 2026.",
+    "BigFuture by College Board. \u201C10 Jobs for Engineering Majors.\u201D BigFuture, College Board, bigfuture.collegeboard.org/explore-careers/get-started/career-paths-for-popular-majors/10-jobs-engineering-majors. Accessed 29 Jan. 2026.",
+    "BigFuture by College Board. \u201C7 Jobs for Political Science Majors.\u201D BigFuture, College Board, bigfuture.collegeboard.org/explore-careers/get-started/career-paths-for-popular-majors/7-jobs-political-science-majors. Accessed 29 Jan. 2026.",
+    "Coursera. \u201CJobs for English Majors.\u201D Coursera, www.coursera.org/articles/jobs-for-english-majors. Accessed 29 Jan. 2026.",
     "Freepik. Authentic book club scene. Freepik, www.freepik.com/free-photo/authentic-book-club-scene_37155647.htm. Accessed 28 Jan. 2026.",
     "Freepik. Business company concept. Freepik, www.freepik.com/free-photo/business-company-concept_238033824.htm. Accessed 28 Jan. 2026.",
     "Freepik. Business concept with wooden blocks with icons and green plant. Freepik, www.freepik.com/free-photo/business-concept-with-wooden-blocks-with-icons-green-plant_10183577.htm. Accessed 28 Jan. 2026.",
@@ -34,32 +46,32 @@ export default function Documentation() {
     "Freepik. Medium shot of people hugging. Freepik, www.freepik.com/free-photo/medium-shot-people-hugging_20550523.htm. Accessed 28 Jan. 2026.",
     "Freepik. Ottawa street. Freepik, www.freepik.com/free-photo/ottawa-street_26923665.htm. Accessed 28 Jan. 2026.",
     "Freepik. Team of college students working on a business management project. Freepik, www.freepik.com/free-photo/team-college-students-working-project-related-business-management_416754949.htm. Accessed 28 Jan. 2026.",
-    "Graduate Programs at Northeastern University. “Best Math Careers.” Northeastern University, graduate.northeastern.edu/knowledge-hub/best-math-careers/. Accessed 29 Jan. 2026.",
-    "Indeed Career Guide. “Bachelor’s Degree in Education Jobs.” Indeed, www.indeed.com/career-advice/finding-a-job/bachelors-degree-in-education-jobs. Accessed 29 Jan. 2026.",
-    "Indeed Career Guide. “Biology Degree Jobs.” Indeed, www.indeed.com/career-advice/finding-a-job/biology-degree-jobs. Accessed 29 Jan. 2026.",
-    "Indeed Career Guide. “Careers in Sports.” Indeed, www.indeed.com/career-advice/career-development/careers-in-sports. Accessed 29 Jan. 2026.",
-    "Indeed Career Guide. “Computer Scientist Degree.” Indeed, www.indeed.com/career-advice/finding-a-job/computer-scientist-degree. Accessed 29 Jan. 2026.",
-    "Indeed Career Guide. “Environmental Science Degree Jobs.” Indeed, www.indeed.com/career-advice/finding-a-job/environmental-science-degree-jobs. Accessed 29 Jan. 2026.",
-    "Indeed Career Guide. “Jobs for Art Majors.” Indeed, www.indeed.com/career-advice/finding-a-job/jobs-with-an-art-degree. Accessed 29 Jan. 2026.",
-    "Indeed Career Guide. “Jobs for Business Majors.” Indeed, www.indeed.com/career-advice/finding-a-job/jobs-for-business-majors. Accessed 29 Jan. 2026.",
-    "Indeed Career Guide. “Law Degree Government Jobs.” Indeed, www.indeed.com/career-advice/finding-a-job/law-degree-government-jobs. Accessed 29 Jan. 2026.",
-    "Indeed Career Guide. “Public Service Degree Jobs.” Indeed, www.indeed.com/career-advice/finding-a-job/public-service-degree-jobs. Accessed 29 Jan. 2026.",
-    "Indeed Career Guide. “Top Chemistry Degree Jobs.” Indeed, www.indeed.com/career-advice/finding-a-job/top-chemistry-degree-jobs. Accessed 29 Jan. 2026.",
-    "In Education Online. “Importance of Extracurricular Activities.” In Education Online, 5 Sept. 2024, ineducationonline.org/2024/09/05/importance-of-extracurricular-activities/. Accessed 28 Jan. 2026.",
+    "Graduate Programs at Northeastern University. \u201CBest Math Careers.\u201D Northeastern University, graduate.northeastern.edu/knowledge-hub/best-math-careers/. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. \u201CBachelor\u2019s Degree in Education Jobs.\u201D Indeed, www.indeed.com/career-advice/finding-a-job/bachelors-degree-in-education-jobs. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. \u201CBiology Degree Jobs.\u201D Indeed, www.indeed.com/career-advice/finding-a-job/biology-degree-jobs. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. \u201CCareers in Sports.\u201D Indeed, www.indeed.com/career-advice/career-development/careers-in-sports. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. \u201CComputer Scientist Degree.\u201D Indeed, www.indeed.com/career-advice/finding-a-job/computer-scientist-degree. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. \u201CEnvironmental Science Degree Jobs.\u201D Indeed, www.indeed.com/career-advice/finding-a-job/environmental-science-degree-jobs. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. \u201CJobs for Art Majors.\u201D Indeed, www.indeed.com/career-advice/finding-a-job/jobs-with-an-art-degree. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. \u201CJobs for Business Majors.\u201D Indeed, www.indeed.com/career-advice/finding-a-job/jobs-for-business-majors. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. \u201CLaw Degree Government Jobs.\u201D Indeed, www.indeed.com/career-advice/finding-a-job/law-degree-government-jobs. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. \u201CPublic Service Degree Jobs.\u201D Indeed, www.indeed.com/career-advice/finding-a-job/public-service-degree-jobs. Accessed 29 Jan. 2026.",
+    "Indeed Career Guide. \u201CTop Chemistry Degree Jobs.\u201D Indeed, www.indeed.com/career-advice/finding-a-job/top-chemistry-degree-jobs. Accessed 29 Jan. 2026.",
+    "In Education Online. \u201CImportance of Extracurricular Activities.\u201D In Education Online, 5 Sept. 2024, ineducationonline.org/2024/09/05/importance-of-extracurricular-activities/. Accessed 28 Jan. 2026.",
     "Pexels. A volunteer giving charity to children. Pexels, www.pexels.com/photo/a-volunteer-giving-charity-to-children-9090746/. Accessed 28 Jan. 2026.",
     "Pexels. Children walking with UNICEF backpacks. Pexels, www.pexels.com/photo/children-walking-with-unicef-backpacks-12886800/. Accessed 28 Jan. 2026.",
     "Picjumbo. Old books. Picjumbo, picjumbo.com/old-books/. Accessed 28 Jan. 2026.",
-    "Picjumbo. “Psycho” sorry word in programming code. Picjumbo, picjumbo.com/psycho-sorry-word-in-programming-code/. Accessed 28 Jan. 2026.",
+    "Picjumbo. \u201CPsycho\u201D sorry word in programming code. Picjumbo, picjumbo.com/psycho-sorry-word-in-programming-code/. Accessed 28 Jan. 2026.",
     "Pixabay. Cup winner award. Pixabay, pixabay.com/photos/cup-winner-award-857047/. Accessed 28 Jan. 2026.",
     "Pixabay. Hands, friendship, friends, children. Pixabay, pixabay.com/photos/hands-friendship-friends-children-2847508/. Accessed 28 Jan. 2026.",
     "Pixabay. Mentor, school, students, college. Pixabay, pixabay.com/photos/mentor-school-students-college-3512369/. Accessed 28 Jan. 2026.",
     "Pixabay. NC State, North Carolina State. Pixabay, pixabay.com/photos/nc-state-north-carolina-state-5287789/. Accessed 28 Jan. 2026.",
     "Pixabay. Pen, notebook, notepad, diary. Pixabay, pixabay.com/photos/pen-notebook-notepad-diary-4337521/. Accessed 28 Jan. 2026.",
-    "Superprof. “Career Prospects in Physics.” Superprof, www.superprof.com/blog/career-prospects-physics/. Accessed 29 Jan. 2026.",
-    "U.S. News & World Report. “Best STEM Jobs.” U.S. News & World Report, careers.usnews.com/best-jobs/rankings/best-stem-jobs. Accessed 29 Jan. 2026.",
-    "University of North Dakota. “Highest-Paying Jobs with a Psychology Degree.” UND Today, und.edu/blog/highest-paying-jobs-with-a-psychology-degree.html. Accessed 29 Jan. 2026.",
+    "Superprof. \u201CCareer Prospects in Physics.\u201D Superprof, www.superprof.com/blog/career-prospects-physics/. Accessed 29 Jan. 2026.",
+    "U.S. News & World Report. \u201CBest STEM Jobs.\u201D U.S. News & World Report, careers.usnews.com/best-jobs/rankings/best-stem-jobs. Accessed 29 Jan. 2026.",
+    "University of North Dakota. \u201CHighest-Paying Jobs with a Psychology Degree.\u201D UND Today, und.edu/blog/highest-paying-jobs-with-a-psychology-degree.html. Accessed 29 Jan. 2026.",
     "Unsplash. A person placing a block into a pile of wooden blocks. Unsplash, unsplash.com/photos/a-person-placing-a-block-into-a-pile-of-wooden-blocks-bTMTggEt5s4. Accessed 28 Jan. 2026.",
-    "Unsplash. Person in red sweater holding baby’s hand. Unsplash, unsplash.com/photos/person-in-red-sweater-holding-babys-hand-Zyx1bK9mqmA. Accessed 28 Jan. 2026.",
+    "Unsplash. Person in red sweater holding baby\u2019s hand. Unsplash, unsplash.com/photos/person-in-red-sweater-holding-babys-hand-Zyx1bK9mqmA. Accessed 28 Jan. 2026.",
   ];
 
   const styles = {
@@ -75,7 +87,7 @@ export default function Documentation() {
       aspectRatio: "21 / 9",
       maxHeight: "min(420px, 70vh)",
       overflow: "hidden",
-      backgroundColor: "#0b0b0b",
+      backgroundColor: "#1a2e42",
     },
     heroImg: {
       position: "absolute",
@@ -85,6 +97,8 @@ export default function Documentation() {
       objectFit: "cover",
       transform: "scale(1.02)",
       display: "block",
+      opacity: heroLoaded ? 1 : 0,
+      transition: "opacity 0.25s ease",
     },
     heroOverlay: {
       position: "absolute",
