@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 
 import academicPrograms from "../data/AcademicProgram.json";
@@ -16,13 +16,11 @@ import ResourceCard from "../components/ResourceCard.jsx";
 import AcademicProgramImg from "../assets/AcademicProgram.webp";
 import AwardsImg from "../assets/Awards.webp";
 import CommunityEventsImg from "../assets/CommunityEvents.webp";
-
 import NonprofitsImg from "../assets/Non-profits.webp";
 import ScholarshipsImg from "../assets/Scholarships.webp";
 import SummerProgramsImg from "../assets/SummerPrograms.webp";
 import SupportServicesImg from "../assets/SupportServices.webp";
 import VolunteeringImg from "../assets/Volunteering.webp";
-
 import ResourceHubBg from "../assets/ResourceHubBackground.webp";
 
 const COLORS = {
@@ -72,6 +70,18 @@ const INTEREST_OPTIONS = [
 
 const GRADE_OPTIONS = ["9", "10", "11", "12"];
 
+const ALL_IMAGES = [
+  ResourceHubBg,
+  AcademicProgramImg,
+  AwardsImg,
+  CommunityEventsImg,
+  NonprofitsImg,
+  ScholarshipsImg,
+  SummerProgramsImg,
+  SupportServicesImg,
+  VolunteeringImg,
+];
+
 const resourcesData = [
   ...academicPrograms,
   ...awards,
@@ -94,7 +104,25 @@ const CATEGORY_CARDS = [
   { name: "Volunteering", img: VolunteeringImg },
 ];
 
+// Preloads all images and returns a lookup function
+function useImagePreload(srcs) {
+  const [loadedMap, setLoadedMap] = useState({});
+
+  useEffect(() => {
+    srcs.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () =>
+        setLoadedMap((prev) => ({ ...prev, [src]: true }));
+    });
+  }, []);
+
+  return (src) => !!loadedMap[src];
+}
+
 export default function ResourceHub() {
+  const isLoaded = useImagePreload(ALL_IMAGES);
+
   const [draftFilters, setDraftFilters] = useState({
     search: "",
     categories: [],
@@ -269,13 +297,37 @@ export default function ResourceHub() {
           color: ${COLORS.lightBg};
         }
 
+        /* Hero stat cards responsive */
+        @media (max-width: 640px) {
+          .hero-stat-row { flex-direction: column !important; }
+          .hero-stat-card { min-width: unset !important; flex: 1 1 100% !important; }
+        }
+
         @media (max-width: 600px) {
           .load-more-btn, .prog-track { max-width: 100%; }
+        }
+
+        /* Carousel cards smaller on mobile */
+        @media (max-width: 480px) {
+          .nexus-card { min-width: 200px !important; padding: 10px 12px !important; }
+          .nexus-avatar { width: 44px !important; height: 44px !important; flex: 0 0 44px !important; }
+          .nexus-label { font-size: 0.9rem !important; }
         }
       `}</style>
 
       <section style={hero.fullBleed}>
-        <div style={hero.bgImage} />
+        {/* Background image — fades in once loaded */}
+        <div
+          style={{
+            ...hero.bgImage,
+            backgroundImage: isLoaded(ResourceHubBg)
+              ? `url(${ResourceHubBg})`
+              : "none",
+            backgroundColor: "#1a2e42",
+            opacity: isLoaded(ResourceHubBg) ? 1 : 1,
+            transition: "background-image 0.25s ease",
+          }}
+        />
         <div style={hero.overlay} />
 
         <div style={hero.inner}>
@@ -291,16 +343,16 @@ export default function ResourceHub() {
             scholarships, volunteering, nonprofits, support services, and more.
           </p>
 
-          <div style={hero.statRow}>
-            <div style={hero.statCardBlue}>
+          <div className="hero-stat-row" style={hero.statRow}>
+            <div className="hero-stat-card" style={hero.statCardBlue}>
               <div style={hero.statNumBlue}>{resourcesData.length}</div>
               <div style={hero.statLabelBlue}>Resources listed</div>
             </div>
-            <div style={hero.statCardBlue}>
+            <div className="hero-stat-card" style={hero.statCardBlue}>
               <div style={hero.statNumBlue}>{featuredCount}</div>
               <div style={hero.statLabelBlue}>Featured picks</div>
             </div>
-            <div style={hero.statCardBlue}>
+            <div className="hero-stat-card" style={hero.statCardBlue}>
               <div style={hero.statNumBlue}>{filtered.length}</div>
               <div style={hero.statLabelBlue}>Showing now</div>
             </div>
@@ -314,6 +366,7 @@ export default function ResourceHub() {
                 <button
                   key={`${c.name}-${idx}`}
                   type="button"
+                  className="nexus-card"
                   onClick={() => {
                     setDraftFilters((prev) => {
                       const already = prev.categories.includes(c.name);
@@ -326,11 +379,19 @@ export default function ResourceHub() {
                   style={carousel.card}
                   aria-label={`Filter by ${c.name}`}
                 >
-                  <div style={carousel.avatar}>
-                    <img src={c.img} alt={c.name} style={carousel.avatarImg} />
+                  <div className="nexus-avatar" style={carousel.avatar}>
+                    <img
+                      src={c.img}
+                      alt={c.name}
+                      style={{
+                        ...carousel.avatarImg,
+                        opacity: isLoaded(c.img) ? 1 : 0,
+                        transition: "opacity 0.25s ease",
+                      }}
+                    />
                     <div style={carousel.avatarOverlay} />
                   </div>
-                  <div style={carousel.label}>{c.name}</div>
+                  <div className="nexus-label" style={carousel.label}>{c.name}</div>
                 </button>
               ))}
             </div>
@@ -340,7 +401,6 @@ export default function ResourceHub() {
       </section>
 
       <div style={styles.container}>
-
         <div
           className="filters-outer"
           style={{
@@ -445,6 +505,7 @@ const styles = {
   count: {
     color: COLORS.text,
     fontWeight: 900,
+    fontSize: "clamp(0.85rem, 1.6vw, 1rem)",
   },
   loadMoreSection: {
     display: "flex",
@@ -456,7 +517,7 @@ const styles = {
   },
   showingLabel: {
     margin: 0,
-    fontSize: "0.95rem",
+    fontSize: "clamp(0.85rem, 1.6vw, 0.95rem)",
     fontWeight: 600,
     color: COLORS.headerGray,
   },
@@ -474,7 +535,6 @@ const hero = {
   bgImage: {
     position: "absolute",
     inset: 0,
-    backgroundImage: `url(${ResourceHubBg})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -497,7 +557,7 @@ const hero = {
   },
   title: {
     margin: 0,
-    fontSize: "clamp(2.35rem, 5vw, 4rem)",
+    fontSize: "clamp(1.8rem, 5vw, 4rem)",
     lineHeight: 1.03,
     letterSpacing: "-0.02em",
     fontWeight: 900,
@@ -508,7 +568,7 @@ const hero = {
     marginBottom: "22px",
     maxWidth: "70ch",
     color: "#FFFFFF",
-    fontSize: "clamp(1.02rem, 1.35vw, 1.18rem)",
+    fontSize: "clamp(0.95rem, 1.35vw, 1.18rem)",
     lineHeight: 1.7,
     fontWeight: 600,
   },
@@ -529,14 +589,14 @@ const hero = {
     boxShadow: "0 12px 26px rgba(0,0,0,0.10)",
   },
   statNumBlue: {
-    fontSize: "1.65rem",
+    fontSize: "clamp(1.3rem, 2.5vw, 1.65rem)",
     fontWeight: 900,
     color: "#F0FAE8",
     lineHeight: 1.05,
   },
   statLabelBlue: {
     marginTop: "4px",
-    fontSize: "1rem",
+    fontSize: "clamp(0.85rem, 1.4vw, 1rem)",
     fontWeight: 900,
     color: "#F0FAE8",
     opacity: 0.95,
@@ -576,6 +636,7 @@ const carousel = {
     position: "relative",
     flex: "0 0 60px",
     border: `2px solid ${COLORS.border}`,
+    backgroundColor: "#1a2e42",
   },
   avatarImg: {
     width: "100%",

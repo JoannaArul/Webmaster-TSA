@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 
 import researchTriangleImg from "../assets/ResearchTriangle.webp";
-import VolunteeringImg from "../assets/Volunteering.webp"; 
-
+import VolunteeringImg from "../assets/Volunteering.webp";
 import computerImg from "../assets/Computer.webp";
 import filterImg from "../assets/Filter.png";
 import actionImg from "../assets/Action.png";
@@ -21,6 +20,21 @@ const fadeUp = {
   hidden: { opacity: 0, y: 26 },
   show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
+
+function useImagePreload(srcs) {
+  const [loadedMap, setLoadedMap] = useState({});
+
+  useEffect(() => {
+    srcs.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () =>
+        setLoadedMap((prev) => ({ ...prev, [src]: true }));
+    });
+  }, []);
+
+  return (src) => !!loadedMap[src];
+}
 
 function useScrollDirection() {
   const [dir, setDir] = useState("down");
@@ -159,7 +173,6 @@ function FlipCard({ title, backText }) {
           ...(flipped ? styles.flipSceneFlipped : null),
         }}
       >
-        {/* FRONT — hover effects allowed */}
         <div
           style={{
             ...styles.flipFace,
@@ -171,21 +184,13 @@ function FlipCard({ title, backText }) {
             <div style={styles.flipTitle}>{title}</div>
             <div style={styles.flipUnderline} />
           </div>
-
           <div style={styles.cornerArrow}>
             <ArrowIcon />
           </div>
         </div>
 
-        {/* BACK — NO hover styles at all */}
-        <div
-          style={{
-            ...styles.flipFace,
-            ...styles.flipBack,
-          }}
-        >
+        <div style={{ ...styles.flipFace, ...styles.flipBack }}>
           <div style={styles.flipBackText}>{backText}</div>
-
           <div style={styles.cornerArrowInverse}>
             <ArrowIcon color={COLORS.carolinaBlue} />
           </div>
@@ -195,7 +200,7 @@ function FlipCard({ title, backText }) {
   );
 }
 
-function FlowCard({ icon, title, description }) {
+function FlowCard({ icon, title, description, isLoaded }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -208,7 +213,16 @@ function FlowCard({ icon, title, description }) {
         aria-label={`${title} details`}
       >
         <div style={styles.flowLeft}>
-          <div style={{ ...styles.flowIcon, backgroundImage: styles.iconBg(icon).backgroundImage }} />
+          <div
+            style={{
+              ...styles.flowIcon,
+              backgroundImage: isLoaded
+                ? styles.iconBg(icon).backgroundImage
+                : "none",
+              backgroundColor: isLoaded ? "transparent" : "#1a2e42",
+              transition: "background-image 0.25s ease",
+            }}
+          />
         </div>
 
         <div style={styles.flowRight}>
@@ -222,6 +236,13 @@ function FlowCard({ icon, title, description }) {
 
 export default function Mission() {
   const navigate = useNavigate();
+  const isLoaded = useImagePreload([
+    researchTriangleImg,
+    VolunteeringImg,
+    computerImg,
+    filterImg,
+    actionImg,
+  ]);
 
   const cards = useMemo(
     () => [
@@ -238,7 +259,7 @@ export default function Mission() {
       {
         title: "Community",
         backText:
-          "A collaborative platform that allows residents, organizations, and educators to submit new resources, ensuring the hub stays current, relevant, and reflective of the community’s evolving needs.",
+          "A collaborative platform that allows residents, organizations, and educators to submit new resources, ensuring the hub stays current, relevant, and reflective of the community's evolving needs.",
       },
     ],
     []
@@ -248,7 +269,16 @@ export default function Mission() {
 
   return (
     <div style={styles.page}>
-      <section style={styles.heroImage}>
+      <section
+        style={{
+          ...styles.heroImage,
+          backgroundImage: isLoaded(researchTriangleImg)
+            ? `url(${researchTriangleImg})`
+            : "none",
+          backgroundColor: "#1a2e42",
+          transition: "background-image 0.25s ease",
+        }}
+      >
         <div style={styles.heroOverlay} />
         <div style={styles.heroInner}>
           <h1 style={styles.heroTitle}>
@@ -270,7 +300,18 @@ export default function Mission() {
         <div style={styles.container}>
           <div style={styles.splitRow}>
             <div style={styles.leftMedia}>
-              <img src={VolunteeringImg} alt="Local impact" style={styles.leftImage} draggable={false} />
+              <img
+                src={VolunteeringImg}
+                alt="Local impact"
+                style={{
+                  ...styles.leftImage,
+                  opacity: isLoaded(VolunteeringImg) ? 1 : 0,
+                  transition: "opacity 0.25s ease",
+                }}
+                decoding="sync"
+                fetchPriority="high"
+                draggable={false}
+              />
             </div>
 
             <div style={styles.rightCopy}>
@@ -280,7 +321,7 @@ export default function Mission() {
                 hub, so students and families can spend less time digging through scattered websites and more
                 time discovering programs that fit their goals. By highlighting trusted local resources
                 and making next steps easy to understand, we ultimately help turn curiosity into action and make
-                opportunity feel reachable for everyone. 
+                opportunity feel reachable for everyone.
               </p>
             </div>
           </div>
@@ -300,9 +341,8 @@ export default function Mission() {
           <div style={styles.quoteMarkCenter}>
             <QuoteMarkIcon />
           </div>
-
           <div style={styles.quoteTextCenter}>
-            “Education is the most powerful weapon which you can use to change the world.”
+            "Education is the most powerful weapon which you can use to change the world."
           </div>
           <div style={styles.quoteAuthorCenter}>
             <em>-- Nelson Mandela</em>
@@ -327,7 +367,7 @@ export default function Mission() {
 
             <p style={styles.discoveryIntro}>
               Hover over each screen below to see how Nexus turns curiosity into momentum. We help students
-              and families uncover what’s available and understand what fits, allowing them to take the next step with
+              and families uncover what's available and understand what fits, allowing them to take the next step with
               confidence.
             </p>
 
@@ -335,17 +375,20 @@ export default function Mission() {
               <FlowCard
                 icon={computerImg}
                 title="Discover"
-                description="Explore a curated collection of programs, organizations, and opportunities across the Research Triangle. Resources are organized by category, interest area, grade level, and location so you can easily see what’s available in your community without endless searching."
+                description="Explore a curated collection of programs, organizations, and opportunities across the Research Triangle. Resources are organized by category, interest area, grade level, and location so you can easily see what's available in your community without endless searching."
+                isLoaded={isLoaded(computerImg)}
               />
               <FlowCard
                 icon={filterImg}
                 title="Filter"
                 description="Refine your search using clear, intentional filters that help narrow down opportunities based on eligibility, interests, and goals. We surface key details up front so you can quickly understand whether a resource is the right fit for you."
+                isLoaded={isLoaded(filterImg)}
               />
               <FlowCard
                 icon={actionImg}
                 title="Take Action"
                 description="Move from information to impact with direct links and straightforward next steps. Whether that means applying to a program, volunteering, attending an event, or reaching out for support, everything you need to act is clearly laid out in one place."
+                isLoaded={isLoaded(actionImg)}
               />
             </div>
           </div>
@@ -357,12 +400,11 @@ export default function Mission() {
 
 const styles = {
   page: {
-  minHeight: "calc(100vh - var(--header-h))",
-  backgroundColor: COLORS.beige,
-  fontFamily: "var(--font-body)",
-  overflowX: "clip",
-},
-
+    minHeight: "calc(100vh - var(--header-h))",
+    backgroundColor: COLORS.beige,
+    fontFamily: "var(--font-body)",
+    overflowX: "clip",
+  },
 
   container: {
     maxWidth: "1100px",
@@ -378,7 +420,6 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     padding: "84px 0",
-    backgroundImage: `url(${researchTriangleImg})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -414,7 +455,7 @@ const styles = {
   beigeSection: { backgroundColor: COLORS.beige, padding: "52px 0 70px" },
   splitRow: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
     gap: "22px",
     alignItems: "center",
   },
@@ -448,7 +489,7 @@ const styles = {
     marginTop: "12px",
     marginBottom: 0,
     color: COLORS.textSoft,
-    fontSize: "1.06rem",
+    fontSize: "clamp(0.95rem, 1.8vw, 1.06rem)",
     lineHeight: 1.75,
     maxWidth: "54ch",
   },
@@ -456,7 +497,7 @@ const styles = {
   cardsWrap: { marginTop: "42px" },
   cardsGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
     gap: "16px",
     paddingTop: "8px",
   },
@@ -467,6 +508,7 @@ const styles = {
     background: "transparent",
     cursor: "pointer",
     textAlign: "left",
+    width: "100%",
   },
   flipScene: {
     position: "relative",
@@ -510,7 +552,7 @@ const styles = {
   flipTitle: {
     fontFamily: "var(--font-heading)",
     fontWeight: 900,
-    fontSize: "1.65rem",
+    fontSize: "clamp(1.35rem, 2.5vw, 1.65rem)",
     color: COLORS.text,
     letterSpacing: "-0.01em",
   },
@@ -529,7 +571,7 @@ const styles = {
   },
   flipBackText: {
     color: COLORS.beige,
-    fontSize: "1.0rem",
+    fontSize: "clamp(0.9rem, 1.6vw, 1.0rem)",
     lineHeight: 1.7,
     maxWidth: "38ch",
     padding: "6px 6px 18px",
@@ -548,7 +590,6 @@ const styles = {
     placeItems: "center",
     boxShadow: "0 10px 20px rgba(0,0,0,0.10)",
   },
-
   cornerArrowInverse: {
     position: "absolute",
     right: "12px",
@@ -573,12 +614,22 @@ const styles = {
     boxSizing: "border-box",
   },
   quoteMarkCenter: { display: "grid", placeItems: "center", marginBottom: "12px" },
-  quoteTextCenter: { fontFamily: "var(--font-body)", fontWeight: 700, lineHeight: 1.5 },
+  quoteTextCenter: {
+    fontFamily: "var(--font-body)",
+    fontWeight: 700,
+    lineHeight: 1.5,
+    fontSize: "clamp(1rem, 2vw, 1.2rem)",
+  },
   quoteAuthorCenter: { marginTop: "8px", opacity: 0.95 },
 
   statsSection: { backgroundColor: COLORS.beige, padding: "44px 0 82px" },
   statsCenter: { textAlign: "center", maxWidth: "86ch", margin: "0 auto" },
-  statsLine: { margin: 0, color: COLORS.text, fontSize: "1.08rem", lineHeight: 1.8 },
+  statsLine: {
+    margin: 0,
+    color: COLORS.text,
+    fontSize: "clamp(0.95rem, 1.8vw, 1.08rem)",
+    lineHeight: 1.8,
+  },
   percentBlue: { color: COLORS.carolinaBlue, fontWeight: 900 },
   discoveryTitle: {
     marginTop: "18px",
@@ -587,14 +638,14 @@ const styles = {
     fontFamily: "var(--font-heading)",
     fontWeight: 900,
     letterSpacing: "-0.02em",
-    fontSize: "clamp(2.4rem, 4.8vw, 4.2rem)",
+    fontSize: "clamp(2rem, 4.8vw, 4.2rem)",
     lineHeight: 1.05,
   },
   discoveryIntro: {
     marginTop: "14px",
     marginBottom: 0,
     color: COLORS.textSoft,
-    fontSize: "1.06rem",
+    fontSize: "clamp(0.95rem, 1.8vw, 1.06rem)",
     lineHeight: 1.75,
     maxWidth: "70ch",
     marginInline: "auto",
@@ -652,13 +703,13 @@ const styles = {
     fontFamily: "var(--font-heading)",
     fontWeight: 900,
     letterSpacing: "-0.01em",
-    fontSize: "clamp(1.35rem, 2.4vw, 1.75rem)",
+    fontSize: "clamp(1.2rem, 2.4vw, 1.75rem)",
     lineHeight: 1.1,
     marginBottom: "8px",
   },
   flowDesc: {
     color: COLORS.text,
-    fontSize: "1.0rem",
+    fontSize: "clamp(0.9rem, 1.6vw, 1.0rem)",
     lineHeight: 1.7,
     opacity: 0.95,
   },
@@ -672,6 +723,7 @@ const styles = {
     color: COLORS.text,
     cursor: "pointer",
     fontWeight: 700,
+    fontSize: "clamp(0.9rem, 1.8vw, 1rem)",
     boxShadow: "0 12px 24px rgba(0,0,0,0.18)",
   },
   secondaryBtn: {
@@ -683,6 +735,7 @@ const styles = {
     color: COLORS.beige,
     cursor: "pointer",
     fontWeight: 700,
+    fontSize: "clamp(0.9rem, 1.8vw, 1rem)",
     boxShadow: "0 12px 24px rgba(0,0,0,0.18)",
   },
 };
