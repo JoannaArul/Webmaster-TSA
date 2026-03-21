@@ -104,7 +104,6 @@ const CATEGORY_CARDS = [
   { name: "Volunteering", img: VolunteeringImg },
 ];
 
-// Preloads all images and returns a lookup function
 function useImagePreload(srcs) {
   const [loadedMap, setLoadedMap] = useState({});
 
@@ -297,7 +296,6 @@ export default function ResourceHub() {
           color: ${COLORS.lightBg};
         }
 
-        /* Hero stat cards responsive */
         @media (max-width: 640px) {
           .hero-stat-row { flex-direction: column !important; }
           .hero-stat-card { min-width: unset !important; flex: 1 1 100% !important; }
@@ -307,7 +305,6 @@ export default function ResourceHub() {
           .load-more-btn, .prog-track { max-width: 100%; }
         }
 
-        /* Carousel cards smaller on mobile */
         @media (max-width: 480px) {
           .nexus-card { min-width: 200px !important; padding: 10px 12px !important; }
           .nexus-avatar { width: 44px !important; height: 44px !important; flex: 0 0 44px !important; }
@@ -316,7 +313,6 @@ export default function ResourceHub() {
       `}</style>
 
       <section style={hero.fullBleed}>
-        {/* Background image — fades in once loaded */}
         <div
           style={{
             ...hero.bgImage,
@@ -324,8 +320,8 @@ export default function ResourceHub() {
               ? `url(${ResourceHubBg})`
               : "none",
             backgroundColor: "#1a2e42",
-            opacity: isLoaded(ResourceHubBg) ? 1 : 1,
-            transition: "background-image 0.25s ease",
+            opacity: isLoaded(ResourceHubBg) ? 1 : 0,
+            transition: "opacity 0.5s ease",
           }}
         />
         <div style={hero.overlay} />
@@ -386,7 +382,7 @@ export default function ResourceHub() {
                       style={{
                         ...carousel.avatarImg,
                         opacity: isLoaded(c.img) ? 1 : 0,
-                        transition: "opacity 0.25s ease",
+                        transition: "opacity 0.5s ease",
                       }}
                     />
                     <div style={carousel.avatarOverlay} />

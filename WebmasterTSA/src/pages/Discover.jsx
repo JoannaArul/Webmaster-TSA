@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import discoverHero from "../assets/DiscoverHero.webp";
@@ -88,7 +88,7 @@ const careerLearnMoreHref = (title) => `https://www.bls.gov/ooh/search/?q=${enco
 const QUIZ = [
   {
     id: "q1",
-    q: "You’re given a messy real-world problem with no clear instructions. What’s your instinct?",
+    q: "You're given a messy real-world problem with no clear instructions. What's your instinct?",
     options: [
       { t: "Break it into logical steps and test different solutions", points: { "Computer Science": 2, Engineering: 2 } },
       { t: "Ask why the problem exists and how it impacts people", points: { "Public Service": 2, "Political Science": 2 } },
@@ -112,7 +112,7 @@ const QUIZ = [
     options: [
       { t: "The organizer who keeps everyone on track", points: { Business: 2, "Public Service": 2 } },
       { t: "The idea generator who thinks creatively", points: { "Arts Performance": 2, "STEM/Enrichment": 2 } },
-      { t: "The problem-solver who fixes what’s broken", points: { "Computer Science": 2, Engineering: 2 } },
+      { t: "The problem-solver who fixes what's broken", points: { "Computer Science": 2, Engineering: 2 } },
       { t: "The mediator who makes sure everyone feels heard", points: { Psychology: 2, Education: 2 } },
     ],
   },
@@ -120,15 +120,15 @@ const QUIZ = [
     id: "q4",
     q: "What kind of questions do you catch yourself asking?",
     options: [
-      { t: "“How does this system actually work?”", points: { Engineering: 2, "Computer Science": 2 } },
-      { t: "“Why do people behave this way?”", points: { Psychology: 2, "Political Science": 2 } },
-      { t: "“What evidence supports this?”", points: { Biology: 2, Chemistry: 2 } },
-      { t: "“What would happen if we changed the rules?”", points: { "Law & Government": 2, Business: 2 } },
+      { t: '"How does this system actually work?"', points: { Engineering: 2, "Computer Science": 2 } },
+      { t: '"Why do people behave this way?"', points: { Psychology: 2, "Political Science": 2 } },
+      { t: '"What evidence supports this?"', points: { Biology: 2, Chemistry: 2 } },
+      { t: '"What would happen if we changed the rules?"', points: { "Law & Government": 2, Business: 2 } },
     ],
   },
   {
     id: "q5",
-    q: "You’re given free time and resources for a passion project. You choose to:",
+    q: "You're given free time and resources for a passion project. You choose to:",
     options: [
       { t: "Build an app, game, or website", points: { "Computer Science": 2, "STEM/Enrichment": 2 } },
       { t: "Write, perform, or create something expressive", points: { "English Literature Writing": 2, "Arts Performance": 2 } },
@@ -198,7 +198,7 @@ const QUIZ = [
   },
   {
     id: "q12",
-    q: "If success were guaranteed, you’d want to:",
+    q: "If success were guaranteed, you'd want to:",
     options: [
       { t: "Discover something new", points: { Physics: 2, Biology: 2, Chemistry: 1 } },
       { t: "Teach or inspire future generations", points: { Education: 2, "STEM/Enrichment": 2 } },
@@ -210,188 +210,140 @@ const QUIZ = [
 
 const CAREERS_BY_INTEREST = {
   Biology: [
-    {
-      title: "Health Educator",
-      url: "https://www.bls.gov/ooh/community-and-social-service/health-educators.htm",
-      medianSalary: "~$49,612",
-      education: "Bachelor’s (CHES sometimes preferred)",
-      schoolYears: "4",
-      blurb:
-        "Health educators help people and communities make informed choices about wellness through topics like nutrition, physical activity, and disease prevention. They often review health data to spot needs or patterns, then create lessons, materials, and training programs people can actually use. Strong communication and leadership matter because they regularly explain health information in schools, community spaces, clinics, and workplaces.",
-    },
-    {
-      title: "Park Ranger",
-      url: "https://careers.doi.gov/occupational-series/park-ranger",
-      medianSalary: "~$48,419",
-      education: "Bachelor’s",
-      schoolYears: "4",
-      blurb:
-        "Park rangers protect parks and the natural resources inside them while helping visitors have a safe, meaningful experience. The day-to-day work can include educating the public, monitoring ecosystems, supporting park operations, and responding to issues as they come up. Depending on the site, they may also take on safety and enforcement responsibilities as part of keeping the park protected.",
-    },
-    {
-      title: "Biological Technician / Research Assistant",
-      url: "https://www.indeed.com/career-advice/finding-a-job/what-is-biological-technician",
-      medianSalary: "~$45,249",
-      education: "Bachelor’s (plus lab experience)",
-      schoolYears: "4",
-      blurb:
-        "Biological technicians support research by collecting, preparing, and organizing samples like blood, food, or bacteria for scientists to study. They help keep labs running by maintaining equipment, tracking procedures, and documenting results carefully so experiments stay reliable. Many also assist with fieldwork and day-to-day lab tasks that make larger studies possible.",
-    },
-    {
-      title: "Agricultural or Food Science Technician",
-      url: "https://www.bls.gov/ooh/life-physical-and-social-science/agricultural-and-food-science-technicians.htm",
-      medianSalary: "~$44,700",
-      education: "Associate’s (sometimes Bachelor’s)",
-      schoolYears: "2–4",
-      blurb:
-        "Agricultural and food science technicians help scientists and organizations monitor crops, soil, and food products for quality and safety. Their work often includes collecting data, running tests, and maintaining lab equipment or production records. They may support regulatory work or private companies by helping confirm that products and processes meet standards.",
-    },
-    {
-      title: "High School Science Teacher (Biology)",
-      url: "https://careers.nsta.org/career/high-school-biology-teacher",
-      medianSalary: "~$53,712",
-      education: "Bachelor’s + licensure/certification",
-      schoolYears: "4–5",
-      blurb:
-        "High school biology teachers introduce students to life science topics like cells, genetics, evolution, and ecosystems in grades 9–12. They plan lessons, explain concepts, guide labs or activities, and evaluate learning through assignments, quizzes, and exams. Strong organization and communication are key because they also support student growth, questions, and progress throughout the year.",
-    },
-    {
-      title: "Content Writer (Science/Health)",
-      url: "https://ca.indeed.com/career-advice/finding-a-job/science-writer",
-      medianSalary: "~$51,994",
-      education: "Bachelor’s (often) / Portfolio",
-      schoolYears: "2–4",
-      blurb:
-        "Science and health content writers research topics and explain complex ideas in a clear, engaging way for a wider audience. They may summarize research, interview experts, and turn technical information into articles, guides, or website content. This role can be freelance or in-house, and success depends on accuracy, clarity, and strong storytelling.",
-    },
+    { title: "Health Educator", url: "https://www.bls.gov/ooh/community-and-social-service/health-educators.htm", medianSalary: "~$49,612", education: "Bachelor's (CHES sometimes preferred)", schoolYears: "4", blurb: "Health educators help people and communities make informed choices about wellness through topics like nutrition, physical activity, and disease prevention. They often review health data to spot needs or patterns, then create lessons, materials, and training programs people can actually use. Strong communication and leadership matter because they regularly explain health information in schools, community spaces, clinics, and workplaces." },
+    { title: "Park Ranger", url: "https://careers.doi.gov/occupational-series/park-ranger", medianSalary: "~$48,419", education: "Bachelor's", schoolYears: "4", blurb: "Park rangers protect parks and the natural resources inside them while helping visitors have a safe, meaningful experience. The day-to-day work can include educating the public, monitoring ecosystems, supporting park operations, and responding to issues as they come up. Depending on the site, they may also take on safety and enforcement responsibilities as part of keeping the park protected." },
+    { title: "Biological Technician / Research Assistant", url: "https://www.indeed.com/career-advice/finding-a-job/what-is-biological-technician", medianSalary: "~$45,249", education: "Bachelor's (plus lab experience)", schoolYears: "4", blurb: "Biological technicians support research by collecting, preparing, and organizing samples like blood, food, or bacteria for scientists to study. They help keep labs running by maintaining equipment, tracking procedures, and documenting results carefully so experiments stay reliable. Many also assist with fieldwork and day-to-day lab tasks that make larger studies possible." },
+    { title: "Agricultural or Food Science Technician", url: "https://www.bls.gov/ooh/life-physical-and-social-science/agricultural-and-food-science-technicians.htm", medianSalary: "~$44,700", education: "Associate's (sometimes Bachelor's)", schoolYears: "2–4", blurb: "Agricultural and food science technicians help scientists and organizations monitor crops, soil, and food products for quality and safety. Their work often includes collecting data, running tests, and maintaining lab equipment or production records. They may support regulatory work or private companies by helping confirm that products and processes meet standards." },
+    { title: "High School Science Teacher (Biology)", url: "https://careers.nsta.org/career/high-school-biology-teacher", medianSalary: "~$53,712", education: "Bachelor's + licensure/certification", schoolYears: "4–5", blurb: "High school biology teachers introduce students to life science topics like cells, genetics, evolution, and ecosystems in grades 9–12. They plan lessons, explain concepts, guide labs or activities, and evaluate learning through assignments, quizzes, and exams. Strong organization and communication are key because they also support student growth, questions, and progress throughout the year." },
+    { title: "Content Writer (Science/Health)", url: "https://ca.indeed.com/career-advice/finding-a-job/science-writer", medianSalary: "~$51,994", education: "Bachelor's (often) / Portfolio", schoolYears: "2–4", blurb: "Science and health content writers research topics and explain complex ideas in a clear, engaging way for a wider audience. They may summarize research, interview experts, and turn technical information into articles, guides, or website content. This role can be freelance or in-house, and success depends on accuracy, clarity, and strong storytelling." },
   ],
   "Computer Science": [
-    { title: "Network Administrator", url: "https://www.indeed.com/hire/job-description/network-administrator", medianSalary: "~$79,556", education: "Bachelor’s", schoolYears: "4", blurb: "Manages an organization’s networks and core IT systems so communication and access stay reliable. Troubleshoots issues, performs routine maintenance, and rolls out upgrades to reduce downtime and keep everything running smoothly. Often helps users (including new hires) learn system basics and access the tools and files they need." },
-    { title: "Web Developer", url: "https://www.indeed.com/hire/job-description/web-developer", medianSalary: "~$79,615", education: "Bachelor’s/Portfolio", schoolYears: "4", blurb: "Builds websites and web applications using tools like HTML, CSS, and JavaScript. Works with clients or teams to turn requirements into a clean, functional experience across devices. May review user behavior and feedback to improve usability, accessibility, and overall performance." },
-    { title: "Systems Analyst", url: "https://www.bls.gov/ooh/computer-and-information-technology/computer-systems-analysts.htm", medianSalary: "~$83,226", education: "Bachelor’s", schoolYears: "4", blurb: "Evaluates a company’s IT systems to make sure they match business needs and goals. Identifies problems, recommends better tools or workflows, and helps plan improvements that increase efficiency. Can work within one organization or support multiple clients across different industries." },
-    { title: "Programmer Analyst", url: "https://www.indeed.com/hire/job-description/programmer-analyst", medianSalary: "~$60,773", education: "Bachelor’s", schoolYears: "4", blurb: "Designs and develops software solutions based on what a company needs day-to-day. Updates and repairs existing programs to improve features, fix bugs, and keep systems current. Often coordinates with project managers to stay on schedule, meet requirements, and manage resources responsibly." },
-    { title: "Application Developer", url: "https://www.indeed.com/career-advice/finding-a-job/application-developer", medianSalary: "~$91,532", education: "Bachelor’s", schoolYears: "4", blurb: "Creates applications for computers, mobile devices, and other platforms with a focus on usability and performance. Uses programming languages and system knowledge to build features that solve real user problems. Also maintains apps over time by releasing updates, testing changes, and improving stability." },
-    { title: "Information Security Analyst", url: "https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm", medianSalary: "~$90,077", education: "Bachelor’s", schoolYears: "4", blurb: "Protects organizations by monitoring systems for threats and preventing cyberattacks before damage happens. Sets up and improves security measures, investigates suspicious activity, and responds quickly when incidents occur. Helps maintain security tools and policies so protection stays strong as risks evolve." },
+    { title: "Network Administrator", url: "https://www.indeed.com/hire/job-description/network-administrator", medianSalary: "~$79,556", education: "Bachelor's", schoolYears: "4", blurb: "Manages an organization's networks and core IT systems so communication and access stay reliable. Troubleshoots issues, performs routine maintenance, and rolls out upgrades to reduce downtime and keep everything running smoothly. Often helps users (including new hires) learn system basics and access the tools and files they need." },
+    { title: "Web Developer", url: "https://www.indeed.com/hire/job-description/web-developer", medianSalary: "~$79,615", education: "Bachelor's/Portfolio", schoolYears: "4", blurb: "Builds websites and web applications using tools like HTML, CSS, and JavaScript. Works with clients or teams to turn requirements into a clean, functional experience across devices. May review user behavior and feedback to improve usability, accessibility, and overall performance." },
+    { title: "Systems Analyst", url: "https://www.bls.gov/ooh/computer-and-information-technology/computer-systems-analysts.htm", medianSalary: "~$83,226", education: "Bachelor's", schoolYears: "4", blurb: "Evaluates a company's IT systems to make sure they match business needs and goals. Identifies problems, recommends better tools or workflows, and helps plan improvements that increase efficiency. Can work within one organization or support multiple clients across different industries." },
+    { title: "Programmer Analyst", url: "https://www.indeed.com/hire/job-description/programmer-analyst", medianSalary: "~$60,773", education: "Bachelor's", schoolYears: "4", blurb: "Designs and develops software solutions based on what a company needs day-to-day. Updates and repairs existing programs to improve features, fix bugs, and keep systems current. Often coordinates with project managers to stay on schedule, meet requirements, and manage resources responsibly." },
+    { title: "Application Developer", url: "https://www.indeed.com/career-advice/finding-a-job/application-developer", medianSalary: "~$91,532", education: "Bachelor's", schoolYears: "4", blurb: "Creates applications for computers, mobile devices, and other platforms with a focus on usability and performance. Uses programming languages and system knowledge to build features that solve real user problems. Also maintains apps over time by releasing updates, testing changes, and improving stability." },
+    { title: "Information Security Analyst", url: "https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm", medianSalary: "~$90,077", education: "Bachelor's", schoolYears: "4", blurb: "Protects organizations by monitoring systems for threats and preventing cyberattacks before damage happens. Sets up and improves security measures, investigates suspicious activity, and responds quickly when incidents occur. Helps maintain security tools and policies so protection stays strong as risks evolve." },
   ],
   Education: [
-    { title: "Adult Education Instructor", url: "https://careers.acteonline.org/career/adult-education-instructor/job-descriptions", medianSalary: "~$51,263", education: "Bachelor’s (often) / Teaching credential (varies)", schoolYears: "4+", blurb: "Designs lessons and curriculum for adult learners based on their goals, skill levels, and schedules. Tracks progress through assessments, feedback, and structured practice so students can see measurable improvement. May teach job skills, life skills, ESL, or subject-based classes depending on the program." },
-    { title: "Career Counselor", url: "https://jobs.marylandnonprofits.org/career/career-counselor/job-descriptions", medianSalary: "~$45,844", education: "Bachelor’s (often Master’s preferred)", schoolYears: "4–6", blurb: "Helps people—often students—clarify interests and turn them into realistic career plans. Teaches practical job-search skills like building resumes, writing applications, and preparing for interviews through coaching and mock practice. Also connects individuals to opportunities, resources, and next steps like training programs or internships." },
-    { title: "Juvenile Correctional Officer", url: "https://careers.acteonline.org/career/juvenile-corrections-officer/job-descriptions", medianSalary: "~$46,765", education: "Bachelor’s (often) / Training academy (varies)", schoolYears: "2–4+", blurb: "Maintains safety and structure for youth in detention settings while enforcing rules and procedures consistently. Builds rapport through supervision, de-escalation, and guidance that supports behavior improvement over time. Often coordinates with counselors, educators, and treatment providers to support rehabilitation and appropriate services." },
-    { title: "Preschool Director", url: "https://www.bls.gov/ooh/management/preschool-and-childcare-center-directors.htm", medianSalary: "~$49,309", education: "Bachelor’s (often) + early childhood admin requirements", schoolYears: "4+", blurb: "Oversees daily operations of a preschool, including staffing, schedules, budgeting, and program quality. Ensures the school meets licensing standards and follows legal and safety requirements. Communicates with families and stakeholders while guiding long-term planning like enrollment, marketing, and facility needs." },
-    { title: "Corporate Trainer", url: "https://www.indeed.com/hire/job-description/corporate-trainer", medianSalary: "~$61,736", education: "Bachelor’s", schoolYears: "4", blurb: "Creates and delivers training that helps employees learn tools, processes, and professional skills. Builds workshops, presentations, and online modules, then measures whether training actually improves performance. Often supports onboarding and works with leadership to identify new learning needs across teams." },
-    { title: "Human Resources Specialist", url: "https://www.bls.gov/ooh/business-and-financial/human-resources-specialists.htm", medianSalary: "~$47,207", education: "Bachelor’s", schoolYears: "4", blurb: "Supports hiring and onboarding by screening candidates, coordinating interviews, and helping new employees start smoothly. Maintains HR policies and records while assisting with everyday questions about procedures and workplace support. Also helps manage retention and performance processes through feedback cycles, evaluations, and employee development steps." },
+    { title: "Adult Education Instructor", url: "https://careers.acteonline.org/career/adult-education-instructor/job-descriptions", medianSalary: "~$51,263", education: "Bachelor's (often) / Teaching credential (varies)", schoolYears: "4+", blurb: "Designs lessons and curriculum for adult learners based on their goals, skill levels, and schedules. Tracks progress through assessments, feedback, and structured practice so students can see measurable improvement. May teach job skills, life skills, ESL, or subject-based classes depending on the program." },
+    { title: "Career Counselor", url: "https://jobs.marylandnonprofits.org/career/career-counselor/job-descriptions", medianSalary: "~$45,844", education: "Bachelor's (often Master's preferred)", schoolYears: "4–6", blurb: "Helps people—often students—clarify interests and turn them into realistic career plans. Teaches practical job-search skills like building resumes, writing applications, and preparing for interviews through coaching and mock practice. Also connects individuals to opportunities, resources, and next steps like training programs or internships." },
+    { title: "Juvenile Correctional Officer", url: "https://careers.acteonline.org/career/juvenile-corrections-officer/job-descriptions", medianSalary: "~$46,765", education: "Bachelor's (often) / Training academy (varies)", schoolYears: "2–4+", blurb: "Maintains safety and structure for youth in detention settings while enforcing rules and procedures consistently. Builds rapport through supervision, de-escalation, and guidance that supports behavior improvement over time. Often coordinates with counselors, educators, and treatment providers to support rehabilitation and appropriate services." },
+    { title: "Preschool Director", url: "https://www.bls.gov/ooh/management/preschool-and-childcare-center-directors.htm", medianSalary: "~$49,309", education: "Bachelor's (often) + early childhood admin requirements", schoolYears: "4+", blurb: "Oversees daily operations of a preschool, including staffing, schedules, budgeting, and program quality. Ensures the school meets licensing standards and follows legal and safety requirements. Communicates with families and stakeholders while guiding long-term planning like enrollment, marketing, and facility needs." },
+    { title: "Corporate Trainer", url: "https://www.indeed.com/hire/job-description/corporate-trainer", medianSalary: "~$61,736", education: "Bachelor's", schoolYears: "4", blurb: "Creates and delivers training that helps employees learn tools, processes, and professional skills. Builds workshops, presentations, and online modules, then measures whether training actually improves performance. Often supports onboarding and works with leadership to identify new learning needs across teams." },
+    { title: "Human Resources Specialist", url: "https://www.bls.gov/ooh/business-and-financial/human-resources-specialists.htm", medianSalary: "~$47,207", education: "Bachelor's", schoolYears: "4", blurb: "Supports hiring and onboarding by screening candidates, coordinating interviews, and helping new employees start smoothly. Maintains HR policies and records while assisting with everyday questions about procedures and workplace support. Also helps manage retention and performance processes through feedback cycles, evaluations, and employee development steps." },
   ],
   Engineering: [
-    { title: "Biomedical Engineer", url: "https://bigfuture.collegeboard.org/careers/biomedical-engineer", medianSalary: "$97,406", education: "Bachelor’s", schoolYears: "4", blurb: "Biomedical engineers use engineering principles along with biology and chemistry to develop and evaluate health-related systems and products. Their work includes contributing to medical devices, prosthetics, and healthcare technologies. These systems are designed to improve how medical care and biological processes function in practice." },
-    { title: "Architectural and Engineering Manager", url: "https://bigfuture.collegeboard.org/careers/architectural-and-engineering-manager", medianSalary: "$152,190", education: "Bachelor’s", schoolYears: "4", blurb: "Architectural and engineering managers plan and coordinate work across engineering and architectural projects. They direct activities related to design, development, and research efforts. Their role focuses on organizing teams and ensuring technical projects meet overall objectives." },
-    { title: "Chemical Engineer", url: "https://bigfuture.collegeboard.org/careers/chemical-engineer", medianSalary: "$105,517", education: "Bachelor’s", schoolYears: "4", blurb: "Chemical engineers design equipment and processes used to manufacture chemicals and industrial products. They apply chemistry, physics, and engineering principles to improve production methods. Their work supports the creation of materials such as fuels, plastics, and other manufactured goods." },
-    { title: "Aerospace Engineering and Operations Technologist or Technician", url: "https://bigfuture.collegeboard.org/careers/aerospace-engineering-and-operations-technician", medianSalary: "$73,369", education: "Bachelor’s", schoolYears: "4", blurb: "These technologists operate and maintain systems used to test and evaluate air and space vehicles. They work with simulators, computer systems, and measurement equipment to track performance. Their role may also involve recording and interpreting technical test data." },
-    { title: "Civil Engineering Technologist or Technician", url: "https://bigfuture.collegeboard.org/careers/civil-engineering-technician", medianSalary: "$58,100", education: "Bachelor’s", schoolYears: "4", blurb: "Civil engineering technologists apply civil engineering principles to support construction and infrastructure projects. They assist with planning, design, and maintenance tasks under the direction of engineering staff. Their work helps ensure structures and facilities meet required standards." },
-    { title: "Electrical and Electronic Engineering Technologist or Technician", url: "https://bigfuture.collegeboard.org/careers/electrical-and-electronic-engineering-technician", medianSalary: "$63,211", education: "Bachelor’s", schoolYears: "4", blurb: "These technologists apply electrical and electronic theory to build, repair, and modify electrical systems. They work with circuitry, controls, and machinery to support engineering design decisions. Their role often includes testing and adjusting components for proper operation." },
+    { title: "Biomedical Engineer", url: "https://bigfuture.collegeboard.org/careers/biomedical-engineer", medianSalary: "$97,406", education: "Bachelor's", schoolYears: "4", blurb: "Biomedical engineers use engineering principles along with biology and chemistry to develop and evaluate health-related systems and products. Their work includes contributing to medical devices, prosthetics, and healthcare technologies. These systems are designed to improve how medical care and biological processes function in practice." },
+    { title: "Architectural and Engineering Manager", url: "https://bigfuture.collegeboard.org/careers/architectural-and-engineering-manager", medianSalary: "$152,190", education: "Bachelor's", schoolYears: "4", blurb: "Architectural and engineering managers plan and coordinate work across engineering and architectural projects. They direct activities related to design, development, and research efforts. Their role focuses on organizing teams and ensuring technical projects meet overall objectives." },
+    { title: "Chemical Engineer", url: "https://bigfuture.collegeboard.org/careers/chemical-engineer", medianSalary: "$105,517", education: "Bachelor's", schoolYears: "4", blurb: "Chemical engineers design equipment and processes used to manufacture chemicals and industrial products. They apply chemistry, physics, and engineering principles to improve production methods. Their work supports the creation of materials such as fuels, plastics, and other manufactured goods." },
+    { title: "Aerospace Engineering and Operations Technologist or Technician", url: "https://bigfuture.collegeboard.org/careers/aerospace-engineering-and-operations-technician", medianSalary: "$73,369", education: "Bachelor's", schoolYears: "4", blurb: "These technologists operate and maintain systems used to test and evaluate air and space vehicles. They work with simulators, computer systems, and measurement equipment to track performance. Their role may also involve recording and interpreting technical test data." },
+    { title: "Civil Engineering Technologist or Technician", url: "https://bigfuture.collegeboard.org/careers/civil-engineering-technician", medianSalary: "$58,100", education: "Bachelor's", schoolYears: "4", blurb: "Civil engineering technologists apply civil engineering principles to support construction and infrastructure projects. They assist with planning, design, and maintenance tasks under the direction of engineering staff. Their work helps ensure structures and facilities meet required standards." },
+    { title: "Electrical and Electronic Engineering Technologist or Technician", url: "https://bigfuture.collegeboard.org/careers/electrical-and-electronic-engineering-technician", medianSalary: "$63,211", education: "Bachelor's", schoolYears: "4", blurb: "These technologists apply electrical and electronic theory to build, repair, and modify electrical systems. They work with circuitry, controls, and machinery to support engineering design decisions. Their role often includes testing and adjusting components for proper operation." },
   ],
   "Environmental Science": [
-    { title: "Environmental Specialist", url: "https://www.indeed.com/hire/job-description/environmental-specialist", medianSalary: "$56,316", education: "Bachelor’s", schoolYears: "4", blurb: "Environmental specialists monitor how environmental conditions impact people and communities. They collect and analyze samples from food, water, soil, or air to identify environmental issues. Their work focuses on proposing and implementing solutions to reduce environmental risks." },
-    { title: "Environmental Technician", url: "https://careers.ieca.org/career/environmental-technician/job-descriptions", medianSalary: "$50,630", education: "Bachelor’s", schoolYears: "4", blurb: "Environmental technicians identify and assess environmental contamination in field and laboratory settings. They often work alongside environmental engineers to collect samples and monitor waste operations. Their role also includes helping maintain equipment used for environmental testing." },
-    { title: "Environmental Science Teacher", url: "https://nccareers.org/occupation-profile/251053/1284", medianSalary: "$54,810", education: "Bachelor’s", schoolYears: "4", blurb: "Environmental science teachers educate high school students about environmental systems and processes. They teach topics such as ecology, geology, chemistry, and biology. Their work helps students understand how human activity interacts with the natural world." },
-    { title: "Marine Biologist", url: "https://careers.poultryscience.org/career/marine-biologist/job-descriptions", medianSalary: "$46,773", education: "Bachelor’s", schoolYears: "4", blurb: "Marine biologists research life in oceans and other saltwater environments such as wetlands. They observe marine organisms, collect data, and conduct experiments. Their research contributes to understanding marine ecosystems and species behavior." },
-    { title: "Environmental Chemist", url: "https://online-distance.ncsu.edu/career/environmental-field-chemist/", medianSalary: "$71,290", education: "Bachelor’s", schoolYears: "4", blurb: "Environmental chemists collect and test soil, air, and water samples to evaluate environmental quality. They analyze how chemical conditions affect ecosystems and human health. Their findings help identify and prevent environmental threats." },
-    { title: "Wildlife Biologist", url: "https://www.bls.gov/ooh/life-physical-and-social-science/zoologists-and-wildlife-biologists.htm", medianSalary: "$62,022", education: "Bachelor’s", schoolYears: "4", blurb: "Wildlife biologists study animals within their natural habitats to understand behavior and environmental impact. They collect data to assess how habitats affect animal populations. Their work also includes classifying species and identifying new ones." },
+    { title: "Environmental Specialist", url: "https://www.indeed.com/hire/job-description/environmental-specialist", medianSalary: "$56,316", education: "Bachelor's", schoolYears: "4", blurb: "Environmental specialists monitor how environmental conditions impact people and communities. They collect and analyze samples from food, water, soil, or air to identify environmental issues. Their work focuses on proposing and implementing solutions to reduce environmental risks." },
+    { title: "Environmental Technician", url: "https://careers.ieca.org/career/environmental-technician/job-descriptions", medianSalary: "$50,630", education: "Bachelor's", schoolYears: "4", blurb: "Environmental technicians identify and assess environmental contamination in field and laboratory settings. They often work alongside environmental engineers to collect samples and monitor waste operations. Their role also includes helping maintain equipment used for environmental testing." },
+    { title: "Environmental Science Teacher", url: "https://nccareers.org/occupation-profile/251053/1284", medianSalary: "$54,810", education: "Bachelor's", schoolYears: "4", blurb: "Environmental science teachers educate high school students about environmental systems and processes. They teach topics such as ecology, geology, chemistry, and biology. Their work helps students understand how human activity interacts with the natural world." },
+    { title: "Marine Biologist", url: "https://careers.poultryscience.org/career/marine-biologist/job-descriptions", medianSalary: "$46,773", education: "Bachelor's", schoolYears: "4", blurb: "Marine biologists research life in oceans and other saltwater environments such as wetlands. They observe marine organisms, collect data, and conduct experiments. Their research contributes to understanding marine ecosystems and species behavior." },
+    { title: "Environmental Chemist", url: "https://online-distance.ncsu.edu/career/environmental-field-chemist/", medianSalary: "$71,290", education: "Bachelor's", schoolYears: "4", blurb: "Environmental chemists collect and test soil, air, and water samples to evaluate environmental quality. They analyze how chemical conditions affect ecosystems and human health. Their findings help identify and prevent environmental threats." },
+    { title: "Wildlife Biologist", url: "https://www.bls.gov/ooh/life-physical-and-social-science/zoologists-and-wildlife-biologists.htm", medianSalary: "$62,022", education: "Bachelor's", schoolYears: "4", blurb: "Wildlife biologists study animals within their natural habitats to understand behavior and environmental impact. They collect data to assess how habitats affect animal populations. Their work also includes classifying species and identifying new ones." },
   ],
   Mathematics: [
-    { title: "Auditor", url: "https://www.indeed.com/hire/job-description/auditor", medianSalary: "$79,880", education: "Bachelor’s", schoolYears: "4", blurb: "Auditors review and prepare financial records to ensure accuracy and compliance. They analyze how funds are managed and identify ways to reduce waste or fraud. Auditors then communicate their findings to stakeholders to improve financial practices." },
-    { title: "Data or Research Analyst", url: "https://graduate.northeastern.edu/knowledge-hub/what-does-a-data-analyst-do/", medianSalary: "$74,680", education: "Bachelor’s", schoolYears: "4", blurb: "Data analysts use mathematical and analytical methods to investigate complex business problems. They interpret large datasets using statistical tools to uncover patterns and inefficiencies. Their reports help leaders make informed, data-driven decisions." },
-    { title: "Computer Programmer", url: "https://www.bls.gov/ooh/computer-and-information-technology/computer-programmers.htm", medianSalary: "$99,700", education: "Bachelor’s", schoolYears: "4", blurb: "Computer programmers write and test code for software and applications. They update existing programs, fix errors, and improve functionality. Their work requires strong knowledge of programming languages and mathematical concepts." },
-    { title: "Medical Scientist", url: "https://www.bls.gov/ooh/life-physical-and-social-science/medical-scientists.htm", medianSalary: "$100,890", education: "Bachelor’s", schoolYears: "4", blurb: "Medical scientists design experiments and conduct research to test scientific hypotheses. They often use clinical trials and investigative methods to study diseases and treatments. Their work relies on a strong foundation in life sciences, physical sciences, and mathematics." },
-    { title: "Financial Analyst", url: "https://www.bls.gov/ooh/business-and-financial/financial-analysts.htm", medianSalary: "$99,890", education: "Bachelor’s", schoolYears: "4", blurb: "Financial analysts evaluate investment opportunities across banks, funds, and financial institutions. They study financial data and economic trends to assess risk and performance. Analysts meet with company leaders to better understand future prospects." },
-    { title: "Statistician", url: "https://www.indeed.com/hire/job-description/statistician", medianSalary: "$104,860", education: "Bachelor’s", schoolYears: "4", blurb: "Statisticians develop and apply mathematical techniques to solve real-world problems. They design surveys and experiments to collect data and analyze results. Their conclusions help guide decisions across business, engineering, and scientific fields." },
+    { title: "Auditor", url: "https://www.indeed.com/hire/job-description/auditor", medianSalary: "$79,880", education: "Bachelor's", schoolYears: "4", blurb: "Auditors review and prepare financial records to ensure accuracy and compliance. They analyze how funds are managed and identify ways to reduce waste or fraud. Auditors then communicate their findings to stakeholders to improve financial practices." },
+    { title: "Data or Research Analyst", url: "https://graduate.northeastern.edu/knowledge-hub/what-does-a-data-analyst-do/", medianSalary: "$74,680", education: "Bachelor's", schoolYears: "4", blurb: "Data analysts use mathematical and analytical methods to investigate complex business problems. They interpret large datasets using statistical tools to uncover patterns and inefficiencies. Their reports help leaders make informed, data-driven decisions." },
+    { title: "Computer Programmer", url: "https://www.bls.gov/ooh/computer-and-information-technology/computer-programmers.htm", medianSalary: "$99,700", education: "Bachelor's", schoolYears: "4", blurb: "Computer programmers write and test code for software and applications. They update existing programs, fix errors, and improve functionality. Their work requires strong knowledge of programming languages and mathematical concepts." },
+    { title: "Medical Scientist", url: "https://www.bls.gov/ooh/life-physical-and-social-science/medical-scientists.htm", medianSalary: "$100,890", education: "Bachelor's", schoolYears: "4", blurb: "Medical scientists design experiments and conduct research to test scientific hypotheses. They often use clinical trials and investigative methods to study diseases and treatments. Their work relies on a strong foundation in life sciences, physical sciences, and mathematics." },
+    { title: "Financial Analyst", url: "https://www.bls.gov/ooh/business-and-financial/financial-analysts.htm", medianSalary: "$99,890", education: "Bachelor's", schoolYears: "4", blurb: "Financial analysts evaluate investment opportunities across banks, funds, and financial institutions. They study financial data and economic trends to assess risk and performance. Analysts meet with company leaders to better understand future prospects." },
+    { title: "Statistician", url: "https://www.indeed.com/hire/job-description/statistician", medianSalary: "$104,860", education: "Bachelor's", schoolYears: "4", blurb: "Statisticians develop and apply mathematical techniques to solve real-world problems. They design surveys and experiments to collect data and analyze results. Their conclusions help guide decisions across business, engineering, and scientific fields." },
   ],
   Chemistry: [
-    { title: "Chemical Technician", url: "https://www.bls.gov/ooh/life-physical-and-social-science/chemical-technicians.htm", medianSalary: "$49,326", education: "Bachelor’s", schoolYears: "4", blurb: "Chemical technicians support research chemists by helping studies run smoothly in laboratory settings. They monitor equipment, prepare materials, and assist with specific research techniques. Their work ensures experiments are conducted efficiently and accurately." },
-    { title: "Toxicologist", url: "https://www.indeed.com/career-advice/careers/what-does-a-toxicologist-do", medianSalary: "$20.76/hour", education: "Bachelor’s", schoolYears: "4", blurb: "Toxicologists test blood and tissue samples to identify drugs, alcohol, poisons, or other substances. They analyze results to understand how chemicals affect the human body. Their findings are often used to answer questions related to criminal or medical cases." },
-    { title: "Chemistry Teacher", url: "https://www.betterteam.com/chemistry-teacher-job-description", medianSalary: "$45,468", education: "Bachelor’s", schoolYears: "4", blurb: "Chemistry teachers create and teach curriculum focused on chemical principles and reactions. They present material through lectures, labs, tests, and projects. Their role centers on helping students understand and apply chemistry concepts effectively." },
-    { title: "Water Chemist", url: "https://careers.slas.org/career/water-chemist", medianSalary: "$71,290", education: "Bachelor’s", schoolYears: "4", blurb: "Water chemists study and monitor chemical levels in water systems. They collect and analyze samples from different environments to ensure purification processes are safe. Their work helps inform regulations, policies, and environmental standards." },
-    { title: "Analytical Chemist", url: "https://www.acs.org/careers/chemical-sciences/areas/analytical-chemistry.html", medianSalary: "$65,880", education: "Bachelor’s", schoolYears: "4", blurb: "Analytical chemists examine substances to answer questions related to toxicology, pharmaceuticals, or forensics. They analyze samples to identify chemical composition and behavior. Many specialize in areas such as forensic science or drug development." },
-    { title: "Synthetic Chemist", url: "https://www.ziprecruiter.com/career/Synthetic-Chemist/What-Is-How-to-Become", medianSalary: "$71,290", education: "Bachelor’s", schoolYears: "4", blurb: "Synthetic chemists develop and test chemical compounds to create new materials. They work primarily in laboratory environments to design substances for specific purposes. Their work supports industries such as healthcare, manufacturing, and food production." },
+    { title: "Chemical Technician", url: "https://www.bls.gov/ooh/life-physical-and-social-science/chemical-technicians.htm", medianSalary: "$49,326", education: "Bachelor's", schoolYears: "4", blurb: "Chemical technicians support research chemists by helping studies run smoothly in laboratory settings. They monitor equipment, prepare materials, and assist with specific research techniques. Their work ensures experiments are conducted efficiently and accurately." },
+    { title: "Toxicologist", url: "https://www.indeed.com/career-advice/careers/what-does-a-toxicologist-do", medianSalary: "$20.76/hour", education: "Bachelor's", schoolYears: "4", blurb: "Toxicologists test blood and tissue samples to identify drugs, alcohol, poisons, or other substances. They analyze results to understand how chemicals affect the human body. Their findings are often used to answer questions related to criminal or medical cases." },
+    { title: "Chemistry Teacher", url: "https://www.betterteam.com/chemistry-teacher-job-description", medianSalary: "$45,468", education: "Bachelor's", schoolYears: "4", blurb: "Chemistry teachers create and teach curriculum focused on chemical principles and reactions. They present material through lectures, labs, tests, and projects. Their role centers on helping students understand and apply chemistry concepts effectively." },
+    { title: "Water Chemist", url: "https://careers.slas.org/career/water-chemist", medianSalary: "$71,290", education: "Bachelor's", schoolYears: "4", blurb: "Water chemists study and monitor chemical levels in water systems. They collect and analyze samples from different environments to ensure purification processes are safe. Their work helps inform regulations, policies, and environmental standards." },
+    { title: "Analytical Chemist", url: "https://www.acs.org/careers/chemical-sciences/areas/analytical-chemistry.html", medianSalary: "$65,880", education: "Bachelor's", schoolYears: "4", blurb: "Analytical chemists examine substances to answer questions related to toxicology, pharmaceuticals, or forensics. They analyze samples to identify chemical composition and behavior. Many specialize in areas such as forensic science or drug development." },
+    { title: "Synthetic Chemist", url: "https://www.ziprecruiter.com/career/Synthetic-Chemist/What-Is-How-to-Become", medianSalary: "$71,290", education: "Bachelor's", schoolYears: "4", blurb: "Synthetic chemists develop and test chemical compounds to create new materials. They work primarily in laboratory environments to design substances for specific purposes. Their work supports industries such as healthcare, manufacturing, and food production." },
   ],
   "English Literature Writing": [
-    { title: "Copywriter", url: "https://www.indeed.com/hire/job-description/copywriter", medianSalary: "$72,716", education: "Bachelor’s", schoolYears: "4", blurb: "Copywriters create short-form written content designed to promote products or services. Their work includes slogans, social media posts, and website copy tailored to specific audiences. They must balance brand voice, business goals, and customer needs to persuade effectively." },
-    { title: "User Experience (UX) Writer", url: "https://www.indeed.com/hire/job-description/ux-writer", medianSalary: "$70,954", education: "Bachelor’s", schoolYears: "4", blurb: "UX writers craft clear and concise text that helps users navigate websites and apps. They write microcopy such as buttons, menus, labels, and error messages. Their work focuses on improving usability by aligning language with design and user expectations." },
-    { title: "Grant Writer", url: "https://www.indeed.com/hire/job-description/grant-writer", medianSalary: "$52,282", education: "Bachelor’s", schoolYears: "4", blurb: "Grant writers research funding opportunities and write proposals for nonprofit organizations. Their work includes developing statements of need, project goals, budgets, and supporting documentation. Strong research and persuasive writing skills are essential to securing funding." },
-    { title: "Technical Writer", url: "https://www.bls.gov/ooh/media-and-communication/technical-writers.htm", medianSalary: "$82,194", education: "Bachelor’s", schoolYears: "4", blurb: "Technical writers create documents that explain complex information in a clear and usable way. They write manuals, how-to guides, and technical documentation for a variety of industries. Their role often involves collaborating with subject-matter experts to ensure accuracy." },
-    { title: "Medical Writer", url: "https://www.indeed.com/career-advice/finding-a-job/how-to-become-medical-writer", medianSalary: "$127,817", education: "Bachelor’s", schoolYears: "4", blurb: "Medical writers translate scientific and medical information for professional or general audiences. They write materials such as journal abstracts, patient resources, educational content, and reports. Their work helps make complex medical information accessible and understandable." },
-    { title: "Editor", url: "https://www.indeed.com/hire/job-description/editor", medianSalary: "$68,950", education: "Bachelor’s", schoolYears: "4", blurb: "Editors review written content to ensure clarity, accuracy, and quality. They work closely with writers to revise drafts and maintain consistency with organizational goals. Editors may also manage contributors and decide which content is ready for publication." },
+    { title: "Copywriter", url: "https://www.indeed.com/hire/job-description/copywriter", medianSalary: "$72,716", education: "Bachelor's", schoolYears: "4", blurb: "Copywriters create short-form written content designed to promote products or services. Their work includes slogans, social media posts, and website copy tailored to specific audiences. They must balance brand voice, business goals, and customer needs to persuade effectively." },
+    { title: "User Experience (UX) Writer", url: "https://www.indeed.com/hire/job-description/ux-writer", medianSalary: "$70,954", education: "Bachelor's", schoolYears: "4", blurb: "UX writers craft clear and concise text that helps users navigate websites and apps. They write microcopy such as buttons, menus, labels, and error messages. Their work focuses on improving usability by aligning language with design and user expectations." },
+    { title: "Grant Writer", url: "https://www.indeed.com/hire/job-description/grant-writer", medianSalary: "$52,282", education: "Bachelor's", schoolYears: "4", blurb: "Grant writers research funding opportunities and write proposals for nonprofit organizations. Their work includes developing statements of need, project goals, budgets, and supporting documentation. Strong research and persuasive writing skills are essential to securing funding." },
+    { title: "Technical Writer", url: "https://www.bls.gov/ooh/media-and-communication/technical-writers.htm", medianSalary: "$82,194", education: "Bachelor's", schoolYears: "4", blurb: "Technical writers create documents that explain complex information in a clear and usable way. They write manuals, how-to guides, and technical documentation for a variety of industries. Their role often involves collaborating with subject-matter experts to ensure accuracy." },
+    { title: "Medical Writer", url: "https://www.indeed.com/career-advice/finding-a-job/how-to-become-medical-writer", medianSalary: "$127,817", education: "Bachelor's", schoolYears: "4", blurb: "Medical writers translate scientific and medical information for professional or general audiences. They write materials such as journal abstracts, patient resources, educational content, and reports. Their work helps make complex medical information accessible and understandable." },
+    { title: "Editor", url: "https://www.indeed.com/hire/job-description/editor", medianSalary: "$68,950", education: "Bachelor's", schoolYears: "4", blurb: "Editors review written content to ensure clarity, accuracy, and quality. They work closely with writers to revise drafts and maintain consistency with organizational goals. Editors may also manage contributors and decide which content is ready for publication." },
   ],
   "Arts Performance": [
-    { title: "Artist", url: "https://designcareers.asid.org/career/artist/job-descriptions", medianSalary: "$85,424", education: "Bachelor’s", schoolYears: "4", blurb: "Artists create original works using a variety of creative mediums. Their work may include painting, drawing, weaving, glassblowing, or other artistic forms. Many artists sell their work independently or through galleries and commissions." },
-    { title: "Production Artist", url: "https://artisantalent.com/job-descriptions/production-artist-job-description/", medianSalary: "$51,213", education: "Bachelor’s", schoolYears: "4", blurb: "Production artists support design teams by producing polished print and visual materials. They help create packaging, displays, and marketing assets across different industries. Their role focuses on ensuring designs are accurate, consistent, and production-ready." },
-    { title: "Photographer", url: "https://www.indeed.com/hire/job-description/photographer", medianSalary: "$47,073", education: "Bachelor’s", schoolYears: "4", blurb: "Photographers capture images of people, events, and environments across various industries. They work in fields such as journalism, event production, and portrait photography. Their job requires strong composition skills and attention to visual detail." },
-    { title: "Print Manager", url: "https://careers.essae.org/career/printing-manager/job-descriptions", medianSalary: "$66,290", education: "Bachelor’s", schoolYears: "4", blurb: "Print managers oversee printing operations and supervise production teams. They ensure marketing materials, signage, and publications meet quality standards. Their responsibilities also include coordinating with clients and managing workflow timelines." },
-    { title: "Art Teacher", url: "https://www.betterteam.com/art-teacher-job-description", medianSalary: "$61,090", education: "Bachelor’s", schoolYears: "4", blurb: "Art teachers instruct students in various artistic techniques and creative mediums. They introduce students to different art movements and styles. Their goal is to encourage artistic expression and appreciation." },
-    { title: "Theatre Manager", url: "https://getintotheatre.org/blog/what-does-a-theatre-manager-do/", medianSalary: "$58,212", education: "Bachelor’s", schoolYears: "4", blurb: "Theatre managers oversee daily operations of performing arts venues. They coordinate staff, manage performances, and plan events for audiences. Their role focuses on delivering organized and engaging guest experiences." },
+    { title: "Artist", url: "https://designcareers.asid.org/career/artist/job-descriptions", medianSalary: "$85,424", education: "Bachelor's", schoolYears: "4", blurb: "Artists create original works using a variety of creative mediums. Their work may include painting, drawing, weaving, glassblowing, or other artistic forms. Many artists sell their work independently or through galleries and commissions." },
+    { title: "Production Artist", url: "https://artisantalent.com/job-descriptions/production-artist-job-description/", medianSalary: "$51,213", education: "Bachelor's", schoolYears: "4", blurb: "Production artists support design teams by producing polished print and visual materials. They help create packaging, displays, and marketing assets across different industries. Their role focuses on ensuring designs are accurate, consistent, and production-ready." },
+    { title: "Photographer", url: "https://www.indeed.com/hire/job-description/photographer", medianSalary: "$47,073", education: "Bachelor's", schoolYears: "4", blurb: "Photographers capture images of people, events, and environments across various industries. They work in fields such as journalism, event production, and portrait photography. Their job requires strong composition skills and attention to visual detail." },
+    { title: "Print Manager", url: "https://careers.essae.org/career/printing-manager/job-descriptions", medianSalary: "$66,290", education: "Bachelor's", schoolYears: "4", blurb: "Print managers oversee printing operations and supervise production teams. They ensure marketing materials, signage, and publications meet quality standards. Their responsibilities also include coordinating with clients and managing workflow timelines." },
+    { title: "Art Teacher", url: "https://www.betterteam.com/art-teacher-job-description", medianSalary: "$61,090", education: "Bachelor's", schoolYears: "4", blurb: "Art teachers instruct students in various artistic techniques and creative mediums. They introduce students to different art movements and styles. Their goal is to encourage artistic expression and appreciation." },
+    { title: "Theatre Manager", url: "https://getintotheatre.org/blog/what-does-a-theatre-manager-do/", medianSalary: "$58,212", education: "Bachelor's", schoolYears: "4", blurb: "Theatre managers oversee daily operations of performing arts venues. They coordinate staff, manage performances, and plan events for audiences. Their role focuses on delivering organized and engaging guest experiences." },
   ],
   "Law & Government": [
-    { title: "Tax Law Specialist", url: "https://www.jobs.irs.gov/resources/tax-law-specialist", medianSalary: "$64,546", education: "Bachelor’s", schoolYears: "4", blurb: "Tax law specialists focus on federal taxation issues by analyzing tax claims and reviewing technical tax documents. They research tax treaties, rulings, and laws to interpret how regulations apply in specific cases. Their work combines legal analysis with auditing and accounting tasks for government agencies." },
-    { title: "Public Defender", url: "https://jobs.togethersc.org/career/public-defender", medianSalary: "$73,713", education: "Bachelor’s", schoolYears: "4", blurb: "Public defenders represent individuals who cannot afford private legal counsel. They handle criminal cases by filing legal paperwork, negotiating with prosecutors, and advising clients. Their role ensures access to legal representation through government-funded services." },
-    { title: "Policy Analyst", url: "https://claremontlincoln.edu/news-blog/policy-analyst-job-description-and-salary/", medianSalary: "$78,326", education: "Bachelor’s", schoolYears: "4", blurb: "Policy analysts research social and political issues to develop effective public policies. They study the impact of existing policies, evaluate multiple viewpoints, and propose new approaches. Their findings are presented in reports that guide government decision-makers." },
-    { title: "Regulatory Affairs Specialist", url: "https://graduate.northeastern.edu/knowledge-hub/what-does-a-regulatory-affairs-specialist-do/", medianSalary: "$96,755", education: "Bachelor’s", schoolYears: "4", blurb: "Regulatory affairs specialists ensure organizations comply with government laws and standards. They assess compliance levels, advise leadership, and educate staff on regulatory requirements. Their work helps organizations meet legal obligations and maintain safety standards." },
-    { title: "Judge Advocate General", url: "https://www.navy.com/careers-benefits/careers/legal/jag", medianSalary: "$63,784", education: "Bachelor’s", schoolYears: "4", blurb: "Judge advocate generals serve as legal advisors within the U.S. Armed Forces. They practice law in areas determined by military needs and provide guidance to service members. Their duties may include participating in court-martial proceedings as legal counsel." },
-    { title: "Assistant Prosecutor", url: "https://www.ncai.org/resources/job-listings/assistant-prosecutor", medianSalary: "$44,138", education: "Bachelor’s", schoolYears: "4", blurb: "Assistant prosecutors represent the prosecutor’s office in criminal cases. They investigate suspects, gather evidence, and file formal charges. Their work also includes issuing subpoenas and negotiating with defense attorneys." },
+    { title: "Tax Law Specialist", url: "https://www.jobs.irs.gov/resources/tax-law-specialist", medianSalary: "$64,546", education: "Bachelor's", schoolYears: "4", blurb: "Tax law specialists focus on federal taxation issues by analyzing tax claims and reviewing technical tax documents. They research tax treaties, rulings, and laws to interpret how regulations apply in specific cases. Their work combines legal analysis with auditing and accounting tasks for government agencies." },
+    { title: "Public Defender", url: "https://jobs.togethersc.org/career/public-defender", medianSalary: "$73,713", education: "Bachelor's", schoolYears: "4", blurb: "Public defenders represent individuals who cannot afford private legal counsel. They handle criminal cases by filing legal paperwork, negotiating with prosecutors, and advising clients. Their role ensures access to legal representation through government-funded services." },
+    { title: "Policy Analyst", url: "https://claremontlincoln.edu/news-blog/policy-analyst-job-description-and-salary/", medianSalary: "$78,326", education: "Bachelor's", schoolYears: "4", blurb: "Policy analysts research social and political issues to develop effective public policies. They study the impact of existing policies, evaluate multiple viewpoints, and propose new approaches. Their findings are presented in reports that guide government decision-makers." },
+    { title: "Regulatory Affairs Specialist", url: "https://graduate.northeastern.edu/knowledge-hub/what-does-a-regulatory-affairs-specialist-do/", medianSalary: "$96,755", education: "Bachelor's", schoolYears: "4", blurb: "Regulatory affairs specialists ensure organizations comply with government laws and standards. They assess compliance levels, advise leadership, and educate staff on regulatory requirements. Their work helps organizations meet legal obligations and maintain safety standards." },
+    { title: "Judge Advocate General", url: "https://www.navy.com/careers-benefits/careers/legal/jag", medianSalary: "$63,784", education: "Bachelor's", schoolYears: "4", blurb: "Judge advocate generals serve as legal advisors within the U.S. Armed Forces. They practice law in areas determined by military needs and provide guidance to service members. Their duties may include participating in court-martial proceedings as legal counsel." },
+    { title: "Assistant Prosecutor", url: "https://www.ncai.org/resources/job-listings/assistant-prosecutor", medianSalary: "$44,138", education: "Bachelor's", schoolYears: "4", blurb: "Assistant prosecutors represent the prosecutor's office in criminal cases. They investigate suspects, gather evidence, and file formal charges. Their work also includes issuing subpoenas and negotiating with defense attorneys." },
   ],
   Physics: [
-    { title: "Aerospace Engineer", url: "https://www.bls.gov/ooh/architecture-and-engineering/aerospace-engineers.htm", medianSalary: "$116,500", education: "Bachelor’s", schoolYears: "4", blurb: "Aerospace engineers design and analyze aircraft, spacecraft, rockets, and satellites using principles of physics and mathematics. They create and test prototypes, study structural performance, and evaluate how speed and air interact with flight systems. Their work also includes analyzing flight data and testing products to ensure safety and performance." },
-    { title: "Computer Research Scientist", url: "https://www.bls.gov/ooh/computer-and-information-technology/computer-and-information-research-scientists.htm", medianSalary: "$122,840", education: "Master’s", schoolYears: "6", blurb: "Computer research scientists develop new approaches to computing technology through research and experimentation. Their work includes data processing, software design, programming languages, and analyzing experimental results. They publish findings in scientific journals to advance computer and physics-related research." },
+    { title: "Aerospace Engineer", url: "https://www.bls.gov/ooh/architecture-and-engineering/aerospace-engineers.htm", medianSalary: "$116,500", education: "Bachelor's", schoolYears: "4", blurb: "Aerospace engineers design and analyze aircraft, spacecraft, rockets, and satellites using principles of physics and mathematics. They create and test prototypes, study structural performance, and evaluate how speed and air interact with flight systems. Their work also includes analyzing flight data and testing products to ensure safety and performance." },
+    { title: "Computer Research Scientist", url: "https://www.bls.gov/ooh/computer-and-information-technology/computer-and-information-research-scientists.htm", medianSalary: "$122,840", education: "Master's", schoolYears: "6", blurb: "Computer research scientists develop new approaches to computing technology through research and experimentation. Their work includes data processing, software design, programming languages, and analyzing experimental results. They publish findings in scientific journals to advance computer and physics-related research." },
     { title: "Physicist", url: "https://www.bls.gov/ooh/life-physical-and-social-science/physicists-and-astronomers.htm", medianSalary: "$122,850", education: "Doctorate", schoolYears: "8–10", blurb: "Physicists conduct advanced research to understand the fundamental laws governing energy and matter. They analyze technical reports, develop scientific theories, and create mathematical models. Their responsibilities include experimentation, quality control, and interpreting complex physical interactions." },
     { title: "Astronomer", url: "https://www.bls.gov/ooh/life-physical-and-social-science/physicists-and-astronomers.htm", medianSalary: "$114,590", education: "Doctorate", schoolYears: "8–10", blurb: "Astronomers study stars, planets, galaxies, and cosmic systems using physics-based models. They conduct research, formulate hypotheses, and analyze astronomical data to predict cosmic events. Their work focuses on understanding how celestial bodies interact within the universe." },
-    { title: "Nuclear Engineer", url: "https://www.bls.gov/ooh/architecture-and-engineering/nuclear-engineers.htm", medianSalary: "$113,460", education: "Bachelor’s", schoolYears: "4", blurb: "Nuclear engineers design and develop nuclear equipment such as reactor cores and radiation shielding. They oversee maintenance and safety operations in nuclear facilities. Their role applies physics principles to ensure efficient and secure nuclear power systems." },
+    { title: "Nuclear Engineer", url: "https://www.bls.gov/ooh/architecture-and-engineering/nuclear-engineers.htm", medianSalary: "$113,460", education: "Bachelor's", schoolYears: "4", blurb: "Nuclear engineers design and develop nuclear equipment such as reactor cores and radiation shielding. They oversee maintenance and safety operations in nuclear facilities. Their role applies physics principles to ensure efficient and secure nuclear power systems." },
     { title: "Biophysicist", url: "https://www.careerexplorer.com/careers/biophysicist/", medianSalary: "$94,490", education: "Doctorate", schoolYears: "8–10", blurb: "Biophysicists combine physics and biology to study how physical forces affect biological systems. They design and conduct complex research experiments involving substances like drugs or hormones. Their work helps explain biological processes through quantitative and physical analysis." },
   ],
   "Political Science": [
-    { title: "Historian", url: "https://bigfuture.collegeboard.org/careers/historian", medianSalary: "$59,513", education: "Bachelor’s", schoolYears: "4", blurb: "Historians research and interpret the past using a wide range of historical sources. They analyze documents such as government records, newspapers, photographs, interviews, and personal writings. Their work helps preserve historical knowledge and explain how past events shape the present." },
-    { title: "Legislator", url: "https://bigfuture.collegeboard.org/careers/legislator", medianSalary: "$37,166", education: "Bachelor’s", schoolYears: "4", blurb: "Legislators create, introduce, and pass laws at the local, state, tribal, or federal level. They represent constituents by proposing legislation and voting on public policy matters. Their work directly influences how governments operate and serve the public." },
-    { title: "Social Science Research Assistant", url: "https://bigfuture.collegeboard.org/careers/social-science-research-assistant", medianSalary: "$49,700", education: "Bachelor’s", schoolYears: "4", blurb: "Social science research assistants support researchers conducting social science studies. They help with surveys, data collection, laboratory analysis, and data management. Their work may also include preparing findings for publication." },
-    { title: "Political Science Teacher", url: "https://bigfuture.collegeboard.org/careers/political-science-teacher-postsecondary", medianSalary: "$61,625", education: "Bachelor’s", schoolYears: "4", blurb: "Secondary school teachers educate students at the middle or high school level. They teach one or more academic subjects and develop lesson plans and assessments. Their role focuses on building foundational knowledge and critical thinking skills." },
-    { title: "Political Scientist", url: "https://bigfuture.collegeboard.org/careers/political-scientist", medianSalary: "$121,091", education: "Bachelor’s", schoolYears: "4", blurb: "Political scientists study political systems, institutions, and behavior. They analyze topics such as public opinion, elections, political ideology, and government structures. Their research helps explain how political systems function and evolve." },
-    { title: "Postsecondary History Teacher", url: "https://bigfuture.collegeboard.org/careers/history-teacher-postsecondary", medianSalary: "$79,062", education: "Bachelor’s", schoolYears: "4", blurb: "Postsecondary teachers instruct college-level courses in history or political science. They teach, conduct research, or combine both responsibilities. Their work contributes to higher education and academic scholarship." },
+    { title: "Historian", url: "https://bigfuture.collegeboard.org/careers/historian", medianSalary: "$59,513", education: "Bachelor's", schoolYears: "4", blurb: "Historians research and interpret the past using a wide range of historical sources. They analyze documents such as government records, newspapers, photographs, interviews, and personal writings. Their work helps preserve historical knowledge and explain how past events shape the present." },
+    { title: "Legislator", url: "https://bigfuture.collegeboard.org/careers/legislator", medianSalary: "$37,166", education: "Bachelor's", schoolYears: "4", blurb: "Legislators create, introduce, and pass laws at the local, state, tribal, or federal level. They represent constituents by proposing legislation and voting on public policy matters. Their work directly influences how governments operate and serve the public." },
+    { title: "Social Science Research Assistant", url: "https://bigfuture.collegeboard.org/careers/social-science-research-assistant", medianSalary: "$49,700", education: "Bachelor's", schoolYears: "4", blurb: "Social science research assistants support researchers conducting social science studies. They help with surveys, data collection, laboratory analysis, and data management. Their work may also include preparing findings for publication." },
+    { title: "Political Science Teacher", url: "https://bigfuture.collegeboard.org/careers/political-science-teacher-postsecondary", medianSalary: "$61,625", education: "Bachelor's", schoolYears: "4", blurb: "Secondary school teachers educate students at the middle or high school level. They teach one or more academic subjects and develop lesson plans and assessments. Their role focuses on building foundational knowledge and critical thinking skills." },
+    { title: "Political Scientist", url: "https://bigfuture.collegeboard.org/careers/political-scientist", medianSalary: "$121,091", education: "Bachelor's", schoolYears: "4", blurb: "Political scientists study political systems, institutions, and behavior. They analyze topics such as public opinion, elections, political ideology, and government structures. Their research helps explain how political systems function and evolve." },
+    { title: "Postsecondary History Teacher", url: "https://bigfuture.collegeboard.org/careers/history-teacher-postsecondary", medianSalary: "$79,062", education: "Bachelor's", schoolYears: "4", blurb: "Postsecondary teachers instruct college-level courses in history or political science. They teach, conduct research, or combine both responsibilities. Their work contributes to higher education and academic scholarship." },
   ],
   Business: [
-    { title: "Human Resources Specialist", url: "https://www.bls.gov/ooh/business-and-financial/human-resources-specialists.htm", medianSalary: "$47,207", education: "Bachelor’s", schoolYears: "4", blurb: "Human resources specialists manage core employee functions such as recruiting, interviewing, and onboarding staff. They assist employees with benefits, resolve workplace issues, and support communication between employees and management. Their role also requires ensuring company practices follow internal policies and government labor regulations." },
-    { title: "Accountant", url: "https://www.indeed.com/hire/job-description/accountant", medianSalary: "$59,606", education: "Bachelor’s", schoolYears: "4", blurb: "Accountants oversee financial records to ensure accuracy and compliance. They analyze financial data, prepare budget reports, and support executives with business planning. Their responsibilities often include managing accounts payable and receivable across organizations." },
-    { title: "Investment Banker", url: "https://www.cfainstitute.org/programs/cfa-program/careers/investment-banker", medianSalary: "$78,664", education: "Bachelor’s", schoolYears: "4", blurb: "Investment bankers help clients manage finances by raising capital and evaluating spending strategies. They analyze market trends to guide investment decisions and manage bonds or stock transactions. Their work supports individuals and companies in making informed financial moves." },
-    { title: "Loan Officer", url: "https://www.bls.gov/ooh/business-and-financial/loan-officers.htm", medianSalary: "$63,380", education: "Bachelor’s", schoolYears: "4", blurb: "Loan officers evaluate loan applications to determine financial eligibility. They review financial documents and guide applicants through borrowing rules and requirements. Their role often focuses on specific lending areas such as residential or commercial loans." },
-    { title: "Research Analyst", url: "https://www.indeed.com/hire/job-description/research-analyst", medianSalary: "$66,256", education: "Bachelor’s", schoolYears: "4", blurb: "Research analysts use data and market research to study business trends. They prepare reports that help organizations improve profitability and strategy. Their work often supports marketing teams and decision-makers across industries." },
-    { title: "Business Development Manager", url: "https://www.indeed.com/career-advice/careers/what-does-a-business-development-manager-do", medianSalary: "$75,645", education: "Bachelor’s", schoolYears: "4", blurb: "Business development managers identify growth opportunities by analyzing markets and finding new leads. They collaborate with internal teams and clients to strengthen relationships and satisfaction. Their work helps guide long-term financial growth and company success." },
+    { title: "Human Resources Specialist", url: "https://www.bls.gov/ooh/business-and-financial/human-resources-specialists.htm", medianSalary: "$47,207", education: "Bachelor's", schoolYears: "4", blurb: "Human resources specialists manage core employee functions such as recruiting, interviewing, and onboarding staff. They assist employees with benefits, resolve workplace issues, and support communication between employees and management. Their role also requires ensuring company practices follow internal policies and government labor regulations." },
+    { title: "Accountant", url: "https://www.indeed.com/hire/job-description/accountant", medianSalary: "$59,606", education: "Bachelor's", schoolYears: "4", blurb: "Accountants oversee financial records to ensure accuracy and compliance. They analyze financial data, prepare budget reports, and support executives with business planning. Their responsibilities often include managing accounts payable and receivable across organizations." },
+    { title: "Investment Banker", url: "https://www.cfainstitute.org/programs/cfa-program/careers/investment-banker", medianSalary: "$78,664", education: "Bachelor's", schoolYears: "4", blurb: "Investment bankers help clients manage finances by raising capital and evaluating spending strategies. They analyze market trends to guide investment decisions and manage bonds or stock transactions. Their work supports individuals and companies in making informed financial moves." },
+    { title: "Loan Officer", url: "https://www.bls.gov/ooh/business-and-financial/loan-officers.htm", medianSalary: "$63,380", education: "Bachelor's", schoolYears: "4", blurb: "Loan officers evaluate loan applications to determine financial eligibility. They review financial documents and guide applicants through borrowing rules and requirements. Their role often focuses on specific lending areas such as residential or commercial loans." },
+    { title: "Research Analyst", url: "https://www.indeed.com/hire/job-description/research-analyst", medianSalary: "$66,256", education: "Bachelor's", schoolYears: "4", blurb: "Research analysts use data and market research to study business trends. They prepare reports that help organizations improve profitability and strategy. Their work often supports marketing teams and decision-makers across industries." },
+    { title: "Business Development Manager", url: "https://www.indeed.com/career-advice/careers/what-does-a-business-development-manager-do", medianSalary: "$75,645", education: "Bachelor's", schoolYears: "4", blurb: "Business development managers identify growth opportunities by analyzing markets and finding new leads. They collaborate with internal teams and clients to strengthen relationships and satisfaction. Their work helps guide long-term financial growth and company success." },
   ],
   Psychology: [
     { title: "Neuropsychologist", url: "https://my.clevelandclinic.org/health/articles/24691-neuropsychologist", medianSalary: "$122,928", education: "PhD/PsyD", schoolYears: "8–10", blurb: "Neuropsychologists study how the physical brain affects behavior and cognition. They assess conditions impacting memory, language, attention, and problem-solving through detailed evaluations. Their work helps guide treatment and rehabilitation plans for brain injuries and neurological diseases." },
     { title: "Health Psychologist", url: "https://www.apa.org/education-career/guide/subfields/health/education-training", medianSalary: "$120,811", education: "PhD/PsyD", schoolYears: "8–10", blurb: "Health psychologists examine how behavior and psychology influence physical health and illness. They research how people cope with medical conditions and how healthcare systems can improve outcomes. Their work often integrates psychological care into medical and public health settings." },
-    { title: "Industrial-Organizational Psychologist", url: "https://www.allpsychologyschools.com/organizational-psychology/job-description/", medianSalary: "$120,524", education: "Master’s/PhD", schoolYears: "6–10", blurb: "Industrial-organizational psychologists apply psychology to improve workplace performance and employee well-being. They study productivity, leadership styles, and organizational structure. Their work includes training programs, employee assessments, and organizational change initiatives." },
+    { title: "Industrial-Organizational Psychologist", url: "https://www.allpsychologyschools.com/organizational-psychology/job-description/", medianSalary: "$120,524", education: "Master's/PhD", schoolYears: "6–10", blurb: "Industrial-organizational psychologists apply psychology to improve workplace performance and employee well-being. They study productivity, leadership styles, and organizational structure. Their work includes training programs, employee assessments, and organizational change initiatives." },
     { title: "Clinical Psychologist", url: "https://www.allpsychologyschools.com/clinical-psychology/job-description/", medianSalary: "$109,894", education: "PhD", schoolYears: "8–10", blurb: "Clinical psychologists diagnose and treat a wide range of mental health conditions. They use therapy, assessments, and psychological testing to support patients. Their role may also include research, treatment planning, and patient education." },
     { title: "General / Experimental Psychologist", url: "https://www.allpsychologyschools.com/careers/research-psychologist/", medianSalary: "$92,813", education: "PhD", schoolYears: "8–10", blurb: "General or experimental psychologists conduct research to understand behavior and mental processes. They study topics such as learning, motivation, perception, and emotion. Their findings contribute to advancements in education, technology, and healthcare." },
-    { title: "Engineering Psychologist", url: "https://www.verywellmind.com/engineering-psychologist-2795650", medianSalary: "$92,813", education: "Master’s/PhD", schoolYears: "6–10", blurb: "Engineering psychologists design systems that improve how humans interact with technology. They apply psychology to enhance usability, safety, and efficiency in products and devices. Their work often involves user research and testing to reduce errors and improve user experience." },
+    { title: "Engineering Psychologist", url: "https://www.verywellmind.com/engineering-psychologist-2795650", medianSalary: "$92,813", education: "Master's/PhD", schoolYears: "6–10", blurb: "Engineering psychologists design systems that improve how humans interact with technology. They apply psychology to enhance usability, safety, and efficiency in products and devices. Their work often involves user research and testing to reduce errors and improve user experience." },
   ],
   "STEM/Enrichment": [
-    { title: "Nurse Practitioner", url: "https://college.mayo.edu/academics/explore-health-care-careers/careers-a-z/nurse-practitioner/", medianSalary: "$129,210", education: "Master’s", schoolYears: "6", blurb: "Nurse practitioners provide advanced medical care by diagnosing conditions and managing patient treatment plans. They often work independently or alongside physicians in a variety of healthcare settings. Their role combines clinical expertise with patient-centered care to improve health outcomes." },
-    { title: "IT Manager", url: "https://www.indeed.com/hire/job-description/it-manager", medianSalary: "$171,200", education: "Bachelor’s", schoolYears: "4", blurb: "IT managers oversee an organization’s technology systems and infrastructure. They coordinate teams, manage budgets, and ensure technology supports business goals. Their work focuses on system reliability, security, and long-term technology planning." },
-    { title: "Information Security Analyst", url: "https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm", medianSalary: "$124,910", education: "Bachelor’s", schoolYears: "4", blurb: "Information security analysts protect organizations from cyber threats and data breaches. They monitor systems, identify vulnerabilities, and implement security measures. Their role is critical to maintaining the safety and integrity of digital information." },
-    { title: "Physician Assistant", url: "https://www.bls.gov/ooh/healthcare/physician-assistants.htm", medianSalary: "$133,260", education: "Master’s", schoolYears: "6", blurb: "Physician assistants practice medicine under physician supervision by examining patients and developing treatment plans. They diagnose illnesses, prescribe medications, and assist in medical procedures. Their work expands access to high-quality healthcare services." },
-    { title: "Software Developer", url: "https://www.indeed.com/hire/job-description/software-developer", medianSalary: "$133,080", education: "Bachelor’s", schoolYears: "4", blurb: "Software developers design and build computer applications and systems. They write, test, and maintain code to meet user and business needs. Their work powers websites, mobile apps, and enterprise software solutions." },
-    { title: "Data Scientist", url: "https://www.bls.gov/ooh/math/data-scientists.htm", medianSalary: "$112,590", education: "Bachelor’s", schoolYears: "4", blurb: "Data scientists analyze large datasets to uncover patterns and insights. They use statistical methods and programming tools to support decision-making. Their findings help organizations improve products, services, and strategy." },
+    { title: "Nurse Practitioner", url: "https://college.mayo.edu/academics/explore-health-care-careers/careers-a-z/nurse-practitioner/", medianSalary: "$129,210", education: "Master's", schoolYears: "6", blurb: "Nurse practitioners provide advanced medical care by diagnosing conditions and managing patient treatment plans. They often work independently or alongside physicians in a variety of healthcare settings. Their role combines clinical expertise with patient-centered care to improve health outcomes." },
+    { title: "IT Manager", url: "https://www.indeed.com/hire/job-description/it-manager", medianSalary: "$171,200", education: "Bachelor's", schoolYears: "4", blurb: "IT managers oversee an organization's technology systems and infrastructure. They coordinate teams, manage budgets, and ensure technology supports business goals. Their work focuses on system reliability, security, and long-term technology planning." },
+    { title: "Information Security Analyst", url: "https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm", medianSalary: "$124,910", education: "Bachelor's", schoolYears: "4", blurb: "Information security analysts protect organizations from cyber threats and data breaches. They monitor systems, identify vulnerabilities, and implement security measures. Their role is critical to maintaining the safety and integrity of digital information." },
+    { title: "Physician Assistant", url: "https://www.bls.gov/ooh/healthcare/physician-assistants.htm", medianSalary: "$133,260", education: "Master's", schoolYears: "6", blurb: "Physician assistants practice medicine under physician supervision by examining patients and developing treatment plans. They diagnose illnesses, prescribe medications, and assist in medical procedures. Their work expands access to high-quality healthcare services." },
+    { title: "Software Developer", url: "https://www.indeed.com/hire/job-description/software-developer", medianSalary: "$133,080", education: "Bachelor's", schoolYears: "4", blurb: "Software developers design and build computer applications and systems. They write, test, and maintain code to meet user and business needs. Their work powers websites, mobile apps, and enterprise software solutions." },
+    { title: "Data Scientist", url: "https://www.bls.gov/ooh/math/data-scientists.htm", medianSalary: "$112,590", education: "Bachelor's", schoolYears: "4", blurb: "Data scientists analyze large datasets to uncover patterns and insights. They use statistical methods and programming tools to support decision-making. Their findings help organizations improve products, services, and strategy." },
   ],
   "Public Service": [
-    { title: "Teacher", url: "https://www.indeed.com/hire/job-description/teacher", medianSalary: "$45,468", education: "Bachelor’s", schoolYears: "4", blurb: "Teachers provide instruction to students in a classroom setting across specific subjects or age groups. They plan lessons, teach material, and assess student learning throughout the school year. Many work in public school systems to deliver accessible education to local communities." },
-    { title: "Crossing Guard", url: "https://nccareers.org/occupation-profile/339091/1284", medianSalary: "$33,980", education: "Bachelor’s", schoolYears: "4", blurb: "Crossing guards help pedestrians safely cross streets by managing traffic flow. They often work in busy areas or near schools where children are present. Their role focuses on preventing accidents and ensuring safe travel for the public." },
-    { title: "Developmental Disabilities Specialist", url: "https://careers.naswwa.socialworkers.org/career/disability-specialist-2/job-descriptions", medianSalary: "$52,440", education: "Bachelor’s", schoolYears: "4", blurb: "Developmental disabilities specialists support adults in building social, vocational, and daily living skills. They work with individuals or small groups to increase independence and quality of life. Their work may also involve helping design or lead community-based support programs." },
-    { title: "Substance Abuse Counselor", url: "https://www.bls.gov/ooh/community-and-social-service/substance-abuse-behavioral-disorder-and-mental-health-counselors.htm", medianSalary: "$53,650", education: "Bachelor’s", schoolYears: "4", blurb: "Substance abuse counselors help individuals manage and recover from addiction. They provide guidance and support in medical facilities or specialized treatment centers. Their work contributes to healthier individuals and reduced substance abuse in communities." },
-    { title: "Firefighter", url: "https://www.indeed.com/hire/job-description/firefighter", medianSalary: "$46,220", education: "Bachelor’s", schoolYears: "4", blurb: "Firefighters respond to emergencies such as fires, accidents, and rescues. They use specialized equipment to protect lives and property during critical situations. When not on calls, they remain on duty at fire stations and perform maintenance tasks." },
-    { title: "Guidance Counselor", url: "https://www.indeed.com/hire/job-description/guidance-counselor", medianSalary: "$53,089", education: "Bachelor’s", schoolYears: "4", blurb: "Guidance counselors support students with academic planning and personal development. They assist with college applications, school selection, and recommendation materials. Their role also includes helping students manage behavioral or academic challenges." },
+    { title: "Teacher", url: "https://www.indeed.com/hire/job-description/teacher", medianSalary: "$45,468", education: "Bachelor's", schoolYears: "4", blurb: "Teachers provide instruction to students in a classroom setting across specific subjects or age groups. They plan lessons, teach material, and assess student learning throughout the school year. Many work in public school systems to deliver accessible education to local communities." },
+    { title: "Crossing Guard", url: "https://nccareers.org/occupation-profile/339091/1284", medianSalary: "$33,980", education: "Bachelor's", schoolYears: "4", blurb: "Crossing guards help pedestrians safely cross streets by managing traffic flow. They often work in busy areas or near schools where children are present. Their role focuses on preventing accidents and ensuring safe travel for the public." },
+    { title: "Developmental Disabilities Specialist", url: "https://careers.naswwa.socialworkers.org/career/disability-specialist-2/job-descriptions", medianSalary: "$52,440", education: "Bachelor's", schoolYears: "4", blurb: "Developmental disabilities specialists support adults in building social, vocational, and daily living skills. They work with individuals or small groups to increase independence and quality of life. Their work may also involve helping design or lead community-based support programs." },
+    { title: "Substance Abuse Counselor", url: "https://www.bls.gov/ooh/community-and-social-service/substance-abuse-behavioral-disorder-and-mental-health-counselors.htm", medianSalary: "$53,650", education: "Bachelor's", schoolYears: "4", blurb: "Substance abuse counselors help individuals manage and recover from addiction. They provide guidance and support in medical facilities or specialized treatment centers. Their work contributes to healthier individuals and reduced substance abuse in communities." },
+    { title: "Firefighter", url: "https://www.indeed.com/hire/job-description/firefighter", medianSalary: "$46,220", education: "Bachelor's", schoolYears: "4", blurb: "Firefighters respond to emergencies such as fires, accidents, and rescues. They use specialized equipment to protect lives and property during critical situations. When not on calls, they remain on duty at fire stations and perform maintenance tasks." },
+    { title: "Guidance Counselor", url: "https://www.indeed.com/hire/job-description/guidance-counselor", medianSalary: "$53,089", education: "Bachelor's", schoolYears: "4", blurb: "Guidance counselors support students with academic planning and personal development. They assist with college applications, school selection, and recommendation materials. Their role also includes helping students manage behavioral or academic challenges." },
   ],
   "Sports & Entertainment": [
-    { title: "Athletic Director", url: "https://www.indeed.com/hire/job-description/athletic-director", medianSalary: "$65,271", education: "Bachelor’s", schoolYears: "4", blurb: "Athletic directors lead the athletics department at a high school, college, or university and oversee day-to-day operations. A major part of the role is managing public relations while supervising staff, coordinating travel, and keeping programs organized. They also handle budgets and may manage equipment purchasing and other logistical needs depending on the size of the school." },
-    { title: "Athletic Scout", url: "https://www.bls.gov/ooh/entertainment-and-sports/coaches-and-scouts.htm", medianSalary: "$50,874", education: "Bachelor’s", schoolYears: "4", blurb: "Athletic scouts evaluate athletes to judge current skill level and long-term potential for teams they represent. They attend games, review footage, and track news to stay updated on player performance and development. Scouts also speak with coaches and others to gather context about athletes and their future prospects." },
-    { title: "Athletic Trainer", url: "https://college.mayo.edu/academics/explore-health-care-careers/careers-a-z/athletic-trainer/", medianSalary: "$49,966", education: "Bachelor’s", schoolYears: "4", blurb: "Athletic trainers work under physician supervision to prevent, recognize, and treat sports-related injuries and medical conditions. They help reduce injury risk by advising athletes on training, strength and balance work, proper equipment use, and nutrition. When injuries happen, they provide immediate care, develop treatment plans, and often manage records while attending practices and games, including nights and weekends." },
-    { title: "Athletics Coach", url: "https://www.indeed.com/hire/job-description/coach", medianSalary: "$48,041", education: "Bachelor’s", schoolYears: "4", blurb: "Athletics coaches train athletes and teams to build skills, confidence, and performance in their sport. They create practice plans, motivate players, and develop strategies by analyzing opponents and adjusting tactics. Coaches also track athletes’ physical and mental well-being and provide support to help the team compete at its best." },
-    { title: "Contract Negotiator", url: "https://www.indeed.com/career-advice/finding-a-job/how-to-become-contract-negotiator", medianSalary: "$93,419", education: "Bachelor’s", schoolYears: "4", blurb: "Contract negotiators negotiate deals with teams for athlete clients with the goal of securing the strongest possible terms. They may also manage endorsements and marketing opportunities while maintaining relationships with clients and recruiting new athletes. The role involves signing and managing contracts, following rules and regulations, and applying business ethics throughout negotiations." },
-    { title: "Event Coordinator", url: "https://www.indeed.com/hire/job-description/event-coordinator", medianSalary: "$47,418", education: "Bachelor’s", schoolYears: "4", blurb: "Event coordinators plan and coordinate the moving parts of sports events to keep everything running smoothly. They collaborate with teams like security, ticketing, and concessions to handle logistics before and during the event. If the event is televised, they also help ensure the experience is positive for viewers watching from home." },
+    { title: "Athletic Director", url: "https://www.indeed.com/hire/job-description/athletic-director", medianSalary: "$65,271", education: "Bachelor's", schoolYears: "4", blurb: "Athletic directors lead the athletics department at a high school, college, or university and oversee day-to-day operations. A major part of the role is managing public relations while supervising staff, coordinating travel, and keeping programs organized. They also handle budgets and may manage equipment purchasing and other logistical needs depending on the size of the school." },
+    { title: "Athletic Scout", url: "https://www.bls.gov/ooh/entertainment-and-sports/coaches-and-scouts.htm", medianSalary: "$50,874", education: "Bachelor's", schoolYears: "4", blurb: "Athletic scouts evaluate athletes to judge current skill level and long-term potential for teams they represent. They attend games, review footage, and track news to stay updated on player performance and development. Scouts also speak with coaches and others to gather context about athletes and their future prospects." },
+    { title: "Athletic Trainer", url: "https://college.mayo.edu/academics/explore-health-care-careers/careers-a-z/athletic-trainer/", medianSalary: "$49,966", education: "Bachelor's", schoolYears: "4", blurb: "Athletic trainers work under physician supervision to prevent, recognize, and treat sports-related injuries and medical conditions. They help reduce injury risk by advising athletes on training, strength and balance work, proper equipment use, and nutrition. When injuries happen, they provide immediate care, develop treatment plans, and often manage records while attending practices and games, including nights and weekends." },
+    { title: "Athletics Coach", url: "https://www.indeed.com/hire/job-description/coach", medianSalary: "$48,041", education: "Bachelor's", schoolYears: "4", blurb: "Athletics coaches train athletes and teams to build skills, confidence, and performance in their sport. They create practice plans, motivate players, and develop strategies by analyzing opponents and adjusting tactics. Coaches also track athletes' physical and mental well-being and provide support to help the team compete at its best." },
+    { title: "Contract Negotiator", url: "https://www.indeed.com/career-advice/finding-a-job/how-to-become-contract-negotiator", medianSalary: "$93,419", education: "Bachelor's", schoolYears: "4", blurb: "Contract negotiators negotiate deals with teams for athlete clients with the goal of securing the strongest possible terms. They may also manage endorsements and marketing opportunities while maintaining relationships with clients and recruiting new athletes. The role involves signing and managing contracts, following rules and regulations, and applying business ethics throughout negotiations." },
+    { title: "Event Coordinator", url: "https://www.indeed.com/hire/job-description/event-coordinator", medianSalary: "$47,418", education: "Bachelor's", schoolYears: "4", blurb: "Event coordinators plan and coordinate the moving parts of sports events to keep everything running smoothly. They collaborate with teams like security, ticketing, and concessions to handle logistics before and during the event. If the event is televised, they also help ensure the experience is positive for viewers watching from home." },
   ],
 };
 
@@ -422,8 +374,24 @@ const RESOURCE_NORMALIZE = (arr, categoryLabel) =>
     featured: !!r.featured,
   }));
 
+function useImagePreload(srcs) {
+  const [loadedMap, setLoadedMap] = useState({});
+
+  useEffect(() => {
+    srcs.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () =>
+        setLoadedMap((prev) => ({ ...prev, [src]: true }));
+    });
+  }, []);
+
+  return (src) => !!loadedMap[src];
+}
+
 export default function Discover() {
   const quizTopRef = useRef(null);
+  const isLoaded = useImagePreload([discoverHero]);
 
   const [answers, setAnswers] = useState(() => Object.fromEntries(QUIZ.map((q) => [q.id, ""])));
   const [error, setError] = useState("");
@@ -504,7 +472,12 @@ export default function Discover() {
       <section
         style={{
           ...hero.fullBleed,
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.62)), url(${discoverHero})`,
+          backgroundImage: isLoaded(discoverHero)
+            ? `linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.62)), url(${discoverHero})`
+            : "none",
+          backgroundColor: "#1a2e42",
+          opacity: isLoaded(discoverHero) ? 1 : 0,
+          transition: "opacity 0.5s ease",
         }}
       >
         <div style={hero.innerMax}>
@@ -570,7 +543,6 @@ export default function Discover() {
                   <div style={hero.footerPill}>Actionable</div>
                 </div>
               </div>
-
               <div style={hero.heroHint}></div>
             </div>
           </div>
@@ -705,9 +677,7 @@ export default function Discover() {
 
               <div style={styles.placeholderStrip}>
                 {TYPE_PILLS.map((t) => (
-                  <div key={t} style={styles.placeholderPill}>
-                    {t}
-                  </div>
+                  <div key={t} style={styles.placeholderPill}>{t}</div>
                 ))}
               </div>
 
@@ -718,7 +688,7 @@ export default function Discover() {
 
               {filteredResources.length === 0 ? (
                 <div style={styles.emptyState}>
-                  No resources found for this interest yet. Add more resources tagged <b>{resultInterest}</b> and they’ll appear here automatically.
+                  No resources found for this interest yet. Add more resources tagged <b>{resultInterest}</b> and they'll appear here automatically.
                 </div>
               ) : (
                 <div className="discover-resource-grid" style={styles.resourceGrid}>
@@ -766,7 +736,6 @@ const styles = {
     overflowX: "clip",
   },
   container: { maxWidth: "1200px", margin: "0 auto", padding: "0 20px", boxSizing: "border-box" },
-
   card: {
     backgroundColor: COLORS.beige,
     borderRadius: "18px",
@@ -775,9 +744,8 @@ const styles = {
     boxShadow: "0 14px 30px rgba(0,0,0,0.10)",
     marginTop: "28px",
   },
-  cardTitle: { margin: 0, color: COLORS.text, fontSize: "1.7rem", fontFamily: '"Merriweather", serif' },
+  cardTitle: { margin: 0, color: COLORS.text, fontSize: "clamp(1.35rem, 2.5vw, 1.7rem)", fontFamily: '"Merriweather", serif' },
   cardSub: { marginTop: "8px", color: "#374151", marginBottom: "14px", fontWeight: 600 },
-
   error: {
     marginTop: "10px",
     backgroundColor: "#FEF2F2",
@@ -787,16 +755,14 @@ const styles = {
     borderRadius: "12px",
     fontWeight: 800,
   },
-
   formGrid: { display: "grid", gap: "14px" },
-
   group: {
     border: `1px solid ${COLORS.border}`,
     borderRadius: "14px",
     padding: "14px",
     backgroundColor: COLORS.cardFill,
   },
-  groupTitle: { fontWeight: 900, color: COLORS.text, marginBottom: "10px", lineHeight: 1.35 },
+  groupTitle: { fontWeight: 900, color: COLORS.text, marginBottom: "10px", lineHeight: 1.35, fontSize: "clamp(0.9rem, 1.6vw, 1rem)" },
   radioList: { display: "grid", gap: "10px" },
   radioRow: {
     display: "flex",
@@ -816,8 +782,7 @@ const styles = {
     backgroundColor: "rgba(75,156,211,0.08)",
     transform: "translateY(-1px)",
   },
-  radioLabel: { fontWeight: 700, lineHeight: 1.35, color: COLORS.textSoft },
-
+  radioLabel: { fontWeight: 700, lineHeight: 1.35, color: COLORS.textSoft, fontSize: "clamp(0.88rem, 1.5vw, 1rem)" },
   actions: { display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "6px" },
   primary: {
     padding: "11px 16px",
@@ -829,6 +794,7 @@ const styles = {
     cursor: "pointer",
     transition: "background-color 160ms ease",
     fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
   secondary: {
     padding: "11px 16px",
@@ -840,8 +806,8 @@ const styles = {
     color: COLORS.text,
     transition: "background-color 160ms ease",
     fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
-
   resultBox: {
     backgroundColor: COLORS.beige,
     borderRadius: "22px",
@@ -860,6 +826,7 @@ const styles = {
     border: `1px solid ${COLORS.border}`,
     fontWeight: 900,
     color: COLORS.text,
+    fontSize: "clamp(0.85rem, 1.5vw, 1rem)",
   },
   resultTitle: {
     fontFamily: '"Merriweather", serif',
@@ -869,14 +836,12 @@ const styles = {
     letterSpacing: "-0.02em",
     marginTop: 4,
   },
-  resultSub: { maxWidth: 720, color: "#374151", fontWeight: 700, lineHeight: 1.6 },
+  resultSub: { maxWidth: 720, color: "#374151", fontWeight: 700, lineHeight: 1.6, fontSize: "clamp(0.9rem, 1.6vw, 1rem)" },
   resultActions: { marginTop: 8 },
-
   sectionHeader: { marginTop: 6 },
-  sectionTitle: { margin: 0, fontSize: "1.55rem", fontFamily: '"Merriweather", serif', color: COLORS.text },
+  sectionTitle: { margin: 0, fontSize: "clamp(1.25rem, 2.2vw, 1.55rem)", fontFamily: '"Merriweather", serif', color: COLORS.text },
   sectionLine: { width: "100%", height: 1, backgroundColor: "rgba(0,0,0,0.10)", marginTop: 10 },
-  sectionSub: { marginTop: 10, marginBottom: 0, color: "#374151", fontWeight: 650 },
-
+  sectionSub: { marginTop: 10, marginBottom: 0, color: "#374151", fontWeight: 650, fontSize: "clamp(0.88rem, 1.5vw, 1rem)" },
   careerGrid: {
     display: "grid",
     gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
@@ -892,13 +857,12 @@ const styles = {
     transformOrigin: "center",
   },
   careerBody: { padding: "14px 14px 16px", display: "grid", gap: 10, height: "100%" },
-  careerTitle: { fontWeight: 950, fontSize: "1.06rem", color: COLORS.text, marginBottom: 2 },
-  careerBlurb: { color: COLORS.textSoft, fontWeight: 650, lineHeight: 1.45, fontSize: "0.95rem" },
+  careerTitle: { fontWeight: 950, fontSize: "clamp(0.95rem, 1.6vw, 1.06rem)", color: COLORS.text, marginBottom: 2 },
+  careerBlurb: { color: COLORS.textSoft, fontWeight: 650, lineHeight: 1.45, fontSize: "clamp(0.88rem, 1.4vw, 0.95rem)" },
   careerMeta: { display: "grid", gap: 8, marginTop: 2 },
   metaRow: { display: "flex", justifyContent: "space-between", gap: 12 },
-  metaKey: { color: "#374151", fontWeight: 800 },
-  metaVal: { color: COLORS.text, fontWeight: 900, textAlign: "right" },
-
+  metaKey: { color: "#374151", fontWeight: 800, fontSize: "clamp(0.82rem, 1.3vw, 0.92rem)" },
+  metaVal: { color: COLORS.text, fontWeight: 900, textAlign: "right", fontSize: "clamp(0.82rem, 1.3vw, 0.92rem)" },
   learnMoreRow: { marginTop: "auto", display: "flex", justifyContent: "flex-end", alignItems: "flex-end", paddingTop: 6 },
   learnMoreLink: {
     textDecoration: "none",
@@ -908,8 +872,8 @@ const styles = {
     borderRadius: "12px",
     border: "1px solid rgba(75,156,211,0.25)",
     backgroundColor: "rgba(75,156,211,0.08)",
+    fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)",
   },
-
   cardAccent: {
     position: "absolute",
     left: 0,
@@ -918,9 +882,7 @@ const styles = {
     width: "6px",
     backgroundColor: COLORS.carolinaBlue,
   },
-
   placeholderStrip: { display: "flex", flexWrap: "wrap", gap: 10, marginTop: 12 },
-
   placeholderPill: {
     padding: "8px 12px",
     borderRadius: "999px",
@@ -928,8 +890,8 @@ const styles = {
     backgroundColor: COLORS.cardFill,
     fontWeight: 900,
     color: COLORS.text,
+    fontSize: "clamp(0.82rem, 1.3vw, 0.92rem)",
   },
-
   oppsHeader: {
     display: "flex",
     justifyContent: "space-between",
@@ -937,7 +899,7 @@ const styles = {
     gap: 12,
     marginTop: 18,
   },
-  oppsTitle: { fontFamily: '"Merriweather", serif', fontWeight: 900, fontSize: "1.25rem", color: COLORS.text },
+  oppsTitle: { fontFamily: '"Merriweather", serif', fontWeight: 900, fontSize: "clamp(1.05rem, 2vw, 1.25rem)", color: COLORS.text },
   oppsCount: {
     padding: "7px 10px",
     borderRadius: "999px",
@@ -946,8 +908,8 @@ const styles = {
     fontWeight: 900,
     color: COLORS.text,
     whiteSpace: "nowrap",
+    fontSize: "clamp(0.82rem, 1.3vw, 0.92rem)",
   },
-
   emptyState: {
     marginTop: 12,
     border: `1px solid ${COLORS.border}`,
@@ -958,14 +920,12 @@ const styles = {
     fontWeight: 650,
     lineHeight: 1.55,
   },
-
   resourceGrid: {
     marginTop: 12,
     display: "grid",
     gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
     gap: 12,
   },
-
   resourceCard: {
     position: "relative",
     textDecoration: "none",
@@ -977,9 +937,8 @@ const styles = {
     boxShadow: "0 12px 26px rgba(0,0,0,0.10)",
     transition: "transform 160ms ease, box-shadow 160ms ease",
   },
-
   resourceTopRow: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 },
-  resourceTitle: { fontWeight: 950, fontSize: "1.02rem", lineHeight: 1.2 },
+  resourceTitle: { fontWeight: 950, fontSize: "clamp(0.92rem, 1.5vw, 1.02rem)", lineHeight: 1.2 },
   resourceBadge: {
     padding: "6px 10px",
     borderRadius: "999px",
@@ -988,10 +947,10 @@ const styles = {
     fontWeight: 900,
     color: COLORS.text,
     whiteSpace: "nowrap",
-    fontSize: "0.85rem",
+    fontSize: "clamp(0.78rem, 1.2vw, 0.85rem)",
   },
   resourceLine: { width: "100%", height: 1, backgroundColor: "rgba(0,0,0,0.10)", margin: "10px 0" },
-  resourceDesc: { color: COLORS.textSoft, fontWeight: 650, lineHeight: 1.45, fontSize: "0.95rem" },
+  resourceDesc: { color: COLORS.textSoft, fontWeight: 650, lineHeight: 1.45, fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)" },
   resourceMetaRow: { display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 },
   metaPill: {
     padding: "6px 10px",
@@ -1000,9 +959,8 @@ const styles = {
     backgroundColor: "rgba(255,255,255,0.55)",
     fontWeight: 900,
     color: COLORS.text,
-    fontSize: "0.85rem",
+    fontSize: "clamp(0.78rem, 1.2vw, 0.85rem)",
   },
-
   resourceAccent: {
     position: "absolute",
     left: 0,
@@ -1018,7 +976,7 @@ const styles = {
 const hero = {
   fullBleed: {
     width: "100%",
-    padding: "56px 0",
+    padding: "clamp(40px, 6vw, 56px) 0",
     backgroundSize: "cover",
     backgroundPosition: "center",
     borderBottom: `1px solid ${COLORS.border}`,
@@ -1031,7 +989,7 @@ const hero = {
   },
   innerGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
     gap: "22px",
     alignItems: "center",
   },
@@ -1051,13 +1009,13 @@ const hero = {
     backgroundColor: "rgba(245,252,239,0.92)",
     color: COLORS.text,
     fontWeight: 900,
-    fontSize: "0.85rem",
+    fontSize: "clamp(0.78rem, 1.2vw, 0.85rem)",
     border: "1px solid rgba(255,255,255,0.25)",
     backdropFilter: "blur(6px)",
   },
   title: {
     margin: 0,
-    fontSize: "clamp(2.25rem, 4.2vw, 3.45rem)",
+    fontSize: "clamp(2rem, 4.2vw, 3.45rem)",
     lineHeight: 1.03,
     letterSpacing: "-0.02em",
     fontWeight: 900,
@@ -1069,7 +1027,7 @@ const hero = {
     color: "rgba(245,252,239,0.92)",
     lineHeight: 1.65,
     fontWeight: 650,
-    fontSize: "1.02rem",
+    fontSize: "clamp(0.92rem, 1.5vw, 1.02rem)",
   },
   actions: { display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "4px" },
   cta: {
@@ -1083,6 +1041,7 @@ const hero = {
     boxShadow: "0 10px 22px rgba(0,0,0,0.18)",
     transition: "background-color 160ms ease, transform 160ms ease",
     fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+    fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
   statsRow: { display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "4px" },
   stat: {
@@ -1091,12 +1050,11 @@ const hero = {
     borderRadius: "16px",
     padding: "10px 12px",
     border: "1px solid rgba(255,255,255,0.25)",
-    minWidth: "150px",
+    minWidth: "120px",
     backdropFilter: "blur(6px)",
   },
-  statNum: { fontWeight: 950, fontSize: "1.35rem", lineHeight: 1.1 },
-  statLabel: { marginTop: "2px", color: "#4B5563", fontWeight: 850, fontSize: "0.9rem" },
-
+  statNum: { fontWeight: 950, fontSize: "clamp(1.1rem, 2vw, 1.35rem)", lineHeight: 1.1 },
+  statLabel: { marginTop: "2px", color: "#4B5563", fontWeight: 850, fontSize: "clamp(0.78rem, 1.2vw, 0.9rem)" },
   right: { display: "grid", gap: "10px" },
   heroCard: {
     borderRadius: "20px",
@@ -1108,12 +1066,12 @@ const hero = {
     display: "grid",
   },
   heroCardTop: { padding: "14px 16px 0" },
-  heroCardTitle: { fontFamily: '"Merriweather", serif', fontWeight: 900, color: COLORS.text, fontSize: "1.15rem" },
+  heroCardTitle: { fontFamily: '"Merriweather", serif', fontWeight: 900, color: COLORS.text, fontSize: "clamp(1rem, 1.8vw, 1.15rem)" },
   heroCardLine: { width: "100%", height: 1, backgroundColor: "rgba(0,0,0,0.10)", marginTop: 10 },
   heroCardBody: { padding: "14px 16px", display: "grid", gap: 10 },
   step: { display: "flex", gap: 10, alignItems: "flex-start" },
-  stepDot: { width: 10, height: 10, borderRadius: 999, backgroundColor: COLORS.carolinaBlue, marginTop: 6 },
-  stepText: { color: COLORS.textSoft, fontWeight: 800, lineHeight: 1.4 },
+  stepDot: { width: 10, height: 10, borderRadius: 999, backgroundColor: COLORS.carolinaBlue, marginTop: 6, flexShrink: 0 },
+  stepText: { color: COLORS.textSoft, fontWeight: 800, lineHeight: 1.4, fontSize: "clamp(0.88rem, 1.4vw, 1rem)" },
   heroCardFooter: { padding: "0 16px 16px", display: "flex", gap: 10, flexWrap: "wrap" },
   footerPill: {
     padding: "7px 10px",
@@ -1122,7 +1080,7 @@ const hero = {
     backgroundColor: "rgba(255,255,255,0.55)",
     fontWeight: 900,
     color: COLORS.text,
-    fontSize: "0.9rem",
+    fontSize: "clamp(0.78rem, 1.2vw, 0.9rem)",
   },
   heroHint: { color: "rgba(245,252,239,0.92)", fontWeight: 750, paddingLeft: 2 },
 };

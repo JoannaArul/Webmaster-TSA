@@ -27,7 +27,6 @@ const styles = `
 
   .sl { font-family: 'Inter', sans-serif; background: var(--warm-white); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
 
-  
   .sl-hero {
     position: relative;
     height: 88vh;
@@ -36,6 +35,7 @@ const styles = `
     display: flex;
     align-items: flex-end;
     overflow: hidden;
+    background-color: #1a2e42;
   }
 
   .sl-hero-img {
@@ -44,6 +44,7 @@ const styles = `
     object-fit: cover;
     object-position: center 30%;
     filter: brightness(0.62) saturate(0.85);
+    transition: opacity 0.5s ease;
   }
 
   .sl-hero-wash {
@@ -119,10 +120,8 @@ const styles = `
   }
   @keyframes sl-pulse-line { 0%,100%{opacity:0.3;} 50%{opacity:0.8;} }
 
-  
   .sl-body { max-width: 1040px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); }
 
-  
   .sl-label {
     font-size: 0.68rem;
     font-weight: 500;
@@ -136,7 +135,6 @@ const styles = `
   }
   .sl-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
-  
   .sl-cards-wrap { padding: 72px 0 56px; }
 
   .sl-cards-grid {
@@ -175,7 +173,7 @@ const styles = `
 
   .sl-card h3 {
     font-family: 'Merriweather', serif;
-    font-size: 1.15rem;
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
     font-weight: 600;
     color: var(--ink);
     line-height: 1.35;
@@ -183,7 +181,7 @@ const styles = `
   }
 
   .sl-card p {
-    font-size: 0.85rem;
+    font-size: clamp(0.78rem, 1.3vw, 0.85rem);
     color: var(--ink-soft);
     line-height: 1.65;
     font-weight: 300;
@@ -213,7 +211,6 @@ const styles = `
   .sl-card.active::after,
   .sl-card:hover::after { transform: scaleX(1); }
 
-  
   .sl-panel {
     overflow: hidden;
     max-height: 0;
@@ -229,7 +226,7 @@ const styles = `
 
   .sl-panel-title {
     font-family: 'Merriweather', serif;
-    font-size: 1.4rem;
+    font-size: clamp(1.15rem, 2.2vw, 1.4rem);
     font-weight: 400;
     color: var(--ink);
     margin-bottom: 8px;
@@ -268,12 +265,12 @@ const styles = `
     padding: 20px 24px;
     background: var(--warm-white);
     transition: background 0.15s;
+    flex-wrap: wrap;
   }
   .sl-res:hover { background: var(--cream); }
   .sl-res.crisis { background: #f0f7fd; }
   .sl-res.crisis:hover { background: #e4f1f9; }
 
-  
   .sl-res-marker {
     width: 28px;
     flex-shrink: 0;
@@ -285,27 +282,26 @@ const styles = `
     line-height: 1;
   }
 
-  .sl-res-body { flex: 1; }
+  .sl-res-body { flex: 1; min-width: 160px; }
   .sl-res-body strong {
     display: block;
-    font-size: 0.88rem;
+    font-size: clamp(0.82rem, 1.4vw, 0.88rem);
     font-weight: 500;
     color: var(--ink);
     margin-bottom: 3px;
   }
   .sl-res-body span {
-    font-size: 0.78rem;
+    font-size: clamp(0.72rem, 1.2vw, 0.78rem);
     color: var(--muted);
     font-weight: 300;
     line-height: 1.5;
   }
 
-  
   .sl-res-tag {
     padding: 7px 14px;
     border-radius: 3px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.2vw, 0.75rem);
     font-weight: 400;
     letter-spacing: 0.03em;
     white-space: nowrap;
@@ -322,7 +318,6 @@ const styles = `
     background: var(--cream);
   }
 
-  
   .sl-res-btn {
     background: var(--ink);
     color: #fff;
@@ -330,7 +325,7 @@ const styles = `
     padding: 8px 18px;
     border-radius: 3px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.76rem;
+    font-size: clamp(0.7rem, 1.2vw, 0.76rem);
     font-weight: 500;
     cursor: pointer;
     letter-spacing: 0.04em;
@@ -352,14 +347,13 @@ const styles = `
     border-radius: 0 4px 4px 0;
   }
   .sl-tips-strip p {
-    font-size: 0.82rem;
+    font-size: clamp(0.76rem, 1.3vw, 0.82rem);
     color: var(--ink-soft);
     line-height: 1.65;
     font-weight: 300;
   }
   .sl-tips-strip p + p { margin-top: 6px; }
 
-  
   .sl-breath {
     padding: 56px 0 64px;
     border-top: 1px solid var(--rule);
@@ -376,7 +370,7 @@ const styles = `
     padding: 9px 18px;
     border: 1px solid var(--rule);
     border-radius: 2px;
-    font-size: 0.82rem;
+    font-size: clamp(0.76rem, 1.3vw, 0.82rem);
     color: var(--ink-soft);
     font-weight: 300;
     background: var(--warm-white);
@@ -385,7 +379,6 @@ const styles = `
   .sl-pill span { color: var(--carolina); font-weight: 400; }
   .sl-pill:hover { border-color: var(--carolina); color: var(--ink); }
 
-  
   .sl-actions {
     padding: 48px 0 72px;
     border-top: 1px solid var(--rule);
@@ -398,13 +391,13 @@ const styles = `
 
   .sl-actions-text h3 {
     font-family: 'Merriweather', serif;
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
     font-weight: 400;
     color: var(--ink);
     margin-bottom: 4px;
   }
   .sl-actions-text p {
-    font-size: 0.8rem;
+    font-size: clamp(0.74rem, 1.2vw, 0.8rem);
     color: var(--muted);
     font-weight: 300;
   }
@@ -415,7 +408,7 @@ const styles = `
     padding: 11px 22px;
     border-radius: 3px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
+    font-size: clamp(0.76rem, 1.3vw, 0.82rem);
     font-weight: 500;
     cursor: pointer;
     letter-spacing: 0.03em;
@@ -429,7 +422,6 @@ const styles = `
   .sl-btn-outline { background: transparent; color: var(--ink-soft); border-color: var(--rule); }
   .sl-btn-outline:hover { border-color: var(--ink-soft); color: var(--ink); }
 
-  
   .sl-footer {
     border-top: 1px solid var(--rule);
     padding: 28px 0 40px;
@@ -441,12 +433,11 @@ const styles = `
   .sl-footer p {
     font-family: 'Merriweather', serif;
     font-style: italic;
-    font-size: 0.85rem;
+    font-size: clamp(0.78rem, 1.3vw, 0.85rem);
     color: var(--muted);
     text-align: center;
   }
 
-  
   .sl-reveal {
     opacity: 0;
     transform: translateY(14px);
@@ -456,6 +447,7 @@ const styles = `
 
   @media (max-width: 640px) {
     .sl-actions { flex-direction: column; align-items: flex-start; }
+    .sl-res { gap: 12px; }
   }
 `;
 
@@ -578,6 +570,21 @@ const cards = [
   { id: "lowpressure", num: "04", title: "I want something low-pressure",   desc: "Explore small, easy steps you can take right now." },
 ];
 
+function useImagePreload(srcs) {
+  const [loadedMap, setLoadedMap] = useState({});
+
+  useEffect(() => {
+    srcs.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () =>
+        setLoadedMap((prev) => ({ ...prev, [src]: true }));
+    });
+  }, []);
+
+  return (src) => !!loadedMap[src];
+}
+
 function Reveal({ children, delay = 0 }) {
   const ref = useRef(null);
   useEffect(() => {
@@ -600,6 +607,7 @@ function Reveal({ children, delay = 0 }) {
 export default function SupportLayer() {
   const [active, setActive] = useState(null);
   const navigate = useNavigate();
+  const isLoaded = useImagePreload([handsOnImg]);
 
   const toggle = (id) => {
     const next = active === id ? null : id;
@@ -616,9 +624,13 @@ export default function SupportLayer() {
       <style>{styles}</style>
       <div className="sl">
 
-        
         <section className="sl-hero">
-          <img src={handsOnImg} alt="" className="sl-hero-img" />
+          <img
+            src={handsOnImg}
+            alt=""
+            className="sl-hero-img"
+            style={{ opacity: isLoaded(handsOnImg) ? 1 : 0 }}
+          />
           <div className="sl-hero-wash" />
           <div className="sl-hero-content">
             <span className="sl-hero-eyebrow">Support &amp; Resources</span>
@@ -634,10 +646,8 @@ export default function SupportLayer() {
           </div>
         </section>
 
-        
         <div className="sl-body">
 
-          
           <div className="sl-cards-wrap">
             <Reveal>
               <p className="sl-label">Where are you right now?</p>
@@ -663,7 +673,6 @@ export default function SupportLayer() {
             </Reveal>
           </div>
 
-          
           {cards.map((c) => {
             const data = resourceData[c.id];
             return (
@@ -679,15 +688,9 @@ export default function SupportLayer() {
                           <strong>{r.name}</strong>
                           <span>{r.desc}</span>
                         </div>
-
-                        
                         {r.action === null ? null
-
-                        
                         : r.noLink ? (
                           <span className="sl-res-tag">{r.action}</span>
-
-                        
                         ) : (
                           <a
                             href={r.href}
@@ -711,7 +714,6 @@ export default function SupportLayer() {
             );
           })}
 
-          
           <Reveal>
             <div className="sl-breath">
               <p className="sl-label">A reminder</p>
@@ -728,7 +730,6 @@ export default function SupportLayer() {
             </div>
           </Reveal>
 
-          
           <Reveal>
             <div className="sl-actions">
               <div className="sl-actions-text">
@@ -736,14 +737,12 @@ export default function SupportLayer() {
                 <p>No pressure. Even one thing is enough.</p>
               </div>
               <div className="sl-actions-btns">
-                
                 <button
                   className="sl-btn sl-btn-fill"
                   onClick={() => navigate("/resource-hub")}
                 >
                   Explore low-effort ideas
                 </button>
-                
                 <button
                   className="sl-btn sl-btn-outline"
                   onClick={() => navigate("/")}
@@ -754,7 +753,6 @@ export default function SupportLayer() {
             </div>
           </Reveal>
 
-          
           <div className="sl-footer">
             <div className="sl-footer-rule" />
             <p>This space is here for you, whether you're ready to act or just need a moment.</p>

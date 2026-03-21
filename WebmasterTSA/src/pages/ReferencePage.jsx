@@ -98,7 +98,7 @@ export default function ReferencePage() {
       transform: "scale(1.02)",
       display: "block",
       opacity: heroLoaded ? 1 : 0,
-      transition: "opacity 0.25s ease",
+      transition: "opacity 0.5s ease",
     },
     heroOverlay: {
       position: "absolute",

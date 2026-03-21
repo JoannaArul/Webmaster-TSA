@@ -60,6 +60,21 @@ function injectFadeStyle() {
 }
 injectFadeStyle();
 
+function useImagePreload(srcs) {
+  const [loadedMap, setLoadedMap] = useState({});
+
+  useEffect(() => {
+    srcs.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () =>
+        setLoadedMap((prev) => ({ ...prev, [src]: true }));
+    });
+  }, []);
+
+  return (src) => !!loadedMap[src];
+}
+
 function BlurImage({ src, alt, style, eager = false, dominantColor = "#b8c9b0" }) {
   const imgRef = useRef(null);
 
@@ -101,6 +116,7 @@ function BlurImage({ src, alt, style, eager = false, dominantColor = "#b8c9b0" }
 
 export default function GrowtheHub() {
   const formTopRef = useRef(null);
+  const isLoaded = useImagePreload([buildingBlockBg]);
 
   const [form, setForm] = useState({
     name: "",
@@ -207,19 +223,17 @@ export default function GrowtheHub() {
 
   return (
     <div style={styles.page}>
-      {/*
-        Preload the hero background and the three card images so the browser
-        fetches them immediately — before CSS paint — on all devices.
-        These <link> tags are injected into the document <head> once on mount.
-      */}
-      <PreloadImages
-        srcs={[buildingBlockBg, buildImg, academicImg, reviewImg]}
-      />
+      <PreloadImages srcs={[buildingBlockBg, buildImg, academicImg, reviewImg]} />
 
       <section
         style={{
           ...hero.fullBleed,
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.58), rgba(0,0,0,0.58)), url(${buildingBlockBg})`,
+          backgroundImage: isLoaded(buildingBlockBg)
+            ? `linear-gradient(rgba(0,0,0,0.58), rgba(0,0,0,0.58)), url(${buildingBlockBg})`
+            : "none",
+          backgroundColor: "#1a2e42",
+          opacity: isLoaded(buildingBlockBg) ? 1 : 0,
+          transition: "opacity 0.5s ease",
         }}
       >
         <div style={hero.innerMax}>
@@ -340,9 +354,7 @@ export default function GrowtheHub() {
                 >
                   <option value="">Select type...</option>
                   {TYPE_OPTIONS.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
-                    </option>
+                    <option key={t} value={t}>{t}</option>
                   ))}
                 </select>
               </div>
@@ -357,9 +369,7 @@ export default function GrowtheHub() {
                 >
                   <option value="">Select area of interest...</option>
                   {INTEREST_OPTIONS.map((i) => (
-                    <option key={i} value={i}>
-                      {i}
-                    </option>
+                    <option key={i} value={i}>{i}</option>
                   ))}
                 </select>
               </div>
@@ -515,8 +525,8 @@ const styles = {
     marginTop: "32px",
     marginBottom: "32px",
   },
-  cardTitle: { margin: 0, color: COLORS.text, fontSize: "1.6rem", fontFamily: '"Merriweather", serif' },
-  cardSub: { marginTop: "6px", color: "#374151", marginBottom: "12px" },
+  cardTitle: { margin: 0, color: COLORS.text, fontSize: "clamp(1.35rem, 2.5vw, 1.6rem)", fontFamily: '"Merriweather", serif' },
+  cardSub: { marginTop: "6px", color: "#374151", marginBottom: "12px", fontSize: "clamp(0.88rem, 1.5vw, 1rem)" },
   error: {
     marginTop: "10px",
     backgroundColor: "#FEF2F2",
@@ -525,6 +535,7 @@ const styles = {
     padding: "10px 12px",
     borderRadius: "12px",
     fontWeight: 600,
+    fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)",
   },
   success: {
     marginTop: "10px",
@@ -534,11 +545,12 @@ const styles = {
     padding: "10px 12px",
     borderRadius: "12px",
     fontWeight: 600,
+    fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)",
   },
   formGrid: { display: "grid", gap: "12px" },
-  row2: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "12px" },
+  row2: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "12px" },
   field: { display: "grid", gap: "6px" },
-  label: { fontWeight: 600, color: COLORS.text },
+  label: { fontWeight: 600, color: COLORS.text, fontSize: "clamp(0.88rem, 1.5vw, 1rem)" },
   input: {
     width: "100%",
     padding: "12px",
@@ -549,6 +561,7 @@ const styles = {
     backgroundColor: "#FAFFF6",
     boxSizing: "border-box",
     fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
   textarea: {
     width: "100%",
@@ -562,6 +575,7 @@ const styles = {
     boxSizing: "border-box",
     resize: "vertical",
     fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
   select: {
     width: "100%",
@@ -573,12 +587,13 @@ const styles = {
     backgroundColor: "#FAFFF6",
     boxSizing: "border-box",
     fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
   group: { border: `1px solid ${COLORS.border}`, borderRadius: "12px", padding: "12px", backgroundColor: "#FAFFF6" },
-  groupTitle: { fontWeight: 600, color: COLORS.text, marginBottom: "8px" },
+  groupTitle: { fontWeight: 600, color: COLORS.text, marginBottom: "8px", fontSize: "clamp(0.88rem, 1.5vw, 1rem)" },
   checkList: { display: "grid", gap: "8px" },
   checkRow: { display: "flex", gap: "10px", alignItems: "center", color: COLORS.text },
-  checkLabel: { color: COLORS.text },
+  checkLabel: { color: COLORS.text, fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)" },
   actions: { display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "4px" },
   primary: {
     padding: "10px 14px",
@@ -590,6 +605,7 @@ const styles = {
     transition: "background-color 160ms ease",
     fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
     cursor: "pointer",
+    fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
   secondary: {
     padding: "10px 14px",
@@ -601,13 +617,14 @@ const styles = {
     color: COLORS.text,
     transition: "background-color 160ms ease",
     fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
 };
 
 const hero = {
   fullBleed: {
     width: "100%",
-    padding: "42px 0",
+    padding: "clamp(28px, 5vw, 42px) 0",
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -642,13 +659,13 @@ const hero = {
     backgroundColor: "rgba(245,252,239,0.92)",
     color: COLORS.text,
     fontWeight: 600,
-    fontSize: "0.85rem",
+    fontSize: "clamp(0.78rem, 1.2vw, 0.85rem)",
     border: "1px solid rgba(255,255,255,0.25)",
     backdropFilter: "blur(6px)",
   },
   title: {
     margin: 0,
-    fontSize: "clamp(2.2rem, 4vw, 3.3rem)",
+    fontSize: "clamp(2rem, 4vw, 3.3rem)",
     lineHeight: 1.02,
     letterSpacing: "-0.02em",
     fontWeight: 900,
@@ -659,7 +676,7 @@ const hero = {
     color: "rgba(255,255,255,0.92)",
     lineHeight: 1.6,
     fontWeight: 500,
-    fontSize: "1.02rem",
+    fontSize: "clamp(0.92rem, 1.5vw, 1.02rem)",
   },
   actions: { display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "4px" },
   cta: {
@@ -673,6 +690,7 @@ const hero = {
     boxShadow: "0 10px 22px rgba(0,0,0,0.18)",
     transition: "background-color 160ms ease, transform 160ms ease",
     fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
   statsRow: { display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "4px" },
   stat: {
@@ -681,12 +699,12 @@ const hero = {
     borderRadius: "16px",
     padding: "10px 12px",
     border: "1px solid rgba(255,255,255,0.25)",
-    minWidth: "130px",
+    minWidth: "120px",
     backdropFilter: "blur(6px)",
     fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
   },
-  statNum: { fontWeight: 700, fontSize: "1.35rem", lineHeight: 1.1 },
-  statLabel: { marginTop: "2px", color: "#4B5563", fontWeight: 500, fontSize: "0.9rem" },
+  statNum: { fontWeight: 700, fontSize: "clamp(1.1rem, 2vw, 1.35rem)", lineHeight: 1.1 },
+  statLabel: { marginTop: "2px", color: "#4B5563", fontWeight: 500, fontSize: "clamp(0.78rem, 1.2vw, 0.9rem)" },
   right: { display: "grid", gap: "12px" },
   infoCard: {
     position: "relative",
@@ -727,10 +745,10 @@ const hero = {
     color: COLORS.text,
     fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
   },
-  cardTitle: { fontWeight: 600, fontSize: "1.05rem" },
-  cardTitleBig: { fontWeight: 600, fontSize: "1.12rem" },
+  cardTitle: { fontWeight: 600, fontSize: "clamp(0.95rem, 1.6vw, 1.05rem)" },
+  cardTitleBig: { fontWeight: 600, fontSize: "clamp(1rem, 1.8vw, 1.12rem)" },
   cardLine: { width: "100%", height: "1px", backgroundColor: "rgba(0,0,0,0.10)", margin: "8px 0" },
-  cardDesc: { color: COLORS.textSoft, fontWeight: 400, lineHeight: 1.4, fontSize: "0.95rem" },
+  cardDesc: { color: COLORS.textSoft, fontWeight: 400, lineHeight: 1.4, fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)" },
   cardAccent: {
     position: "absolute",
     left: 0,
