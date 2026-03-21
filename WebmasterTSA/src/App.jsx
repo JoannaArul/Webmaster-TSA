@@ -16,6 +16,8 @@ import ReferencePage from "./pages/ReferencePage.jsx";
 import OurMission from "./pages/OurMission.jsx";
 import Support from "./pages/Support.jsx";
 import BeyondTheClassroom from "./pages/BeyondTheClassroom.jsx";
+import TwoMinuteReset from "./pages/TwoMinuteReset.jsx";
+import FocusSpace from "./pages/FocusSpace.jsx";
 
 export default function App() {
   return (
@@ -37,6 +39,8 @@ export default function App() {
         <Route path="/reference-page" element={<ReferencePage />} />
         <Route path="/support" element={<Support />} />
         <Route path="/beyond-the-classroom" element={<BeyondTheClassroom />} />
+        <Route path="/two-minute-reset" element={<TwoMinuteReset />} />
+        <Route path="/focus-space" element={<FocusSpace />} />
       </Routes>
 
       <Footer />

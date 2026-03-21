@@ -30,6 +30,8 @@ const DISCOVER_MENU = [
 const SUPPORT_MENU = [
   { to: "/support", label: "Support", end: true },
   { to: "/beyond-the-classroom", label: "Beyond the Classroom" },
+  { to: "/two-minute-reset", label: "2 Minute Reset" },
+  { to: "/focus-space", label: "Focus Space" },
 ];
 
 export default function Header() {
@@ -170,7 +172,10 @@ export default function Header() {
     location.pathname === "/discover" || location.pathname === "/blog";
 
   const supportIsActive =
-    location.pathname === "/support" || location.pathname === "/beyond-the-classroom";
+    location.pathname === "/support" ||
+    location.pathname === "/beyond-the-classroom" ||
+    location.pathname === "/two-minute-reset" ||
+    location.pathname === "/focus-space";
 
   const linkStyle = ({ isActive }) => ({
     fontFamily: "var(--font-body)",
@@ -388,6 +393,7 @@ export default function Header() {
               Our Mission
             </NavLink>
 
+            {/* The Hub dropdown */}
             <div style={styles.dropdownWrap} onMouseEnter={openHubSoon} onMouseLeave={closeHubSoon}>
               <button
                 ref={hubBtnRef}
@@ -402,7 +408,7 @@ export default function Header() {
                 onFocus={openHubSoon}
                 style={hubTopLinkStyle}
               >
-                Resource Hub
+                The Hub
                 <span
                   aria-hidden="true"
                   style={{
@@ -446,6 +452,7 @@ export default function Header() {
               )}
             </div>
 
+            {/* Explore dropdown */}
             <div
               style={styles.dropdownWrap}
               onMouseEnter={openDiscoverSoon}
@@ -464,7 +471,7 @@ export default function Header() {
                 onFocus={openDiscoverSoon}
                 style={discoverTopLinkStyle}
               >
-                Discover
+                Explore
                 <span
                   aria-hidden="true"
                   style={{
@@ -508,6 +515,7 @@ export default function Header() {
               )}
             </div>
 
+            {/* Wellness dropdown */}
             <div
               style={styles.dropdownWrap}
               onMouseEnter={openSupportSoon}
@@ -526,7 +534,7 @@ export default function Header() {
                 onFocus={openSupportSoon}
                 style={supportTopLinkStyle}
               >
-                Support
+                Wellness
                 <span
                   aria-hidden="true"
                   style={{
@@ -629,6 +637,7 @@ export default function Header() {
                 Our Mission
               </NavLink>
 
+              {/* Mobile: The Hub */}
               <div style={styles.mobileSection}>
                 <button
                   type="button"
@@ -639,7 +648,7 @@ export default function Header() {
                     ...(hubIsActive ? styles.mobileSectionToggleActive : {}),
                   }}
                 >
-                  <span>Resource Hub</span>
+                  <span>The Hub</span>
                   <span
                     aria-hidden="true"
                     style={{
@@ -674,6 +683,7 @@ export default function Header() {
                 </div>
               </div>
 
+              {/* Mobile: Explore */}
               <div style={styles.mobileSection}>
                 <button
                   type="button"
@@ -684,7 +694,7 @@ export default function Header() {
                     ...(discoverIsActive ? styles.mobileSectionToggleActive : {}),
                   }}
                 >
-                  <span>Discover</span>
+                  <span>Explore</span>
                   <span
                     aria-hidden="true"
                     style={{
@@ -719,6 +729,7 @@ export default function Header() {
                 </div>
               </div>
 
+              {/* Mobile: Wellness */}
               <div style={styles.mobileSection}>
                 <button
                   type="button"
@@ -729,7 +740,7 @@ export default function Header() {
                     ...(supportIsActive ? styles.mobileSectionToggleActive : {}),
                   }}
                 >
-                  <span>Support</span>
+                  <span>Wellness</span>
                   <span
                     aria-hidden="true"
                     style={{
@@ -745,7 +756,7 @@ export default function Header() {
                 <div
                   style={{
                     ...styles.mobileSubmenu,
-                    maxHeight: mobileSupportOpen ? "220px" : "0px",
+                    maxHeight: mobileSupportOpen ? "320px" : "0px",
                     opacity: mobileSupportOpen ? 1 : 0,
                     marginTop: mobileSupportOpen ? "6px" : "0px",
                   }}

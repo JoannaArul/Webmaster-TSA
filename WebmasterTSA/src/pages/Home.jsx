@@ -364,6 +364,9 @@ function TestimonialsSection() {
           <p style={tStyles.sub}>
             Real residents. Real resources. Real impact.
           </p>
+          <p style={tStyles.sub}>
+            (This section is intended for competition display purposes only and does not represent factual information.)
+          </p>
         </div>
 
         {/* Carousel */}
