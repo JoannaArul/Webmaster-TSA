@@ -220,7 +220,7 @@ function FlowCard({ icon, title, description, isLoaded }) {
                 ? styles.iconBg(icon).backgroundImage
                 : "none",
               backgroundColor: isLoaded ? "transparent" : "#1a2e42",
-              transition: "background-image 0.25s ease",
+              transition: "opacity 0.5s ease",
             }}
           />
         </div>
@@ -276,7 +276,8 @@ export default function Mission() {
             ? `url(${researchTriangleImg})`
             : "none",
           backgroundColor: "#1a2e42",
-          transition: "background-image 0.25s ease",
+          opacity: isLoaded(researchTriangleImg) ? 1 : 0,
+          transition: "opacity 0.5s ease",
         }}
       >
         <div style={styles.heroOverlay} />
@@ -306,7 +307,7 @@ export default function Mission() {
                 style={{
                   ...styles.leftImage,
                   opacity: isLoaded(VolunteeringImg) ? 1 : 0,
-                  transition: "opacity 0.25s ease",
+                  transition: "opacity 0.5s ease",
                 }}
                 decoding="sync"
                 fetchPriority="high"
@@ -425,7 +426,11 @@ const styles = {
     backgroundRepeat: "no-repeat",
     overflow: "hidden",
   },
-  heroOverlay: { position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.55)" },
+  heroOverlay: {
+    position: "absolute",
+    inset: 0,
+    backgroundColor: "rgba(0,0,0,0.55)",
+  },
   heroInner: {
     position: "relative",
     zIndex: 1,
