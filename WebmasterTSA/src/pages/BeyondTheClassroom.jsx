@@ -233,17 +233,17 @@ function ResourceCard({ card, color, accentBg }) {
               {card.title}
             </div>
           </div>
-          <div>
-            <div style={{ fontSize: "12px", color: "#888", display: "flex", alignItems: "center", gap: "5px", marginBottom: "10px" }}>
+          <div style={{ paddingBottom: "6px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ fontSize: "12px", color: "#888", display: "flex", alignItems: "center", gap: "5px" }}>
               <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: color, display: "inline-block", flexShrink: 0 }} />
               <span style={{ fontWeight: 600, color: COLORS.textSoft }}>Time:</span>&nbsp;{card.time}
             </div>
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <div style={{ width: "30px", height: "30px", borderRadius: "999px", background: color, display: "grid", placeItems: "center" }}>
-                <ArrowIcon />
-              </div>
+            <div style={{ width: "30px", height: "30px", borderRadius: "999px", background: color, display: "grid", placeItems: "center" }}>
+              <ArrowIcon />
             </div>
           </div>
+        </div>
         </div>
         {/* back */}
         <div
@@ -623,7 +623,7 @@ export default function BeyondTheClassroom() {
               { step: "03", title: "Come back when you need it", body: "This page is not a to-do list. It is a resource. Return to it on hard weeks and use it however it actually serves you." },
             ].map((item) => (
               <div key={item.step} style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.07)", borderRadius: "16px", padding: "22px 20px", boxShadow: "0 3px 16px rgba(0,0,0,0.04)", position: "relative", overflow: "hidden" }}>
-                <div style={{ position: "absolute", top: "-8px", right: "14px", fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "62px", color: "rgba(75,156,211,0.07)", lineHeight: 1, userSelect: "none", pointerEvents: "none" }}>
+                <div style={{ position: "absolute", top: "10px", right: "14px", fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "62px", color: "rgba(75,156,211,0.07)", lineHeight: 1, userSelect: "none", pointerEvents: "none" }}>
                   {item.step}
                 </div>
                 <div style={{ width: "28px", height: "28px", borderRadius: "999px", background: COLORS.carolinaBlue, display: "grid", placeItems: "center", marginBottom: "12px" }}>
