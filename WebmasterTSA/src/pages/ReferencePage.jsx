@@ -256,7 +256,7 @@ export default function ReferencePage() {
             design principles to ensure compatibility across a wide range of devices and screen sizes. Form submissions
             are handled through Formspree, allowing secure and reliable data collection without server-side overhead. All
             visual assets, layout structure, and interactive elements were designed and implemented by our team. The site
-            follows accessibility-conscious design practices aligned with WCAG guidelines, including sufficient color
+            follows accessibility-conscious design practices, including sufficient color
             contrast, readable typographic, and clear visual hierarchy to support inclusive use. All third-party images
             for design and hero banners are a combination of publicly licensed stock media sites like Unsplash, Pixabay,
             and Canva.

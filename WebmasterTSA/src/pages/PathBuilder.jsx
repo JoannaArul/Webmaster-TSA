@@ -672,8 +672,7 @@ export default function PathBuilder({ resources = ALL_RESOURCES }) {
             fontSize:"clamp(0.88rem,1.4vw,1rem)",
             maxWidth:"50ch", lineHeight:1.75, fontFamily:FB,
           }}>
-            Share your interests and goals. We will build a personalised roadmap
-            of local resources to help you get there.
+            Share your interests and goals. We will build a personalized roadmap of local resources to help you get there, so you don’t feel overwhelmed by the surplus of options and can focus on what truly aligns with your path.
           </p>
         </div>
       </div>

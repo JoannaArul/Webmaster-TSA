@@ -25,7 +25,7 @@ const css = `
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   .blog-root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-body);
     background: #F5FCEF;
     min-height: 100vh;
     color: #000000;
@@ -114,6 +114,7 @@ const css = `
   .tag-wellness { background: #fce8f0; color: #a0295a; }
 
   .card-title {
+    font-family: var(--font-heading);
     font-size: 1.06rem;
     font-weight: 700;
     color: #000000;
@@ -358,6 +359,7 @@ export default function Blog() {
                 borderRadius: "20px",
                 border: "1px solid rgba(75,156,211,0.25)",
                 marginBottom: "1.1rem",
+                fontFamily: "var(--font-body)",
               }}>
                 <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#4B9CD3", flexShrink: 0, display: "inline-block" }} />
                 Resources
@@ -371,6 +373,7 @@ export default function Blog() {
                 lineHeight: 1.1,
                 marginBottom: "0.75rem",
                 textShadow: "0 4px 24px rgba(0,0,0,0.4)",
+                fontFamily: "var(--font-heading)",
               }}>
                 The Resource <span style={{ color: "#4B9CD3" }}>Blog</span>
               </h1>
@@ -388,6 +391,7 @@ export default function Blog() {
                 maxWidth: "480px",
                 margin: "0 auto",
                 lineHeight: 1.72,
+                fontFamily: "var(--font-body)",
               }}>
                 Guides, tips, and helpful resources for high school students across the Triangle area, including opportunities for volunteering, academics, and community involvement.
               </p>

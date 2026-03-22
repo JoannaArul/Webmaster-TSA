@@ -334,9 +334,7 @@ export default function ResourceHub() {
           </h1>
 
           <p style={hero.subWhite}>
-            Search local resources in one place with Nexus. Filter by type, city,
-            area of interest, grade level, and eligibility to find programs,
-            scholarships, volunteering, nonprofits, support services, and more.
+            Search local resources in one place with Nexus. Filter by type, city, area of interest, grade level, and eligibility to find programs, scholarships, volunteering, nonprofits, support services, and more, so you can stay organized, explore with ease, and avoid unnecessary stress or burnout along the way.
           </p>
 
           <div className="hero-stat-row" style={hero.statRow}>

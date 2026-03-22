@@ -17,14 +17,27 @@ export default function Footer() {
           </p>
         </div>
 
-        <div style={styles.col}>
+        <div style={styles.linksWrapper} className="footer-linksWrapper">
           <div style={styles.colHeader}>Links</div>
-          <a style={styles.link} href="/">Home</a>
-          <a style={styles.link} href="/our-mission">Our Mission</a>
-          <a style={styles.link} href="/resource-hub">Resource Hub</a>
-          <a style={styles.link} href="/grow-the-hub">Grow the Hub</a>
-          <a style={styles.link} href="/discover">Discover</a>
-          <a style={styles.link} href="/reference-page">Reference Page</a>
+          <div style={styles.linksGrid} className="footer-linksGrid">
+            <div style={styles.linkCol}>
+              <a style={styles.link} href="/">Home</a>
+              <a style={styles.link} href="/our-mission">Our Mission</a>
+              <a style={styles.link} href="/resource-hub">Resource Hub</a>
+              <a style={styles.link} href="/resource-hub/calendar">Calendar View</a>
+              <a style={styles.link} href="/path-builder">Path Builder</a>
+              <a style={styles.link} href="/discover">Discover</a>
+              <a style={styles.link} href="/blog">Blog</a>
+            </div>
+            <div style={styles.linkCol}>
+              <a style={styles.link} href="/support">Support</a>
+              <a style={styles.link} href="/beyond-the-classroom">Beyond the Classroom</a>
+              <a style={styles.link} href="/two-minute-reset">2 Minute Reset</a>
+              <a style={styles.link} href="/focus-space">Focus Space</a>
+              <a style={styles.link} href="/grow-the-hub">Grow the Hub</a>
+              <a style={styles.link} href="/reference-page">Reference Page</a>
+            </div>
+          </div>
         </div>
 
         <div style={styles.colRight} className="footer-colRight">
@@ -225,7 +238,11 @@ const styles = {
     opacity: 0.95,
     maxWidth: "60ch",
   },
-  col: { display: "flex", flexDirection: "column", gap: "10px", minWidth: 0 },
+  linksWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    minWidth: 0,
+  },
   colHeader: {
     fontFamily: "var(--font-heading)",
     fontWeight: 900,
@@ -233,6 +250,16 @@ const styles = {
     textTransform: "uppercase",
     fontSize: "0.95rem",
     marginBottom: "6px",
+  },
+  linksGrid: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "0 20px",
+  },
+  linkCol: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
   },
   link: {
     fontFamily: "var(--font-body)",
@@ -324,6 +351,12 @@ const css = `
     .footer-contactBlock {
       width: 100% !important;
       max-width: 520px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-linksGrid {
+      grid-template-columns: 1fr 1fr !important;
     }
   }
 `;

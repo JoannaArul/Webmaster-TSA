@@ -43,10 +43,11 @@ const GRADE_OPTIONS = ["9", "10", "11", "12"];
 
 const COLORS = {
   carolinaBlue: "#4B9CD3",
-  beige: "#F5FCEF",
+  pageBg: "#F0EBE3",
+  lightBg: "#FAF7F4",
+  border: "#E2D5C8",
   text: "#111111",
   textSoft: "#2B2B2B",
-  border: "#E5E7EB",
 };
 
 const FADE_STYLE_ID = "img-fade-style";
@@ -223,8 +224,97 @@ export default function GrowtheHub() {
 
   return (
     <div style={styles.page}>
+      <style>{`
+        /* ── responsive grid for hero info cards ── */
+        .gth-hero-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 22px;
+          align-items: center;
+        }
+        /* ── form two-col row ── */
+        .gth-row2 {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 12px;
+        }
+        /* ── checkbox group row ── */
+        .gth-check-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 12px;
+        }
+        /* ── action buttons ── */
+        .gth-actions {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin-top: 4px;
+        }
+        .gth-actions button {
+          flex: 1 1 140px;
+          min-width: 140px;
+        }
+        /* ── hero stats ── */
+        .gth-stats-row {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          margin-top: 4px;
+        }
+        .gth-stat {
+          flex: 1 1 120px;
+          background-color: rgba(240,235,227,0.92);
+          color: ${COLORS.text};
+          border-radius: 16px;
+          padding: 10px 12px;
+          border: 1px solid rgba(255,255,255,0.25);
+          min-width: 120px;
+          backdrop-filter: blur(6px);
+          font-family: var(--font-body, "Inter", system-ui, sans-serif);
+        }
+        .gth-stat-num {
+          font-weight: 700;
+          font-size: clamp(1.1rem, 2vw, 1.35rem);
+          line-height: 1.1;
+        }
+        .gth-stat-label {
+          margin-top: 2px;
+          color: #4B5563;
+          font-weight: 500;
+          font-size: clamp(0.78rem, 1.2vw, 0.9rem);
+        }
+        /* ── kicker pill ── */
+        .gth-kicker {
+          display: inline-flex;
+          width: fit-content;
+          padding: 8px 12px;
+          border-radius: 999px;
+          background-color: rgba(240,235,227,0.92);
+          color: ${COLORS.text};
+          font-weight: 600;
+          font-size: clamp(0.78rem, 1.2vw, 0.85rem);
+          border: 1px solid rgba(255,255,255,0.25);
+          backdrop-filter: blur(6px);
+          font-family: var(--font-body, "Inter", system-ui, sans-serif);
+        }
+        /* ── tablet tweaks ── */
+        @media (max-width: 768px) {
+          .gth-hero-grid { grid-template-columns: 1fr; }
+          .gth-hero-right { max-height: none !important; }
+          .gth-row2 { grid-template-columns: 1fr; }
+        }
+        /* ── phone tweaks ── */
+        @media (max-width: 480px) {
+          .gth-check-grid { grid-template-columns: 1fr; }
+          .gth-actions button { flex: 1 1 100%; }
+          .gth-stats-row { flex-direction: column; }
+        }
+      `}</style>
+
       <PreloadImages srcs={[buildingBlockBg, buildImg, academicImg, reviewImg]} />
 
+      {/* ── HERO ── */}
       <section
         style={{
           ...hero.fullBleed,
@@ -237,9 +327,10 @@ export default function GrowtheHub() {
         }}
       >
         <div style={hero.innerMax}>
-          <div style={hero.innerGrid}>
+          <div className="gth-hero-grid">
+            {/* left copy */}
             <div style={hero.left}>
-              <div style={hero.kicker}>Community Submission</div>
+              <div className="gth-kicker">Community Submission</div>
 
               <h1 style={hero.title}>HELP BUILD NEXUS</h1>
 
@@ -260,19 +351,20 @@ export default function GrowtheHub() {
                 </button>
               </div>
 
-              <div style={hero.statsRow}>
-                <div style={hero.stat}>
-                  <div style={hero.statNum}>9 to 12</div>
-                  <div style={hero.statLabel}>Grades supported</div>
+              <div className="gth-stats-row">
+                <div className="gth-stat">
+                  <div className="gth-stat-num">9 to 12</div>
+                  <div className="gth-stat-label">Grades supported</div>
                 </div>
-                <div style={hero.stat}>
-                  <div style={hero.statNum}>3</div>
-                  <div style={hero.statLabel}>Cities</div>
+                <div className="gth-stat">
+                  <div className="gth-stat-num">3</div>
+                  <div className="gth-stat-label">Cities</div>
                 </div>
               </div>
             </div>
 
-            <div style={hero.right}>
+            {/* right cards */}
+            <div className="gth-hero-right" style={hero.right}>
               {heroCards.map((c, idx) => (
                 <motion.div
                   key={c.title}
@@ -311,6 +403,7 @@ export default function GrowtheHub() {
         </div>
       </section>
 
+      {/* ── FORM ── */}
       <div style={styles.container}>
         <div ref={formTopRef} />
 
@@ -332,6 +425,7 @@ export default function GrowtheHub() {
             <input type="hidden" name="cities" value={form.cities.join(", ")} />
             <input type="hidden" name="grades" value={form.grades.join(", ")} />
 
+            {/* Resource name */}
             <div style={styles.field}>
               <div style={styles.label}>Resource Name *</div>
               <input
@@ -343,7 +437,8 @@ export default function GrowtheHub() {
               />
             </div>
 
-            <div style={styles.row2}>
+            {/* Type + Interest */}
+            <div className="gth-row2">
               <div style={styles.field}>
                 <div style={styles.label}>Type *</div>
                 <select
@@ -375,7 +470,8 @@ export default function GrowtheHub() {
               </div>
             </div>
 
-            <div style={styles.row2}>
+            {/* City + Grades */}
+            <div className="gth-check-grid">
               <div style={styles.group}>
                 <div style={styles.groupTitle}>City *</div>
                 <div style={styles.checkList}>
@@ -383,6 +479,7 @@ export default function GrowtheHub() {
                     <label key={c} style={styles.checkRow}>
                       <input
                         type="checkbox"
+                        style={styles.checkbox}
                         checked={form.cities.includes(c)}
                         onChange={() => toggleArray("cities", c)}
                       />
@@ -399,6 +496,7 @@ export default function GrowtheHub() {
                     <label key={g} style={styles.checkRow}>
                       <input
                         type="checkbox"
+                        style={styles.checkbox}
                         checked={form.grades.includes(g)}
                         onChange={() => toggleArray("grades", g)}
                       />
@@ -409,11 +507,13 @@ export default function GrowtheHub() {
               </div>
             </div>
 
+            {/* Eligibility */}
             <div style={styles.group}>
               <div style={styles.groupTitle}>Eligibility</div>
               <label style={styles.checkRow}>
                 <input
                   type="checkbox"
+                  style={styles.checkbox}
                   checked={form.openToAllImmigrationStatuses}
                   onChange={(e) => update("openToAllImmigrationStatuses", e.target.checked)}
                 />
@@ -426,6 +526,7 @@ export default function GrowtheHub() {
               />
             </div>
 
+            {/* Description */}
             <div style={styles.field}>
               <div style={styles.label}>Description *</div>
               <textarea
@@ -437,6 +538,7 @@ export default function GrowtheHub() {
               />
             </div>
 
+            {/* Link */}
             <div style={styles.field}>
               <div style={styles.label}>Official Link *</div>
               <input
@@ -448,7 +550,8 @@ export default function GrowtheHub() {
               />
             </div>
 
-            <div style={styles.actions}>
+            {/* Buttons */}
+            <div className="gth-actions">
               <button
                 type="submit"
                 style={{
@@ -466,8 +569,8 @@ export default function GrowtheHub() {
               <button
                 type="button"
                 style={styles.secondary}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#E6EDE2")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = COLORS.beige)}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#EDE8E1")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = COLORS.lightBg)}
                 onClick={() =>
                   setForm({
                     name: "",
@@ -510,23 +613,38 @@ function PreloadImages({ srcs }) {
 const styles = {
   page: {
     minHeight: "100vh",
-    backgroundColor: COLORS.beige,
+    backgroundColor: COLORS.pageBg,
     paddingBottom: "28px",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontFamily: 'var(--font-body, "Inter", system-ui, -apple-system, sans-serif)',
     color: COLORS.text,
   },
-  container: { maxWidth: "1200px", margin: "0 auto", padding: "0 20px", boxSizing: "border-box" },
+  container: {
+    maxWidth: "1200px",
+    margin: "0 auto",
+    padding: "0 clamp(16px, 4vw, 24px)",
+    boxSizing: "border-box",
+  },
   card: {
-    backgroundColor: COLORS.beige,
+    backgroundColor: COLORS.lightBg,
     borderRadius: "18px",
-    padding: "18px",
+    padding: "clamp(16px, 3vw, 24px)",
     border: `1px solid ${COLORS.border}`,
-    boxShadow: "0 14px 30px rgba(0,0,0,0.10)",
+    boxShadow: "0 14px 30px rgba(0,0,0,0.08)",
     marginTop: "32px",
     marginBottom: "32px",
   },
-  cardTitle: { margin: 0, color: COLORS.text, fontSize: "clamp(1.35rem, 2.5vw, 1.6rem)", fontFamily: '"Merriweather", serif' },
-  cardSub: { marginTop: "6px", color: "#374151", marginBottom: "12px", fontSize: "clamp(0.88rem, 1.5vw, 1rem)" },
+  cardTitle: {
+    margin: 0,
+    color: COLORS.text,
+    fontSize: "clamp(1.35rem, 2.5vw, 1.6rem)",
+    fontFamily: 'var(--font-heading, "Merriweather", serif)',
+  },
+  cardSub: {
+    marginTop: "6px",
+    color: "#4B5563",
+    marginBottom: "12px",
+    fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
+  },
   error: {
     marginTop: "10px",
     backgroundColor: "#FEF2F2",
@@ -547,76 +665,107 @@ const styles = {
     fontWeight: 600,
     fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)",
   },
-  formGrid: { display: "grid", gap: "12px" },
-  row2: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "12px" },
+  formGrid: { display: "grid", gap: "14px" },
   field: { display: "grid", gap: "6px" },
-  label: { fontWeight: 600, color: COLORS.text, fontSize: "clamp(0.88rem, 1.5vw, 1rem)" },
+  label: {
+    fontWeight: 600,
+    color: COLORS.text,
+    fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
+    fontFamily: 'var(--font-body, "Inter", system-ui, sans-serif)',
+  },
   input: {
     width: "100%",
-    padding: "12px",
+    padding: "clamp(10px, 1.5vw, 13px) 12px",
     borderRadius: "10px",
-    border: "1px solid #D1D5DB",
+    border: `1px solid ${COLORS.border}`,
     outline: "none",
     color: COLORS.text,
-    backgroundColor: "#FAFFF6",
+    backgroundColor: COLORS.lightBg,
     boxSizing: "border-box",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontFamily: 'var(--font-body, "Inter", system-ui, sans-serif)',
     fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
   textarea: {
     width: "100%",
-    minHeight: "120px",
-    padding: "12px",
+    minHeight: "clamp(100px, 15vw, 130px)",
+    padding: "clamp(10px, 1.5vw, 13px) 12px",
     borderRadius: "10px",
-    border: "1px solid #D1D5DB",
+    border: `1px solid ${COLORS.border}`,
     outline: "none",
     color: COLORS.text,
-    backgroundColor: "#FAFFF6",
+    backgroundColor: COLORS.lightBg,
     boxSizing: "border-box",
     resize: "vertical",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontFamily: 'var(--font-body, "Inter", system-ui, sans-serif)',
     fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
   select: {
     width: "100%",
-    padding: "12px",
+    padding: "clamp(10px, 1.5vw, 13px) 12px",
     borderRadius: "10px",
-    border: "1px solid #D1D5DB",
+    border: `1px solid ${COLORS.border}`,
     outline: "none",
     color: COLORS.text,
-    backgroundColor: "#FAFFF6",
+    backgroundColor: COLORS.lightBg,
     boxSizing: "border-box",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontFamily: 'var(--font-body, "Inter", system-ui, sans-serif)',
     fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
-  group: { border: `1px solid ${COLORS.border}`, borderRadius: "12px", padding: "12px", backgroundColor: "#FAFFF6" },
-  groupTitle: { fontWeight: 600, color: COLORS.text, marginBottom: "8px", fontSize: "clamp(0.88rem, 1.5vw, 1rem)" },
-  checkList: { display: "grid", gap: "8px" },
-  checkRow: { display: "flex", gap: "10px", alignItems: "center", color: COLORS.text },
-  checkLabel: { color: COLORS.text, fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)" },
-  actions: { display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "4px" },
+  group: {
+    border: `1px solid ${COLORS.border}`,
+    borderRadius: "12px",
+    padding: "clamp(10px, 2vw, 14px)",
+    backgroundColor: COLORS.lightBg,
+  },
+  groupTitle: {
+    fontWeight: 600,
+    color: COLORS.text,
+    marginBottom: "10px",
+    fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
+    fontFamily: 'var(--font-body, "Inter", system-ui, sans-serif)',
+  },
+  checkList: { display: "grid", gap: "10px" },
+  checkRow: {
+    display: "flex",
+    gap: "10px",
+    alignItems: "center",
+    color: COLORS.text,
+    cursor: "pointer",
+  },
+  checkbox: {
+    accentColor: COLORS.carolinaBlue,
+    width: "16px",
+    height: "16px",
+    flexShrink: 0,
+    cursor: "pointer",
+  },
+  checkLabel: {
+    color: COLORS.text,
+    fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)",
+    fontFamily: 'var(--font-body, "Inter", system-ui, sans-serif)',
+  },
   primary: {
-    padding: "10px 14px",
+    padding: "clamp(10px, 1.5vw, 13px) clamp(14px, 2vw, 18px)",
     borderRadius: "10px",
     border: "1px solid transparent",
     backgroundColor: COLORS.carolinaBlue,
-    color: "#FAFFF6",
+    color: COLORS.lightBg,
     fontWeight: 600,
     transition: "background-color 160ms ease",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontFamily: 'var(--font-body, "Inter", system-ui, sans-serif)',
     cursor: "pointer",
     fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
   secondary: {
-    padding: "10px 14px",
+    padding: "clamp(10px, 1.5vw, 13px) clamp(14px, 2vw, 18px)",
     borderRadius: "10px",
     border: `1px solid ${COLORS.border}`,
-    backgroundColor: "#FAFFF6",
+    backgroundColor: COLORS.lightBg,
     cursor: "pointer",
     fontWeight: 600,
     color: COLORS.text,
     transition: "background-color 160ms ease",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontFamily: 'var(--font-body, "Inter", system-ui, sans-serif)',
     fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
 };
@@ -634,34 +783,16 @@ const hero = {
   innerMax: {
     maxWidth: "1200px",
     margin: "0 auto",
-    padding: "0 20px",
+    padding: "0 clamp(16px, 4vw, 24px)",
     boxSizing: "border-box",
-  },
-  innerGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-    gap: "22px",
-    alignItems: "center",
   },
   left: {
     display: "flex",
     flexDirection: "column",
     gap: "14px",
-    color: "#FAFFF6",
+    color: "#FAFAF8",
     maxWidth: "60ch",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
-  },
-  kicker: {
-    display: "inline-flex",
-    width: "fit-content",
-    padding: "8px 12px",
-    borderRadius: "999px",
-    backgroundColor: "rgba(245,252,239,0.92)",
-    color: COLORS.text,
-    fontWeight: 600,
-    fontSize: "clamp(0.78rem, 1.2vw, 0.85rem)",
-    border: "1px solid rgba(255,255,255,0.25)",
-    backdropFilter: "blur(6px)",
+    fontFamily: 'var(--font-body, "Inter", system-ui, sans-serif)',
   },
   title: {
     margin: 0,
@@ -669,7 +800,8 @@ const hero = {
     lineHeight: 1.02,
     letterSpacing: "-0.02em",
     fontWeight: 900,
-    fontFamily: '"Merriweather", serif',
+    fontFamily: 'var(--font-heading, "Merriweather", serif)',
+    color: "#ffffff",
   },
   sub: {
     margin: 0,
@@ -680,31 +812,18 @@ const hero = {
   },
   actions: { display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "4px" },
   cta: {
-    padding: "12px 16px",
+    padding: "12px 18px",
     borderRadius: "999px",
     border: "1px solid rgba(255,255,255,0.20)",
     backgroundColor: COLORS.carolinaBlue,
-    color: "#FAFFF6",
+    color: "#FAFAF8",
     cursor: "pointer",
     fontWeight: 600,
     boxShadow: "0 10px 22px rgba(0,0,0,0.18)",
     transition: "background-color 160ms ease, transform 160ms ease",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontFamily: 'var(--font-body, "Inter", system-ui, sans-serif)',
     fontSize: "clamp(0.88rem, 1.5vw, 1rem)",
   },
-  statsRow: { display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "4px" },
-  stat: {
-    backgroundColor: "rgba(245,252,239,0.92)",
-    color: COLORS.text,
-    borderRadius: "16px",
-    padding: "10px 12px",
-    border: "1px solid rgba(255,255,255,0.25)",
-    minWidth: "120px",
-    backdropFilter: "blur(6px)",
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
-  },
-  statNum: { fontWeight: 700, fontSize: "clamp(1.1rem, 2vw, 1.35rem)", lineHeight: 1.1 },
-  statLabel: { marginTop: "2px", color: "#4B5563", fontWeight: 500, fontSize: "clamp(0.78rem, 1.2vw, 0.9rem)" },
   right: { display: "grid", gap: "12px" },
   infoCard: {
     position: "relative",
@@ -713,7 +832,7 @@ const hero = {
     gap: "12px",
     borderRadius: "18px",
     overflow: "hidden",
-    backgroundColor: "rgba(245,252,239,0.92)",
+    backgroundColor: "rgba(240,235,227,0.92)",
     border: "1px solid rgba(255,255,255,0.20)",
     backdropFilter: "blur(8px)",
     boxShadow: "0 14px 34px rgba(0,0,0,0.18)",
@@ -722,7 +841,7 @@ const hero = {
     width: "96px",
     minHeight: "100%",
     position: "relative",
-    backgroundColor: "#c8d6c0",
+    backgroundColor: "#c8c0b5",
     overflow: "hidden",
   },
   imgOverlay: {
@@ -743,12 +862,22 @@ const hero = {
   cardText: {
     padding: "12px 14px 12px 0",
     color: COLORS.text,
-    fontFamily: '"Inter", system-ui, -apple-system, Segoe UI, sans-serif',
+    fontFamily: 'var(--font-body, "Inter", system-ui, sans-serif)',
   },
   cardTitle: { fontWeight: 600, fontSize: "clamp(0.95rem, 1.6vw, 1.05rem)" },
   cardTitleBig: { fontWeight: 600, fontSize: "clamp(1rem, 1.8vw, 1.12rem)" },
-  cardLine: { width: "100%", height: "1px", backgroundColor: "rgba(0,0,0,0.10)", margin: "8px 0" },
-  cardDesc: { color: COLORS.textSoft, fontWeight: 400, lineHeight: 1.4, fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)" },
+  cardLine: {
+    width: "100%",
+    height: "1px",
+    backgroundColor: COLORS.border,
+    margin: "8px 0",
+  },
+  cardDesc: {
+    color: COLORS.textSoft,
+    fontWeight: 400,
+    lineHeight: 1.4,
+    fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)",
+  },
   cardAccent: {
     position: "absolute",
     left: 0,

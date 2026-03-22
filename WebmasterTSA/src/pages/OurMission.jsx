@@ -287,7 +287,7 @@ export default function Mission() {
           </h1>
 
           <div style={styles.heroActions}>
-            <button style={styles.primaryBtn} onClick={() => navigate("/the-hub")}>
+            <button style={styles.primaryBtn} onClick={() => navigate("/resource-hub")}>
               Explore Resources
             </button>
             <button style={styles.secondaryBtn} onClick={() => navigate("/grow-the-hub")}>

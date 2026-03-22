@@ -870,9 +870,7 @@ export default function Home() {
         <div style={styles.containerCenter}>
           <h2 style={styles.missionTitle}>Our Mission</h2>
           <p style={styles.missionText}>
-            At Nexus, we believe that access to community resources should be clear, welcoming, and easy to navigate. Our mission is to
-            connect residents across the Research Triangle with opportunities and support, so finding help, programs, and pathways feels
-            simple and inclusive.
+            At Nexus, we believe that access to community resources should be clear, welcoming, and easy to navigate. Our mission is to connect residents across the Research Triangle with opportunities and support, so finding help, programs, and pathways feels simple and inclusive. We also recognize that well-being is essential to success, which is why we are committed to supporting mental health through accessible resources, stress-relief tools, and a compassionate, stigma-free space where individuals feel seen, supported, and empowered to take care of themselves.
           </p>
           <button
             style={{ ...styles.missionBtn, ...(hoverMission ? styles.missionBtnHover : {}) }}
