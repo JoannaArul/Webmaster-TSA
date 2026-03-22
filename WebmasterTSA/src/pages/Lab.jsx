@@ -391,7 +391,7 @@ export default function Lab() {
 
               <a
                 className="resource-link"
-                href="https://undergrad-research.ncsu.edu/"
+                href="https://undergradresearch.dasa.ncsu.edu/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
