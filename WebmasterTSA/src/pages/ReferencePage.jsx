@@ -23,7 +23,7 @@ export default function ReferencePage() {
 
   const requiredLinks = [
     { label: "Student Copyright Checklist", href: "/docs/StudentCopyrightChecklist.pdf" },
-    { label: "Work Log", href: "/docs/WorkLog.pdf" },
+    { label: "Work Log", href: "/docs/StatesWorkLog.pdf" },
   ];
 
   const tools = [

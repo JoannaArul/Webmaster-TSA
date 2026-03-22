@@ -367,9 +367,7 @@ export default function Mission() {
             <h2 style={styles.discoveryTitle}>Designing for Discovery</h2>
 
             <p style={styles.discoveryIntro}>
-              Hover over each screen below to see how Nexus turns curiosity into momentum. We help students
-              and families uncover what's available and understand what fits, allowing them to take the next step with
-              confidence.
+              Take a moment to pause and breathe. You don’t have to do everything to be enough, and feeling overwhelmed by so many options is completely valid. Nexus is here to gently guide you toward what truly fits your goals, so you can move forward with clarity instead of pressure. We believe balance matters, that doing a few things with intention is more meaningful than overextending yourself, and that rest and well-being are essential, not optional.
             </p>
 
             <div style={styles.flowStack}>
