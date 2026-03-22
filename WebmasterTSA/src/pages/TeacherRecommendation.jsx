@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import teacherRecHero from "../assets/teacher-rec-hero.webp";
 import teacherClass from "../assets/teacher-class.webp";
 import emailEnvelope from "../assets/email-envelope.webp";
 import laptopMeeting from "../assets/laptop-meeting.webp";
+
+function useImagePreload(srcs) {
+  const [loadedMap, setLoadedMap] = useState({});
+  useEffect(() => {
+    srcs.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => setLoadedMap((prev) => ({ ...prev, [src]: true }));
+    });
+  }, []);
+  return (src) => !!loadedMap[src];
+}
 
 const css = `
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -12,51 +25,6 @@ const css = `
     background: #F5FCEF;
     min-height: 100vh;
     color: #000000;
-  }
-
-  .art-nav {
-    background: #494A48;
-    padding: 0.95rem 2rem;
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-
-  .art-nav::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 3px;
-    background: #4B9CD3;
-  }
-
-  .back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.42rem;
-    color: #a8d8f0;
-    font-size: 0.85rem;
-    font-weight: 600;
-    background: none;
-    border: none;
-    cursor: pointer;
-    letter-spacing: 0.01em;
-  }
-
-  .back-btn:hover { color: #ffffff; }
-
-  .art-hero-wrap {
-    width: 100%;
-    height: 450px;
-    overflow: hidden;
-    background: #c8d9bb;
-  }
-
-  .art-hero {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 
   .art-container {
@@ -194,45 +162,134 @@ const css = `
     border: 1px solid #ccc;
     border-radius: 8px;
     cursor: pointer;
+    background: none;
+    font-size: 0.93rem;
+  }
+
+  /* Tablet (max 768px) */
+  @media (max-width: 768px) {
+    .art-container { padding: 2rem 1.25rem 4rem; }
+    .art-title { font-size: 1.75rem; }
+    .art-intro { font-size: 1rem; }
+    .art-intro-lead { font-size: 1rem; }
+    .art-body p { font-size: 0.97rem; }
+    .art-body h2 { font-size: 1.18rem; }
+    .art-section-img { max-height: 300px; border-radius: 8px; }
+    .resource-box { padding: 1.2rem 1.3rem; }
+    .cheatsheet-box { padding: 1rem 1.2rem; }
+  }
+
+  /* Mobile (max 480px) */
+  @media (max-width: 480px) {
+    .art-container { padding: 1.5rem 1rem 3.5rem; }
+    .art-title { font-size: 1.45rem; line-height: 1.25; }
+    .art-meta { font-size: 0.78rem; gap: 0.45rem; margin-bottom: 1.75rem; padding-bottom: 1.75rem; }
+    .art-intro { font-size: 0.97rem; line-height: 1.78; }
+    .art-intro-lead { font-size: 0.95rem; padding: 0.85rem 0.9rem; }
+    .art-body p { font-size: 0.95rem; line-height: 1.78; }
+    .art-body h2 { font-size: 1.08rem; margin: 2.2rem 0 0.85rem; }
+    .art-section-img { max-height: 210px; margin: 1.25rem 0 1.75rem; border-radius: 8px; }
+    .resource-box { padding: 1rem 1.1rem; }
+    .resource-link { font-size: 0.87rem; }
+    .art-back-bottom { width: 100%; text-align: center; margin-top: 2.5rem; }
+    .cheatsheet-box { padding: 0.9rem 1rem; }
   }
 `;
 
 export default function TeacherRecommendation() {
+  const isLoaded = useImagePreload([teacherRecHero]);
+
   return (
     <>
       <style>{css}</style>
 
       <div className="art-root">
 
-        <nav className="art-nav">
-          <button className="back-btn" onClick={() => window.history.back()}>
-            ← Back to Blog
-          </button>
-        </nav>
+        {/* ── HERO ── */}
+        <section
+          style={{
+            position: "relative",
+            width: "100%",
+            minHeight: "clamp(260px, 45vw, 500px)",
+            display: "flex",
+            alignItems: "flex-end",
+            backgroundImage: isLoaded(teacherRecHero) ? `url(${teacherRecHero})` : "none",
+            backgroundColor: "#1a2e42",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            overflow: "hidden",
+            opacity: isLoaded(teacherRecHero) ? 1 : 0,
+            transition: "opacity 0.5s ease",
+          }}
+        >
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.22) 55%, rgba(0,0,0,0.08) 100%)",
+          }} />
+          <div style={{
+            position: "relative",
+            zIndex: 1,
+            width: "100%",
+            maxWidth: "800px",
+            margin: "0 auto",
+            padding: "clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 1.5rem) clamp(2rem, 4vw, 3rem)",
+            boxSizing: "border-box",
+          }}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+            >
+              <span style={{
+                display: "inline-block",
+                background: "rgba(234,247,225,0.18)",
+                color: "#eaf7e1",
+                border: "1px solid rgba(234,247,225,0.35)",
+                padding: "0.28rem 0.85rem",
+                borderRadius: "20px",
+                fontSize: "0.69rem",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                marginBottom: "0.85rem",
+              }}>Applications</span>
+              <h1 style={{
+                margin: 0,
+                color: "#ffffff",
+                fontSize: "clamp(1.45rem, 4vw, 2.4rem)",
+                fontWeight: 800,
+                lineHeight: 1.18,
+                letterSpacing: "-0.02em",
+                textShadow: "0 4px 18px rgba(0,0,0,0.35)",
+              }}>
+                The Art of the Ask: Getting a Teacher Recommendation for Research Programs
+              </h1>
+              <div style={{
+                marginTop: "1rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.55rem",
+                fontSize: "0.83rem",
+                color: "rgba(255,255,255,0.78)",
+                flexWrap: "wrap",
+              }}>
+                <span>Alisha Varshney</span>
+                <span style={{ width: 3, height: 3, background: "rgba(255,255,255,0.5)", borderRadius: "50%", display: "inline-block", flexShrink: 0 }} />
+                <span>March 15, 2026</span>
+                <span style={{ width: 3, height: 3, background: "rgba(255,255,255,0.5)", borderRadius: "50%", display: "inline-block", flexShrink: 0 }} />
+                <span>5 min read</span>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-        <div className="art-hero-wrap">
-          <img src={teacherRecHero} alt="Teacher recommendation email" className="art-hero" />
-        </div>
-
+        {/* ── BODY ── */}
         <div className="art-container">
 
-          <span className="art-tag">Applications</span>
-
-          <h1 className="art-title">
-            The Art of the Ask: Getting a Teacher Recommendation for Research Programs
-          </h1>
-
-          <div className="art-meta">
-            <span>Alisha Varshney</span>
-            <span className="art-dot"></span>
-            <span>March 15, 2026</span>
-            <span className="art-dot"></span>
-            <span>5 min read</span>
-          </div>
-
           <p className="art-intro">
-            Securing a spot in a summer research program or a competitive weekend lab as a high schooler is a major win. But these programs usually have tiny cohorts, which means they rely heavily on what your teachers say about you. You aren't just looking for a generic “they are a good student” letter.You aren't just looking for a "they are a good student" letter. You need a "they are curious, they don't give up when a lab fails, and they actually follow safety rules" letter.
-
+            Securing a spot in a summer research program or a competitive weekend lab as a high schooler is a major win. But these programs usually have tiny cohorts, which means they rely heavily on what your teachers say about you. You aren't just looking for a generic "they are a good student" letter. You need a "they are curious, they don't give up when a lab fails, and they actually follow safety rules" letter.
           </p>
 
           <p className="art-intro-lead">
@@ -250,7 +307,7 @@ export default function TeacherRecommendation() {
             </p>
 
             <p>
-              Think about which teacher saw you ask thoughtful questions or work through a project that did not go as planned. Research is mostly troubleshooting, so a teacher who can write something like, “When the experiment failed, they stayed after class to figure out why,” is incredibly valuable.
+              Think about which teacher saw you ask thoughtful questions or work through a project that did not go as planned. Research is mostly troubleshooting, so a teacher who can write something like, "When the experiment failed, they stayed after class to figure out why," is incredibly valuable.
             </p>
 
             <p>
@@ -266,7 +323,7 @@ export default function TeacherRecommendation() {
             </p>
 
             <p>
-              The best time to ask is at least three to four weeks before the program’s deadline. This gives them enough time to think carefully about your strengths and write a thoughtful letter rather than a rushed paragraph.
+              The best time to ask is at least three to four weeks before the program's deadline. This gives them enough time to think carefully about your strengths and write a thoughtful letter rather than a rushed paragraph.
             </p>
 
             <p>
@@ -316,12 +373,11 @@ export default function TeacherRecommendation() {
             </p>
 
             <p>
-              A simple message saying, “I got into the program, thank you again for writing the recommendation,” can strengthen the relationship and make it easier to ask for future recommendations later in your academic career.
+              A simple message saying, "I got into the program, thank you again for writing the recommendation," can strengthen the relationship and make it easier to ask for future recommendations later in your academic career.
             </p>
 
             <div className="resource-box">
-
-              <h3>Ready-to-Use Email & Organization Tools</h3>
+              <h3>Ready-to-Use Email &amp; Organization Tools</h3>
 
               <a
                 className="resource-link"
@@ -340,7 +396,6 @@ export default function TeacherRecommendation() {
               >
                 Common App Teacher Brag Sheet (PDF)
               </a>
-
             </div>
 
             <button

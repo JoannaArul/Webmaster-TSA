@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import BlogHero from "../assets/BlogHero.webp";
+import ManWithMap from "../assets/ManWithMap.webp";
 import resumeHero from "../assets/resume-hero.webp";
 import teacherRecHero from "../assets/teacher-rec-hero.webp";
+import BurnedFemale from "../assets/BurnedFemale.webp";
+import Bedtime from "../assets/Bedtime.webp";
+import LabPicture from "../assets/LabPicture.webp";
+import WorkGroup from "../assets/WorkGroup.webp";
+
+function useImagePreload(srcs) {
+  const [loadedMap, setLoadedMap] = useState({});
+  useEffect(() => {
+    srcs.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => setLoadedMap((prev) => ({ ...prev, [src]: true }));
+    });
+  }, []);
+  return (src) => !!loadedMap[src];
+}
 
 const css = `
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -10,119 +29,6 @@ const css = `
     background: #F5FCEF;
     min-height: 100vh;
     color: #000000;
-  }
-
-  /* ── HEADER ── */
-  .blog-header {
-    background: #2e3330;
-    padding: 5.5rem 2rem 5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* animated grid lines */
-  .blog-header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(75, 156, 211, 0.07) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(75, 156, 211, 0.07) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, black 40%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, black 40%, transparent 100%);
-  }
-
-  /* bottom accent bar */
-  .blog-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #4B9CD3 0%, #6ec6f5 50%, #4B9CD3 100%);
-  }
-
-  /* floating accent circles */
-  .blog-header-decor {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-  .blog-header-decor span {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.08;
-    background: #4B9CD3;
-  }
-  .blog-header-decor span:nth-child(1) {
-    width: 320px; height: 320px;
-    top: -100px; left: -80px;
-  }
-  .blog-header-decor span:nth-child(2) {
-    width: 220px; height: 220px;
-    bottom: -70px; right: -40px;
-  }
-  .blog-header-decor span:nth-child(3) {
-    width: 120px; height: 120px;
-    top: 30px; right: 18%;
-    opacity: 0.05;
-  }
-
-  .blog-header-inner {
-    position: relative;
-    z-index: 1;
-  }
-
-  .blog-header-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(75, 156, 211, 0.15);
-    color: #a8d8f0;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 0.32rem 1rem;
-    border-radius: 20px;
-    border: 1px solid rgba(75, 156, 211, 0.25);
-    margin-bottom: 1.3rem;
-  }
-  .blog-header-eyebrow::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #4B9CD3;
-    flex-shrink: 0;
-  }
-
-  .blog-header h1 {
-    color: #ffffff;
-    font-size: 3rem;
-    font-weight: 800;
-    letter-spacing: -0.035em;
-    margin-bottom: 0.75rem;
-    line-height: 1.12;
-  }
-  .blog-header h1 span {
-    color: #4B9CD3;
-  }
-
-  .blog-header-rule {
-    width: 48px;
-    height: 3px;
-    background: #4B9CD3;
-    border-radius: 2px;
-    margin: 1.1rem auto 1.15rem;
-  }
-
-  .blog-header p {
-    color: #b8bdb7;
-    font-size: 0.97rem;
-    max-width: 480px;
-    margin: 0 auto;
-    line-height: 1.72;
   }
 
   /* ── MAIN ── */
@@ -201,10 +107,11 @@ const css = `
     margin-bottom: 0.9rem;
     width: fit-content;
   }
-  .tag-resume  { background: #e5f3fb; color: #1a6fa8; }
-  .tag-apps    { background: #eaf7e1; color: #3a7d2c; }
-  .tag-career  { background: #fef6e4; color: #966210; }
-  .tag-science { background: #e5f3fb; color: #1a6fa8; }
+  .tag-resume   { background: #e5f3fb; color: #1a6fa8; }
+  .tag-apps     { background: #eaf7e1; color: #3a7d2c; }
+  .tag-career   { background: #fef6e4; color: #966210; }
+  .tag-science  { background: #e5f3fb; color: #1a6fa8; }
+  .tag-wellness { background: #fce8f0; color: #a0295a; }
 
   .card-title {
     font-size: 1.06rem;
@@ -273,18 +180,16 @@ const css = `
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
     .blog-grid { grid-template-columns: repeat(2, 1fr); }
-    .blog-header h1 { font-size: 2.5rem; }
   }
   @media (max-width: 700px) {
-    .blog-header { padding: 3.75rem 1.25rem 3.25rem; }
-    .blog-header h1 { font-size: 2rem; }
     .blog-container { padding: 2.25rem 1rem 3.5rem; }
     .blog-grid { grid-template-columns: 1fr; gap: 1.25rem; }
     .card-image-wrap { height: 190px; }
+    .card-body { padding: 1.1rem 1.2rem 1.4rem; }
   }
   @media (max-width: 400px) {
-    .blog-header h1 { font-size: 1.7rem; }
-    .blog-header p { font-size: 0.88rem; }
+    .card-title { font-size: 1rem; }
+    .card-excerpt { font-size: 0.84rem; }
   }
 `;
 
@@ -293,50 +198,204 @@ const POSTS = [
     id: 1,
     title: "From Classroom to Lab: How to Write a Research Resume That Actually Works",
     author: "Alisha Varshney",
-    date: "March 10, 2025",
+    date: "January 10, 2025",
     readTime: "5 min read",
     category: "Resume Tips",
     tagClass: "tag-resume",
     image: resumeHero,
-    excerpt:
-      "Staring at a lab posting from a place like NC State or Duke as a high schooler is intimidating. Here's how to stop writing a resume for a summer job and start writing one for a scientist.",
+    excerpt: "Staring at a lab posting from a place like NC State or Duke as a high schooler is intimidating. Here's how to stop writing a resume for a summer job and start writing one for a scientist.",
     href: "/blog/resume",
   },
   {
     id: 2,
     title: "The Art of the Ask: Getting a Teacher Recommendation for Research Programs",
     author: "Alisha Varshney",
-    date: "March 15, 2025",
+    date: "January 15, 2026",
     readTime: "5 min read",
     category: "Applications",
     tagClass: "tag-apps",
     image: teacherRecHero,
-    excerpt:
-      "Securing a spot in a summer research program means securing a great recommendation. Here's how to ask your teacher the right way — and actually get a letter that stands out.",
+    excerpt: "Securing a spot in a summer research program means securing a great recommendation. Here's how to ask your teacher the right way — and actually get a letter that stands out.",
     href: "/blog/teacher-recommendation",
+  },
+  {
+    id: 3,
+    title: "Burned Out and Behind: How to Recover From Academic Burnout Without Losing Your Mind",
+    author: "Alisha Varshney",
+    date: "January 21, 2026",
+    readTime: "6 min read",
+    category: "Wellness",
+    tagClass: "tag-wellness",
+    image: BurnedFemale,
+    excerpt: "You used to care. Now you're staring at assignments like they're written in a language you forgot. That's burnout — and pushing harder isn't the fix. Here's how to actually recover.",
+    href: "/blog/burnout",
+  },
+  {
+    id: 4,
+    title: "How to Actually Sleep When Your Brain Won't Turn Off During Exam Season",
+    author: "Alisha Varshney",
+    date: "February 10, 2026",
+    readTime: "5 min read",
+    category: "Wellness",
+    tagClass: "tag-wellness",
+    image: Bedtime,
+    excerpt: "Lying awake replaying everything you forgot to study is its own special kind of torture. Here's what actually helps your brain power down when exam pressure is at its peak.",
+    href: "/blog/sleep",
+  },
+  {
+    id: 5,
+    title: "You Don't Need to Know Your Major Yet: How to Explore Without Panicking",
+    author: "Alisha Varshney",
+    date: "February 19, 2026",
+    readTime: "5 min read",
+    category: "Career",
+    tagClass: "tag-career",
+    image: ManWithMap,
+    excerpt: "Everyone seems to have a five-year plan and you can barely pick a lunch. That's completely normal. Here's how to use high school to explore interests without the pressure of having it all figured out.",
+    href: "/blog/major",
+  },
+  {
+    id: 6,
+    title: "What Working in a Lab Is Actually Like: Expectations vs. Reality for High Schoolers",
+    author: "Alisha Varshney",
+    date: "March 11, 2026",
+    readTime: "6 min read",
+    category: "Science",
+    tagClass: "tag-science",
+    image: LabPicture,
+    excerpt: "TV makes lab work look like dramatic breakthroughs every five minutes. The reality involves a lot of waiting, failed trials, and pipetting. Here's what to actually expect — and why it's still worth it.",
+    href: "/blog/lab",
+  },
+  {
+    id: 7,
+    title: "How to Build a LinkedIn Profile as a High School Student Without It Being Cringe",
+    author: "Alisha Varshney",
+    date: "March 23, 2026",
+    readTime: "5 min read",
+    category: "Career",
+    tagClass: "tag-career",
+    image: WorkGroup,
+    excerpt: "Yes, high schoolers can and should be on LinkedIn. No, you don't need a Fortune 500 internship to make a good profile. Here's how to present yourself professionally without the awkward overhype.",
+    href: "/blog/linkedin",
   },
 ];
 
 export default function Blog() {
+  const isLoaded = useImagePreload([BlogHero]);
+
   return (
     <>
       <style>{css}</style>
       <div className="blog-root">
 
-        <header className="blog-header">
-          <div className="blog-header-decor">
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="blog-header-inner">
-            <span className="blog-header-eyebrow">Resources</span>
-            <h1>The Resource <span>Blog</span></h1>
-            <div className="blog-header-rule" />
-            <p>Guides, tips, and helpful resources for high school students across the Triangle area, including opportunities for volunteering, academics, and community involvement.</p>
-          </div>
-        </header>
+        {/* ── HERO ── */}
+        <section
+          style={{
+            position: "relative",
+            width: "100%",
+            minHeight: "clamp(300px, 50vw, 560px)",
+            display: "flex",
+            alignItems: "flex-end",
+            backgroundImage: isLoaded(BlogHero) ? `url(${BlogHero})` : "none",
+            backgroundColor: "#1a2e42",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            overflow: "hidden",
+            opacity: isLoaded(BlogHero) ? 1 : 0,
+            transition: "opacity 0.5s ease",
+          }}
+        >
+          {/* grid overlay */}
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: "linear-gradient(rgba(75,156,211,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(75,156,211,0.07) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+            maskImage: "radial-gradient(ellipse 85% 80% at 50% 50%, black 40%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(ellipse 85% 80% at 50% 50%, black 40%, transparent 100%)",
+          }} />
+          {/* dark gradient */}
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.12) 100%)",
+          }} />
+          {/* bottom accent bar */}
+          <div style={{
+            position: "absolute",
+            bottom: 0, left: 0, right: 0,
+            height: "4px",
+            background: "linear-gradient(90deg, #4B9CD3 0%, #6ec6f5 50%, #4B9CD3 100%)",
+          }} />
 
+          <div style={{
+            position: "relative",
+            zIndex: 1,
+            width: "100%",
+            maxWidth: "860px",
+            margin: "0 auto",
+            padding: "clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem) clamp(2.5rem, 5vw, 4rem)",
+            boxSizing: "border-box",
+            textAlign: "center",
+          }}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+            >
+              <span style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                background: "rgba(75,156,211,0.15)",
+                color: "#a8d8f0",
+                fontSize: "0.72rem",
+                fontWeight: 700,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                padding: "0.32rem 1rem",
+                borderRadius: "20px",
+                border: "1px solid rgba(75,156,211,0.25)",
+                marginBottom: "1.1rem",
+              }}>
+                <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#4B9CD3", flexShrink: 0, display: "inline-block" }} />
+                Resources
+              </span>
+
+              <h1 style={{
+                color: "#ffffff",
+                fontSize: "clamp(2rem, 5.5vw, 3.6rem)",
+                fontWeight: 800,
+                letterSpacing: "-0.035em",
+                lineHeight: 1.1,
+                marginBottom: "0.75rem",
+                textShadow: "0 4px 24px rgba(0,0,0,0.4)",
+              }}>
+                The Resource <span style={{ color: "#4B9CD3" }}>Blog</span>
+              </h1>
+
+              <div style={{
+                width: 48, height: 3,
+                background: "#4B9CD3",
+                borderRadius: 2,
+                margin: "1rem auto 1.1rem",
+              }} />
+
+              <p style={{
+                color: "#b8bdb7",
+                fontSize: "clamp(0.88rem, 1.8vw, 0.97rem)",
+                maxWidth: "480px",
+                margin: "0 auto",
+                lineHeight: 1.72,
+              }}>
+                Guides, tips, and helpful resources for high school students across the Triangle area, including opportunities for volunteering, academics, and community involvement.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ── GRID ── */}
         <main className="blog-container">
           <p className="blog-section-label">All Articles — {POSTS.length} posts</p>
           <div className="blog-grid">

@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import resumeHero from "../assets/resume-hero.webp";
 import notebookDesk from "../assets/notebook-desk.webp";
 import studentWriting from "../assets/student-writing.webp";
 import interviewResume from "../assets/interview-resume.webp";
+
+function useImagePreload(srcs) {
+  const [loadedMap, setLoadedMap] = useState({});
+  useEffect(() => {
+    srcs.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => setLoadedMap((prev) => ({ ...prev, [src]: true }));
+    });
+  }, []);
+  return (src) => !!loadedMap[src];
+}
 
 const css = `
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -12,50 +25,6 @@ const css = `
     background: #F5FCEF;
     min-height: 100vh;
     color: #000000;
-  }
-
-  .art-nav {
-    background: #494A48;
-    padding: 0.95rem 2rem;
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-  .art-nav::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 3px;
-    background: #4B9CD3;
-  }
-  .back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.42rem;
-    color: #a8d8f0;
-    font-size: 0.85rem;
-    font-weight: 600;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: color 0.2s;
-    text-decoration: none;
-    letter-spacing: 0.01em;
-  }
-  .back-btn:hover { color: #ffffff; }
-
-  .art-hero-wrap {
-    width: 100%;
-    height: 450px;
-    overflow: hidden;
-    background: #c8d9bb;
-  }
-  .art-hero {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 
   .art-container {
@@ -85,6 +54,7 @@ const css = `
     letter-spacing: -0.025em;
     margin-bottom: 1.3rem;
   }
+
   .art-meta {
     display: flex;
     align-items: center;
@@ -96,6 +66,7 @@ const css = `
     border-bottom: 1.5px solid #dce8d5;
     flex-wrap: wrap;
   }
+
   .art-dot {
     width: 3px; height: 3px;
     background: #bbb;
@@ -110,6 +81,7 @@ const css = `
     color: #1a1a18;
     margin-bottom: 1.5rem;
   }
+
   .art-intro-lead {
     font-size: 1.08rem;
     color: #000000;
@@ -128,6 +100,7 @@ const css = `
     color: #1a1a18;
     margin-bottom: 1.35rem;
   }
+
   .art-body h2 {
     font-size: 1.32rem;
     font-weight: 700;
@@ -156,6 +129,7 @@ const css = `
     padding: 1.5rem 1.75rem;
     margin-top: 3rem;
   }
+
   .resource-box h3 {
     font-size: 0.72rem;
     font-weight: 700;
@@ -164,6 +138,7 @@ const css = `
     text-transform: uppercase;
     letter-spacing: 0.09em;
   }
+
   .resource-link {
     display: flex;
     align-items: center;
@@ -176,6 +151,7 @@ const css = `
     transition: color 0.18s;
     font-weight: 500;
   }
+
   .resource-link:last-child { border-bottom: none; }
   .resource-link:hover { color: #1a5e8a; }
   .resource-link svg { flex-shrink: 0; }
@@ -195,60 +171,129 @@ const css = `
     cursor: pointer;
     transition: all 0.2s;
   }
+
   .art-back-bottom:hover {
     background: #494A48;
     color: #fff;
     border-color: #494A48;
   }
 
+  /* Tablet (max 768px) */
   @media (max-width: 768px) {
-    .art-hero-wrap { height: 270px; }
-    .art-title { font-size: 1.7rem; }
     .art-container { padding: 2rem 1.1rem 3.5rem; }
+    .art-title { font-size: 1.7rem; }
     .art-body h2 { font-size: 1.18rem; margin: 2.25rem 0 0.85rem; }
     .art-intro { font-size: 1rem; }
+    .art-section-img { max-height: 300px; border-radius: 8px; }
+    .resource-box { padding: 1.2rem 1.3rem; }
   }
+
+  /* Mobile (max 480px) */
   @media (max-width: 480px) {
-    .art-nav { padding: 0.8rem 1rem; }
-    .art-hero-wrap { height: 215px; }
-    .art-title { font-size: 1.48rem; }
-    .art-section-img { max-height: 225px; }
-    .art-intro-lead { font-size: 0.97rem; }
+    .art-container { padding: 1.5rem 1rem 3.5rem; }
+    .art-title { font-size: 1.45rem; line-height: 1.25; }
+    .art-meta { font-size: 0.78rem; gap: 0.45rem; margin-bottom: 1.75rem; padding-bottom: 1.75rem; }
+    .art-intro { font-size: 0.97rem; line-height: 1.78; }
+    .art-intro-lead { font-size: 0.95rem; padding: 0.85rem 0.9rem; }
+    .art-body p { font-size: 0.95rem; line-height: 1.78; }
+    .art-body h2 { font-size: 1.08rem; margin: 2.2rem 0 0.85rem; }
+    .art-section-img { max-height: 210px; margin: 1.25rem 0 1.75rem; border-radius: 8px; }
+    .resource-box { padding: 1rem 1.1rem; }
+    .resource-link { font-size: 0.87rem; }
+    .art-back-bottom { width: 100%; justify-content: center; margin-top: 2.5rem; }
   }
 `;
 
 export default function Resume() {
+  const isLoaded = useImagePreload([resumeHero]);
+
   return (
     <>
       <style>{css}</style>
       <div className="art-root">
 
-        <nav className="art-nav">
-          <button className="back-btn" onClick={() => window.history.back()}>
-            <svg width="15" height="15" viewBox="0 0 14 14" fill="none">
-              <path d="M11 7H3M7 3L3 7l4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            Back to Blog
-          </button>
-        </nav>
-
-        <div className="art-hero-wrap">
-          <img src={resumeHero} alt="Resume on a desk" className="art-hero" />
-        </div>
-
-        <div className="art-container">
-          <span className="art-tag">Resume Tips</span>
-          <h1 className="art-title">
-            From Classroom to Lab: How to Write a Research Resume That Actually Works
-          </h1>
-          <div className="art-meta">
-            <span>Alisha Varshney</span>
-            <span className="art-dot" />
-            <span>March 10, 2026</span>
-            <span className="art-dot" />
-            <span>5 min read</span>
+        {/* ── HERO ── */}
+        <section
+          style={{
+            position: "relative",
+            width: "100%",
+            minHeight: "clamp(260px, 45vw, 500px)",
+            display: "flex",
+            alignItems: "flex-end",
+            backgroundImage: isLoaded(resumeHero) ? `url(${resumeHero})` : "none",
+            backgroundColor: "#1a2e42",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            overflow: "hidden",
+            opacity: isLoaded(resumeHero) ? 1 : 0,
+            transition: "opacity 0.5s ease",
+          }}
+        >
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.22) 55%, rgba(0,0,0,0.08) 100%)",
+          }} />
+          <div style={{
+            position: "relative",
+            zIndex: 1,
+            width: "100%",
+            maxWidth: "800px",
+            margin: "0 auto",
+            padding: "clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 1.5rem) clamp(2rem, 4vw, 3rem)",
+            boxSizing: "border-box",
+          }}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+            >
+              <span style={{
+                display: "inline-block",
+                background: "rgba(229,243,251,0.18)",
+                color: "#e5f3fb",
+                border: "1px solid rgba(229,243,251,0.35)",
+                padding: "0.28rem 0.85rem",
+                borderRadius: "20px",
+                fontSize: "0.69rem",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                marginBottom: "0.85rem",
+              }}>Resume Tips</span>
+              <h1 style={{
+                margin: 0,
+                color: "#ffffff",
+                fontSize: "clamp(1.45rem, 4vw, 2.4rem)",
+                fontWeight: 800,
+                lineHeight: 1.18,
+                letterSpacing: "-0.02em",
+                textShadow: "0 4px 18px rgba(0,0,0,0.35)",
+              }}>
+                From Classroom to Lab: How to Write a Research Resume That Actually Works
+              </h1>
+              <div style={{
+                marginTop: "1rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.55rem",
+                fontSize: "0.83rem",
+                color: "rgba(255,255,255,0.78)",
+                flexWrap: "wrap",
+              }}>
+                <span>Alisha Varshney</span>
+                <span style={{ width: 3, height: 3, background: "rgba(255,255,255,0.5)", borderRadius: "50%", display: "inline-block", flexShrink: 0 }} />
+                <span>March 10, 2026</span>
+                <span style={{ width: 3, height: 3, background: "rgba(255,255,255,0.5)", borderRadius: "50%", display: "inline-block", flexShrink: 0 }} />
+                <span>5 min read</span>
+              </div>
+            </motion.div>
           </div>
+        </section>
 
+        {/* ── BODY ── */}
+        <div className="art-container">
           <p className="art-intro">
             Staring at a lab posting from a place like NC State or Duke as a high schooler is intimidating.
             You look at your resume and all you see is a summer spent lifeguarding or the time you spent mowing

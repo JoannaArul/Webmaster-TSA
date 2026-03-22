@@ -11,6 +11,11 @@ import Discover from "./pages/Discover.jsx";
 import Blog from "./pages/Blog.jsx";
 import Resume from "./pages/Resume.jsx";
 import TeacherRecommendation from "./pages/TeacherRecommendation.jsx";
+import BurnedOut from "./pages/BurnedOut.jsx";
+import Sleep from "./pages/Sleep.jsx";
+import Major from "./pages/Major.jsx";
+import Lab from "./pages/Lab.jsx";
+import LinkedIn from "./pages/LinkedIn.jsx";
 import PathBuilder from "./pages/PathBuilder.jsx";
 import ReferencePage from "./pages/ReferencePage.jsx";
 import OurMission from "./pages/OurMission.jsx";
@@ -36,6 +41,11 @@ export default function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/resume" element={<Resume />} />
         <Route path="/blog/teacher-recommendation" element={<TeacherRecommendation />} />
+        <Route path="/blog/burnout" element={<BurnedOut />} />
+        <Route path="/blog/sleep" element={<Sleep />} />
+        <Route path="/blog/major" element={<Major />} />
+        <Route path="/blog/lab" element={<Lab />} />
+        <Route path="/blog/linkedin" element={<LinkedIn />} />
         <Route path="/reference-page" element={<ReferencePage />} />
         <Route path="/support" element={<Support />} />
         <Route path="/beyond-the-classroom" element={<BeyondTheClassroom />} />
