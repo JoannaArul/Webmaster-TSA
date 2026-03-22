@@ -480,9 +480,9 @@ export default function FocusSpace() {
           </div>
 
           {done
-            ? <p className="fs-done">Full session complete — you crushed it! 🏆</p>
+            ? <p className="fs-done">Full session complete. You crushed it! </p>
             : isBreak
-            ? <p className="fs-done" style={{color:"#59ae85", opacity:0.85}}>Focus complete! Enjoy your 5-min break ☕</p>
+            ? <p className="fs-done" style={{color:"#59ae85", opacity:0.85}}>Focus complete! Enjoy your 5-min break </p>
             : <p className="fs-hint">Minimize distractions. You've got this.</p>
           }
 

@@ -810,7 +810,7 @@ export default function Home() {
                 style={{ ...styles.primaryButton, ...(hoverPrimary ? styles.buttonHover : {}) }}
                 onMouseEnter={() => setHoverPrimary(true)}
                 onMouseLeave={() => setHoverPrimary(false)}
-                onClick={() => navigate("/the-hub")}
+                onClick={() => navigate("/resource-hub")}
               >
                 Explore Resources
               </button>
