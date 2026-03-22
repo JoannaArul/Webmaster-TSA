@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const STEPS = ["breathe", "body", "ground", "reframe", "gratitude", "done"];
 
@@ -208,7 +209,12 @@ export default function TwoMinuteReset() {
       <>
         <style>{styles}</style>
         <main className="tmr-landing">
-          <div className="tmr-landing-inner">
+          <motion.div
+            className="tmr-landing-inner"
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: "easeOut" }}
+          >
             <p className="tmr-eyebrow">Mental Health Moment</p>
             <h1 className="tmr-hero-title">The 5-Step Reset</h1>
             <p className="tmr-hero-sub">
@@ -242,7 +248,7 @@ export default function TwoMinuteReset() {
             <button className="tmr-btn-primary" onClick={startSession}>
               Begin your reset
             </button>
-          </div>
+          </motion.div>
         </main>
       </>
     );
@@ -1176,38 +1182,37 @@ const styles = `
     color: var(--text);
   }
 
+  /* ── RESPONSIVE ── */
   @media (max-width: 480px) {
     .tmr-content {
       padding: 1.25rem 1rem;
     }
-
     .tmr-circle-wrap {
       width: 165px;
       height: 165px;
     }
-
     .tmr-ring {
       width: 165px;
       height: 165px;
     }
-
     .tmr-circle {
       width: 122px;
       height: 122px;
     }
-
     .tmr-quote {
       font-size: 1rem;
       padding-left: 1rem;
     }
-
     .tmr-btn-next,
     .tmr-btn-primary {
       width: 100%;
     }
-
     .tmr-step-title {
       font-size: 1.75rem;
+    }
+    .tmr-landing {
+      padding: 1.5rem 1rem 3rem;
+      padding-top: calc(var(--header-h, 64px) + 1.5rem);
     }
   }
 
@@ -1217,7 +1222,6 @@ const styles = `
       grid-template-columns: 1fr 1fr;
       gap: 0.65rem;
     }
-
     .tmr-landing-steps .tmr-ls-card:last-child {
       grid-column: 1 / -1;
     }
@@ -1227,11 +1231,9 @@ const styles = `
     .tmr-landing-inner {
       max-width: 700px;
     }
-
     .tmr-landing-steps {
       grid-template-columns: 1fr 1fr;
     }
-
     .tmr-landing-steps .tmr-ls-card:nth-child(5) {
       grid-column: auto;
     }

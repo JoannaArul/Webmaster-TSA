@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { motion } from "framer-motion";
 
 const FOCUS_TIME = 25 * 60;
 const BREAK_TIME = 5 * 60;
@@ -10,17 +11,16 @@ const SOUNDS = [
   { id: "lofi",   label: "Lo-Fi"  },
 ];
 
-
 function makeBrownNoise(ctx, seconds = 4) {
-  const rate    = ctx.sampleRate;
-  const length  = rate * seconds;
-  const buffer  = ctx.createBuffer(1, length, rate);
-  const data    = buffer.getChannelData(0);
+  const rate   = ctx.sampleRate;
+  const length = rate * seconds;
+  const buffer = ctx.createBuffer(1, length, rate);
+  const data   = buffer.getChannelData(0);
   let last = 0;
   for (let i = 0; i < length; i++) {
     const white = Math.random() * 2 - 1;
     last = (last + 0.02 * white) / 1.02;
-    data[i] = last * 3.5; 
+    data[i] = last * 3.5;
   }
   return buffer;
 }
@@ -74,16 +74,15 @@ function useAudio() {
         nodes = [...layer1, ...layer2, ...layer3, master];
 
       } else if (soundType === "forest") {
-        const wind = createLoopingBrownNoise(ctx, 0.3, 350, 0.5);
+        const wind    = createLoopingBrownNoise(ctx, 0.3, 350, 0.5);
         const shimmer = createLoopingBrownNoise(ctx, 0.06, 1800, 2.5);
         const rustle  = createLoopingBrownNoise(ctx, 0.09, 700, 1.0);
-        const lfo      = ctx.createOscillator();
-        const lfoGain  = ctx.createGain();
+        const lfo     = ctx.createOscillator();
+        const lfoGain = ctx.createGain();
         lfo.type = "sine"; lfo.frequency.value = 0.07;
         lfoGain.gain.value = 0.12;
         lfo.connect(lfoGain); lfoGain.connect(wind[2].gain);
         lfo.start();
-
         const master = ctx.createGain(); master.gain.value = 0.42;
         wind[2].disconnect();    wind[2].connect(master);
         shimmer[2].disconnect(); shimmer[2].connect(master);
@@ -97,7 +96,6 @@ function useAudio() {
         master.connect(ctx.destination);
         const crackle = createLoopingBrownNoise(ctx, 0.04, 3500, 0.5);
         crackle[2].disconnect(); crackle[2].connect(master);
-
         freqs.forEach((freq, i) => {
           const osc  = ctx.createOscillator();
           const gain = ctx.createGain();
@@ -120,7 +118,7 @@ function useAudio() {
 }
 
 export default function FocusSpace() {
-  const [phase,    setPhase]    = useState("focus"); 
+  const [phase,    setPhase]    = useState("focus");
   const [timeLeft, setTimeLeft] = useState(FOCUS_TIME);
   const [running,  setRunning]  = useState(false);
   const [sound,    setSound]    = useState("silent");
@@ -171,11 +169,11 @@ export default function FocusSpace() {
     return () => clearInterval(intervalRef.current);
   }, [running, stopAudio]);
 
-  const R       = 88;
-  const CIRC    = 2 * Math.PI * R;
+  const R        = 88;
+  const CIRC     = 2 * Math.PI * R;
   const progress = 1 - timeLeft / TOTAL;
-  const dash    = CIRC * progress;
-  const gap     = CIRC - dash;
+  const dash     = CIRC * progress;
+  const gap      = CIRC - dash;
 
   const mins = String(Math.floor(timeLeft / 60)).padStart(2, "0");
   const secs = String(timeLeft % 60).padStart(2, "0");
@@ -201,7 +199,6 @@ export default function FocusSpace() {
           overflow: hidden;
         }
 
-        /* Decorative blobs */
         .fs-blob {
           position: absolute;
           border-radius: 50%;
@@ -226,7 +223,6 @@ export default function FocusSpace() {
           right: -60px;
         }
 
-        /* Card */
         .fs-card {
           position: relative;
           z-index: 1;
@@ -246,7 +242,6 @@ export default function FocusSpace() {
           width: min(460px, 90vw);
         }
 
-        /* Title */
         .fs-title {
           font-family: 'Merriweather', serif;
           font-size: clamp(1.55rem, 4.5vw, 2rem);
@@ -258,7 +253,6 @@ export default function FocusSpace() {
         }
         .fs-title span { color: #4B9CD3; }
 
-        /* Ring */
         .fs-ring-wrap {
           position: relative;
           width: clamp(170px, 44vw, 220px);
@@ -309,7 +303,6 @@ export default function FocusSpace() {
           margin-top: 2px;
         }
 
-        /* Pulse dot */
         .fs-dot {
           width: 7px; height: 7px;
           border-radius: 50%;
@@ -322,7 +315,6 @@ export default function FocusSpace() {
           50%       { opacity: 0.3; transform: scale(0.6); }
         }
 
-        /* Sound pills */
         .fs-sound-row {
           display: flex;
           gap: 7px;
@@ -342,10 +334,9 @@ export default function FocusSpace() {
           transition: border-color 0.15s, color 0.15s, background 0.15s;
           white-space: nowrap;
         }
-        .fs-pill:hover    { border-color: #4B9CD3; color: #4B9CD3; }
-        .fs-pill.active   { background: #4B9CD3; border-color: #4B9CD3; color: #fff; }
+        .fs-pill:hover  { border-color: #4B9CD3; color: #4B9CD3; }
+        .fs-pill.active { background: #4B9CD3; border-color: #4B9CD3; color: #fff; }
 
-        /* CTA button */
         .fs-btn-primary {
           font-family: 'Inter', sans-serif;
           font-size: clamp(0.88rem, 2.5vw, 0.95rem);
@@ -373,7 +364,7 @@ export default function FocusSpace() {
         .fs-btn-primary.breakmode { background: #6dbf97; box-shadow: 0 4px 18px rgba(109,191,151,0.32); }
         .fs-btn-primary.breakmode:hover { background: #59ae85; }
 
-        .fs-btn-row { display: flex; gap: 10px; align-items: center; }
+        .fs-btn-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center; }
 
         .fs-btn-reset {
           font-family: 'Inter', sans-serif;
@@ -390,7 +381,6 @@ export default function FocusSpace() {
         }
         .fs-btn-reset:hover { border-color: #4B9CD3; color: #4B9CD3; }
 
-        /* Done message */
         .fs-done {
           font-family: 'Inter', sans-serif;
           font-size: clamp(0.8rem, 2.2vw, 0.88rem);
@@ -399,7 +389,6 @@ export default function FocusSpace() {
           text-align: center;
         }
 
-        /* Hint */
         .fs-hint {
           font-family: 'Inter', sans-serif;
           font-size: clamp(0.7rem, 1.8vw, 0.76rem);
@@ -408,14 +397,36 @@ export default function FocusSpace() {
           text-align: center;
           letter-spacing: 0.01em;
         }
+
+        @media (max-width: 480px) {
+          .fs-card {
+            border-radius: 20px;
+          }
+          .fs-btn-primary {
+            width: 100%;
+            justify-content: center;
+          }
+          .fs-btn-row {
+            width: 100%;
+            flex-direction: column;
+          }
+          .fs-btn-reset {
+            width: 100%;
+            text-align: center;
+          }
+        }
       `}</style>
 
       <main className="fs-root">
         <div className="fs-blob fs-blob-1" />
         <div className="fs-blob fs-blob-2" />
 
-        <div className="fs-card">
-
+        <motion.div
+          className="fs-card"
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, ease: "easeOut" }}
+        >
           <h1 className="fs-title">Focus <span>Space</span></h1>
 
           <div className={`fs-ring-wrap${done ? " fs-ring-done" : isBreak ? " fs-ring-break" : ""}`}>
@@ -480,13 +491,12 @@ export default function FocusSpace() {
           </div>
 
           {done
-            ? <p className="fs-done">Full session complete. You crushed it! </p>
+            ? <p className="fs-done">Full session complete. You crushed it!</p>
             : isBreak
-            ? <p className="fs-done" style={{color:"#59ae85", opacity:0.85}}>Focus complete! Enjoy your 5-min break </p>
+            ? <p className="fs-done" style={{color:"#59ae85", opacity:0.85}}>Focus complete! Enjoy your 5-min break</p>
             : <p className="fs-hint">Minimize distractions. You've got this.</p>
           }
-
-        </div>
+        </motion.div>
       </main>
     </>
   );
