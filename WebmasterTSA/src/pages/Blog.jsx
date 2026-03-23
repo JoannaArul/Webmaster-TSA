@@ -210,7 +210,7 @@ const POSTS = [
   {
     id: 2,
     title: "The Art of the Ask: Getting a Teacher Recommendation for Research Programs",
-    author: "Alisha Varshney",
+    author: "Joanna Arul Jeeva",
     date: "January 15, 2026",
     readTime: "5 min read",
     category: "Applications",
@@ -234,7 +234,7 @@ const POSTS = [
   {
     id: 4,
     title: "How to Actually Sleep When Your Brain Won't Turn Off During Exam Season",
-    author: "Alisha Varshney",
+    author: "Joanna Arul Jeeva",
     date: "February 10, 2026",
     readTime: "5 min read",
     category: "Wellness",
@@ -258,7 +258,7 @@ const POSTS = [
   {
     id: 6,
     title: "What Working in a Lab Is Actually Like: Expectations vs. Reality for High Schoolers",
-    author: "Alisha Varshney",
+    author: "Joanna Arul Jeeva",
     date: "March 11, 2026",
     readTime: "6 min read",
     category: "Science",

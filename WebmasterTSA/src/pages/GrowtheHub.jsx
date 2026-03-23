@@ -261,15 +261,17 @@ export default function GrowtheHub() {
           gap: 12px;
           flex-wrap: wrap;
           margin-top: 4px;
+          justify-content: flex-start;
         }
         .gth-stat {
-          flex: 1 1 120px;
+          flex: 0 1 auto;
           background-color: rgba(240,235,227,0.92);
           color: ${COLORS.text};
           border-radius: 16px;
-          padding: 10px 12px;
+          padding: 10px 16px;
           border: 1px solid rgba(255,255,255,0.25);
-          min-width: 120px;
+          min-width: 100px;
+          max-width: 160px;
           backdrop-filter: blur(6px);
           font-family: var(--font-body, "Inter", system-ui, sans-serif);
         }
@@ -308,7 +310,6 @@ export default function GrowtheHub() {
         @media (max-width: 480px) {
           .gth-check-grid { grid-template-columns: 1fr; }
           .gth-actions button { flex: 1 1 100%; }
-          .gth-stats-row { flex-direction: column; }
         }
       `}</style>
 
