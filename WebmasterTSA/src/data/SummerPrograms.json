@@ -1179,7 +1179,7 @@
   },
     {
     "name": "Summer Law Institute – Legal Outreach",
-    "category": "Academic Program",
+    "category": "Summer Programs",
     "cities": ["Raleigh", "Chapel Hill", "Durham"],
     "grades": ["9"],
     "interest": "The Summer Law Institute (SLI) by Legal Outreach is a five-week program for rising ninth graders that introduces law and criminal justice through classes, field trips, and a mock trial. Students build skills in writing, public speaking, and critical thinking while engaging with legal professionals. The program is typically free, offers a stipend, and provides a pathway to a longer college-prep program.",
@@ -1190,7 +1190,7 @@
   },
     {
     "name": "Copper Canyon Press Internship & Volunteer Opportunities",
-    "category": "Academic Program",
+    "category": "Summer Programs",
     "cities": ["Raleigh", "Chapel Hill", "Durham"],
     "grades": ["9","10","11","12"],
     "interest": "English Literature Writing",
@@ -1201,15 +1201,159 @@
     "deadline": "2026-04-15"
   },
     {
-    "name": "",
-    "category": "Academic Program",
+    "name": "The Rockefeller University Summer Science Research Program",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "The Rockefeller University SSRP is a seven-week summer program where high school juniors and seniors conduct mentored biomedical research in a lab setting. Students also attend lectures, courses, and events, culminating in a final research presentation. The program offers an immersive experience for those interested in advanced scientific research.",
+    "link": "https://www.rockefeller.edu/outreach/ssrp/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Camp BIOmed",
+    "category": "Summer Programs",
     "cities": ["Raleigh", "Chapel Hill", "Durham"],
     "grades": ["9","10","11","12"],
-    "interest": "",
-    "description": "",
-    "link": "",
+    "interest": "STEM/Enrichment",
+    "description": "Camp BIOmed is a week-long summer program that gives high school students hands-on experience in biomedical and health science fields through lab-based learning. Students choose from specialized tracks like cancer biology, genetic engineering, and bioinformatics while exploring research ethics and careers. The program offers scholarships and discounts, making it accessible to students interested in science.",
+    "link": "https://www.nwabr.org/events-programs/camp-biomed",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Medical Immersion Summer Academy (MISA)",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "The Medical Immersion Summer Academy (MISA) is a hands-on program for high school students interested in medicine, offering training in clinical skills like suturing, EKGs, and patient care. Students also earn certifications such as CPR and First Aid while engaging with healthcare professionals. The program provides practical experience and networking opportunities for those pursuing medical careers.",
+    "link": "https://www.misahealth.com/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Summer Medical Academy",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Biology",
+    "description": "The Summer Medical Academy by Health Scholars is a two-week program for students ages 15–19 that introduces careers in healthcare through hands-on learning. It includes lab experiences, materials, and meals, with scholarships available for eligible students. The program aims to build interest in medicine and support future healthcare professionals.",
+    "link": "https://sdhealthscholars.org/sma-application-process/",
     "openToAllImmigrationStatuses": true,
     "featured": false,
-    "deadline": "2026-04-20"
+    "deadline": "2026-02-20"
+  },
+    {
+    "name": "Biomedical Bootcamp 2023 – MDI Biological Laboratory",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Biology",
+    "description": "The Biomedical Bootcamp at MDI Biological Laboratory is a one-week program for high school students that introduces biomedical research through hands-on lab work and data analysis. Students learn experimental design, bioinformatics, and scientific communication while exploring careers in the field. With low tuition, it offers an accessible entry into biomedical science.",
+    "link": "https://mdibl.org/course/biomedical-bootcamp-2026/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline": "2026-05-01"
+  },
+    {
+    "name": "JCamp - Asian American Journalists Association",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["10","11"],
+    "interest": "English Literature Writing",
+    "description": "JCamp, hosted by the Asian American Journalists Association, is a fully funded six-day program that trains high school students in multimedia journalism. It brings together diverse students nationwide to learn from professionals and produce real news content. The program aims to increase diversity in journalism while building strong reporting and storytelling skills.",
+    "link": "https://www.aaja.org/programs-and-initiatives/jcamp/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Stanford Jazz Camp",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Arts Performance",
+    "description": "Stanford Jazz Camp is a two-week summer program for students ages 12–17 that focuses on jazz performance, improvisation, and music theory. Participants learn from professional musicians through rehearsals, masterclasses, and private lessons, culminating in a final performance. The program also includes access to Stanford Jazz Festival concerts, with options for residential or commuter attendance.",
+    "link": "https://stanfordjazz.org/more-info/jazz-camp/#info",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Interlochen Arts Camp",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Arts Performance",
+    "description": "Interlochen Arts Camp offers summer programs for students in grades 3–12 across disciplines like music, theatre, film, dance, and creative writing. With sessions ranging from one to six weeks, students engage in intensive artistic training while enjoying a traditional camp experience. It provides a supportive environment for young artists to grow, collaborate, and develop their skills.",
+    "link": "https://www.interlochen.org/art-summer-camp",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Yale Summer Program in Astrophysics (YSPA)",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["11"],
+    "interest": "Physics",
+    "description": "The Yale Summer Program in Astrophysics is a selective six week program for rising high school seniors, combining online learning with a residential experience at Yale. Students explore astrophysics through a rigorous curriculum and hands on research, supported by a low student to faculty ratio. It is an immersive opportunity for those interested in astronomy, physics, and related STEM fields.",
+    "link": "https://yspa.yale.edu/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "TryEngineering Summer Institute: Aerospace Engineering Camp",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Engineering",
+    "description": "The TryEngineering Summer Institute Aerospace Engineering Camp is a nine day program that gives high school students hands on experience in aerospace engineering at university campuses across the United States. Participants work on projects like glider design and rocket launches while learning core engineering concepts through practical challenges. The program also includes tours and field trips, offering insight into real world engineering careers.",
+    "link": "https://tryengineeringinstitute.ieee.org/aerospace-engineering/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "DF/HCC Summer-Only CURE Program",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Biology",
+    "description": "The Dana Farber Harvard Cancer Center CURE Program is a competitive summer research opportunity for high school and undergraduate students from underrepresented backgrounds. Over 8 to 12 weeks, participants conduct hands on, mentored research across areas such as clinical and population science. It provides valuable experience for students interested in pursuing careers in cancer research.",
+    "link": "https://cure.dfhcc.harvard.edu/welcome/cure",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "OxBright Online Law Internships",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["10","11","12"],
+    "interest": "Law & Government",
+    "description": "OxBright offers one month online law internships for high school students ages 15 to 18, providing both research and work experience options. Students can either collaborate with a mentor to co author a legal research paper or complete a project for a legal professional. The program includes weekend live sessions and mentorship, helping students gain practical insight into the legal field.",
+    "link": "https://www.oxfordscholastica.com/online-summer-internships/law/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "KWH Summer Workshop for Young Writers",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "English Literature Writing",
+    "description": "The KWH Summer Workshop for Young Writers is a ten day program at the University of Pennsylvania for rising juniors and seniors interested in strengthening their writing skills. Students participate in personal essay work, genre based craft sessions, and collaborative creative activities in a supportive environment. The program encourages exploration, peer feedback, and growth across different forms of writing.",
+    "link": "https://writing.upenn.edu/wh/summer/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Georgetown University Entrepreneurship Academy",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Business",
+    "description": "The Georgetown University Entrepreneurship Academy is a two week summer program where high school students learn how to start and develop a business. Participants explore topics like market research, prototyping, and operations while engaging in hands on activities and a final pitch competition. The program also builds skills in public speaking, teamwork, and networking.",
+    "link": "https://summer.georgetown.edu/programs/SHS10/entrepreneurship-academy/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]
