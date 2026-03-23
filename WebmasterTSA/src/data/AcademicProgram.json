@@ -354,7 +354,7 @@
   },
     {
     "name": "USA Biolympiad",
-    "category": "Academic Programs",
+    "category": "Academic Program",
     "cities": ["Raleigh", "Chapel Hill", "Durham"],
     "grades": ["9","10","11","12"],
     "interest": "Biology",
