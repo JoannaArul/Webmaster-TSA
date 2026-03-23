@@ -42,5 +42,27 @@
     "link": "https://www.nccivics.org/",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "Pasquines Volunteer and Internship Program",
+    "category": "Non-profits",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Political Science",
+    "description": "Pasquines offers flexible volunteer and internship opportunities with a nonprofit news organization covering U.S. territories, allowing participants to build skills through remote, tech-driven collaboration. Requiring as little as two hours per week, it is ideal for students interested in journalism, public administration, political science, and law who want to gain experience while making an impact.",
+    "link": "https://pasquines.us/join-us/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Teens In Public Service (TIPS) Internship",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Political Science",
+    "description": "Teens In Public Service (TIPS) offers paid summer internships that place high school students with nonprofit organizations to make a meaningful impact in their communities. The program helps teens gain real-world experience while developing leadership skills and a strong sense of civic responsibility.",
+    "link": "https://teensinpublicservice.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]

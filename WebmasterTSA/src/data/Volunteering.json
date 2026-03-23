@@ -402,5 +402,27 @@
     "link": "https://www.wakemed.org/volunteer/junior-volunteering",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "Sierra Club - Environmental Volunteering",
+    "category": "Volunteering",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Environmental Science",
+    "description": "The Sierra Club offers students the opportunity to engage in grassroots environmental activism through local and national efforts focused on conservation, clean air and water, and climate action. With chapters across all 50 states, it is ideal for students looking to make an impact in environmental advocacy and sustainability.",
+    "link": "https://www.sierraclub.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Youth Conservation Crews - Conservation Corps North Carolina",
+    "category": "Volunteering",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["10","11","12"],
+    "interest": "Mathematics",
+    "description": "Youth Conservation Crews, part of Conservation Corps North Carolina, offers teens ages 15–18 hands-on summer experiences in conservation through projects like trail building, habitat restoration, and forestry. With both day and camping options, it is ideal for students interested in environmental service, outdoor work, and sustainability.",
+    "link": "https://corpsnc.org/youth",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]
