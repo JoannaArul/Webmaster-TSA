@@ -1110,5 +1110,106 @@
     "link": "https://linguistics.osu.edu/undergrad/sliys",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  },
+    {
+    "name": "National Robotics Challenge",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Engineering",
+    "description": "The National Robotics Challenge (NRC) is an open robotics competition, founded in 1986, that allows students to design and build robots without using a required kit. Open to participants from middle school through graduate level, it emphasizes creativity, engineering, and problem-solving. With low entry costs and flexible materials, it provides an accessible platform for aspiring innovators and engineers.",
+    "link": "https://www.thenrc.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Aspirnaut Summer Research Program",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Biology",
+    "description": "The Aspirnaut Summer Research Program at the University of Michigan is a six-week opportunity for Michigan high school students to gain hands-on experience in life sciences research. Students work alongside leading researchers while exploring STEM careers in a supportive, close-knit environment. The program aims to deepen interest in scientific research and build foundational skills in STEM fields.",
+    "link": "https://aspirnaut.lsi.umich.edu/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Sport Management & Leadership Academy - UMass Amherst",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["10","11","12"],
+    "interest": "Sports & Entertainment",
+    "description": "The Sport Management & Leadership Academy at UMass Amherst is a two-week program for high school students interested in the sports and entertainment industry. It covers topics like marketing, analytics, economics, and diversity, while helping students analyze industry trends and create a final presentation. Offered in both residential and online formats, the program also provides scholarships for underrepresented students.",
+    "link": "https://www.umass.edu/uww/pre-college/residential/sport-mgmt-leadership-academy",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "BRAINYAC - Columbia University",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Biology",
+    "description": "BRAINYAC is a summer neuroscience research internship hosted by Columbia University that connects high school students with scientists for hands-on lab experience. Aimed at sophomores and juniors from partner programs in Upper Manhattan and the Bronx, it immerses students in real research projects and academic environments. The program prioritizes students from New York City, especially those from underrepresented communities.",
+    "link": "https://zuckermaninstitute.columbia.edu/brainyac",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Scripps Research Student Research Internship",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Computer Science",
+    "description": "The Scripps Research Translational Institute offers a 10-week summer internship for students interested in health sciences and computational research. Participants work on projects in areas like genomics and personalized medicine while learning research design, analysis, and scientific communication. The program prepares students for careers in translational science through mentorship and hands-on experience.",
+    "link": "https://www.scripps.edu/science-and-medicine/translational-institute/education-and-training/student-research-internship/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Apprenticeship in Medicine (AIM) Program",
+    "category": "Summer Programs",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["11","12"],
+    "interest": "Biology",
+    "description": "The Apprenticeship in Medicine (AIM) program at the Medical College of Wisconsin is a six-week summer program for Milwaukee-area high school students from underrepresented backgrounds in health sciences. It builds interest in medical and research careers through academic preparation and hands-on experiences. Students must be at least 16, have a strong science/math GPA, and commit full-time during the program.",
+    "link": "https://www.mcw.edu/education/pathway-programs",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Summer Law Institute – Legal Outreach",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9"],
+    "interest": "The Summer Law Institute (SLI) by Legal Outreach is a five-week program for rising ninth graders that introduces law and criminal justice through classes, field trips, and a mock trial. Students build skills in writing, public speaking, and critical thinking while engaging with legal professionals. The program is typically free, offers a stipend, and provides a pathway to a longer college-prep program.",
+    "description": "The Summer Law Institute (SLI) by Legal Outreach is a five-week program for rising ninth graders that introduces law and criminal justice through classes, field trips, and a mock trial. Students build skills in writing, public speaking, and critical thinking while engaging with legal professionals. The program is typically free, offers a stipend, and provides a pathway to a longer college-prep program.",
+    "link": "https://legaloutreach.org/programs/summer-law-institute/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Copper Canyon Press Internship & Volunteer Opportunities",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "English Literature Writing",
+    "description": "Copper Canyon Press offers remote internships and volunteer roles in poetry publishing, providing hands-on experience in areas like marketing, production, and editorial work. Interns receive a $500 monthly stipend and work flexible hours over 3–5 months. The program is ideal for those passionate about literature, with strong writing skills and an interest in the publishing industry.",
+    "link": "https://www.coppercanyonpress.org/get-involved/internships-volunteer-opportunites/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline": "2026-04-15"
+  },
+    {
+    "name": "",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "",
+    "description": "",
+    "link": "",
+    "openToAllImmigrationStatuses": true,
+    "featured": false,
+    "deadline": "2026-04-20"
   }
 ]

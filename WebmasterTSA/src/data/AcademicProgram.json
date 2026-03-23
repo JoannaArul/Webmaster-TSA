@@ -1033,5 +1033,93 @@
     "link": "https://cyber.org/national-cyber-cup",
     "openToAllImmigrationStatuses": true,
     "featured": false
+  }, 
+    {
+    "name": "Idyllwild Arts Summer Program",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Arts Performance",
+    "description": "The Idyllwild Arts Summer Program offers immersive workshops for high school students in fields like visual arts, music, dance, film, and creative writing. Led by professional artists, the program focuses on building skills, confidence, and creativity in a supportive environment. Set in a scenic location, it provides an opportunity for students to fully engage in their artistic growth.",
+    "link": "https://idyllwildarts.org/summer/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Dorset Prize - Tupelo Press",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "English Literature Writing",
+    "description": "The Dorset Prize by Tupelo Press is a prestigious international poetry competition open to English-language writers. The winner receives a $3,000 prize, a residency, publication, and wide distribution, with manuscripts judged anonymously. It offers poets a major opportunity for recognition and career advancement.",
+    "link": "https://tupelopress.org/the-dorset-prize-for-poetry",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Tribeca New Music Young Composer Competition",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Arts Performance",
+    "description": "The Tribeca New Music Young Composer Competition is an annual U.S. contest for young composers, including a high school division. Winners receive a $1,000 prize, a professional performance at the Tribeca New Music Festival, and a recording of their work. The competition accepts a wide range of compositions, with a submission fee and January deadline.",
+    "link": "https://www.tribecanewmusic.org/youngcomposercompetition",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Baliga Systems Education Experiences - High School Intern Programs",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "STEM/Enrichment",
+    "description": "The Baliga Systems Education Experiences provide high school students with opportunities to explore systems biology through virtual workshops (STiSA) and a competitive summer research internship. Open to 10th and 11th graders, the programs focus on areas like computational biology and systems medicine, with the internship offering a $5,000 stipend. They aim to build research skills and prepare students for future careers in science.",
+    "link": "https://see.isbscience.org/resources/for-students/high-school-intern-program/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Max Planck Florida Institute for Neuroscience High School Internship",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Biology",
+    "description": "The Max Planck Florida Institute for Neuroscience offers a six-week paid summer internship for high school students entering junior or senior year. Students conduct hands-on neuroscience research, work with advanced imaging, and present their findings at the end of the program. Open to students in Palm Beach and Martin Counties, it provides valuable lab experience and pays hourly wages.",
+    "link": "https://mpfi.org/community/education-outreach/high-school-internship/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "Write the World Virtual Summer Writing Camp",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "English Literature Writing",
+    "description": "Write the World’s Virtual Summer Writing Camp is an online program for teens ages 13–19, offering week-long workshops in genres like fiction, poetry, and sci-fi. Led by experienced writers, it includes interactive activities, feedback, and about 3–4 hours of daily engagement. Running from late June to early August, it costs $275 per week with discounts for multiple sessions.",
+    "link": "https://workshops.writetheworld.org/global-writing/virtual-writing-camp/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "UCF High School Programming Tournament",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Computer Science",
+    "description": "The UCF High School Programming Tournament is an annual competition where teams of up to three students solve coding problems in a four-hour, ICPC-style contest. Held at UCF and also offered online, it allows students to compete individually or in teams. The event provides a strong opportunity to build programming skills and experience competitive coding.",
+    "link": "https://hspt.ucfprogrammingteam.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
+  },
+    {
+    "name": "American Computer Science League (ACSL)",
+    "category": "Academic Program",
+    "cities": ["Raleigh", "Chapel Hill", "Durham"],
+    "grades": ["9","10","11","12"],
+    "interest": "Computer Science",
+    "description": "The American Computer Science League (ACSL) runs online programming and computer science contests for students of all levels, covering topics like number systems, Boolean algebra, and programming. With multiple divisions, it accommodates beginners to advanced coders, using languages like Python, C++, and Java. Top performers qualify for an online finals competition, with thousands of students participating globally each year.",
+    "link": "https://www.acsl.org/",
+    "openToAllImmigrationStatuses": true,
+    "featured": false
   }
 ]
