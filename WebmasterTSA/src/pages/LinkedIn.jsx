@@ -51,7 +51,6 @@ export default function LinkedIn() {
               How to Build a LinkedIn Profile as a High School Student Without It Being Cringe
             </h1>
             <div style={styles.heroMeta}>
-              <span>Alisha Varshney</span>
               <span style={styles.heroDot} />
               <span>March 21, 2026</span>
               <span style={styles.heroDot} />

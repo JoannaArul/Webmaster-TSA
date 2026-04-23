@@ -21,10 +21,10 @@ function useImagePreload(src) {
 export default function ReferencePage() {
   const heroLoaded = useImagePreload(referenceHero);
 
-  const requiredLinks = [
-    { label: "Student Copyright Checklist", href: "/docs/StudentCopyrightChecklist.pdf" },
-    { label: "Work Log", href: "/docs/StatesWorkLog.pdf" },
-  ];
+  // const requiredLinks = [
+  //   { label: "Student Copyright Checklist", href: "/docs/StudentCopyrightChecklist.pdf" },
+  //   { label: "Work Log", href: "/docs/StatesWorkLog.pdf" },
+  // ];
 
   const tools = [
     { name: "Github", desc: "This was used to host code repository.", href: "https://github.com/" },
@@ -279,7 +279,7 @@ export default function ReferencePage() {
       </div>
 
       <div style={styles.wrap}>
-        <section style={styles.card}>
+        {/* <section style={styles.card}>
           <h2 style={styles.cardTitle}>Required References</h2>
           <ul style={styles.bulletList}>
             {requiredLinks.map((it) => (
@@ -290,7 +290,7 @@ export default function ReferencePage() {
               </li>
             ))}
           </ul>
-        </section>
+        </section> */}
 
         <section style={styles.card}>
           <h2 style={styles.cardTitle}>Code Stack</h2>

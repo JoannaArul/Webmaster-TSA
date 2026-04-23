@@ -253,7 +253,6 @@ export default function Sleep() {
                 color: "rgba(255,255,255,0.78)",
                 flexWrap: "wrap",
               }}>
-                <span>Joanna Arul Jeeva</span>
                 <span style={{ width: 3, height: 3, background: "rgba(255,255,255,0.5)", borderRadius: "50%", display: "inline-block", flexShrink: 0 }} />
                 <span>March 21, 2026</span>
                 <span style={{ width: 3, height: 3, background: "rgba(255,255,255,0.5)", borderRadius: "50%", display: "inline-block", flexShrink: 0 }} />

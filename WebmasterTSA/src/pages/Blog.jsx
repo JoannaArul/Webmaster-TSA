@@ -198,7 +198,7 @@ const POSTS = [
   {
     id: 1,
     title: "From Classroom to Lab: How to Write a Research Resume That Actually Works",
-    author: "Alisha Varshney",
+    author: "",
     date: "January 10, 2025",
     readTime: "5 min read",
     category: "Resume Tips",
@@ -210,7 +210,7 @@ const POSTS = [
   {
     id: 2,
     title: "The Art of the Ask: Getting a Teacher Recommendation for Research Programs",
-    author: "Joanna Arul Jeeva",
+    author: "",
     date: "January 15, 2026",
     readTime: "5 min read",
     category: "Applications",
@@ -222,7 +222,7 @@ const POSTS = [
   {
     id: 3,
     title: "Burned Out and Behind: How to Recover From Academic Burnout Without Losing Your Mind",
-    author: "Alisha Varshney",
+    author: "",
     date: "January 21, 2026",
     readTime: "6 min read",
     category: "Wellness",
@@ -234,7 +234,7 @@ const POSTS = [
   {
     id: 4,
     title: "How to Actually Sleep When Your Brain Won't Turn Off During Exam Season",
-    author: "Joanna Arul Jeeva",
+    author: "",
     date: "February 10, 2026",
     readTime: "5 min read",
     category: "Wellness",
@@ -246,7 +246,7 @@ const POSTS = [
   {
     id: 5,
     title: "You Don't Need to Know Your Major Yet: How to Explore Without Panicking",
-    author: "Alisha Varshney",
+    author: "",
     date: "February 19, 2026",
     readTime: "5 min read",
     category: "Career",
@@ -258,7 +258,7 @@ const POSTS = [
   {
     id: 6,
     title: "What Working in a Lab Is Actually Like: Expectations vs. Reality for High Schoolers",
-    author: "Joanna Arul Jeeva",
+    author: "",
     date: "March 11, 2026",
     readTime: "6 min read",
     category: "Science",
@@ -270,7 +270,7 @@ const POSTS = [
   {
     id: 7,
     title: "How to Build a LinkedIn Profile as a High School Student Without It Being Cringe",
-    author: "Alisha Varshney",
+    author: "",
     date: "March 23, 2026",
     readTime: "5 min read",
     category: "Career",
@@ -421,8 +421,7 @@ export default function Blog() {
                   <span className={`card-tag ${post.tagClass}`}>{post.category}</span>
                   <h2 className="card-title">{post.title}</h2>
                   <div className="card-meta">
-                    <span>{post.author}</span>
-                    <span className="dot" />
+                    {post.author && <><span>{post.author}</span><span className="dot" /></>}
                     <span>{post.date}</span>
                     <span className="dot" />
                     <span>{post.readTime}</span>
